@@ -11,7 +11,7 @@ About.propTypes = {
 function About(props) {
   return (
     <div>
-      <PreLoader />
+      {/* <PreLoader /> */}
       <Header />
       {/* <!-- Page Content --> */}
       <div class="page-heading about-heading header-text">

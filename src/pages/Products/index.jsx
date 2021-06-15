@@ -11,7 +11,7 @@ Products.propTypes = {
 function Products(props) {
   return (
     <div>
-      <PreLoader />
+      {/* <PreLoader /> */}
       <Header />
        {/* <!-- Page Content --> */}
     <div className="page-heading products-heading header-text">

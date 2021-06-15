@@ -2,12 +2,35 @@ import logo from './logo.svg';
 import './App.css';
 import Home from './pages/Home';
 
+import { BrowserRouter, Switch, Route, } from 'react-router-dom';
+import About from './pages/About';
+import Products from './pages/Products';
+import NoMatch from './pages/NoMatch';
+import Contact from './pages/Contact';
 
 function App() {
   return (
-    <div classNameName="App">
-      <Home />
-    </div>
+    <BrowserRouter>
+      <div >
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/product">
+            <Products />
+          </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          <Route path="*">
+            <NoMatch />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 

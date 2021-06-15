@@ -13,7 +13,7 @@ Home.propTypes = {
 function Home(props) {
   return (
     <div>
-      <PreLoader />
+      {/* <PreLoader /> */}
 
       <Header />
 
