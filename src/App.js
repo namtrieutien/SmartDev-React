@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Home from './pages/Home';
 
@@ -8,6 +7,7 @@ import Products from './pages/Products';
 import NoMatch from './pages/NoMatch';
 import Contact from './pages/Contact';
 import Login from './components/Login';
+import PostDetail from './pages/PostDetail';
 
 function App() {
   return (
@@ -28,6 +28,9 @@ function App() {
           </Route>
           <Route path="/login" >
             <Login />
+          </Route>
+          <Route path="/post" >
+            <PostDetail/>
           </Route>
           <Route path="*">
             <NoMatch />

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useRouteMatch } from 'react-router-dom';
-
 Navbar.propTypes = {
   
 };
@@ -27,6 +26,7 @@ function Navbar() {
         <CustomLink to="/product" label="Product" />
         <CustomLink to="/about" label="About" />
         <CustomLink to="/contact" label="Contact" />
+        <CustomLink to="/login" label="Login" />
       </ul>
     </>
   );
