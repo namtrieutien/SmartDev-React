@@ -7,6 +7,7 @@ import About from './pages/About';
 import Products from './pages/Products';
 import NoMatch from './pages/NoMatch';
 import Contact from './pages/Contact';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/login" >
+            <Login />
           </Route>
           <Route path="*">
             <NoMatch />

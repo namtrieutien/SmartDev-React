@@ -11,7 +11,40 @@
 }
 
 .bg-image {
-  background-image: url('https://res.cloudinary.com/mhmd/image/upload/v1555917661/art-colorful-contemporary-2047905_dxtao7.jpg');
+  background-image: url('./login-image/login-image.jpg');
   background-size: cover;
   background-position: center center;
+}
+
+.btn-login {
+  background-color: #f33f3f;
+  color: white;
+}
+
+.register-anchor {
+  text-decoration: none;
+  color: black;
+}
+
+.register-anchor:hover {
+  cursor: pointer;
+  color: #f33f3f;
+}
+
+.remember-me {
+  cursor: pointer!important;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #f33f3f!important;
+}
+
+.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgb(233, 149, 149)
+}
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+}
+.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+  background-color: #C8FFC8; 
 }
