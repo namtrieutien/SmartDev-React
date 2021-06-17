@@ -928,7 +928,7 @@ footer .inner-content p a {
 }
 
 /* Responsive Style */
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
 	.banner .text-content {
 		width: 90%;
 		margin-left: 5%;
@@ -1057,4 +1057,4 @@ footer .inner-content p a {
 		right: 0;
 		bottom: 0;
 	}
-} */
+}

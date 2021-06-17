@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form'
+import { ErrorMessage } from '@hookform/error-message';
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
 
 import "./Login.css"
 
@@ -9,10 +13,16 @@ Login.propTypes = {
   
 };
 
+const SigninSchema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required('Password is required')
+});
+
 function Login(props) {
-  const { register, handleSubmit } = useForm();
+  const { register, formState: { errors }, handleSubmit } = useForm({
+    resolver: yupResolver(SigninSchema)
+  });
   const onSubmit = (data) => {
-    
     alert(JSON.stringify(data));
   };
 
@@ -36,13 +46,14 @@ function Login(props) {
                                   </p>
                                   <form onSubmit={handleSubmit(onSubmit)}>
                                       <div className="form-group mb-3">
-                                          <input {...register("email", { required: true, maxLength: 40 })} 
-                                            id="inputEmail" 
-                                            type="email" 
-                                            placeholder="Email address" 
-                                            // required="" 
-                                            // autoFocus="" 
-                                            className="form-control rounded-pill border-0 shadow-sm px-4" />
+                                        <input {...register("email")} 
+                                          id="inputEmail" 
+                                          // type="email" 
+                                          placeholder="Email address" 
+                                          // required="" 
+                                          // autoFocus="" 
+                                          className="form-control rounded-pill border-0 shadow-sm px-4" />
+                                        {errors.email && <p>{errors.email.message}</p>}
                                       </div>
                                       <div className="form-group mb-3">
                                           <input  {...register("password", { required: true, maxLength: 40 })} 
@@ -51,6 +62,7 @@ function Login(props) {
                                             placeholder="Password" 
                                             required="" 
                                             className="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
+                                          {errors.password && <p>{errors.password.message}</p>}
                                       </div>
                                       <div className="custom-control custom-checkbox mb-3">
                                           <input  {...register("remember-me")}
@@ -75,10 +87,8 @@ function Login(props) {
                               </div>
                           </div>
                     </div>
-                    {/* <!-- End --> */}
                   </div>
               </div>
-              {/* <!-- End --> */}
           </div>
       </div>
     </div>
