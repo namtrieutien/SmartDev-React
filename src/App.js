@@ -9,7 +9,9 @@ import Contact from './pages/Contact';
 import Login from './components/Login';
 import PostDetail from './pages/PostDetail';
 
+
 function App() {
+
   return (
     <BrowserRouter>
       <div >

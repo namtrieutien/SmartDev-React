@@ -52,7 +52,7 @@ function SendMessage(props) {
             <div className="col-md-4">
               <ul className="accordion">
                 <li>
-                    <a>Accordion Title One</a>
+                    <a href="/">Accordion Title One</a>
                     <div className="content">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed voluptate nihil 
                           eumester consectetur similiqu consectetur.<br /><br />Lorem ipsum dolor sit amet, 
@@ -60,21 +60,21 @@ function SendMessage(props) {
                     </div>
                 </li>
                 <li>
-                    <a>Second Title Here</a>
+                    <a href="/">Second Title Here</a>
                     <div className="content">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed voluptate nihil eumester consectetur 
                           similiqu consectetur.<br /><br />Lorem ipsum dolor sit amet, consectetur adipisic elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti elite.</p>
                     </div>
                 </li>
                 <li>
-                    <a>Accordion Title Three</a>
+                    <a href="/">Accordion Title Three</a>
                     <div className="content">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed voluptate nihil eumester consectetur 
                           similiqu consectetur.<br /><br />Lorem ipsum dolor sit amet, consectetur adipisic elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti elite.</p>
                     </div>
                 </li>
                 <li>
-                    <a>Fourth Accordion Title</a>
+                    <a href="/">Fourth Accordion Title</a>
                     <div className="content">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed voluptate nihil eumester consectetur similiqu 
                           consectetur.<br /><br />Lorem ipsum dolor sit amet, consectetur adipisic elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti elite.</p>

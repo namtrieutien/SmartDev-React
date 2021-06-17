@@ -18,7 +18,7 @@ function FindUs(props) {
             </div>
             <div className="col-md-8">
               <div id="map">
-                <iframe src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="330px" frameborder="0" style={{border:0}} allowfullscreen></iframe>
+                <iframe title="location" src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="330px" frameborder="0" style={{border:0}} allowfullscreen></iframe>
               </div>
             </div>
             <div className="col-md-4">
@@ -30,10 +30,10 @@ function FindUs(props) {
                   sum dolor sit amet, consectetur adipisic elit. Et, consequuntur, modi 
                   mollitia corporis ipsa voluptate corrupti.</p>
                 <ul className="social-icons">
-                  <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                  <li><a href="#"><i className="fa fa-behance"></i></a></li>
+                  <li><a href="/"><i className="fa fa-facebook"></i></a></li>
+                  <li><a href="/"><i className="fa fa-twitter"></i></a></li>
+                  <li><a href="/"><i className="fa fa-linkedin"></i></a></li>
+                  <li><a href="/"><i className="fa fa-behance"></i></a></li>
                 </ul>
               </div>
             </div>

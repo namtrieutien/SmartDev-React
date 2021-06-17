@@ -12,6 +12,7 @@ Login.propTypes = {
 function Login(props) {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
+    
     alert(JSON.stringify(data));
   };
 
