@@ -1,0 +1,11 @@
+.category-item {
+  background-color: rgb(214, 208, 208);
+  text-align: center;
+  font-size: 30px;
+  border-radius: 30px;
+}
+
+.category-item:hover {
+  background-color: rgb(143, 138, 138);
+  cursor: pointer;
+}

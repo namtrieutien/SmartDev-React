@@ -8,13 +8,14 @@ import NoMatch from './pages/NoMatch';
 import Contact from './pages/Contact';
 import Login from './components/Login';
 import PostDetail from './pages/PostDetail';
-
+import Header from './components/Header';
 
 function App() {
 
   return (
     <BrowserRouter>
       <div >
+        {/* <Header /> */}
         <Switch>
           <Route exact path="/">
             <Home />

@@ -5,6 +5,8 @@ import Header from '../../components/Header';
 import Banner from '../../components/Contents/Banner';
 import Posts from '../../components/Contents/Posts';
 import Footer from '../../components/Footer';
+import ExploreCategories from '../../components/Contents/ExploreCategories';
+import CarouselPosts from '../../components/Contents/CarouselPosts';
 
 Home.propTypes = {
   
@@ -19,6 +21,10 @@ function Home(props) {
 
       {/* <!-- Page Content --> */}
       <Banner />
+
+      <ExploreCategories />
+
+      <CarouselPosts />
 
       <Posts />
 
