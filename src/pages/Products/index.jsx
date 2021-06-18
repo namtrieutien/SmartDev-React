@@ -40,10 +40,10 @@ function Products(props) {
       try {
         // _limit=10&_page=1
         const paramString = queryString.stringify(filters)
-        const RequestUrl = `http://js-post-api.herokuapp.com/api/posts?${paramString}`;
+        const RequestUrl = `https://smartdev-sunny.herokuapp.com/posts/search-post-by-title?title=title&_page=0&_limit=1`;
         const reponse = await fetch(RequestUrl);
         const reponseJSON = await reponse.json();
-        console.log(reponseJSON);
+        console.log("res: ", reponseJSON);
 
         const {data, pagination} = reponseJSON;
         setPostList(data);

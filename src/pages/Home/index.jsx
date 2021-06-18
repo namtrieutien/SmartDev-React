@@ -23,7 +23,7 @@ function Home(props) {
       <Banner />
 
       <ExploreCategories />
-
+      
       <CarouselPosts />
 
       <Posts />
