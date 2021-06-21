@@ -1,0 +1,19 @@
+.carousel-caption {
+  top: 55%;
+  transform: translateY(-50%);
+}
+
+.btn-banner {
+  height: 45px;
+  width: 20%;
+  border: none;
+  outline: none;
+  background: #f33f3f;
+  color: white;
+  border-radius: 60px;
+}
+
+.btn1-banner:hover {
+  background-color: rgb(223, 26, 92);
+  transition: 0.5s;
+}
