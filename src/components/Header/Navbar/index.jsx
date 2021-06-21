@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useRouteMatch } from 'react-router-dom';
+
+import "./Navbar.css"
+
 Navbar.propTypes = {
   
 };
@@ -21,7 +24,7 @@ function CustomLink({ label, to, activeOnlyWhenExact }) {
 function Navbar() {
   return (
     <>
-      <ul className="navbar-nav ml-auto">
+      <ul className="navbar-nav m-auto mb-2 mb-lg-0 Navbar">
         <CustomLink activeOnlyWhenExact={true} to="/" label="Home" />
         <CustomLink to="/product" label="Product" />
         <CustomLink to="/about" label="About" />

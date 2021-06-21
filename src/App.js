@@ -14,7 +14,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div >
+      <div className="./App.css">
         {/* <Header /> */}
         <Switch>
           <Route exact path="/">

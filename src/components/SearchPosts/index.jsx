@@ -19,15 +19,11 @@ function SearchPosts(props) {
   console.log(watch("search")); // watch input value by passing the name of it
 
   return (
+
     <div className="SearchPosts" onSubmit={handleSubmit(onSubmit)}>
-      <form className="form-inline my-2 my-lg-0">
-        <input
-           {...register("search", {maxLength: 10 })}  
-          className="form-control mr-sm-2" 
-          type="search" 
-          placeholder="Search" 
-          aria-label="Search" />
-        <button className="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+      <form class="d-flex">
+          <input  {...register("search", {maxLength: 10 })}   class="px-2 search" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn0" type="submit">Search</button>
       </form>
     </div>
   );

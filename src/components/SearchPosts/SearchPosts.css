@@ -1,8 +1,20 @@
-/* .btn-outline-success, .btn-outline-success:hover, .btn-outline-success:active, .btn-outline-success:visited {
-  background-color: #8064A2 !important;
-  border-color: #8064A2 !important;
+.search {
+  height: 40px;
+  width: 80%;
+  border-radius: 60px;
+  outline: none;
+  border: 2px solid #f33f3f;
+  margin-right: -35px;
+  font-family: 'Rubik', sans-serif;
 }
 
-.btn-outline-success {
+.btn0 {
+  height: 40px;
+  width: 40%;
+  outline: none;
+  border: none;
+  border-radius: 60px;
+  background: #f33f3f;
   color: white;
-} */
+  font-weight: 700;
+}

@@ -13,15 +13,15 @@ function Header(props) {
     <div className="Header">
       {/* <!-- Header --> */}
       <header className="">
-        <nav className="navbar navbar-expand-lg">
+        <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container">
             <a className="navbar-brand" href="/"><h2>Chợ <em>Tốt</em></h2></a>
-            <SearchPosts />
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <Navbar />
+              <SearchPosts />
             </div>
           </div>
         </nav>
