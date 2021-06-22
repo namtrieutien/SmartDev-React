@@ -15,17 +15,18 @@ Products.propTypes = {
 function Products(props) {
 
   const [postList, setPostList] = useState([])
-  const [pagination, setPagination] = useState({
-    _page: 1,
+  const [pagination, setPagination] = useState({ 
+    _page: 0,
     _limit: 10,
     _totalRows: 100,
   })
 
   const [filters, setFilters] = useState({
-    _limit: 10,
-    _page: 1
+    _page: 0,
+    _limit: 10
   })
 
+  
   function handlePageChange(newPage) {
     console.log("page change", newPage);
     setFilters({
@@ -35,25 +36,35 @@ function Products(props) {
   }
 
   useEffect(() => {
+    console.log('useEffect');
     async function fetchPostList() {
-      // ..
       try {
-        // _limit=10&_page=1
         const paramString = queryString.stringify(filters)
-        const RequestUrl = `https://smartdev-sunny.herokuapp.com/posts/search-post-by-title?title=title&_page=0&_limit=1`;
+        console.log('paramString: ' + paramString);
+        const RequestUrl = `https://choto-backend.herokuapp.com/posts/search-post-by-title?title=&` + paramString;
+
         const reponse = await fetch(RequestUrl);
         const reponseJSON = await reponse.json();
         console.log("res: ", reponseJSON);
 
-        const {data, pagination} = reponseJSON;
+        const {pagination, data} = reponseJSON;
         setPostList(data);
         setPagination(pagination);
+        const paramStringData = queryString.stringify(data)
+        console.log('paramStringData: ' + paramStringData);
+
+        const paramStringPagination = queryString.stringify(pagination)
+        console.log('paramStringPagination: ' + paramStringPagination);
+
+        console.log('paramString: ' + paramString);
       } catch (error) {
         console.log("falied to fetch, ", error.message); 
       }
     }
 
-    fetchPostList()
+    fetchPostList();
+
+    
   }, [filters])
 
   return (
@@ -61,6 +72,8 @@ function Products(props) {
 
     <Header />
     {/* <!-- Page Content --> */}
+    
+   
     <div className="page-heading products-heading header-text">
       <div className="container">
         <div className="row">
@@ -73,7 +86,7 @@ function Products(props) {
         </div>
       </div>
     </div>
-
+    */
     
     <div className="products">
       <div className="container">
@@ -96,12 +109,43 @@ function Products(props) {
             </div>
           </div>
           <Pagination onPageChange={handlePageChange} pagination={pagination} />
+          <Content/>
         </div>
       </div>
     </div>
     <Footer />
     </div>
   );
+}
+
+class Content extends React.Component {
+    componentWillMount() {
+      console.log('Component WILL MOUNT!')
+    }
+    componentDidMount() {
+      console.log('Component DID MOUNT!')
+    }
+    componentWillReceiveProps(newProps) {    
+      console.log('Component WILL RECIEVE PROPS!')
+    }
+    shouldComponentUpdate(newProps, newState) {
+      console.log('Component SHOULD COMPONENT UPDATE!')
+      return true;
+    }
+    componentWillUpdate(nextProps, nextState) {
+      console.log('Component WILL UPDATE!');
+    }
+    componentDidUpdate(prevProps, prevState) {
+      console.log('Component DID UPDATE!')
+    }
+    componentWillUnmount() {
+      console.log('Component WILL UNMOUNT!')
+    }
+    render() {
+      return (
+          <h1></h1>
+      );
+    }
 }
 
 export default Products;

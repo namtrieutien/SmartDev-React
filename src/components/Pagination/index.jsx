@@ -9,6 +9,11 @@ Pagination.propTypes = {
 };
 
 Pagination.defaultProps = {
+  pagination: {
+    _page: 0,
+    _limit: 5,
+    _totalRows: 100
+  },
   onPageChange: null
 };
 
