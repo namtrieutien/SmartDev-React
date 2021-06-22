@@ -42,7 +42,7 @@ function Login(props) {
                                   <h3 className="display-4">Welcome to Chotot</h3>
                                   <p className="text-muted mb-4">
                                     Not a member yet? 
-                                    <a className="register-anchor" href="/">Register</a> now
+                                    <a className="register-anchor ml-2" href="/register">Register now</a>
                                   </p>
                                   <form onSubmit={handleSubmit(onSubmit)}>
                                       <div className="form-group mb-3">

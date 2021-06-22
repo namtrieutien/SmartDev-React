@@ -1,0 +1,8 @@
+
+// get address api
+export const GET_CITY = 'GET_CITY';
+export const GET_DISTRICT = 'GET_DISTINCT';
+export const GET_COMMUTE = 'GET_COMMUTE';
+export const GET_CITY_REQUESTED = 'GET_CITY_REQUESTED';
+export const GET_DISTRICT_REQUESTED = 'GET_CITY_REQUESTED';
+export const GET_COMMUTE_REQUESTED = 'GET_CITY_REQUESTED';

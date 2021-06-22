@@ -7,6 +7,7 @@ import Products from './pages/Products';
 import NoMatch from './pages/NoMatch';
 import Contact from './pages/Contact';
 import Login from './components/Login';
+import Register from './components/Register';
 import PostDetail from './pages/PostDetail';
 import Header from './components/Header';
 
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/login" >
             <Login />
+          </Route>
+          <Route path="/register" >
+            <Register />
           </Route>
           <Route path="/post" >
             <PostDetail/>

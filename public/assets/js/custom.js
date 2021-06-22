@@ -3,7 +3,6 @@ jQuery( document ).ready(function( $ ) {
 	"use strict";
 
 
-    
         $(function() {
             $( "#tabs" ).tabs();
         });
@@ -173,5 +172,4 @@ jQuery( document ).ready(function( $ ) {
 
             j.preventDefault();
         });
- 
 });
