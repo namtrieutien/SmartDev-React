@@ -11,7 +11,7 @@ function Header(props) {
     <div className="Header">
       {/* <!-- Header --> */}
       <header>
-        <nav className="navbar navbar-expand-lg">
+        <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container">
             <a className="navbar-brand" href="/">
               <h2>
