@@ -63,7 +63,6 @@ function Posts(props) {
               <div className="down-content">
                 <a href="/"><h4>Title: {post.title}</h4></a>
                 <h6>Price: {post.price}</h6>
-                <h6>Size: {post.size}</h6>
                 <p>Description: {post.description}</p>
                 <ul className="stars">
                   <li><i className="fa fa-star"></i></li>
