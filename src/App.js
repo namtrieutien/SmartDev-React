@@ -37,6 +37,8 @@ function App() {
           <Route path="/login" component={Login}>
             {/* <Login /> */}
           </Route>
+          <Route path="/register" component={Register}>
+          </Route>
           <Route path="/post" component={PostDetail}>
             {/* <PostDetail/> */}
           </Route>
