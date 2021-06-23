@@ -10,11 +10,11 @@
   min-height: 100vh;
 }
 
-/* .bg-image {
+.bg-image {
   background-image: url('./login-image/login-image.jpg');
   background-size: cover;
   background-position: center center;
-} */
+}
 
 .btn-login {
   background-color: #f33f3f;
@@ -49,6 +49,31 @@
   background-color: #C8FFC8; 
 }
 
-.select2-container--default .select2-selection--single {
-  height: 37px;
+
+.loading-bg {
+  background-color: white;
+  position: fixed;
+  display: block;
+  top: 0;
+  bottom: 0;
+  z-index: 1000000;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.loading-bg img {
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  display: block;
+  top: calc(50% - 35px);
+  left: calc(50% - 35px);
+  position: absolute;
+  z-index: 999999;
+}
+
+.modal-notification {
+  top: calc(50% - 35px);
+  left: calc(50% - 35px);
 }

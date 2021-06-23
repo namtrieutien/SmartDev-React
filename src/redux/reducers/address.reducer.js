@@ -2,8 +2,8 @@ import * as type from '../constants'
 
 const initialState = {
   cities: [],
-  district: [],
-  commute: []
+  districts: [],
+  commutes: []
 }
 
 export default function address(state = initialState, action) {
@@ -25,18 +25,17 @@ export default function address(state = initialState, action) {
     case type.GET_DISTRICT:
       return {
         ...state,
-        district: action.payload,
+        districts: action.payload,
       }
     case type.GET_COMMUTE_REQUESTED:
       return {
         ...state,
-        city_id: action.city_id,
         district_id: action.district_id
       }
     case type.GET_COMMUTE:
       return {
         ...state,
-        commute: action.payload,
+        commutes: action.payload,
       }
     default:
       return state;

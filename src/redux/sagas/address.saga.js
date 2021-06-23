@@ -4,8 +4,6 @@ import * as type from '../constants';
 
 import apiAdress from '../../api/address/address';
 
-let province_id = 0;
-
 const getCities = async () => {
   try {
     const response = await apiAdress.get(`/provinces`, {
@@ -20,10 +18,23 @@ const getCities = async () => {
   }
 }
 
-const getDistrict = async () => {
+const getDistrict = async (city_id) => {
   try {
-    console.log(province_id);
-    const response = await apiAdress.get(`/districts?provinceId.equals=${province_id}`, {
+    const response = await apiAdress.get(`/districts?provinceId.equals=${city_id}`, {
+      params: {
+        size: 100,
+      }
+    });
+    return response.data;
+  } catch (e) {
+    console.log(e.messages);
+    return [];
+  }
+}
+
+const getCommute = async (district_id) => {
+  try {
+    const response = await apiAdress.get(`/wards?districtId.equals=${district_id}`, {
       params: {
         size: 100,
       }
@@ -37,7 +48,6 @@ const getDistrict = async () => {
 
 function* fetchCities(action) {
   try {
-    
     const cities = yield call(getCities);
     yield put({type: type.GET_CITY, payload: cities});
   } catch (e) {
@@ -48,10 +58,19 @@ function* fetchCities(action) {
 
 function* fetchDistrict(action) {
   try {
-    province_id = action.city_id;
-    const district = yield call(getDistrict);
-    console.log(district);
-    // yield put({type: type.GET_CITY, payload: cities});
+    const district = yield call(getDistrict, action.city_id);
+    yield put({type: type.GET_DISTRICT, payload: district});
+  } catch (e) {
+    console.log(e.messages);
+    // yield put({type: type.GET_USERS_FAILED, message: e.message});
+  }
+}
+
+
+function* fetchCommute(action) {
+  try {
+    const commutes = yield call(getCommute, action.district_id);
+    yield put({type: type.GET_COMMUTE, payload: commutes});
   } catch (e) {
     console.log(e.messages);
     // yield put({type: type.GET_USERS_FAILED, message: e.message});
@@ -60,7 +79,8 @@ function* fetchDistrict(action) {
 
 function* addressSaga() {
   yield takeEvery(type.GET_CITY_REQUESTED, fetchCities);
-  yield takeLatest(type.GET_DISTRICT_REQUESTED, fetchDistrict);
+  yield takeEvery(type.GET_DISTRICT_REQUESTED, fetchDistrict);
+  yield takeEvery(type.GET_COMMUTE_REQUESTED, fetchCommute);
 }
 
 export default addressSaga;

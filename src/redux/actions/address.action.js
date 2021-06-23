@@ -13,10 +13,9 @@ export function getDistrict(city_id) {
   }
 }
 
-export function getCommute(city_id, district_id) {
+export function getCommute(district_id) {
   return {
       type: type.GET_COMMUTE_REQUESTED,
-      city_id,
       district_id
   }
 }
