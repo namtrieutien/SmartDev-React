@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 
@@ -9,13 +9,17 @@ import PostList from '../../components/PostList';
 import Pagination from '../../components/Pagination';
 
 Products.propTypes = {
-  
 };
+
+var errorResponse = false;
+var errorCode;
+var errorName;
+var errorMessage;
 
 function Products(props) {
 
   const [postList, setPostList] = useState([])
-  const [pagination, setPagination] = useState({ 
+  const [pagination, setPagination] = useState({
     _page: 0,
     _limit: 10,
     _totalRows: 100,
@@ -26,7 +30,8 @@ function Products(props) {
     _limit: 10
   })
 
-  
+
+
   function handlePageChange(newPage) {
     console.log("page change", newPage);
     setFilters({
@@ -47,7 +52,22 @@ function Products(props) {
         const reponseJSON = await reponse.json();
         console.log("res: ", reponseJSON);
 
-        const {pagination, data} = reponseJSON;
+        const reponseJSONString = JSON.stringify(reponseJSON);
+
+        if (reponseJSONString.indexOf('error') != -1) {
+          console.log('reponseJSONString: ' + reponseJSONString);
+          const { code, error, message } = reponseJSON;
+          console.log('code: ' + code);
+          console.log('error: ' + error);
+          console.log('message: ' + message);
+          errorResponse = true;
+          errorCode = code;
+          errorName = error;
+          errorMessage = message;
+          return;
+        }
+        errorResponse = false;
+        const { pagination, data } = reponseJSON;
         setPostList(data);
         setPagination(pagination);
         const paramStringData = queryString.stringify(data)
@@ -58,94 +78,90 @@ function Products(props) {
 
         console.log('paramString: ' + paramString);
       } catch (error) {
-        console.log("falied to fetch, ", error.message); 
+        console.log("falied to fetch, ", error.message);
       }
     }
 
     fetchPostList();
 
-    
+
   }, [filters])
 
   return (
     <div>
-
-    <Header />
-    {/* <!-- Page Content --> */}
-    
-   
-    <div className="page-heading products-heading header-text">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="text-content">
-              <h4>new arrivals</h4>
-              <h2>sixteen products</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    
-    <div className="products">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="filters">
-              <ul>
-                  <li className="active" data-filter="*">All Products</li>
-                  <li data-filter=".des">Featured</li>
-                  <li data-filter=".dev">Flash Deals</li>
-                  <li data-filter=".gra">Last Minute</li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-md-12">
-            <div className="filters-content">
-                <div className="row">
-                  <PostList posts={postList} />
-                </div>
-            </div>
-          </div>
-          <Pagination onPageChange={handlePageChange} pagination={pagination} />
-          <Content/>
-        </div>
-      </div>
-    </div>
-    <Footer />
+      <Header />
+      <Content postList={postList} handlePageChange={handlePageChange} pagination={pagination} />
+      <Footer />
     </div>
   );
 }
 
 class Content extends React.Component {
-    componentWillMount() {
-      console.log('Component WILL MOUNT!')
-    }
-    componentDidMount() {
-      console.log('Component DID MOUNT!')
-    }
-    componentWillReceiveProps(newProps) {    
-      console.log('Component WILL RECIEVE PROPS!')
-    }
-    shouldComponentUpdate(newProps, newState) {
-      console.log('Component SHOULD COMPONENT UPDATE!')
-      return true;
-    }
-    componentWillUpdate(nextProps, nextState) {
-      console.log('Component WILL UPDATE!');
-    }
-    componentDidUpdate(prevProps, prevState) {
-      console.log('Component DID UPDATE!')
-    }
-    componentWillUnmount() {
-      console.log('Component WILL UNMOUNT!')
-    }
-    render() {
-      return (
-          <h1></h1>
-      );
-    }
+  componentWillMount() {
+    console.log('Component WILL MOUNT!')
+  }
+  componentDidMount() {
+    console.log('Component DID MOUNT!')
+  }
+  componentWillReceiveProps(newProps) {
+    console.log('Component WILL RECIEVE PROPS!')
+  }
+  shouldComponentUpdate(newProps, newState) {
+    console.log('Component SHOULD COMPONENT UPDATE!')
+    return true;
+  }
+  componentWillUpdate(nextProps, nextState) {
+    console.log('Component WILL UPDATE!');
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Component DID UPDATE!')
+  }
+  componentWillUnmount() {
+    console.log('Component WILL UNMOUNT!')
+  }
+  render() {
+    return (
+      <div>
+        <div className="page-heading products-heading header-text">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="text-content">
+                  <h4>new arrivals</h4>
+                  <h2>sixteen products</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="products">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="filters">
+                  <ul>
+                    <li className="active" data-filter="*">All Products</li>
+                    <li data-filter=".des">Featured</li>
+                    <li data-filter=".dev">Flash Deals</li>
+                    <li data-filter=".gra">Last Minute</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="filters-content">
+                  <div className="row">
+                    <PostList posts={this.props.postList} />
+                  </div>
+                </div>
+              </div>
+              <Pagination onPageChange={this.props.handlePageChange} pagination={this.props.pagination} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Products;
