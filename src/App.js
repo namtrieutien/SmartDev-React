@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import Login from './components/Login';
 import PostDetail from './pages/PostDetail';
 import Header from './components/Header';
+import Profile from './components/Profile/profile';
 
 function App() {
 
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/login" >
             <Login />
+          </Route>
+          <Route path="/profile" >
+            <Profile />
           </Route>
           <Route path="/post" >
             <PostDetail/>

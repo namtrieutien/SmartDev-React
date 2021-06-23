@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form'
-import { ErrorMessage } from '@hookform/error-message';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { loginUserAction } from '../../actions/authAction'
+
+import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 
 
 import "./Login.css"
@@ -22,10 +25,14 @@ function Login(props) {
   const { register, formState: { errors }, handleSubmit } = useForm({
     resolver: yupResolver(SigninSchema)
   });
+  const { isLoggedIn } = props;
+  if (isLoggedIn) {
+    return <Redirect to="/profile" />;
+  }
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+    props.login(data.email, data.password)
   };
-
+ 
   return (
     <div className="Login">
       <div className="container-fluid">
@@ -94,5 +101,18 @@ function Login(props) {
     </div>
   );
 }
-
-export default Login;
+const mapStateToProps= state => {
+  const { isLoggedIn } = state.userReducer;
+  return {
+    isLoggedIn
+  };
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (email, password) => {
+      console.log("email mapDispatchToProps: ", email, password)
+        dispatch(loginUserAction(email, password))
+    }
+}
+}
+export default connect(mapStateToProps, mapDispatchToProps )(Login);
