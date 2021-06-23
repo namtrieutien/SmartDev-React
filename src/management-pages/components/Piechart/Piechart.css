@@ -1,11 +1,13 @@
-.chart {
-  flex: 4;
-  margin: 20px;
+.pie-chart {
+  flex: 2;
+   margin: 20px;
   padding: 20px;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75); 
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75); 
 }
 
-.chart-title {
-  margin-bottom: 20px;
+
+.chart-pie-title {
+  margin-bottom: 0px;
+  /* color: rgb(255, 81, 0); */
 }

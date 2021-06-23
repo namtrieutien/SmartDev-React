@@ -24,7 +24,7 @@ function WidgetLg(props) {
           <tr className="widget-lg-tr">
             <td className="widget-lg-user">
               <img
-                src="https://avatars.dicebear.com/api/bottts/.svg"
+                src="https://avatars.dicebear.com/api/bottts/1.svg"
                 alt=""
                 className="widget-lg-img"
               />
@@ -39,7 +39,7 @@ function WidgetLg(props) {
           <tr className="widget-lg-tr">
             <td className="widget-lg-user">
               <img
-                src="https://avatars.dicebear.com/api/bottts/.svg"
+                src="https://avatars.dicebear.com/api/bottts/2.svg"
                 alt=""
                 className="widget-lg-img"
               />
@@ -54,7 +54,7 @@ function WidgetLg(props) {
           <tr className="widget-lg-tr">
             <td className="widget-lg-user">
               <img
-                src="https://avatars.dicebear.com/api/bottts/.svg"
+                src="https://avatars.dicebear.com/api/bottts/3.svg"
                 alt=""
                 className="widget-lg-img"
               />
@@ -69,7 +69,7 @@ function WidgetLg(props) {
           <tr className="widget-lg-tr">
             <td className="widget-lg-user">
               <img
-                src="https://avatars.dicebear.com/api/bottts/.svg"
+                src="https://avatars.dicebear.com/api/bottts/4.svg"
                 alt=""
                 className="widget-lg-img"
               />

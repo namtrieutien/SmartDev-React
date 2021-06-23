@@ -13,7 +13,7 @@ function WidgetSm(props) {
       <ul className="widget-sm-list">
         <li className="widget-sm-item">
           <img
-            src="https://avatars.dicebear.com/api/bottts/.svg"
+            src="https://avatars.dicebear.com/api/bottts/z.svg"
             alt=""
             className="widget-sm-img"
           />
@@ -28,7 +28,7 @@ function WidgetSm(props) {
         </li>
         <li className="widget-sm-item">
           <img
-            src="https://avatars.dicebear.com/api/bottts/.svg"
+            src="https://avatars.dicebear.com/api/bottts/x.svg"
             alt=""
             className="widget-sm-img"
           />
@@ -43,7 +43,7 @@ function WidgetSm(props) {
         </li>
         <li className="widget-sm-item">
           <img
-            src="https://avatars.dicebear.com/api/bottts/.svg"
+            src="https://avatars.dicebear.com/api/bottts/y.svg"
             alt=""
             className="widget-sm-img"
           />
@@ -58,7 +58,7 @@ function WidgetSm(props) {
         </li>
         <li className="widget-sm-item">
           <img
-            src="https://avatars.dicebear.com/api/bottts/.svg"
+            src="https://avatars.dicebear.com/api/bottts/w.svg"
             alt=""
             className="widget-sm-img"
           />
@@ -73,7 +73,7 @@ function WidgetSm(props) {
         </li>
         <li className="widget-sm-item">
           <img
-            src="https://avatars.dicebear.com/api/bottts/.svg"
+            src="https://avatars.dicebear.com/api/bottts/f.svg"
             alt=""
             className="widget-sm-img"
           />
