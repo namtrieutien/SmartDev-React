@@ -23,9 +23,14 @@ function Pagination(props) {
   const { _page, _limit, _totalRows } = pagination;
   const totalPages = Math.ceil(_totalRows / _limit)
 
+  var pages = new Array();
+  for (var i = 0; i < totalPages; i++) {
+    pages[i] = i;
+  }
+
   function handlePageChange(newPage) {
     console.log("get new page: ", newPage);
-    if(onPageChange) {
+    if (onPageChange) {
       onPageChange(newPage)
     }
   }
@@ -34,16 +39,29 @@ function Pagination(props) {
     <>
       <div className="col-md-12">
         <ul className="pages">
-          { _page > 1 &&
-            <li onClick={() => handlePageChange(_page - 1)} ><i className="fa fa-angle-double-left"></i></li>   
-          }
-          <li><a href="#">1</a></li>
-          <li className="active"><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
+
           {
-            _page <= totalPages ?
-            <li onClick={() => handlePageChange(_page + 1)} ><i className="fa fa-angle-double-right"></i></li> : null
+            _page > 0 ?
+              <li>
+                <a onClick={() => handlePageChange(_page - 1)}> <i className="fa fa-angle-double-left"></i> </a>
+              </li>
+              : null
+          }
+
+          {
+            pages.map(page =>
+              <li className={(_page) === page ? 'active' : ''}>
+                <a onClick={() => handlePageChange(page)}>{page + 1}</a>
+              </li>
+            )
+          }
+
+          {
+            _page < totalPages - 1 ?
+              <li>
+                <a onClick={() => handlePageChange(_page + 1)}> <i className="fa fa-angle-double-right"></i> </a>
+              </li>
+              : null
           }
         </ul>
       </div>
