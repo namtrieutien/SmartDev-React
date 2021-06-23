@@ -8,35 +8,39 @@ import NoMatch from './pages/NoMatch';
 import Contact from './pages/Contact';
 import Login from './components/Login';
 import PostDetail from './pages/PostDetail';
-import Header from './components/Header';
+import Dashboard from './management-pages/pages/Dashboard';
+
+
 
 function App() {
 
   return (
     <BrowserRouter>
       <div className="./App.css">
-        {/* <Header /> */}
         <Switch>
-          <Route exact path="/">
-            <Home />
+          <Route exact path="/" component={Home}>
+            {/* <Home /> */}
           </Route>
-          <Route path="/about">
-            <About />
+          <Route path="/management" component={Dashboard}>
+            {/* <Dashboard /> */}
           </Route>
-          <Route path="/product">
-            <Products />
+          <Route path="/about" component={About}>
+            {/* <About /> */}
           </Route>
-          <Route path="/contact">
-            <Contact />
+          <Route path="/product" component={Products}>
+            {/* <Products /> */}
           </Route>
-          <Route path="/login" >
-            <Login />
+          <Route path="/contact" component={Contact}>
+            {/* <Contact /> */}
           </Route>
-          <Route path="/post" >
-            <PostDetail/>
+          <Route path="/login" component={Login}>
+            {/* <Login /> */}
           </Route>
-          <Route path="*">
-            <NoMatch />
+          <Route path="/post" component={PostDetail}>
+            {/* <PostDetail/> */}
+          </Route>
+          <Route path="*" component={NoMatch}>
+            {/* <NoMatch /> */}
           </Route>
         </Switch>
       </div>
