@@ -12,7 +12,7 @@ const rows = [
   {
     id: 1,
     username: "Geralt",
-    avatar: "https://source.unsplash.com/random",
+    avatar: "https://avatars.dicebear.com/api/avataaars/a.svg",
     email: "butcherofblaviken@gmail.com",
     status: "active",
     transaction: "$120.00",
@@ -20,7 +20,7 @@ const rows = [
   {
     id: 2,
     username: "Geralt",
-    avatar: "https://source.unsplash.com/random",
+    avatar: "https://avatars.dicebear.com/api/avataaars/b.svg",
     email: "butcherofblaviken@gmail.com",
     status: "active",
     transaction: "$120.00",
@@ -28,7 +28,7 @@ const rows = [
   {
     id: 3,
     username: "Geralt",
-    avatar: "https://source.unsplash.com/random",
+    avatar: "https://avatars.dicebear.com/api/avataaars/c.svg",
     email: "butcherofblaviken@gmail.com",
     status: "active",
     transaction: "$120.00",
@@ -36,7 +36,7 @@ const rows = [
   {
     id: 4,
     username: "Geralt",
-    avatar: "https://source.unsplash.com/random",
+    avatar: "https://avatars.dicebear.com/api/avataaars/d.svg",
     email: "butcherofblaviken@gmail.com",
     status: "active",
     transaction: "$120.00",
@@ -44,7 +44,7 @@ const rows = [
   {
     id: 5,
     username: "Geralt",
-    avatar: "https://source.unsplash.com/random",
+    avatar: "https://avatars.dicebear.com/api/avataaars/d.svg",
     email: "butcherofblaviken@gmail.com",
     status: "active",
     transaction: "$120.00",
@@ -52,7 +52,7 @@ const rows = [
   {
     id: 6,
     username: "Geralt",
-    avatar: "https://source.unsplash.com/random",
+    avatar: "https://avatars.dicebear.com/api/avataaars/e.svg",
     email: "butcherofblaviken@gmail.com",
     status: "active",
     transaction: "$120.00",
@@ -60,7 +60,7 @@ const rows = [
   {
     id: 7,
     username: "Geralt",
-    avatar: "https://source.unsplash.com/random",
+    avatar: "https://avatars.dicebear.com/api/avataaars/f.svg",
     email: "butcherofblaviken@gmail.com",
     status: "active",
     transaction: "$120.00",
@@ -68,7 +68,7 @@ const rows = [
   {
     id: 8,
     username: "Geralt",
-    avatar: "https://source.unsplash.com/random",
+    avatar: "https://avatars.dicebear.com/api/avataaars/h.svg",
     email: "butcherofblaviken@gmail.com",
     status: "active",
     transaction: "$120.00",
@@ -76,7 +76,6 @@ const rows = [
 ];
 
 function UsersList(props) {
-  
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
     {

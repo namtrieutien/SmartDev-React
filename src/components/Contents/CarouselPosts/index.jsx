@@ -84,7 +84,7 @@ function CarouselPosts(props) {
             <div className="row">
               <div className="col-md-3">
                 <img
-                  class="d-block w-100"
+                  className="d-block w-100"
                   src="https://source.unsplash.com/302x301"
                   alt="First slide"
                 />
