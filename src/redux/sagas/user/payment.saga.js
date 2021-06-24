@@ -8,6 +8,7 @@ const pay = async (requestPayment) => {
   try {
     const response = await apiSunny.post(`api/user/payment/pay`, requestPayment);
     console.log(response.data);
+    // window.open(response.data.payment_link, "_blank")
     return response.data;
   } catch (e) {
     console.log(e.response.data);
@@ -18,9 +19,8 @@ const pay = async (requestPayment) => {
 function* userPay(action) {
   try {
     action.requestPayment= {...action.requestPayment, intent:'SALE', method: 'Paypal'}
-    console.log(action.requestPayment);
     const data = yield call(pay, action.requestPayment);
-    // yield put({type: type.USER_PAYMENT, payload: data});
+    yield put({type: type.USER_PAYMENT, payload: data});
   } catch (e) {
     console.log(e.messages);
     // yield put({type: type.GET_USERS_FAILED, message: e.message});
