@@ -11,6 +11,7 @@ import Register from './components/Register';
 import PostDetail from './pages/PostDetail';
 import Dashboard from './management-pages/pages/Dashboard';
 
+import Payment from './pages/Payment';
 
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/post" component={PostDetail}>
             {/* <PostDetail/> */}
+          </Route>
+          <Route path="/test" component={Payment}>
+            {/* <NoMatch /> */}
           </Route>
           <Route path="*" component={NoMatch}>
             {/* <NoMatch /> */}
