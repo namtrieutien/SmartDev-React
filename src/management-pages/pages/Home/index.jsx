@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+
+import "./Home.css";
 
 import FeaturedInfor from "../../components/FeaturedInfor";
 import Chart from "../../components/Chart";
 import WidgetSm from "../../components/WidgetSm";
 import WidgetLg from "../../components/WidgetLg";
 import Piechart from "../../components/Piechart";
-
-import "./Home.css";
-
 import { dataTemp, pieData01, pieData02 } from "../../dummyData";
 
 Home.propTypes = {};
 
 function Home(props) {
+
   return (
     <div className="home">
       <FeaturedInfor />

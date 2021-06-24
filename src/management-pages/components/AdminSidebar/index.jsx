@@ -27,10 +27,13 @@ function AdminSidebar(props) {
         <div className="sidebar-menu">
           <h3 className="sidebar-title">Dashboard</h3>
           <ul className="sidebar-list">
-            <li className="sidebar-list-item active">
-              <LineStyle className="sidebar-icon" />
-              Home
-            </li>
+            <Link to="/management" className="link">
+              <li className="sidebar-list-item active">
+                <LineStyle className="sidebar-icon" />
+                Home
+              </li>
+            </Link>
+
             <li className="sidebar-list-item">
               <Timeline className="sidebar-icon" />
               Analytics
@@ -50,15 +53,14 @@ function AdminSidebar(props) {
                 Users
               </li>
             </Link>
-            
-            
+
             <Link to="/management/product" className="link">
               <li className="sidebar-list-item">
                 <Storefront className="sidebar-icon" />
                 Products
-                </li>
+              </li>
             </Link>
-            
+
             <li className="sidebar-list-item">
               <AttachMoney className="sidebar-icon" />
               Transactions

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 
 import "./UsersList.css";
 import { Link } from "react-router-dom";
+import adminApi from "../../../api/management/adminApi";
 
 UsersList.propTypes = {};
 
@@ -127,6 +128,20 @@ function UsersList(props) {
   ];
 
   const [data, setData] = useState(rows);
+  const [usersList, setUsersList] = useState()
+
+  useEffect(() => {
+    const fetchUserList = async () => {
+      try {
+        const response = await adminApi.getAllUsers();
+        console.log(response);
+      } catch (error) {
+        console.log("failed to fetch list users", error);
+      }
+    }
+
+    fetchUserList();
+  }, [])
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));

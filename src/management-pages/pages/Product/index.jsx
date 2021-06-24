@@ -1,16 +1,16 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Publish } from "@material-ui/icons";
 
 import "./Product.css";
 import Chart from "../../components/Chart";
-
 import { productDataTemp } from "../../dummyData";
-import { Publish } from "@material-ui/icons";
 
 Product.propTypes = {};
 
 function Product(props) {
+
   return (
     <div className="product">
       <div className="product-title-container">
