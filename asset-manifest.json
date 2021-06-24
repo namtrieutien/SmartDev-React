@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/deploy-github/static/css/main.8666addc.chunk.css",
-    "main.js": "/deploy-github/static/js/main.4ff6e699.chunk.js",
-    "main.js.map": "/deploy-github/static/js/main.4ff6e699.chunk.js.map",
-    "runtime-main.js": "/deploy-github/static/js/runtime-main.45bfa19c.js",
-    "runtime-main.js.map": "/deploy-github/static/js/runtime-main.45bfa19c.js.map",
-    "static/js/2.a5fe4bb5.chunk.js": "/deploy-github/static/js/2.a5fe4bb5.chunk.js",
-    "static/js/2.a5fe4bb5.chunk.js.map": "/deploy-github/static/js/2.a5fe4bb5.chunk.js.map",
-    "static/js/3.99b4a577.chunk.js": "/deploy-github/static/js/3.99b4a577.chunk.js",
-    "static/js/3.99b4a577.chunk.js.map": "/deploy-github/static/js/3.99b4a577.chunk.js.map",
-    "index.html": "/deploy-github/index.html",
-    "static/css/main.8666addc.chunk.css.map": "/deploy-github/static/css/main.8666addc.chunk.css.map",
-    "static/js/2.a5fe4bb5.chunk.js.LICENSE.txt": "/deploy-github/static/js/2.a5fe4bb5.chunk.js.LICENSE.txt",
-    "static/media/loading.c0a3ccc0.gif": "/deploy-github/static/media/loading.c0a3ccc0.gif",
-    "static/media/registerStyle.css": "/deploy-github/static/media/login-image.69c09ce9.jpg"
+    "main.css": "/SmartDev-React/static/css/main.2ed7cb92.chunk.css",
+    "main.js": "/SmartDev-React/static/js/main.4ff6e699.chunk.js",
+    "main.js.map": "/SmartDev-React/static/js/main.4ff6e699.chunk.js.map",
+    "runtime-main.js": "/SmartDev-React/static/js/runtime-main.00bc0770.js",
+    "runtime-main.js.map": "/SmartDev-React/static/js/runtime-main.00bc0770.js.map",
+    "static/js/2.d88f5316.chunk.js": "/SmartDev-React/static/js/2.d88f5316.chunk.js",
+    "static/js/2.d88f5316.chunk.js.map": "/SmartDev-React/static/js/2.d88f5316.chunk.js.map",
+    "static/js/3.99b4a577.chunk.js": "/SmartDev-React/static/js/3.99b4a577.chunk.js",
+    "static/js/3.99b4a577.chunk.js.map": "/SmartDev-React/static/js/3.99b4a577.chunk.js.map",
+    "index.html": "/SmartDev-React/index.html",
+    "static/css/main.2ed7cb92.chunk.css.map": "/SmartDev-React/static/css/main.2ed7cb92.chunk.css.map",
+    "static/js/2.d88f5316.chunk.js.LICENSE.txt": "/SmartDev-React/static/js/2.d88f5316.chunk.js.LICENSE.txt",
+    "static/media/loading.c0a3ccc0.gif": "/SmartDev-React/static/media/loading.c0a3ccc0.gif",
+    "static/media/registerStyle.css": "/SmartDev-React/static/media/login-image.69c09ce9.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.45bfa19c.js",
-    "static/js/2.a5fe4bb5.chunk.js",
-    "static/css/main.8666addc.chunk.css",
+    "static/js/runtime-main.00bc0770.js",
+    "static/js/2.d88f5316.chunk.js",
+    "static/css/main.2ed7cb92.chunk.css",
     "static/js/main.4ff6e699.chunk.js"
   ]
 }
