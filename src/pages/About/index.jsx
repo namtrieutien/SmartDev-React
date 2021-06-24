@@ -14,11 +14,11 @@ function About(props) {
       {/* <PreLoader /> */}
       <Header />
       {/* <!-- Page Content --> */}
-      <div class="page-heading about-heading header-text">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="text-content">
+      <div className="page-heading about-heading header-text">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="text-content">
                 <h4>about us</h4>
                 <h2>our company</h2>
               </div>
@@ -27,21 +27,21 @@ function About(props) {
         </div>
       </div>
 
-      <div class="best-features about-features">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="section-heading">
+      <div className="best-features about-features">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="section-heading">
                 <h2>Our Background</h2>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="right-image">
+            <div className="col-md-6">
+              <div className="right-image">
                 <img src="assets/images/feature-image.jpg" alt="" />
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="left-content">
+            <div className="col-md-6">
+              <div className="left-content">
                 <h4>Who we are &amp; What we do?</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate 
                   nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi 
@@ -51,11 +51,11 @@ function About(props) {
                   sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia 
                   corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? 
                   Aut, in eum facere corrupti necessitatibus perspiciatis quis.</p>
-                <ul class="social-icons">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                  <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                <ul className="social-icons">
+                  <li><a href="#"><i className="fa fa-facebook"></i></a></li>
+                  <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                  <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+                  <li><a href="#"><i className="fa fa-behance"></i></a></li>
                 </ul>
               </div>
             </div>
@@ -64,140 +64,140 @@ function About(props) {
       </div>
 
     
-    <div class="team-members">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
+    <div className="team-members">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="section-heading">
               <h2>Our Team Members</h2>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
+          <div className="col-md-4">
+            <div className="team-member">
+              <div className="thumb-container">
                 <img src="assets/images/team_01.jpg" alt="" />
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                <div className="hover-effect">
+                  <div className="hover-content">
+                    <ul className="social-icons">
+                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="down-content">
+              <div className="down-content">
                 <h4>Johnny William</h4>
                 <span>CO-Founder</span>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
+          <div className="col-md-4">
+            <div className="team-member">
+              <div className="thumb-container">
                 <img src="assets/images/team_02.jpg" alt="" />
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                <div className="hover-effect">
+                  <div className="hover-content">
+                    <ul className="social-icons">
+                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="down-content">
+              <div className="down-content">
                 <h4>Karry Pitcher</h4>
                 <span>Product Expert</span>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
+          <div className="col-md-4">
+            <div className="team-member">
+              <div className="thumb-container">
                 <img src="assets/images/team_03.jpg" alt="" />
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                <div className="hover-effect">
+                  <div className="hover-content">
+                    <ul className="social-icons">
+                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="down-content">
+              <div className="down-content">
                 <h4>Michael Soft</h4>
                 <span>Chief Marketing</span>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
+          <div className="col-md-4">
+            <div className="team-member">
+              <div className="thumb-container">
                 <img src="assets/images/team_04.jpg" alt="" />
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                <div className="hover-effect">
+                  <div className="hover-content">
+                    <ul className="social-icons">
+                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="down-content">
+              <div className="down-content">
                 <h4>Mary Cool</h4>
                 <span>Product Specialist</span>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
+          <div className="col-md-4">
+            <div className="team-member">
+              <div className="thumb-container">
                 <img src="assets/images/team_05.jpg" alt="" />
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                <div className="hover-effect">
+                  <div className="hover-content">
+                    <ul className="social-icons">
+                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="down-content">
+              <div className="down-content">
                 <h4>George Walker</h4>
                 <span>Product Photographer</span>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="team-member">
-              <div class="thumb-container">
+          <div className="col-md-4">
+            <div className="team-member">
+              <div className="thumb-container">
                 <img src="assets/images/team_06.jpg" alt="" />
-                <div class="hover-effect">
-                  <div class="hover-content">
-                    <ul class="social-icons">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                <div className="hover-effect">
+                  <div className="hover-content">
+                    <ul className="social-icons">
+                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="down-content">
+              <div className="down-content">
                 <h4>Kate Town</h4>
                 <span>General Manager</span>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
@@ -209,42 +209,42 @@ function About(props) {
     </div>
 
 
-    <div class="services">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="service-item">
-              <div class="icon">
-                <i class="fa fa-gear"></i>
+    <div className="services">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <div className="service-item">
+              <div className="icon">
+                <i className="fa fa-gear"></i>
               </div>
-              <div class="down-content">
+              <div className="down-content">
                 <h4>Product Management</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat.</p>
-                <a href="#" class="filled-button">Read More</a>
+                <a href="#" className="filled-button">Read More</a>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="service-item">
-              <div class="icon">
-                <i class="fa fa-gear"></i>
+          <div className="col-md-4">
+            <div className="service-item">
+              <div className="icon">
+                <i className="fa fa-gear"></i>
               </div>
-              <div class="down-content">
+              <div className="down-content">
                 <h4>Customer Relations</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat.</p>
-                <a href="#" class="filled-button">Details</a>
+                <a href="#" className="filled-button">Details</a>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="service-item">
-              <div class="icon">
-                <i class="fa fa-gear"></i>
+          <div className="col-md-4">
+            <div className="service-item">
+              <div className="icon">
+                <i className="fa fa-gear"></i>
               </div>
-              <div class="down-content">
+              <div className="down-content">
                 <h4>Global Collection</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat.</p>
-                <a href="#" class="filled-button">Read More</a>
+                <a href="#" className="filled-button">Read More</a>
               </div>
             </div>
           </div>
@@ -253,37 +253,37 @@ function About(props) {
     </div>
 
 
-    <div class="happy-clients">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
+    <div className="happy-clients">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="section-heading">
               <h2>Happy Partners</h2>
             </div>
           </div>
-          <div class="col-md-12">
-            <div class="owl-clients owl-carousel">
-              <div class="client-item">
+          <div className="col-md-12">
+            <div className="owl-clients owl-carousel">
+              <div className="client-item">
                 <img src="assets/images/client-01.png" alt="1" />
               </div>
               
-              <div class="client-item">
+              <div className="client-item">
                 <img src="assets/images/client-01.png" alt="2" />
               </div>
               
-              <div class="client-item">
+              <div className="client-item">
                 <img src="assets/images/client-01.png" alt="3" />
               </div>
               
-              <div class="client-item">
+              <div className="client-item">
                 <img src="assets/images/client-01.png" alt="4" />
               </div>
               
-              <div class="client-item">
+              <div className="client-item">
                 <img src="assets/images/client-01.png" alt="5" />
               </div>
               
-              <div class="client-item">
+              <div className="client-item">
                 <img src="assets/images/client-01.png" alt="6" />
               </div>
             </div>
