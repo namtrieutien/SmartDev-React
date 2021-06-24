@@ -90,7 +90,7 @@ function Register(props) {
             <div className="col-md-5 d-none d-md-flex bg-image"></div>
             {/* <!-- The content half --> */}
             <div className="col-md-7 bg-light">
-              <div className="login d-flex align-items-center py-5">
+              <div className="login d-flex align-items-center">
                 {/* <!-- Demo content--> */}
                 <div className="container">
                   <div className="row">

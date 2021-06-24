@@ -9,7 +9,8 @@ Pagination.propTypes = {
 };
 
 Pagination.defaultProps = {
-  onPageChange: null
+  onPageChange: null,
+  pagination: 0
 };
 
 function Pagination(props) {

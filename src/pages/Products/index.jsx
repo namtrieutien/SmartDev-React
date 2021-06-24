@@ -91,7 +91,7 @@ function Products(props) {
           <div className="col-md-12">
             <div className="filters-content">
                 <div className="row">
-                  <PostList posts={postList} />
+                  {/* <PostList posts={postList} /> */}
                 </div>
             </div>
           </div>
