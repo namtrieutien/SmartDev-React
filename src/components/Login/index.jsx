@@ -25,9 +25,11 @@ function Login(props) {
   const { register, formState: { errors }, handleSubmit } = useForm({
     resolver: yupResolver(SigninSchema)
   });
-  const { isLoggedIn } = props;
+  const { isLoggedIn, user } = props;
   if (isLoggedIn) {
-    return <Redirect to="/profile" />;
+    if(user.user.roles.includes("ROLE_ADMIN")) 
+    return <Redirect to="/management" />;
+    else return <Redirect to="/profile" />;
   }
   const onSubmit = (data) => {
     props.login(data.email, data.password)
@@ -102,9 +104,10 @@ function Login(props) {
   );
 }
 const mapStateToProps= state => {
-  const { isLoggedIn } = state.userReducer;
+  const { isLoggedIn , user} = state.userReducer;
   return {
-    isLoggedIn
+    isLoggedIn,
+    user
   };
 }
 const mapDispatchToProps = dispatch => {

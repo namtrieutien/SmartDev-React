@@ -12,9 +12,21 @@ import {
 import "./User.css";
 import { Link } from "react-router-dom";
 
+import { loginUserAction } from '../../../redux/actions/login/authAction'
+
+import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
+
 User.propTypes = {};
 
 function User(props) {
+  
+  const { isLoggedIn, user } = props;
+  if (isLoggedIn) {
+    if (!user.user.roles.includes("ROLE_ADMIN"))
+      return <Redirect to="/error" />;
+  } else return <Redirect to="/login" />;
+
   console.log("calling user");
 
   return (
@@ -130,5 +142,18 @@ function User(props) {
     </div>
   );
 }
-
-export default User;
+const mapStateToProps = state => {
+  const { isLoggedIn, user } = state.userReducer;
+  return {
+    isLoggedIn,
+    user
+  };
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (email, password) => {
+      dispatch(loginUserAction(email, password))
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(User);

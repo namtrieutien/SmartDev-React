@@ -7,9 +7,13 @@ import { Link } from "react-router-dom";
 import "./ProductList.css"
 import adminApi from '../../../api/management/adminApi';
 
+import { loginUserAction } from '../../../redux/actions/login/authAction'
+
+import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 
 ProductList.propTypes = {
-  
+
 };
 
 const rows = [
@@ -81,9 +85,17 @@ const rows = [
 
 function ProductList(props) {
 
+  const { isLoggedIn, user } = props;
+
   const [usersList, setUsersList] = useState()
 
   useEffect(() => {
+
+    if (isLoggedIn) {
+      if (!user.user.roles.includes("ROLE_ADMIN"))
+        return <Redirect to="/404" />;
+    } else return <Redirect to="/login" />;
+
     const fetchUserList = async () => {
       try {
         const response = await adminApi.getAllPosts();
@@ -94,7 +106,7 @@ function ProductList(props) {
     }
     fetchUserList();
   }, [])
-    
+
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
     {
@@ -149,7 +161,7 @@ function ProductList(props) {
     setData(data.filter((item) => item.id !== id));
   };
 
-  
+
   const [data, setData] = useState(rows);
 
   return (
@@ -167,4 +179,18 @@ function ProductList(props) {
   );
 }
 
-export default ProductList;
+const mapStateToProps = state => {
+  const { isLoggedIn, user } = state.userReducer;
+  return {
+    isLoggedIn,
+    user
+  };
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (email, password) => {
+      dispatch(loginUserAction(email, password))
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

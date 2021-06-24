@@ -7,6 +7,11 @@ import "./UsersList.css";
 import { Link } from "react-router-dom";
 import adminApi from "../../../api/management/adminApi";
 
+import { loginUserAction } from '../../../redux/actions/login/authAction'
+
+import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
+
 UsersList.propTypes = {};
 
 const rows = [
@@ -77,6 +82,9 @@ const rows = [
 ];
 
 function UsersList(props) {
+
+  const { isLoggedIn, user } = props;
+
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
     {
@@ -131,6 +139,11 @@ function UsersList(props) {
   const [usersList, setUsersList] = useState()
 
   useEffect(() => {
+    if (isLoggedIn) {
+      if (!user.user.roles.includes("ROLE_ADMIN"))
+        return <Redirect to="/404" />;
+    } else return <Redirect to="/login" />;
+
     const fetchUserList = async () => {
       try {
         const response = await adminApi.getAllUsers();
@@ -161,5 +174,18 @@ function UsersList(props) {
     </div>
   );
 }
-
-export default UsersList;
+const mapStateToProps = state => {
+  const { isLoggedIn, user } = state.userReducer;
+  return {
+    isLoggedIn,
+    user
+  };
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (email, password) => {
+      dispatch(loginUserAction(email, password))
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(UsersList);

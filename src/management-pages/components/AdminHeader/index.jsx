@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NotificationsNone, Language, Settings } from '@material-ui/icons'
+import { NotificationsNone, Language, Settings, ExitToApp } from '@material-ui/icons'
 
+import { logoutUserAction } from '../../../redux/actions/login/authAction'
+
+import { connect } from "react-redux";
 
 import "./AdminHeader.css"
 
@@ -10,6 +13,11 @@ AdminHeader.propTypes = {
 };
 
 function AdminHeader(props) {
+
+  function handelLogout() {
+    props.logout()
+  };
+
   return (
     <div className="admin-topbar">
       <div className="admin-topbar-wrapper">
@@ -33,10 +41,19 @@ function AdminHeader(props) {
             <Settings />
           </div>
           <img className="top-avatar" src="https://source.unsplash.com/random" alt="" />
+          <div className="btn topbar-icon-container ml-2" onClick={handelLogout}>
+            <ExitToApp />
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-export default AdminHeader;
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => {
+      dispatch(logoutUserAction())
+    }
+  }
+}
+export default connect(null, mapDispatchToProps)(AdminHeader);

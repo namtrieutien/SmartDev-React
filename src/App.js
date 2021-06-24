@@ -4,7 +4,6 @@ import Home from './pages/Home';
 import { BrowserRouter, Switch, Route, } from 'react-router-dom';
 import About from './pages/About';
 import Products from './pages/Products';
-import NoMatch from './pages/NoMatch';
 import Contact from './pages/Contact';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -12,6 +11,7 @@ import PostDetail from './pages/PostDetail';
 import Dashboard from './management-pages/pages/Dashboard';
 
 import Profile from './components/Profile/profile';
+import { ErrorPage } from './pages/ErrorPage/error';
 
 function App() {
 
@@ -48,9 +48,9 @@ function App() {
           <Route path="/post" component={PostDetail}>
             {/* <PostDetail/> */}
           </Route>
-          <Route path="*" component={NoMatch}>
-            {/* <NoMatch /> */}
+          <Route path="*" component={ErrorPage}>
           </Route>
+          
         </Switch>
       </div>
     </BrowserRouter>

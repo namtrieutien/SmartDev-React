@@ -50,14 +50,14 @@ function Navbar(props) {
         <CustomLink to="/about" label="About" />
         <CustomLink to="/contact" label="Contact" />
         {isLoggedIn ? (
-          <div className="navbar-nav mr-auto">
+          <div className="navbar-nav">
             <CustomLink to="/profile" label={data.user.name} />
-            <CustomLinkHasAction to="/home" label="Logout" handelClick= {handelLogout}/>
+            <CustomLinkHasAction to="/" label="Logout" handelClick= {handelLogout}/>
           </div>
         ) : (
-          <div className="navbar-nav mr-auto">
+          <div className="navbar-nav ">
             <CustomLink to="/login" label="Login" />
-            <CustomLink to="/signup" label="Sign Up" />
+            <CustomLink to="/register" label="Sign Up" />
           </div>
         )
         }
