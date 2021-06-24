@@ -14,7 +14,7 @@ function SearchPosts(props) {
   console.log(watch("search")); // watch input value by passing the name of it
 
   return (
-    <div className="SearchPosts" onSubmit={handleSubmit(onSubmit)}>
+    <div onSubmit={handleSubmit(onSubmit)}>
       <form className="d-flex">
         <input
           {...register("search", { maxLength: 10 })}
