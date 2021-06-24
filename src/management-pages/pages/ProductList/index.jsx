@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
 import "./ProductList.css"
+import adminApi from '../../../api/management/adminApi';
 
 
 ProductList.propTypes = {
@@ -79,6 +80,20 @@ const rows = [
 ];
 
 function ProductList(props) {
+
+  const [usersList, setUsersList] = useState()
+
+  useEffect(() => {
+    const fetchUserList = async () => {
+      try {
+        const response = await adminApi.getAllPosts();
+        console.log(response);
+      } catch (error) {
+        console.log("failed to fetch list users", error);
+      }
+    }
+    fetchUserList();
+  }, [])
     
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
