@@ -11,7 +11,7 @@ import Register from './components/Register';
 import PostDetail from './pages/PostDetail';
 import Dashboard from './management-pages/pages/Dashboard';
 
-
+import Profile from './components/Profile/profile';
 
 function App() {
 
@@ -25,6 +25,9 @@ function App() {
           <Route path="/management" component={Dashboard}>
             {/* <Dashboard /> */}
           </Route>
+          <Route exact path={["/", "/home"]}>
+            <Home />
+          </Route>
           <Route path="/about" component={About}>
             {/* <About /> */}
           </Route>
@@ -34,8 +37,11 @@ function App() {
           <Route path="/contact" component={Contact}>
             {/* <Contact /> */}
           </Route>
-          <Route path="/login" component={Login}>
-            {/* <Login /> */}
+          <Route path="/login" >
+            <Login />
+          </Route>
+          <Route path="/profile" >
+            <Profile />
           </Route>
           <Route path="/register" component={Register}>
           </Route>
