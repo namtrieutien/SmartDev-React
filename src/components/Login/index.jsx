@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { loginUserAction } from '../../actions/authAction'
+import { loginUserAction } from '../../redux/actions/login/authAction'
 
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom';
@@ -110,7 +110,6 @@ const mapStateToProps= state => {
 const mapDispatchToProps = dispatch => {
   return {
     login: (email, password) => {
-      console.log("email mapDispatchToProps: ", email, password)
         dispatch(loginUserAction(email, password))
     }
 }

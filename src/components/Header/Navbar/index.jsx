@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 import { connect } from "react-redux";
+import { logoutUserAction } from '../../../redux/actions/login/authAction'
 
 import "./Navbar.css"
 
@@ -15,7 +16,7 @@ function CustomLink({ label, to, activeOnlyWhenExact }) {
     path: to,
     exact: activeOnlyWhenExact
   });
-  // console.log(match);
+
   return (
     <li className={match ? "nav-item active" : "nav-item"}>
       <Link to={to} className="nav-link">{label}</Link>
@@ -23,8 +24,24 @@ function CustomLink({ label, to, activeOnlyWhenExact }) {
   );
 }
 
+function CustomLinkHasAction({ label, to, activeOnlyWhenExact, handelClick }) {
+  let match = useRouteMatch({
+    path: to,
+    exact: activeOnlyWhenExact
+  });
+
+  return (
+    <li className={match ? "nav-item active" : "nav-item"}>
+      <Link to={to} onClick= {handelClick} className="nav-link">{label}</Link>
+    </li>
+  );
+}
+
 function Navbar(props) {
   const { user: data, isLoggedIn } = props;
+  function handelLogout() {
+    props.logout()
+  };
   return (
     <>
       <ul className="navbar-nav m-auto mb-2 mb-lg-0 Navbar">
@@ -35,7 +52,7 @@ function Navbar(props) {
         {isLoggedIn ? (
           <div className="navbar-nav mr-auto">
             <CustomLink to="/profile" label={data.user.name} />
-            <CustomLink to="/logout" label="Logout" />
+            <CustomLinkHasAction to="/home" label="Logout" handelClick= {handelLogout}/>
           </div>
         ) : (
           <div className="navbar-nav mr-auto">
@@ -55,4 +72,11 @@ const mapStateToProps = state => {
     user
   };
 }
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => {
+      dispatch(logoutUserAction())
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
