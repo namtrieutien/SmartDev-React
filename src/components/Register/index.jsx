@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form'
-import { ErrorMessage } from '@hookform/error-message';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import "./registerStyle.css"
 import { getCities, getDistrict, getCommute } from '../../redux/actions/address.action';
 import { register as userRegister } from '../../redux/actions/user/register.action';
-
-import userEvent from '@testing-library/user-event';
-
 import loading from './login-image/loading.gif';
 
 Register.propTypes = {
