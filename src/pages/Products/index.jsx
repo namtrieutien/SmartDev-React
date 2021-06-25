@@ -1,16 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import PropTypes from 'prop-types';
-import queryString from 'query-string';
+// import PropTypes from 'prop-types';
+// import queryString from 'query-string';
 
-import PreLoader from '../../components/PreLoader'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import PostList from '../../components/PostList';
+// import PostList from '../../components/PostList';
 import Pagination from '../../components/Pagination';
 
-Products.propTypes = {
+// Products.propTypes = {
   
-};
+// };
 
 function Products(props) {
 
@@ -39,7 +38,7 @@ function Products(props) {
       // ..
       try {
         // _limit=10&_page=1
-        const paramString = queryString.stringify(filters)
+        // const paramString = queryString.stringify(filters)
         const RequestUrl = `https://smartdev-sunny.herokuapp.com/posts/search-post-by-title?title=title&_page=0&_limit=1`;
         const reponse = await fetch(RequestUrl);
         const reponseJSON = await reponse.json();

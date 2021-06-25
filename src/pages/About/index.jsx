@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import PreLoader from '../../components/PreLoader'
+// import PreLoader from '../../components/PreLoader'
 
 About.propTypes = {
   
@@ -11,7 +11,6 @@ About.propTypes = {
 function About(props) {
   return (
     <div>
-      {/* <PreLoader /> */}
       <Header />
       {/* <!-- Page Content --> */}
       <div className="page-heading about-heading header-text">
@@ -52,10 +51,10 @@ function About(props) {
                   corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? 
                   Aut, in eum facere corrupti necessitatibus perspiciatis quis.</p>
                 <ul className="social-icons">
-                  <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                  <li><a href="#"><i className="fa fa-behance"></i></a></li>
+                  <li><a href="/"><i className="fa fa-facebook"></i></a></li>
+                  <li><a href="/"><i className="fa fa-twitter"></i></a></li>
+                  <li><a href="/"><i className="fa fa-linkedin"></i></a></li>
+                  <li><a href="/"><i className="fa fa-behance"></i></a></li>
                 </ul>
               </div>
             </div>
@@ -79,10 +78,10 @@ function About(props) {
                 <div className="hover-effect">
                   <div className="hover-content">
                     <ul className="social-icons">
-                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
+                      <li><a href="/"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="/"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="/"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="/"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
@@ -101,10 +100,10 @@ function About(props) {
                 <div className="hover-effect">
                   <div className="hover-content">
                     <ul className="social-icons">
-                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
+                      <li><a href="/"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="/"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="/"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="/"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
@@ -123,10 +122,10 @@ function About(props) {
                 <div className="hover-effect">
                   <div className="hover-content">
                     <ul className="social-icons">
-                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
+                      <li><a href="/"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="/"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="/"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="/"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
@@ -145,10 +144,10 @@ function About(props) {
                 <div className="hover-effect">
                   <div className="hover-content">
                     <ul className="social-icons">
-                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
+                      <li><a href="/"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="/"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="/"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="/"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
@@ -167,10 +166,10 @@ function About(props) {
                 <div className="hover-effect">
                   <div className="hover-content">
                     <ul className="social-icons">
-                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
+                      <li><a href="/"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="/"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="/"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="/"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
@@ -189,10 +188,10 @@ function About(props) {
                 <div className="hover-effect">
                   <div className="hover-content">
                     <ul className="social-icons">
-                      <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i className="fa fa-behance"></i></a></li>
+                      <li><a href="/"><i className="fa fa-facebook"></i></a></li>
+                      <li><a href="/"><i className="fa fa-twitter"></i></a></li>
+                      <li><a href="/"><i className="fa fa-linkedin"></i></a></li>
+                      <li><a href="/"><i className="fa fa-behance"></i></a></li>
                     </ul>
                   </div>
                 </div>
@@ -220,7 +219,7 @@ function About(props) {
               <div className="down-content">
                 <h4>Product Management</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat.</p>
-                <a href="#" className="filled-button">Read More</a>
+                <a href="/" className="filled-button">Read More</a>
               </div>
             </div>
           </div>
@@ -232,7 +231,7 @@ function About(props) {
               <div className="down-content">
                 <h4>Customer Relations</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat.</p>
-                <a href="#" className="filled-button">Details</a>
+                <a href="/" className="filled-button">Details</a>
               </div>
             </div>
           </div>
@@ -244,7 +243,7 @@ function About(props) {
               <div className="down-content">
                 <h4>Global Collection</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat.</p>
-                <a href="#" className="filled-button">Read More</a>
+                <a href="/" className="filled-button">Read More</a>
               </div>
             </div>
           </div>

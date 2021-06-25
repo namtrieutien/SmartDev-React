@@ -1,10 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import "./Header.css";
 import Navbar from "./Navbar";
 import SearchPosts from "../../components/SearchPosts";
 
-Header.propTypes = {};
+// Header.propTypes = {};
 
 function Header(props) {
   return (

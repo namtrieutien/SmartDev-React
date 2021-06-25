@@ -1,21 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+// import PropTypes from 'prop-types';
 
-PreLoader.propTypes = {
-  
-};
+// PreLoader.propTypes = {};
 
 function PreLoader(props) {
   return (
     <div>
       {/* <!-- ***** Preloader Start ***** --> */}
       <div id="preloader">
-          <div className="jumper">
-              <div></div>
-              <div></div>
-              <div></div>
-          </div>
-      </div>  
+        <div className="jumper">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
       {/* <!-- ***** Preloader End ***** --> */}
     </div>
   );

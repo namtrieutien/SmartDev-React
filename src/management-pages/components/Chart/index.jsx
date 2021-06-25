@@ -1,19 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import {
   LineChart,
   Line,
   XAxis,
-  YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 
 import "./Chart.css";
 
-Chart.propTypes = {};
+// Chart.propTypes = {};
 
 function Chart(props) {
   const { data, title, dataKey1, dataKey2, grid } = props;

@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-Rating.propTypes = {
+// Rating.propTypes = {
   
-};
+// };
 
 function Rating(props) {
   return (

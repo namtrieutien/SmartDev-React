@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Carousel from "./Carousel";
+import React from "react";
+// import PropTypes from "prop-types";
+// import Carousel from "./Carousel";
 
-CarouselPosts.propTypes = {};
+// CarouselPosts.propTypes = {};
 
 function CarouselPosts(props) {
   return (

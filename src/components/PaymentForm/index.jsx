@@ -1,12 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCreditCard, faMobileAlt,  } from '@fortawesome/free-solid-svg-icons'
+import React from "react";
+// import PropTypes from "prop-types";
 
-
-PaymentForm.propTypes = {
-  
-};
+// PaymentForm.propTypes = {};
 
 function PaymentForm(props) {
   return (
@@ -18,84 +13,223 @@ function PaymentForm(props) {
               <div className="card-header">
                 <div className="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
                   {/* Credit card form tabs */}
-                  <ul role="tablist" className="nav bg-light nav-pills rounded nav-fill mb-3">
-                    <li className="nav-item"> <a data-toggle="pill" href="#credit-card" className="nav-link active "> <i className="fa fa-credit-card mr-2" /> Credit Card </a> </li>
-                    <li className="nav-item"> <a data-toggle="pill" href="#paypal" className="nav-link "> <i className="fa fa-paypal mr-2" /> Paypal </a> </li>
-                    <li className="nav-item"> <a data-toggle="pill" href="#net-banking" className="nav-link "> <i className="fa fa-mobile-alt mr-2" /> Net Banking </a> </li>
+                  <ul
+                    role="tablist"
+                    className="nav bg-light nav-pills rounded nav-fill mb-3"
+                  >
+                    <li className="nav-item">
+                      {" "}
+                      <a
+                        data-toggle="pill"
+                        href="#credit-card"
+                        className="nav-link active "
+                      >
+                        {" "}
+                        <i className="fa fa-credit-card mr-2" /> Credit Card{" "}
+                      </a>{" "}
+                    </li>
+                    <li className="nav-item">
+                      {" "}
+                      <a
+                        data-toggle="pill"
+                        href="#paypal"
+                        className="nav-link "
+                      >
+                        {" "}
+                        <i className="fa fa-paypal mr-2" /> Paypal{" "}
+                      </a>{" "}
+                    </li>
+                    <li className="nav-item">
+                      {" "}
+                      <a
+                        data-toggle="pill"
+                        href="#net-banking"
+                        className="nav-link "
+                      >
+                        {" "}
+                        <i className="fa fa-mobile-alt mr-2" /> Net Banking{" "}
+                      </a>{" "}
+                    </li>
                   </ul>
-                </div> 
+                </div>
                 {/* End */}
                 {/* Credit card form content */}
                 <div className="tab-content">
                   {/* credit card info*/}
-                  <div id="credit-card" className="tab-pane fade show active pt-3">
+                  <div
+                    id="credit-card"
+                    className="tab-pane fade show active pt-3"
+                  >
                     <form role="form" onsubmit="event.preventDefault()">
-                      <div className="form-group"> <label htmlFor="username">
+                      <div className="form-group">
+                        {" "}
+                        <label htmlFor="username">
                           <h6>Card Owner</h6>
-                        </label> <input type="text" name="username" placeholder="Card Owner Name" required className="form-control " /> </div>
-                      <div className="form-group"> <label htmlFor="cardNumber">
+                        </label>{" "}
+                        <input
+                          type="text"
+                          name="username"
+                          placeholder="Card Owner Name"
+                          required
+                          className="form-control "
+                        />{" "}
+                      </div>
+                      <div className="form-group">
+                        {" "}
+                        <label htmlFor="cardNumber">
                           <h6>Card number</h6>
                         </label>
-                        <div className="input-group"> <input type="text" name="cardNumber" placeholder="Valid card number" className="form-control " required />
-                          <div className="input-group-append"> <span className="input-group-text text-muted"> <i className="fa fa-cc-visa mx-1" /> <i className="fa fa-cc-mastercard mx-1" /> <i className="fa fa-cc-amex mx-1" /> </span> </div>
+                        <div className="input-group">
+                          {" "}
+                          <input
+                            type="text"
+                            name="cardNumber"
+                            placeholder="Valid card number"
+                            className="form-control "
+                            required
+                          />
+                          <div className="input-group-append">
+                            {" "}
+                            <span className="input-group-text text-muted">
+                              {" "}
+                              <i className="fa fa-cc-visa mx-1" />{" "}
+                              <i className="fa fa-cc-mastercard mx-1" />{" "}
+                              <i className="fa fa-cc-amex mx-1" />{" "}
+                            </span>{" "}
+                          </div>
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-sm-8">
-                          <div className="form-group"> <label><span className="hidden-xs">
+                          <div className="form-group">
+                            {" "}
+                            <label>
+                              <span className="hidden-xs">
                                 <h6>Expiration Date</h6>
-                              </span></label>
-                            <div className="input-group"> <input type="number" placeholder="MM" name className="form-control" required /> <input type="number" placeholder="YY" name className="form-control" required /> </div>
+                              </span>
+                            </label>
+                            <div className="input-group">
+                              {" "}
+                              <input
+                                type="number"
+                                placeholder="MM"
+                                name
+                                className="form-control"
+                                required
+                              />{" "}
+                              <input
+                                type="number"
+                                placeholder="YY"
+                                name
+                                className="form-control"
+                                required
+                              />{" "}
+                            </div>
                           </div>
                         </div>
                         <div className="col-sm-4">
-                          <div className="form-group mb-4"> <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
-                              <h6>CVV <i className="fa fa-question-circle d-inline" /></h6>
-                            </label> <input type="text" required className="form-control" /> </div>
+                          <div className="form-group mb-4">
+                            {" "}
+                            <label
+                              data-toggle="tooltip"
+                              title="Three digit CV code on the back of your card"
+                            >
+                              <h6>
+                                CVV{" "}
+                                <i className="fa fa-question-circle d-inline" />
+                              </h6>
+                            </label>{" "}
+                            <input
+                              type="text"
+                              required
+                              className="form-control"
+                            />{" "}
+                          </div>
                         </div>
                       </div>
-                      <div className="card-footer"> <button type="button" className="subscribe btn btn-primary btn-block shadow-sm"> Confirm Payment </button>
-                      </div></form>
-                  </div> 
+                      <div className="card-footer">
+                        {" "}
+                        <button
+                          type="button"
+                          className="subscribe btn btn-primary btn-block shadow-sm"
+                        >
+                          {" "}
+                          Confirm Payment{" "}
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                   {/* End */}
                   {/* Paypal info */}
                   <div id="paypal" className="tab-pane fade pt-3">
                     <h6 className="pb-2">Select your paypal account type</h6>
-                    <div className="form-group "> 
-                      <label className="radio-inline"> 
-                        <input type="radio" name="optradio" defaultChecked /> Domestic 
-                      </label> 
-                      <label className="radio-inline"> 
-                        <input type="radio" name="optradio" className="ml-5" />International 
+                    <div className="form-group ">
+                      <label className="radio-inline">
+                        <input type="radio" name="optradio" defaultChecked />{" "}
+                        Domestic
+                      </label>
+                      <label className="radio-inline">
+                        <input type="radio" name="optradio" className="ml-5" />
+                        International
                       </label>
                     </div>
-                    <p className="row justify-content-md-center"> <button type="button" className="btn btn-primary "><i className="fa fa-paypal mr-2" /> Log into my Paypal</button> </p>
-                    <p className="text-muted"> Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected back to the website to view details of your order. </p>
-                  </div> 
+                    <p className="row justify-content-md-center">
+                      {" "}
+                      <button type="button" className="btn btn-primary ">
+                        <i className="fa fa-paypal mr-2" /> Log into my Paypal
+                      </button>{" "}
+                    </p>
+                    <p className="text-muted">
+                      {" "}
+                      Note: After clicking on the button, you will be directed
+                      to a secure gateway for payment. After completing the
+                      payment process, you will be redirected back to the
+                      website to view details of your order.{" "}
+                    </p>
+                  </div>
                   {/* End */}
                   {/* bank transfer info */}
                   <div id="net-banking" className="tab-pane fade pt-3">
-                    <div className="form-group "> <label htmlFor="Select Your Bank">
+                    <div className="form-group ">
+                      {" "}
+                      <label htmlFor="Select Your Bank">
                         <h6>Select your Bank</h6>
-                      </label> <select className="form-control" id="ccmonth">
-                        <option value selected disabled>--Please select your Bank--</option>
+                      </label>{" "}
+                      <select className="form-control" id="ccmonth">
+                        <option value selected disabled>
+                          --Please select your Bank--
+                        </option>
                         <option>Vietcombank</option>
                         <option>DongAbank</option>
                         <option>VietinBank</option>
                         <option>Techcombank</option>
-                      </select> </div>
-                    <div className="form-group">
-                      <p className="row justify-content-md-center"> <button type="button" className="btn btn-primary "><i className="fas fa-mobile-alt mr-2" /> Proceed Payment</button> </p>
+                      </select>{" "}
                     </div>
-                    <p className="text-muted">Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected back to the website to view details of your order. </p>
-                  </div> {/* End */}
+                    <div className="form-group">
+                      <p className="row justify-content-md-center">
+                        {" "}
+                        <button type="button" className="btn btn-primary ">
+                          <i className="fas fa-mobile-alt mr-2" /> Proceed
+                          Payment
+                        </button>{" "}
+                      </p>
+                    </div>
+                    <p className="text-muted">
+                      Note: After clicking on the button, you will be directed
+                      to a secure gateway for payment. After completing the
+                      payment process, you will be redirected back to the
+                      website to view details of your order.{" "}
+                    </p>
+                  </div>{" "}
+                  {/* End */}
                   {/* End */}
                 </div>
               </div>
             </div>
           </div>
-        </div></div>
-    </div> 
+        </div>
+      </div>
+    </div>
   );
 }
 

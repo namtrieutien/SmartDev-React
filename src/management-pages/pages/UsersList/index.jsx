@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 
@@ -128,7 +128,7 @@ function UsersList(props) {
   ];
 
   const [data, setData] = useState(rows);
-  const [usersList, setUsersList] = useState()
+  // const [usersList, setUsersList] = useState()
 
   useEffect(() => {
     const fetchUserList = async () => {

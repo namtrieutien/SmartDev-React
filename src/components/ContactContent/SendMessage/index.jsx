@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+// import PropTypes from 'prop-types';
 
-SendMessage.propTypes = {
-  
-};
+// SendMessage.propTypes = {
+
+// };
 
 function SendMessage(props) {
   return (
@@ -22,27 +22,61 @@ function SendMessage(props) {
                   <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12">
                       <fieldset>
-                        <input name="name" type="text" className="form-control" id="name" placeholder="Full Name" required="" />
+                        <input
+                          name="name"
+                          type="text"
+                          className="form-control"
+                          id="name"
+                          placeholder="Full Name"
+                          required=""
+                        />
                       </fieldset>
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
                       <fieldset>
-                        <input name="email" type="text" className="form-control" id="email" placeholder="E-Mail Address" required="" />
+                        <input
+                          name="email"
+                          type="text"
+                          className="form-control"
+                          id="email"
+                          placeholder="E-Mail Address"
+                          required=""
+                        />
                       </fieldset>
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12">
                       <fieldset>
-                        <input name="subject" type="text" className="form-control" id="subject" placeholder="Subject" required="" />
+                        <input
+                          name="subject"
+                          type="text"
+                          className="form-control"
+                          id="subject"
+                          placeholder="Subject"
+                          required=""
+                        />
                       </fieldset>
                     </div>
                     <div className="col-lg-12">
                       <fieldset>
-                        <textarea name="message" rows="6" className="form-control" id="message" placeholder="Your Message" required=""></textarea>
+                        <textarea
+                          name="message"
+                          rows="6"
+                          className="form-control"
+                          id="message"
+                          placeholder="Your Message"
+                          required=""
+                        ></textarea>
                       </fieldset>
                     </div>
                     <div className="col-lg-12">
                       <fieldset>
-                        <button type="submit" id="form-submit" className="filled-button">Send Message</button>
+                        <button
+                          type="submit"
+                          id="form-submit"
+                          className="filled-button"
+                        >
+                          Send Message
+                        </button>
                       </fieldset>
                     </div>
                   </div>
@@ -52,33 +86,60 @@ function SendMessage(props) {
             <div className="col-md-4">
               <ul className="accordion">
                 <li>
-                    <a href="/">Accordion Title One</a>
-                    <div className="content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed voluptate nihil 
-                          eumester consectetur similiqu consectetur.<br /><br />Lorem ipsum dolor sit amet, 
-                          consectetur adipisic elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti elite.</p>
-                    </div>
+                  <a href="/">Accordion Title One</a>
+                  <div className="content">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed
+                      voluptate nihil eumester consectetur similiqu consectetur.
+                      <br />
+                      <br />
+                      Lorem ipsum dolor sit amet, consectetur adipisic elit. Et,
+                      consequuntur, modi mollitia corporis ipsa voluptate
+                      corrupti elite.
+                    </p>
+                  </div>
                 </li>
                 <li>
-                    <a href="/">Second Title Here</a>
-                    <div className="content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed voluptate nihil eumester consectetur 
-                          similiqu consectetur.<br /><br />Lorem ipsum dolor sit amet, consectetur adipisic elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti elite.</p>
-                    </div>
+                  <a href="/">Second Title Here</a>
+                  <div className="content">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed
+                      voluptate nihil eumester consectetur similiqu consectetur.
+                      <br />
+                      <br />
+                      Lorem ipsum dolor sit amet, consectetur adipisic elit. Et,
+                      consequuntur, modi mollitia corporis ipsa voluptate
+                      corrupti elite.
+                    </p>
+                  </div>
                 </li>
                 <li>
-                    <a href="/">Accordion Title Three</a>
-                    <div className="content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed voluptate nihil eumester consectetur 
-                          similiqu consectetur.<br /><br />Lorem ipsum dolor sit amet, consectetur adipisic elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti elite.</p>
-                    </div>
+                  <a href="/">Accordion Title Three</a>
+                  <div className="content">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed
+                      voluptate nihil eumester consectetur similiqu consectetur.
+                      <br />
+                      <br />
+                      Lorem ipsum dolor sit amet, consectetur adipisic elit. Et,
+                      consequuntur, modi mollitia corporis ipsa voluptate
+                      corrupti elite.
+                    </p>
+                  </div>
                 </li>
                 <li>
-                    <a href="/">Fourth Accordion Title</a>
-                    <div className="content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed voluptate nihil eumester consectetur similiqu 
-                          consectetur.<br /><br />Lorem ipsum dolor sit amet, consectetur adipisic elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti elite.</p>
-                    </div>
+                  <a href="/">Fourth Accordion Title</a>
+                  <div className="content">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed
+                      voluptate nihil eumester consectetur similiqu consectetur.
+                      <br />
+                      <br />
+                      Lorem ipsum dolor sit amet, consectetur adipisic elit. Et,
+                      consequuntur, modi mollitia corporis ipsa voluptate
+                      corrupti elite.
+                    </p>
+                  </div>
                 </li>
               </ul>
             </div>

@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import "./SearchPosts.css";
 import { useForm } from "react-hook-form";
 
-SearchPosts.propTypes = {};
+// SearchPosts.propTypes = {};
 
 function SearchPosts(props) {
   const { register, handleSubmit, watch } = useForm();

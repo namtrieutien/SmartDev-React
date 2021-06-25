@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import SendMessage from '../../components/ContactContent/SendMessage';
 import HappyClient from '../../components/ContactContent/HappyClients';
 import FindUs from '../../components/ContactContent/FindUs';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
-Contact.propTypes = {
+// Contact.propTypes = {
   
-};
+// };
 
 function Contact(props) {
   return (
