@@ -24,7 +24,7 @@ function Home(props) {
           title={"User Analystics"}
           dataKey1={"Active User"}
           dataKey2={"pv"}
-          // grid
+          // grid make grid layout
         />
         <Piechart
           className="chart-pie"
