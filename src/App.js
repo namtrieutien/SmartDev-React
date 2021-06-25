@@ -12,7 +12,7 @@ import PostDetail from './pages/PostDetail';
 import Dashboard from './management-pages/pages/Dashboard';
 
 import Payment from './pages/Payment';
-
+import PaymentSuccess from './pages/Payment/success'
 
 function App() {
 
@@ -45,6 +45,9 @@ function App() {
           </Route>
           <Route path="/test" component={Payment}>
             {/* <NoMatch /> */}
+          </Route>
+          <Route path="/user/payment/success" component={PaymentSuccess}>
+           
           </Route>
           <Route path="*" component={NoMatch}>
             {/* <NoMatch /> */}
