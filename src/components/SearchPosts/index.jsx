@@ -11,7 +11,7 @@ function SearchPosts(props) {
     alert(JSON.stringify(data));
   };
 
-  console.log(watch("search")); // watch input value by passing the name of it
+  // console.log(watch("search")); // watch input value by passing the name of it
 
   return (
     <div className="SearchPosts" onSubmit={handleSubmit(onSubmit)}>
