@@ -1,13 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { NotificationsNone, Language, Settings } from '@material-ui/icons'
 
 
 import "./AdminHeader.css"
 
-AdminHeader.propTypes = {
+// AdminHeader.propTypes = {
   
-};
+// };
 
 function AdminHeader(props) {
   return (

@@ -1,11 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 
 import "./FeaturedInfor.css";
 
-FeaturedInfor.propTypes = {};
+// FeaturedInfor.propTypes = {};
 
 function FeaturedInfor(props) {
   return (

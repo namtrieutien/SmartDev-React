@@ -1,6 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
-import PreLoader from "../../components/PreLoader";
+// import PropTypes from "prop-types";
 import Header from "../../components/Header";
 import Banner from "../../components/Contents/Banner";
 import Posts from "../../components/Contents/Posts";
@@ -8,7 +7,7 @@ import Footer from "../../components/Footer";
 import ExploreCategories from "../../components/Contents/ExploreCategories";
 import CarouselPosts from "../../components/Contents/CarouselPosts";
 
-Home.propTypes = {};
+// Home.propTypes = {};
 
 function Home(props) {
   return (

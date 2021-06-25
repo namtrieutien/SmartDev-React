@@ -8,8 +8,9 @@ import Footer from '../../components/Footer'
 import PostList from '../../components/PostList';
 import Pagination from '../../components/Pagination';
 
-Products.propTypes = {
-};
+// Products.propTypes = {
+
+// };
 
 var errorResponse = false;
 var errorCode;
@@ -29,8 +30,6 @@ function Products(props) {
     _page: 0,
     _limit: 2
   })
-
-
 
   function handlePageChange(newPage) {
     console.log("page change", newPage);

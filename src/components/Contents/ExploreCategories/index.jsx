@@ -1,11 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+// import PropTypes from "prop-types";
 
 import "./ExploreCategories.css";
 
-ExploreCategories.propTypes = {};
+// ExploreCategories.propTypes = {};
 
 function ExploreCategories(props) {
   return (
@@ -21,15 +19,15 @@ function ExploreCategories(props) {
             {/* <!-- Controls --> */}
             <div className="controls pull-right hidden-xs">
               <a
-                className="left fa fa-chevron-left btn btn-danger mr-2"
-                href="#carousel-example"
+                className="left btn btn-danger mr-2"
+                href="/carousel-example"
                 data-slide="prev"
-              ></a>
+              ><i className="fas fa-chevron-left"></i></a>
               <a
-                className="right fa fa-chevron-right btn btn-danger"
+                className="right btn btn-danger"
                 href="#carousel-example"
                 data-slide="next"
-              ></a>
+              ><i className="fas fa-chevron-right"></i></a>
             </div>
           </div>
           <div className="col-md-2">
@@ -59,7 +57,7 @@ function ExploreCategories(props) {
           </div>
           <div className="col-md-2">
             <div className="category-item">
-              <FontAwesomeIcon icon={faCoffee} />
+              <i className="fa fa-coffee"></i>
             </div>
           </div>
         </div>

@@ -1,13 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import "./Piechart.css";
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Tooltip, ResponsiveContainer } from "recharts";
 
 Piechart.propTypes = {};
 
 function Piechart(props) {
-  const { data01, data02, title, dataKey1, dataKey2, grid } = props;
+  const { data01, data02, title } = props;
 
   return (
     <div className="pie-chart">

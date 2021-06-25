@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-FindUs.propTypes = {
+// FindUs.propTypes = {
   
-};
+// };
 
 function FindUs(props) {
   return (
@@ -18,7 +18,7 @@ function FindUs(props) {
             </div>
             <div className="col-md-8">
               <div id="map">
-                <iframe title="location" src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="330px" frameborder="0" style={{border:0}} allowfullscreen></iframe>
+                <iframe title="location" src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="330px" frameBorder="0" style={{border:0}} allowFullScreen></iframe>
               </div>
             </div>
             <div className="col-md-4">

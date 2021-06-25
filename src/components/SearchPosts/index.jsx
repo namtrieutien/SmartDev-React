@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import "./SearchPosts.css";
 import { useForm } from "react-hook-form";
 
-SearchPosts.propTypes = {};
+// SearchPosts.propTypes = {};
 
 function SearchPosts(props) {
   const { register, handleSubmit, watch } = useForm();
@@ -14,7 +14,7 @@ function SearchPosts(props) {
   // console.log(watch("search")); // watch input value by passing the name of it
 
   return (
-    <div className="SearchPosts" onSubmit={handleSubmit(onSubmit)}>
+    <div onSubmit={handleSubmit(onSubmit)}>
       <form className="d-flex">
         <input
           {...register("search", { maxLength: 10 })}

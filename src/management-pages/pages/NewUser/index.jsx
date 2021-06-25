@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import "./NewUser.css"
 
-NewUser.propTypes = {};
+// NewUser.propTypes = {};
 
 function NewUser(props) {
   return (

@@ -1,25 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link, useRouteMatch } from 'react-router-dom';
+import React from "react";
+// import PropTypes from 'prop-types';
+import { Link, useRouteMatch } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { logoutUserAction } from '../../../redux/actions/login/authAction'
+import { logoutUserAction } from "../../../redux/actions/login/authAction";
 
-import "./Navbar.css"
+import "./Navbar.css";
 
-Navbar.propTypes = {
-
-};
+// Navbar.propTypes = {};
 
 function CustomLink({ label, to, activeOnlyWhenExact }) {
   let match = useRouteMatch({
     path: to,
-    exact: activeOnlyWhenExact
+    exact: activeOnlyWhenExact,
   });
 
   return (
     <li className={match ? "nav-item active" : "nav-item"}>
-      <Link to={to} className="nav-link">{label}</Link>
+      <Link to={to} className="nav-link">
+        {label}
+      </Link>
     </li>
   );
 }
@@ -27,12 +27,14 @@ function CustomLink({ label, to, activeOnlyWhenExact }) {
 function CustomLinkHasAction({ label, to, activeOnlyWhenExact, handelClick }) {
   let match = useRouteMatch({
     path: to,
-    exact: activeOnlyWhenExact
+    exact: activeOnlyWhenExact,
   });
 
   return (
     <li className={match ? "nav-item active" : "nav-item"}>
-      <Link to={to} onClick= {handelClick} className="nav-link">{label}</Link>
+      <Link to={to} onClick={handelClick} className="nav-link">
+        {label}
+      </Link>
     </li>
   );
 }
@@ -40,8 +42,8 @@ function CustomLinkHasAction({ label, to, activeOnlyWhenExact, handelClick }) {
 function Navbar(props) {
   const { user: data, isLoggedIn } = props;
   function handelLogout() {
-    props.logout()
-  };
+    props.logout();
+  }
   return (
     <>
       <ul className="navbar-nav m-auto mb-2 mb-lg-0 Navbar">
@@ -50,33 +52,36 @@ function Navbar(props) {
         <CustomLink to="/about" label="About" />
         <CustomLink to="/contact" label="Contact" />
         {isLoggedIn ? (
-          <div className="navbar-nav mr-auto">
+          <div className="navbar-nav">
             <CustomLink to="/profile" label={data.user.name} />
-            <CustomLinkHasAction to="/home" label="Logout" handelClick= {handelLogout}/>
+            <CustomLinkHasAction
+              to="/home"
+              label="Logout"
+              handelClick={handelLogout}
+            />
           </div>
         ) : (
-          <div className="navbar-nav mr-auto">
+          <div className="navbar-nav">
             <CustomLink to="/login" label="Login" />
             <CustomLink to="/signup" label="Sign Up" />
           </div>
-        )
-        }
+        )}
       </ul>
     </>
   );
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { isLoggedIn, user } = state.userReducer;
   return {
     isLoggedIn,
-    user
+    user,
   };
-}
-const mapDispatchToProps = dispatch => {
+};
+const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => {
-      dispatch(logoutUserAction())
-    }
-  }
-}
+      dispatch(logoutUserAction());
+    },
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

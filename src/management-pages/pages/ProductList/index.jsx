@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
@@ -81,7 +81,7 @@ const rows = [
 
 function ProductList(props) {
 
-  const [usersList, setUsersList] = useState()
+  // const [usersList, setUsersList] = useState()
 
   useEffect(() => {
     const fetchUserList = async () => {

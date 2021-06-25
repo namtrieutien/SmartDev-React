@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -7,9 +7,9 @@ import PaymentForm from '../../components/PaymentForm';
 
 import "./PostDetail.css"
 
-PostDetail.propTypes = {
+// PostDetail.propTypes = {
   
-};
+// };
 
 function PostDetail(props) {
   return (

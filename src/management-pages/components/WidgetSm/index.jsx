@@ -1,10 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import "./WidgetSm.css";
 import { Visibility } from "@material-ui/icons";
 
-WidgetSm.propTypes = {};
+// WidgetSm.propTypes = {};
 
 function WidgetSm(props) {
   return (
