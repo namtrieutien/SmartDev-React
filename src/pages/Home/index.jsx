@@ -6,6 +6,7 @@ import Posts from "../../components/Contents/Posts";
 import Footer from "../../components/Footer";
 import ExploreCategories from "../../components/Contents/ExploreCategories";
 import CarouselPosts from "../../components/Contents/CarouselPosts";
+import "./Home.css"
 
 // Home.propTypes = {};
 
@@ -25,6 +26,7 @@ function Home(props) {
 
       <Posts />
 
+      
       <Footer />
     </div>
   );

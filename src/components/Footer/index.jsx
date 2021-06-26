@@ -7,22 +7,51 @@ import "./Footer.css";
 function Footer(props) {
   return (
     <div className="Footer">
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="inner-content">
-                <p>
-                  Copyright &copy; 2020 Sixteen Clothing Co., Ltd.- Design:
-                  <a rel="nofollow noopener" href="/" target="_blank">
-                    TemplateMo
-                  </a>
-                </p>
+      <section class="footer py-3">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-lg-11 m-auto  ">
+              <div class="row">
+                <div class="col-lg-3 py-5">
+                  <h5 className="footer-h5">Get to Know Us</h5>
+                  <p>Careers</p>
+                  <p>Blog</p>
+                  <p>About Chotot</p>
+                </div>
+                <div class="col-lg-3 py-5">
+                  <h5 className="footer-h5">Make Money with Us</h5>
+                  <p>Sell products on Chotot</p>
+                  <p>Sell on Amazon Business</p>
+                  <p>Sell apps on Amazon</p>
+                </div>
+                <div class="col-lg-3 py-5">
+                  <h5 className="footer-h5">Payment Products</h5>
+                  <p>Chotot Business Card</p>
+                  <p>Shop with Points</p>
+                  <p>Reload Your Balance</p>
+                </div>
+                <div class="col-lg-3 py-5">
+                  <h5 class="pb-3 footer-h5">CUSTOMER CARE</h5>
+                  <span>
+                    <i class="fab fa-facebook fa-size"></i>
+                  </span>
+                  <span>
+                    <i class="fab fa-instagram fa-size"></i>
+                  </span>
+                  <span>
+                    <i class="fab fa-twitter fa-size"></i>
+                  </span>
+                  <span>
+                    <i class="fab fa-google-plus fa-size"></i>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
+          <hr />
+          <p class="text-center">Copy right @2021 All rights reserved</p>
         </div>
-      </footer>
+      </section>
     </div>
   );
 }

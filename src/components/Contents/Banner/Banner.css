@@ -18,8 +18,8 @@
   transition: 0.5s;
 }
 
-.carousel .carousel-item {
-  height: 550px;
+.carousel .carousel-item-banner {
+  height: 550px !important;
 }
 
 /* .carousel-item img {
