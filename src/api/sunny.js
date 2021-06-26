@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL : 'https://smartdev-sunny.herokuapp.com/'
-  //baseURL: 'http://localhost:8080/'
+  // baseURL : 'https://smartdev-sunny.herokuapp.com/'
+  baseURL: 'http://localhost:8080/'
 });
 
 instance.interceptors.request.use(
@@ -12,5 +12,14 @@ instance.interceptors.request.use(
   }
 )
 
+instance.interceptors.response.use((respone) => {
+  if (respone && respone.data) {
+    return respone.data;
+  }
+  return respone
+}, (error) => {
+  // handle error
+  throw error;
+})
 
 export default instance;
