@@ -7,6 +7,7 @@ class Profile extends Component {
 
   render() {
     const { user: data } = this.props;
+    console.log(this.props);
     if (!data) {
       return <Redirect to="/home" />;
     }

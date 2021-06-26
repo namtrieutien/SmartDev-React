@@ -50,11 +50,13 @@ function App() {
           <Route path="/post" component={PostDetail}>
             {/* <PostDetail/> */}
           </Route>
-          <Route path="/test" component={Payment}>
-            {/* <NoMatch /> */}
-          </Route>
-          <Route path="/user/payment/success" component={PaymentSuccess}>
 
+          <Route exact path="/payment" component={Payment}>
+          </Route>
+          <Route  path="/payment/success" component={PaymentSuccess}>
+          </Route>
+
+          <Route path="/payment/b" component={PaymentSuccess}>
           </Route>
           <Route path="*" component={NoMatch}>
             {/* <NoMatch /> */}

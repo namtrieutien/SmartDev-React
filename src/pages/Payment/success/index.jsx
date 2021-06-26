@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import queryString from 'query-string';
 
-import PaymentSuccessComponent from '../../../components/Payment/success'
+import PaymentSuccessComponent from '../../../components/Payment/success/index'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 

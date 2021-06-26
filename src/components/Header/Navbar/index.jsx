@@ -63,7 +63,7 @@ function Navbar(props) {
         ) : (
           <div className="navbar-nav">
             <CustomLink to="/login" label="Login" />
-            <CustomLink to="/signup" label="Sign Up" />
+            <CustomLink to="/register" label="Sign Up" />
           </div>
         )}
       </ul>

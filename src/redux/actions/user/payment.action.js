@@ -7,3 +7,11 @@ export function pay(requestPayment) {
     }
 }
 
+export function executePayment(paymentInfo) {
+  return {
+      type: type.USER_EXECUTE_PAYMENT_REQUESTED,
+      paymentInfo
+  }
+}
+
+

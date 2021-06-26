@@ -51,25 +51,25 @@ function Payment(props) {
                 </div>
               </div>
               <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="40" alt="" />
+                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="60" alt="" />
                   <div className="ml-2"><span className="font-weight-bold d-block">Iphone 11 pro</span><span className="spec">256GB, Navy Blue</span></div>
                 </div>
                 <div className="d-flex flex-row align-items-center"><span className="d-block">2</span><span className="d-block ml-5 font-weight-bold">$900</span><i className="fa fa-trash-o ml-3 text-black-50"></i></div>
               </div>
               <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/GQnIUfs.jpg" width="40" alt="" />
+                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/GQnIUfs.jpg" width="60" alt="" />
                   <div className="ml-2"><span className="font-weight-bold d-block">One pro 7T</span><span className="spec">256GB, Navy Blue</span></div>
                 </div>
                 <div className="d-flex flex-row align-items-center"><span className="d-block">2</span><span className="d-block ml-5 font-weight-bold">$900</span><i className="fa fa-trash-o ml-3 text-black-50"></i></div>
               </div>
               <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/o2fKskJ.jpg" width="40" alt="" />
+                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/o2fKskJ.jpg" width="60" alt="" />
                   <div className="ml-2"><span className="font-weight-bold d-block">Google pixel 4 XL</span><span className="spec">256GB, Axe black</span></div>
                 </div>
                 <div className="d-flex flex-row align-items-center"><span className="d-block">1</span><span className="d-block ml-5 font-weight-bold">$800</span><i className="fa fa-trash-o ml-3 text-black-50"></i></div>
               </div>
               <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/Tja5H1c.jpg" width="40" alt="" />
+                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/Tja5H1c.jpg" width="60" alt="" />
                   <div className="ml-2"><span className="font-weight-bold d-block">Samsung galaxy Note 10&nbsp;</span><span className="spec">256GB, Navy Blue</span></div>
                 </div>
                 <div className="d-flex flex-row align-items-center"><span className="d-block">1</span><span className="d-block ml-5 font-weight-bold">$999</span><i className="fa fa-trash-o ml-3 text-black-50"></i></div>
