@@ -3,8 +3,8 @@ import instance from '../sunny';
 export const getSearchPostData = (keywordSearch) => {
     const pag = {
         title: keywordSearch,
-        _page: 1,
-        _limit: 10
+        _page: 0,
+        _limit: 6
     }
     const url = `posts/search-post-by-title`; 
     console.log(url);
