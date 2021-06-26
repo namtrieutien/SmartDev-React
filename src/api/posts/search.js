@@ -1,6 +1,3 @@
-
-import axios from 'axios';
-import queryString from 'query-string';
 import instance from '../sunny';
 
 export const getSearchPostData = (keywordSearch) => {
@@ -9,8 +6,7 @@ export const getSearchPostData = (keywordSearch) => {
         _page: 1,
         _limit: 10
     }
-    const paramString = queryString.stringify(pag)
-    const url = `posts/search-post-by-title?${paramString}`; 
+    const url = `posts/search-post-by-title`; 
     console.log(url);
-    return instance.get(url);
+    return instance.get(url, { params: pag});
 }
