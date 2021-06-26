@@ -46,9 +46,6 @@ const adminApi = {
     return axiosManagement.delete(url, { params })
   },
 
-  testing: (params) => {
-    const url = "";
-  }
 }
 
 export default adminApi;

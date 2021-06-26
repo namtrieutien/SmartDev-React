@@ -115,7 +115,7 @@ function UsersList(props) {
         return (
           <>
             <Link to={`/management/users/${params.row.id}`}>
-              <button className="userslist-edit">Edit</button>
+              <p className="userslist-edit">Edit</p>
             </Link>
             <DeleteOutline
               className="userslist-delete"

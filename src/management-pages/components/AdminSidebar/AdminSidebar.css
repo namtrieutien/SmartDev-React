@@ -41,7 +41,8 @@
   font-size: 20px !important;
 }
 
-.link {
-  text-decoration: none;
+.link, link:focus, link:hover, link:visited, link:link, link:active {
+  text-decoration: none !important;
   color: inherit;
+  
 }
