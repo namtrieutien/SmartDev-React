@@ -24,7 +24,7 @@ function Banner(props) {
           <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
         </ol>
         <div className="carousel-inner">
-          <div className="carousel-item active">
+          <div className="carousel-item-banner carousel-item active">
             <img
               src="assets/images/slide_01.jpg"
               className="d-block w-100"
@@ -39,7 +39,7 @@ function Banner(props) {
               <button className="btn-banner mt-3">Find more</button>
             </div>
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item-banner carousel-item">
             <img
               src="assets/images/slide_02.jpg"
               className="d-block w-100"
@@ -54,7 +54,7 @@ function Banner(props) {
               <button className="btn-banner mt-3">Find more</button>
             </div>
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item-banner carousel-item">
             <img
               src="assets/images/slide_03.jpg"
               className="d-block w-100"

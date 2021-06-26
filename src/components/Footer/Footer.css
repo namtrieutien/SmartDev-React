@@ -1,0 +1,40 @@
+.footer {
+  background-color: #121212;
+  color: white;
+}
+
+.btn2 {
+  height: 45px;
+  width: 100px;
+  background: white;
+  margin-left: -10px;
+  border: 2px solid white;
+  font-weight: 600;
+}
+
+.footer input {
+  height: 45px;
+  width: 55%;
+  border: 2px solid white;
+  outline: none;
+  background: black;
+  font-weight: 600;
+  color: white;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.fab {
+  cursor: pointer;
+  padding-right: 5px;
+}
+
+.footer-h5 {
+  text-transform: uppercase;
+}
+
+.fa-size {
+  font-size: 20px;
+}
