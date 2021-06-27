@@ -1,7 +1,11 @@
 import * as type from '../../constants'
 
 const initialState = {
-    keywordSearch: '',
+    params: {
+        title: '',
+        _page: 0,
+        _limit: 6
+    },
     load: false,
     data: {},
     pagination: {
@@ -17,12 +21,8 @@ export const searchPostReducer = (state = initialState, action) => {
         
             return {
                 ...state,
-                keywordSearch: action.keywordSearch,
+                params: action.params,
                 load: false,
-                pagination: {
-                    _page: action.page ,
-                    _limit: action.limit
-                }
             };
 
         case type.POSTS_SEARCH_COMPLETE:

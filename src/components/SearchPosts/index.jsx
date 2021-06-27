@@ -13,14 +13,12 @@ function SearchPosts(props) {
   const { register, handleSubmit, watch } = useForm();
   const onSubmit = (data) => {
     const {search} = data;
-    const keywordSearch = search;
-    const page = props.pagination._page;
-    const limit = props.pagination._limit;
-    
-    console.log('submit keywordSearch: ' + keywordSearch);
-    console.log('submit page: ' + page);
-    console.log('submit limit: ' + limit);
-    props.searchPost(keywordSearch, page, limit);
+    const params = {
+      title: search,
+      _page: props.pagination._page,
+      _limit: props.pagination._limit
+    }
+    props.searchPost(params);
   };
 
   const {load} = props;
@@ -58,8 +56,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchPost: (keywordSearch, page, limit) => {
-      dispatch(searchLoadingAction(keywordSearch, page, limit));
+    searchPost: (params) => {
+      dispatch(searchLoadingAction(params));
     },
   };
 };

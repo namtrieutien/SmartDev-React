@@ -16,10 +16,6 @@ import { searchLoading as searchLoadingAction } from '../../redux/actions/posts/
 // };
 
 function Products(props) {
-  console.log('Products props.keywordSearch: ' + props.keywordSearch);
-  console.log('Products props.data: ' + props.data);
-  console.log('Products props.pagination: ' + props.pagination);
-
   const [postList, setPostList] = useState(props.data);
   const [pagination, setPagination] = useState(props.pagination);
 
@@ -34,7 +30,7 @@ function Products(props) {
       ...filters,
       _page: newPage,
     })
-    props.searchPost(props.keywordSearch, props.pagination._page, props.pagination._limit);
+    props.searchPost(props.params);
   }
 
   useEffect(() => {
@@ -99,9 +95,9 @@ class Content extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { keywordSearch, data, pagination } = state.searchPostReducer;
+  const { params, data, pagination } = state.searchPostReducer;
   return {
-    keywordSearch,
+    params,
     data,
     pagination
   };
@@ -109,8 +105,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchPost: (keywordSearch) => {
-      dispatch(searchLoadingAction(keywordSearch));
+    searchPost: (params) => {
+      dispatch(searchLoadingAction(params));
     },
   };
 };
