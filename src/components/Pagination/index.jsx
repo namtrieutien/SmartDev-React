@@ -10,8 +10,6 @@ function Pagination(props) {
   const { _page, _limit, _totalRows } = pagination;
   const totalPages = Math.ceil(_totalRows / _limit)
 
-  console.log('Pagination ', pagination);
-
   var pages = new Array();
   for (var i = 0; i < totalPages; i++) {
     pages[i] = i;

@@ -44,7 +44,6 @@ let defaultPosts = [
 
 function Posts(props) {
   const posts = props.posts;
-  console.log("Posts posts ", posts);
   return (
     <>
       {posts.map((post) => (
