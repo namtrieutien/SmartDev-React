@@ -48,7 +48,7 @@ function Products(props) {
   return (
     <div>
       <Header />
-      <Content postList={postList} handlePageChange={handlePageChange} pagination={pagination} />
+      <Content postList={props.data} handlePageChange={handlePageChange} pagination={props.pagination} />
       <Footer />
     </div>
   );
