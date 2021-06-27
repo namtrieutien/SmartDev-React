@@ -21,8 +21,12 @@ function SearchPosts(props) {
     props.searchPost(params);
   };
 
-  const {load} = props;
+  const {load, error} = props;
   if(!load){
+    if(error.code != 200){  
+      return <Redirect to="/home" />;
+    }
+    
     return <Redirect to="/product" />;
   }
 
@@ -45,13 +49,17 @@ function SearchPosts(props) {
     </div>
   );
 
+
+
+  
+
 }
 
 const mapStateToProps = (state) => {
-  const { load,data,  pagination } = state.searchPostReducer;
+  const { load, error,  pagination } = state.searchPostReducer;
   return {
     load,
-    
+    error,
     pagination
   };
 };

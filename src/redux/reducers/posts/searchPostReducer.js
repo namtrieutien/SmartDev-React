@@ -13,6 +13,11 @@ const initialState = {
         _limit: 6, 
         _totalRows: 100
     },
+    error:{
+        code: 200,
+        error: 'success',
+        message: 'ok'
+    }
 };
 
 export const searchPostReducer = (state = initialState, action) => {
@@ -25,12 +30,26 @@ export const searchPostReducer = (state = initialState, action) => {
             };
 
         case type.POSTS_SEARCH_COMPLETE:
+            const {error} = action.data;
+            if(error){
+                return {
+                    ...state,
+                    load: false,
+                    error: action.data
+                };
+            }
+
             const { data, pagination } = action.data;
             return {
                 ...state,
                 load: false,
                 data: data,
-                pagination: pagination
+                pagination: pagination,
+                error:{
+                    code: 200,
+                    error: 'success',
+                    message: 'ok'
+                }
             };
 
         default:
