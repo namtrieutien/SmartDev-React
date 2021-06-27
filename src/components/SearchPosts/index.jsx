@@ -19,7 +19,7 @@ function SearchPosts(props) {
 
   const {load} = props;
   if(load){
-    //return <Redirect to="/product" />;
+    return <Redirect to="/product" />;
   }
 
   // console.log(watch("search")); // watch input value by passing the name of it

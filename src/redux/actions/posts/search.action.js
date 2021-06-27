@@ -7,9 +7,9 @@ export function searchLoading(keywordSearch) {
     }
 }
 
-export function searchComplete(keywordSearch) {
+export function searchComplete(data) {
     return {
         type: type.POSTS_SEARCH_COMPLETE,
-        keywordSearch
+        data
     }
 }

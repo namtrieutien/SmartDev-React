@@ -9,7 +9,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYW0xQGdtYWlsLmNvbSIsImlhdCI6MTYyNDcwOTg1NCwiZXhwIjoxNjI0NzUzMDU0fQ.gU5tkVn72uiAPFUtPeeyO9gFFtoJk4fHb7br0I6q6yKozgmbTM-idQXRgEi4P3DJYeapE5nn96EY6GwWAHbLew`;
+    config.headers.Authorization = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYW0xQGdtYWlsLmNvbSIsImlhdCI6MTYyNDc1NTg0MSwiZXhwIjoxNjI0Nzk5MDQxfQ.K60RpUBtaz3is3KjaP5Mb3_1da4FsKT_xs3eStiUGxlsG3e_v2OvjpNNbD6_Cn5nMZtisNjETIHgSxthSCooYA`;
     return config;
   }
 )
