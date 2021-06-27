@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import ExploreCategories from "../../components/Contents/ExploreCategories";
 import CarouselPosts from "../../components/Contents/CarouselPosts";
 import "./Home.css"
+import AddToCart from "../../components/Cart/AddToCart";
 
 // Home.propTypes = {};
 
@@ -19,7 +20,7 @@ function Home(props) {
 
       {/* <!-- Page Content --> */}
       <Banner />
-
+      <AddToCart />
       <ExploreCategories />
 
       <CarouselPosts />
