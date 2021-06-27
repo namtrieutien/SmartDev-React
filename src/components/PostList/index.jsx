@@ -43,8 +43,8 @@ let defaultPosts = [
 ];
 
 function Posts(props) {
-  const posts = defaultPosts;
-  console.log("typeof ", posts[1]);
+  const posts = props.posts;
+  console.log("Posts posts ", posts);
   return (
     <>
       {posts.map((post) => (
@@ -88,15 +88,10 @@ function Posts(props) {
 // all des gra dev
 
 function PostList(props) {
-  const { posts } = props;
+  const posts = props.posts;
   return (
     <>
-      <Posts />
-      <ul className="">
-        {posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
+      <Posts posts={posts}/>
     </>
   );
 }
