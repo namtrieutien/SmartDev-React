@@ -4,9 +4,13 @@ import {searchComplete} from '../../actions/posts/search.action';
 
 import * as type from '../../constants';
 
-function* getSearchPostSaga({keywordSearch}) {
+function* getSearchPostSaga({keywordSearch, page, limit}) {
     try {
-        const data = yield call(getSearchPostData, keywordSearch);
+        console.log('getSearchPostSaga keywordSearch: ' + keywordSearch);
+        console.log('getSearchPostSaga page: ' + page);
+        console.log('getSearchPostSaga limit: ' + limit);
+
+        const data = yield call(getSearchPostData, {keywordSearch, page, keywordSearch});
         yield put(searchComplete(data));
     } catch (error) {
         //handle error

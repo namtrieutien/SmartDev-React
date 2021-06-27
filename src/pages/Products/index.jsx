@@ -8,27 +8,24 @@ import Footer from '../../components/Footer'
 import PostList from '../../components/PostList';
 import Pagination from '../../components/Pagination';
 
+import { connect } from 'react-redux';
+import { searchLoading as searchLoadingAction } from '../../redux/actions/posts/search.action';
+
 // Products.propTypes = {
 
 // };
 
-var errorResponse = false;
-var errorCode;
-var errorName;
-var errorMessage;
-
 function Products(props) {
+  console.log('Products props.keywordSearch: ' + props.keywordSearch);
+  console.log('Products props.data: ' + props.data);
+  console.log('Products props.pagination: ' + props.pagination);
 
-  const [postList, setPostList] = useState([])
-  const [pagination, setPagination] = useState({
-    _page: 0,
-    _limit: 2,
-    _totalRows: 100,
-  })
+  const [postList, setPostList] = useState(props.data);
+  const [pagination, setPagination] = useState(props.pagination);
 
   const [filters, setFilters] = useState({
-    _page: 0,
-    _limit: 2
+    _page: props.pagination._page,
+    _limit: props.pagination._limit
   })
 
   function handlePageChange(newPage) {
@@ -37,53 +34,13 @@ function Products(props) {
       ...filters,
       _page: newPage,
     })
+    props.searchPost(props.keywordSearch, props.pagination._page, props.pagination._limit);
   }
 
   useEffect(() => {
     console.log('useEffect');
-    async function fetchPostList() {
-      try {
-        const paramString = queryString.stringify(filters)
-        console.log('paramString: ' + paramString);
-        const RequestUrl = `https://choto-backend.herokuapp.com/posts/search-post-by-title?title=&` + paramString;
-
-        const reponse = await fetch(RequestUrl);
-        const reponseJSON = await reponse.json();
-        console.log("res: ", reponseJSON);
-
-        const reponseJSONString = JSON.stringify(reponseJSON);
-
-        if (reponseJSONString.indexOf('error') != -1) {
-          console.log('reponseJSONString: ' + reponseJSONString);
-          const { code, error, message } = reponseJSON;
-          console.log('code: ' + code);
-          console.log('error: ' + error);
-          console.log('message: ' + message);
-          errorResponse = true;
-          errorCode = code;
-          errorName = error;
-          errorMessage = message;
-          return;
-        }
-        errorResponse = false;
-        const { pagination, data } = reponseJSON;
-        setPostList(data);
-        setPagination(pagination);
-        const paramStringData = queryString.stringify(data)
-        console.log('paramStringData: ' + paramStringData);
-
-        const paramStringPagination = queryString.stringify(pagination)
-        console.log('paramStringPagination: ' + paramStringPagination);
-
-        console.log('paramString: ' + paramString);
-      } catch (error) {
-        console.log("falied to fetch, ", error.message);
-      }
-    }
-
-    fetchPostList();
-
-
+    setPostList(props.data);
+    setPagination(props.pagination);
   }, [filters])
 
   return (
@@ -96,28 +53,6 @@ function Products(props) {
 }
 
 class Content extends React.Component {
-  componentWillMount() {
-    console.log('Component WILL MOUNT!')
-  }
-  componentDidMount() {
-    console.log('Component DID MOUNT!')
-  }
-  componentWillReceiveProps(newProps) {
-    console.log('Component WILL RECIEVE PROPS!')
-  }
-  shouldComponentUpdate(newProps, newState) {
-    console.log('Component SHOULD COMPONENT UPDATE!')
-    return true;
-  }
-  componentWillUpdate(nextProps, nextState) {
-    console.log('Component WILL UPDATE!');
-  }
-  componentDidUpdate(prevProps, prevState) {
-    console.log('Component DID UPDATE!')
-  }
-  componentWillUnmount() {
-    console.log('Component WILL UNMOUNT!')
-  }
   render() {
     return (
       <div>
@@ -163,4 +98,21 @@ class Content extends React.Component {
   }
 }
 
-export default Products;
+const mapStateToProps = (state) => {
+  const { keywordSearch, data, pagination } = state.searchPostReducer;
+  return {
+    keywordSearch,
+    data,
+    pagination
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchPost: (keywordSearch) => {
+      dispatch(searchLoadingAction(keywordSearch));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

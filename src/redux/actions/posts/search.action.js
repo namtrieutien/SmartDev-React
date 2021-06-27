@@ -1,9 +1,11 @@
 import * as type from '../../constants';
 
-export function searchLoading(keywordSearch) {
+export const searchLoading = (keywordSearch, page, limit) => {
     return {
         type: type.POSTS_SEARCH_LOADING,
-        keywordSearch
+        keywordSearch,
+        page,
+        limit
     }
 }
 
