@@ -10,7 +10,7 @@ function* getSearchPostSaga({keywordSearch, page, limit}) {
         console.log('getSearchPostSaga page: ' + page);
         console.log('getSearchPostSaga limit: ' + limit);
 
-        const data = yield call(getSearchPostData, {keywordSearch, page, keywordSearch});
+        const data = yield call(getSearchPostData, {keywordSearch, page, limit});
         yield put(searchComplete(data));
     } catch (error) {
         //handle error
