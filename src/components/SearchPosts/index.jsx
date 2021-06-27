@@ -22,7 +22,7 @@ function SearchPosts(props) {
   };
 
   const {load} = props;
-  if(load){
+  if(!load){
     return <Redirect to="/product" />;
   }
 
@@ -48,9 +48,10 @@ function SearchPosts(props) {
 }
 
 const mapStateToProps = (state) => {
-  const { load, pagination } = state.searchPostReducer;
+  const { load,data,  pagination } = state.searchPostReducer;
   return {
     load,
+    
     pagination
   };
 };

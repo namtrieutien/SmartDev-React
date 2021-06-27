@@ -28,13 +28,19 @@ function Products(props) {
     console.log("page change", newPage);
     setFilters({
       ...filters,
-      _page: newPage,
+      _page: newPage
     })
-    props.searchPost(props.params);
   }
 
   useEffect(() => {
-    console.log('useEffect');
+    console.log('useEffect props.data', props.data);
+    console.log('useEffect props.pagination', props.pagination);
+    const params = {
+      title: props.params.title,
+      _page: filters._page,
+      _limit: props.params._limit
+    }
+    props.searchPost(params);
     setPostList(props.data);
     setPagination(props.pagination);
   }, [filters])
@@ -85,7 +91,7 @@ class Content extends React.Component {
                   </div>
                 </div>
               </div>
-              <Pagination onPageChange={this.props.handlePageChange} pagination={this.props.pagination} />
+              <Pagination handlePageChange={this.props.handlePageChange} pagination={this.props.pagination} />
             </div>
           </div>
         </div>
@@ -95,8 +101,9 @@ class Content extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { params, data, pagination } = state.searchPostReducer;
+  const { load, params, data, pagination } = state.searchPostReducer;
   return {
+    load,
     params,
     data,
     pagination

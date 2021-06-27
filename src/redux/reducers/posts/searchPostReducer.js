@@ -6,7 +6,7 @@ const initialState = {
         _page: 0,
         _limit: 6
     },
-    load: false,
+    load: true,
     data: {},
     pagination: {
         _page:0, 
@@ -17,19 +17,18 @@ const initialState = {
 
 export const searchPostReducer = (state = initialState, action) => {
     switch (action.type) {
-        case type.POSTS_SEARCH_LOADING:
-        
+        case type.POSTS_SEARCH_LOADING:      
             return {
                 ...state,
                 params: action.params,
-                load: false,
+                load: true,
             };
 
         case type.POSTS_SEARCH_COMPLETE:
             const { data, pagination } = action.data;
             return {
                 ...state,
-                load: true,
+                load: false,
                 data: data,
                 pagination: pagination
             };
