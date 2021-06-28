@@ -15,11 +15,15 @@ import Profile from './components/Profile/profile';
 import Payment from './pages/Payment';
 import PaymentSuccess from './pages/Payment/success'
 
+import CartPopup from './components/Cart/CartPopup';
+
 function App() {
 
   return (
     <BrowserRouter>
       <div className="./App.css">
+        {/* only visible when click in cart icon in navbar */}
+        <CartPopup />
         <Switch>
           <Route exact path="/" component={Home}>
             {/* <Home /> */}

@@ -8,6 +8,7 @@ import ExploreCategories from "../../components/Contents/ExploreCategories";
 import CarouselPosts from "../../components/Contents/CarouselPosts";
 import "./Home.css"
 import AddToCart from "../../components/Cart/AddToCart";
+import { popupItem } from "../../management-pages/dummyData"
 
 // Home.propTypes = {};
 
@@ -20,7 +21,12 @@ function Home(props) {
 
       {/* <!-- Page Content --> */}
       <Banner />
-      <AddToCart />
+
+      <AddToCart item={popupItem[0]}/>
+      <AddToCart item={popupItem[1]}/>
+      <AddToCart item={popupItem[2]}/>
+      <AddToCart item={popupItem[3]}/>
+      <AddToCart item={popupItem[4]}/>
       <ExploreCategories />
 
       <CarouselPosts />
