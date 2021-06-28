@@ -8,6 +8,7 @@ import NoMatch from './pages/NoMatch';
 import Contact from './pages/Contact';
 import Login from './components/Login';
 import Register from './components/Register';
+import CreatePosts from './components/CreatePosts';
 import PostDetail from './pages/PostDetail';
 import Dashboard from './management-pages/pages/Dashboard';
 
@@ -48,6 +49,8 @@ function App() {
             <Profile />
           </Route>
           <Route path="/register" component={Register}>
+          </Route>
+          <Route path="/create-post" component={CreatePosts}>
           </Route>
           <Route path="/post" component={PostDetail}>
             {/* <PostDetail/> */}
