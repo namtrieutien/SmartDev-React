@@ -30,3 +30,10 @@ export const userLoggedOutAction = () => {
       type: types.USER_LOGGEDOUT
   }
 }
+
+export const checkJWTExpAction = () => {
+  return {
+      type: types.CHECK_JWT_EXP
+  }
+}
+

@@ -4,9 +4,11 @@ import addressReducer from './address.reducer';
 import registerReducer from './user/register.reducer'
 import paymentReducer from './user/payment.reducer'
 
-import {userReducer} from "./userReducer";
+// import {userReducer} from "./userReducer";
 
 import {searchPostReducer} from "./posts/searchPostReducer";
+
+import {userReducer} from "./login/userReducer";
 
 const rootReducer = combineReducers({
   addressReducer,
