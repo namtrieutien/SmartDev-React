@@ -10,12 +10,15 @@ const axiosManagement = axios.create({
 })
 
 axiosManagement.interceptors.request.use(async (config) => {
-  // handle token here
-  const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaXRyYW52dkBnbWFpbC5jb20iLCJpYXQiOjE2MjQ1MDUwNzcsImV4cCI6MTYyNDU0ODI3N30.jLu0yAmqtHq8tR966UHxtLNr8NCGNu-vp0DKkLeG5eL7jFeJ3lCM9Gw46K_GHGdo994ekgNv045aG84Res-nGA'
-  console.log("token: ", token);
+  const payload = JSON.parse(localStorage.getItem("user"));
+  if (payload && payload.token) {
+    const token =  payload.accessToken ;
+    console.log("token: ", token);
   config.headers.Authorization = `Bearer ${token}`
 
   return config
+  } else return null;
+  
 })
 
 axiosManagement.interceptors.response.use((respone) => {

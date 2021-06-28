@@ -12,6 +12,17 @@ function ListItem({ label, src }) {
     </li>
   );
 }
+function ProgressBar({ label, width, aria_valuenow }) {
+  const styleObject = { "width": width }
+  return (
+    <div>
+      <small>{label}</small>
+      <div className="progress mb-3" style={{ height: '5px' }}>
+        <div className="progress-bar bg-primary" role="progressbar" style={styleObject} aria-valuenow={{ aria_valuenow }} aria-valuemin={0} aria-valuemax={100} />
+      </div>
+    </div>
+  );
+}
 class Profile extends Component {
 
   render() {
@@ -35,7 +46,7 @@ class Profile extends Component {
                         <h4>{data.user.name}</h4>
                         <p className="text-secondary mb-1">Premium Member</p>
                         <button className="btn btn-outline-primary mr-2"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/cart.png`).default} alt="Cart" />Cart</button>
-                        <button className="btn btn-outline-primary"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/heart.png`).default} alt="Fav" />Favorites</button>
+                        <button className="btn btn-outline-primary"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/heart.png`).default} alt="Fav" />Create Post</button>
                       </div>
                     </div>
                   </div>
@@ -101,26 +112,11 @@ class Profile extends Component {
                     <div className="card h-100">
                       <div className="card-body">
                         <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">BUY</i>Statistics</h6>
-                        <small>Electronics</small>
-                        <div className="progress mb-3" style={{ height: '5px' }}>
-                          <div className="progress-bar bg-primary" role="progressbar" style={{ width: '80%' }} aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} />
-                        </div>
-                        <small>Vehicles</small>
-                        <div className="progress mb-3" style={{ height: '5px' }}>
-                          <div className="progress-bar bg-primary" role="progressbar" style={{ width: '72%' }} aria-valuenow={72} aria-valuemin={0} aria-valuemax={100} />
-                        </div>
-                        <small>Pet</small>
-                        <div className="progress mb-3" style={{ height: '5px' }}>
-                          <div className="progress-bar bg-primary" role="progressbar" style={{ width: '89%' }} aria-valuenow={89} aria-valuemin={0} aria-valuemax={100} />
-                        </div>
-                        <small>House</small>
-                        <div className="progress mb-3" style={{ height: '5px' }}>
-                          <div className="progress-bar bg-primary" role="progressbar" style={{ width: '55%' }} aria-valuenow={55} aria-valuemin={0} aria-valuemax={100} />
-                        </div>
-                        <small>Furniture</small>
-                        <div className="progress mb-3" style={{ height: '5px' }}>
-                          <div className="progress-bar bg-primary" role="progressbar" style={{ width: '66%' }} aria-valuenow={66} aria-valuemin={0} aria-valuemax={100} />
-                        </div>
+                        <ProgressBar label="Electronics" width='30%' aria_valuenow={30} ></ProgressBar>
+                        <ProgressBar label="Vehicles" width='55%' aria_valuenow={55} ></ProgressBar>
+                        <ProgressBar label="Pet" width='15%' aria_valuenow={15} ></ProgressBar>
+                        <ProgressBar label="House" width='5%' aria_valuenow={6} ></ProgressBar>
+                        <ProgressBar label="Furniture" width='70%' aria_valuenow={70} ></ProgressBar>
                       </div>
                     </div>
                   </div>
@@ -128,26 +124,11 @@ class Profile extends Component {
                     <div className="card h-100">
                       <div className="card-body">
                         <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">SALE</i>Statistics</h6>
-                        <small>Electronics</small>
-                        <div className="progress mb-3" style={{ height: '5px' }}>
-                          <div className="progress-bar bg-primary" role="progressbar" style={{ width: '80%' }} aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} />
-                        </div>
-                        <small>Vehicles</small>
-                        <div className="progress mb-3" style={{ height: '5px' }}>
-                          <div className="progress-bar bg-primary" role="progressbar" style={{ width: '72%' }} aria-valuenow={72} aria-valuemin={0} aria-valuemax={100} />
-                        </div>
-                        <small>Pet</small>
-                        <div className="progress mb-3" style={{ height: '5px' }}>
-                          <div className="progress-bar bg-primary" role="progressbar" style={{ width: '89%' }} aria-valuenow={89} aria-valuemin={0} aria-valuemax={100} />
-                        </div>
-                        <small>House</small>
-                        <div className="progress mb-3" style={{ height: '5px' }}>
-                          <div className="progress-bar bg-primary" role="progressbar" style={{ width: '55%' }} aria-valuenow={55} aria-valuemin={0} aria-valuemax={100} />
-                        </div>
-                        <small>Furniture</small>
-                        <div className="progress mb-3" style={{ height: '5px' }}>
-                          <div className="progress-bar bg-primary" role="progressbar" style={{ width: '66%' }} aria-valuenow={66} aria-valuemin={0} aria-valuemax={100} />
-                        </div>
+                        <ProgressBar label="Electronics" width='30%' aria_valuenow={30} ></ProgressBar>
+                        <ProgressBar label="Vehicles" width='55%' aria_valuenow={55} ></ProgressBar>
+                        <ProgressBar label="Pet" width='15%' aria_valuenow={15} ></ProgressBar>
+                        <ProgressBar label="House" width='5%' aria_valuenow={6} ></ProgressBar>
+                        <ProgressBar label="Furniture" width='70%' aria_valuenow={70} ></ProgressBar>
                       </div>
                     </div>
                   </div>

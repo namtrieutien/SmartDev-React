@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 import { connect } from "react-redux";
-import { logoutUserAction } from '../../../redux/actions/login/authAction'
+import { logoutUserAction} from '../../../redux/actions/login/authAction'
 
 import "./Navbar.css"
 
