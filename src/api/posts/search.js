@@ -1,4 +1,4 @@
-import instance from '../sunny';
+import instance from './axiosManagement';
 
 export const getSearchPostData = (requestParams) => {
     const url = `posts/search-post-by-title`; 
