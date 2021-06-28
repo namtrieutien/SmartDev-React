@@ -1,7 +1,7 @@
 import './App.css';
 import Home from './pages/Home';
 
-import { BrowserRouter, Switch, Route, } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import About from './pages/About';
 import Products from './pages/Products';
 import NoMatch from './pages/NoMatch';
@@ -15,10 +15,12 @@ import Profile from './components/Profile/profile';
 import Payment from './pages/Payment';
 import PaymentSuccess from './pages/Payment/success'
 
+import history from './history'
+
 function App() {
 
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <div className="./App.css">
         <Switch>
           <Route exact path="/" component={Home}>
@@ -63,7 +65,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 

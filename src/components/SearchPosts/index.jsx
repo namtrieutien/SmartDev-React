@@ -5,10 +5,12 @@ import { useForm } from "react-hook-form";
 import { connect } from 'react-redux';
 
 import { searchLoading as searchLoadingAction } from '../../redux/actions/posts/search.action';
-import { Redirect } from "react-router-dom";
+
+import history from '../../history'
 
 // SearchPosts.propTypes = {};
 
+let submitedSearch = false;
 function SearchPosts(props) {
   const { register, handleSubmit, watch } = useForm();
   const onSubmit = (data) => {
@@ -19,15 +21,17 @@ function SearchPosts(props) {
       _limit: props.pagination._limit
     }
     props.searchPost(params);
+    submitedSearch = true;
+   
   };
 
-  const {load, error} = props;
-  if(!load){
-    if(error.code != 200){  
-      return <Redirect to="/home" />;
+  if(!props.load && submitedSearch){
+    if(props.error.code == 200){
+      history.push('/product');
+    } else {
+      history.push('/home');
     }
-    
-    return <Redirect to="/product" />;
+    submitedSearch = false;
   }
 
   // console.log(watch("search")); // watch input value by passing the name of it
