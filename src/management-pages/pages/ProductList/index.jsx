@@ -145,7 +145,7 @@ function ProductList(props) {
         return (
           <>
             <Link to={`/management/product/${params.row.id}`}>
-              <button className="product-list-edit">Edit</button>
+              <p className="product-list-edit">Edit</p>
             </Link>
             <DeleteOutline
               className="product-list-delete"

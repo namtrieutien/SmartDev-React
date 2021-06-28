@@ -123,3 +123,41 @@ export const pieData02 = [{
     value: 4800
   },
 ];
+
+export const popupItem = [
+  {
+    img: "https://image.flaticon.com/icons/png/512/4900/4900651.png",
+    name: "Curry Chicken",
+    category: "Food",
+    price: "15.00$",
+    id: "1",
+  },
+  {
+    img: "https://image.flaticon.com/icons/png/512/4900/4900721.png",
+    name: "cheese",
+    category: "Food",
+    price: "20.00$",
+    id: "2",
+  },
+  {
+    img: "https://image.flaticon.com/icons/png/512/4977/4977724.png",
+    name: "T-Shirt",
+    category: "Clothes",
+    price: "2.00$",
+    id: "3",
+  },
+  {
+    img: "https://image.flaticon.com/icons/png/512/4920/4920672.png",
+    name: "Bphone 100plus",
+    category: "Phone",
+    price: "199.99$",
+    id: "4",
+  },
+  {
+    img: "https://image.flaticon.com/icons/png/512/4938/4938936.png",
+    name: "Tiki Idol",
+    category: "Religion",
+    price: "49.99$",
+    id: "5",
+  },
+]

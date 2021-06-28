@@ -3,6 +3,7 @@ import React from "react";
 import "./Header.css";
 import Navbar from "./Navbar";
 import SearchPosts from "../../components/SearchPosts";
+import CartBadge from "../Cart/CartBadge";
 
 // Header.propTypes = {};
 
@@ -32,6 +33,7 @@ function Header(props) {
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <Navbar />
             </div>
+            <CartBadge className=""/>
             <div className="search-posts">
               <SearchPosts />
             </div>
