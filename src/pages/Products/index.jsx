@@ -8,116 +8,53 @@ import Footer from '../../components/Footer'
 import PostList from '../../components/PostList';
 import Pagination from '../../components/Pagination';
 
+import { connect } from 'react-redux';
+import { searchLoading as searchLoadingAction } from '../../redux/actions/posts/search.action';
+
 // Products.propTypes = {
 
 // };
 
-var errorResponse = false;
-var errorCode;
-var errorName;
-var errorMessage;
-
 function Products(props) {
-
-  const [postList, setPostList] = useState([])
-  const [pagination, setPagination] = useState({
-    _page: 0,
-    _limit: 2,
-    _totalRows: 100,
-  })
+  const [postList, setPostList] = useState(props.data);
+  const [pagination, setPagination] = useState(props.pagination);
 
   const [filters, setFilters] = useState({
-    _page: 0,
-    _limit: 2
+    _page: props.pagination._page,
+    _limit: props.pagination._limit
   })
 
   function handlePageChange(newPage) {
     console.log("page change", newPage);
     setFilters({
       ...filters,
-      _page: newPage,
+      _page: newPage
     })
   }
 
   useEffect(() => {
-    console.log('useEffect');
-    async function fetchPostList() {
-      try {
-        const paramString = queryString.stringify(filters)
-        console.log('paramString: ' + paramString);
-        const RequestUrl = `https://choto-backend.herokuapp.com/posts/search-post-by-title?title=&` + paramString;
-
-        const reponse = await fetch(RequestUrl);
-        const reponseJSON = await reponse.json();
-        console.log("res: ", reponseJSON);
-
-        const reponseJSONString = JSON.stringify(reponseJSON);
-
-        if (reponseJSONString.indexOf('error') != -1) {
-          console.log('reponseJSONString: ' + reponseJSONString);
-          const { code, error, message } = reponseJSON;
-          console.log('code: ' + code);
-          console.log('error: ' + error);
-          console.log('message: ' + message);
-          errorResponse = true;
-          errorCode = code;
-          errorName = error;
-          errorMessage = message;
-          return;
-        }
-        errorResponse = false;
-        const { pagination, data } = reponseJSON;
-        setPostList(data);
-        setPagination(pagination);
-        const paramStringData = queryString.stringify(data)
-        console.log('paramStringData: ' + paramStringData);
-
-        const paramStringPagination = queryString.stringify(pagination)
-        console.log('paramStringPagination: ' + paramStringPagination);
-
-        console.log('paramString: ' + paramString);
-      } catch (error) {
-        console.log("falied to fetch, ", error.message);
-      }
+    console.log('useEffect props.data', props.data);
+    console.log('useEffect props.pagination', props.pagination);
+    const params = {
+      title: props.params.title,
+      _page: filters._page,
+      _limit: props.params._limit
     }
-
-    fetchPostList();
-
-
+    props.searchPost(params);
+    setPostList(props.data);
+    setPagination(props.pagination);
   }, [filters])
 
   return (
     <div>
       <Header />
-      <Content postList={postList} handlePageChange={handlePageChange} pagination={pagination} />
+      <Content postList={props.data} handlePageChange={handlePageChange} pagination={props.pagination} />
       <Footer />
     </div>
   );
 }
 
 class Content extends React.Component {
-  componentWillMount() {
-    console.log('Component WILL MOUNT!')
-  }
-  componentDidMount() {
-    console.log('Component DID MOUNT!')
-  }
-  componentWillReceiveProps(newProps) {
-    console.log('Component WILL RECIEVE PROPS!')
-  }
-  shouldComponentUpdate(newProps, newState) {
-    console.log('Component SHOULD COMPONENT UPDATE!')
-    return true;
-  }
-  componentWillUpdate(nextProps, nextState) {
-    console.log('Component WILL UPDATE!');
-  }
-  componentDidUpdate(prevProps, prevState) {
-    console.log('Component DID UPDATE!')
-  }
-  componentWillUnmount() {
-    console.log('Component WILL UNMOUNT!')
-  }
   render() {
     return (
       <div>
@@ -154,7 +91,7 @@ class Content extends React.Component {
                   </div>
                 </div>
               </div>
-              <Pagination onPageChange={this.props.handlePageChange} pagination={this.props.pagination} />
+              <Pagination handlePageChange={this.props.handlePageChange} pagination={this.props.pagination} />
             </div>
           </div>
         </div>
@@ -163,4 +100,22 @@ class Content extends React.Component {
   }
 }
 
-export default Products;
+const mapStateToProps = (state) => {
+  const { load, params, data, pagination } = state.searchPostReducer;
+  return {
+    load,
+    params,
+    data,
+    pagination
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchPost: (params) => {
+      dispatch(searchLoadingAction(params));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

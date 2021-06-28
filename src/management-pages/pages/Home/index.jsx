@@ -10,9 +10,19 @@ import WidgetLg from "../../components/WidgetLg";
 import Piechart from "../../components/Piechart";
 import { dataTemp, pieData01, pieData02 } from "../../dummyData";
 
+import { loginUserAction } from '../../../redux/actions/login/authAction'
+
+import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
+
 Home.propTypes = {};
 
 function Home(props) {
+  const { isLoggedIn, user } = props;
+  if (isLoggedIn) {
+    if (!user.user.roles.includes("ROLE_ADMIN"))
+      return <Redirect to="404" />;
+  } else return <Redirect to="/login" />;
 
   return (
     <div className="home">
@@ -41,4 +51,18 @@ function Home(props) {
   );
 }
 
-export default Home;
+const mapStateToProps = state => {
+  const { isLoggedIn, user } = state.userReducer;
+  return {
+    isLoggedIn,
+    user
+  };
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (email, password) => {
+      dispatch(loginUserAction(email, password))
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

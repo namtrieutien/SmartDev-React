@@ -2,17 +2,35 @@ import React from "react";
 // import PropTypes from "prop-types";
 import "./SearchPosts.css";
 import { useForm } from "react-hook-form";
+import { connect } from 'react-redux';
+
+import { searchLoading as searchLoadingAction } from '../../redux/actions/posts/search.action';
+import { Redirect } from "react-router-dom";
 
 // SearchPosts.propTypes = {};
 
 function SearchPosts(props) {
   const { register, handleSubmit, watch } = useForm();
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+    const {search} = data;
+    const params = {
+      title: search,
+      _page: props.pagination._page,
+      _limit: props.pagination._limit
+    }
+    props.searchPost(params);
   };
 
-  // console.log(watch("search")); // watch input value by passing the name of it
+  const {load, error} = props;
+  if(!load){
+    if(error.code != 200){  
+      return <Redirect to="/home" />;
+    }
+    
+    return <Redirect to="/product" />;
+  }
 
+  // console.log(watch("search")); // watch input value by passing the name of it
   return (
     <div onSubmit={handleSubmit(onSubmit)}>
       <form className="d-flex">
@@ -26,9 +44,31 @@ function SearchPosts(props) {
         <button className="btn0" type="submit">
           Search
         </button>
+        
       </form>
     </div>
   );
+
+
+
+  
+
 }
 
-export default SearchPosts;
+const mapStateToProps = (state) => {
+  const { load, error,  pagination } = state.searchPostReducer;
+  return {
+    load,
+    error,
+    pagination
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchPost: (params) => {
+      dispatch(searchLoadingAction(params));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPosts);
