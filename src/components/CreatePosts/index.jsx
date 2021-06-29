@@ -32,7 +32,7 @@ function CreatePosts(props) {
   });
 
   const categories = useSelector(state => {
-    return state.categoryReducer.data;
+    return state.categoryReducer.data_getAllCategories;
   });
 
   const responseData = useSelector(state => {
@@ -40,6 +40,7 @@ function CreatePosts(props) {
   });
  
   useEffect(() => {
+    console.log('useEffect');
     props.getAllCatogires();
   }, []);
 
@@ -128,10 +129,13 @@ function CreatePosts(props) {
                               console.log('change category: ', e.target.value)
                             }}
                           >
-                            {!props.load_getAllCategories && <option>&#8594;Select category&#8592;</option>}
-                            {categories.length > 0 && categories.map((category) =>
-                              <option key={category.id} value={category.name}>{category.name}</option>
-                            )}
+                            {
+                              !props.load_getAllCategories && <option>&#8594;Select category&#8592;</option>
+                            }
+                            {
+                              categories.length > 0 && categories.map((category) =>
+                              <option key={category.id} value={category.name}>{category.name}</option>)
+                            }
                           </select>
                         </div>
 

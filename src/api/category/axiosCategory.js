@@ -1,26 +1,26 @@
 import axios from 'axios';
 import queryString from 'query-string';
 
-const axiosManagement = axios.create({
-  baseURL : 'https://smartdev-sunny.herokuapp.com/',
-  //baseURL: 'http://localhost:8080/',
+const axiosCategory = axios.create({
+  //baseURL : 'https://smartdev-sunny.herokuapp.com/',
+  baseURL: 'http://localhost:8080/',
   paramsSerializer: param => queryString.stringify(param)
 });
 
-axiosManagement.interceptors.request.use(
+axiosCategory.interceptors.request.use(
   (config) => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       config.headers.Authorization = `Bearer ${user.token}`;
     }
     //cheat authencation token
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE2MjQ5NjIwMDcsImV4cCI6MTYyNTEzNDgwN30.EuEk_rwytEKSwHXSsw8kalGu2Zx8g1tpVMqTekGOidnFSS8LuF4RMVVnxwowcphZt6INPmvsKQxnYx3a8f_QsA`;
+    config.headers.Authorization = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYW0xQGdtYWlsLmNvbSIsImlhdCI6MTYyNDk3MjIyOSwiZXhwIjoxNjI1MTQ1MDI5fQ.IFFkp_uV4r5RxwJ56De0P95SRGcMucdyuY9auOblzdsxDTnMjo_dGCP8E3IIJCDN8wH-iofuE6Sme0k1khIuyA`;
     
     return config;
   }
 )
 
-axiosManagement.interceptors.response.use((response) => {
+axiosCategory.interceptors.response.use((response) => {
   if (response && response.data) {
     console.log(response.data);
     return response.data;
@@ -31,4 +31,4 @@ axiosManagement.interceptors.response.use((response) => {
   throw error;
 })
 
-export default axiosManagement;
+export default axiosCategory;

@@ -1,9 +1,9 @@
-import axiosManagement from '../management/axiosManagement';
+import axiosCategory from './axiosCategory';
 
 const categoryApi = {  
     getAllCategoriesData: () => {
-        const url = `/admin/categories`; 
-        return axiosManagement.get(url, {});
+        const url = `categories/get-all-categories`; 
+        return axiosCategory.get(url, {});
     }
 }
 
