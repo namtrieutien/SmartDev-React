@@ -21,3 +21,6 @@ export const USER_EXECUTE_PAYMENT = 'USER_EXECUTE_PAYMENT'
 // search post
 export const POSTS_SEARCH_LOADING = 'POSTS_SEARCH_LOADING'
 export const POSTS_SEARCH_COMPLETE = 'POSTS_SEARCH_COMPLETE'
+
+//user manage acc
+export const SET_STATISTIC = 'SET_STATISTIC'
