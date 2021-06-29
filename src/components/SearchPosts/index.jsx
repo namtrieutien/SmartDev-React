@@ -4,7 +4,7 @@ import "./SearchPosts.css";
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux';
 
-import { searchLoading as searchLoadingAction } from '../../redux/actions/posts/search.action';
+import postAction from '../../redux/actions/posts/post.action';
 
 import history from '../../history'
 
@@ -52,15 +52,10 @@ function SearchPosts(props) {
       </form>
     </div>
   );
-
-
-
-  
-
 }
 
 const mapStateToProps = (state) => {
-  const { load, error,  pagination } = state.searchPostReducer;
+  const { load, error,  pagination } = state.postReducer;
   return {
     load,
     error,
@@ -70,7 +65,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     searchPost: (params) => {
-      dispatch(searchLoadingAction(params));
+      dispatch(postAction.searchLoading(params));
     },
   };
 };

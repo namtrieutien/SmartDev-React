@@ -4,7 +4,7 @@ import addressSaga from "./address.saga";
 import registerSaga from "./user/register.saga"
 import userSaga from "./login/userSaga"
 import paymentSaga from './user/payment.saga'
-import searchPostsSaga from './posts/search.saga'
+import postSaga from './posts/post.saga'
 import categorySaga from './category/categorySaga';
 
 export default function* rootSaga() {
@@ -13,7 +13,7 @@ export default function* rootSaga() {
       registerSaga(),
       userSaga(),
       paymentSaga(),
-      searchPostsSaga(),
+      postSaga(),
       categorySaga()
     ])
 }

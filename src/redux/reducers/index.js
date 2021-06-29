@@ -6,7 +6,7 @@ import paymentReducer from './user/payment.reducer'
 
 import {userReducer} from "./userReducer";
 
-import {searchPostReducer} from "./posts/searchPostReducer";
+import {postReducer} from "./posts/postReducer";
 import {categoryReducer} from "./category/categoryReducer";
 
 const rootReducer = combineReducers({
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   userReducer,
   registerReducer,
   paymentReducer,
-  searchPostReducer,
+  postReducer,
   categoryReducer
 })
 

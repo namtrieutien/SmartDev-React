@@ -1,6 +1,7 @@
 import * as type from '../../constants'
 
 const initialState = {
+    //search Post
     params: {
         title: '',
         _page: 0,
@@ -20,7 +21,7 @@ const initialState = {
     }
 };
 
-export const searchPostReducer = (state = initialState, action) => {
+export const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case type.POSTS_SEARCH_LOADING:      
             return {
