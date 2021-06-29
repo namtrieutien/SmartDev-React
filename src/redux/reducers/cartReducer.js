@@ -1,3 +1,5 @@
+import * as type from '../constants'
+
 const initialState = {
   list: [],
   cartCount: 0,
@@ -27,7 +29,11 @@ const cartReducer = (state = initialState, action) => {
         list: newList
       }
     }
-
+    case type.ADDED_TO_CART_API:
+      return {
+        ...state,
+        cartItemAdded: action.cartItem
+      }
     default:
       return state;
   }

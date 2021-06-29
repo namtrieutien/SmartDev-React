@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CardPost from "../../Post/post";
+import CardPost from "../../Post/CardPost";
 import { searchLoading } from '../../../redux/actions/posts/search.action';
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";

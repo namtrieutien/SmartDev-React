@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import AddToCart from '../Cart/AddToCart';
 
 const CardPost = (props) => {
-    const { id, title, description, price, status} = props.post;
+    const { id, title, description, price, category} = props.post;
     return (
         <div className="col-md-4">
               <div className="product-item">
@@ -37,8 +37,8 @@ const CardPost = (props) => {
                       <i className="fa fa-star"></i>
                     </li>
                   </ul>
+                  <AddToCart item={props.post}/>
                   <span>Reviews ({id})</span>
-                  <AddToCart/>
                 </div>
               </div>
             </div>
