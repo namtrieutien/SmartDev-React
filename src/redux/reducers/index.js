@@ -3,8 +3,7 @@ import {combineReducers} from 'redux'
 import addressReducer from './address.reducer';
 import registerReducer from './user/register.reducer'
 import paymentReducer from './user/payment.reducer'
-
-// import {userReducer} from "./userReducer";
+import {manageUserReducer} from './user/manage.reducer'
 
 import {searchPostReducer} from "./posts/searchPostReducer";
 
@@ -16,6 +15,7 @@ const rootReducer = combineReducers({
   registerReducer,
   paymentReducer,
   searchPostReducer,
+  manageUserReducer
 })
 
 export default rootReducer;

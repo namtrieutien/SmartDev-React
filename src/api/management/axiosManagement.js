@@ -10,10 +10,8 @@ const axiosManagement = axios.create({
 })
 
 axiosManagement.interceptors.request.use(async (config) => {
-  const payload = JSON.parse(localStorage.getItem("user"));
-  if (payload && payload.token) {
-    const token =  payload.accessToken ;
-    console.log("token: ", token);
+  const token = JSON.parse(localStorage.getItem("token"));
+  if (token) {
   config.headers.Authorization = `Bearer ${token}`
 
   return config
