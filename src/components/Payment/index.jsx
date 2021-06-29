@@ -98,7 +98,7 @@ function Payment(props) {
                   {errors.description && <p className="badge badge-danger">{errors.description.message}</p>}
                 </div>
                 <div>
-                  <input type="text" hidden {...register("price")} value="123" />
+                  <input type="text" hidden {...register("price")} value="" />
                 </div>
                 {/* <div className="row">
               <div className="col-md-6"><label className="credit-card-label">Date</label><input type="text" className="form-control credit-inputs" placeholder="12/24" /></div>

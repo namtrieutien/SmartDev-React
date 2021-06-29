@@ -6,7 +6,7 @@ import apiSunny from '../../../api/sunny';
 
 const pay = async (requestPayment) => {
   try {
-    const response = await apiSunny.post(`api/user/payment/pay`, requestPayment);
+    const response = await apiSunny.post(`/order/payment`, requestPayment);
     console.log(response.data);
     return response.data;
   } catch (e) {
@@ -29,7 +29,7 @@ function* userPay(action) {
 
 const execute = async (paymentInfo) => {
   try {
-    const response = await apiSunny.post(`api/user/payment/success`, paymentInfo);
+    const response = await apiSunny.post(`/order/payment/success`, paymentInfo);
     return response.data;
   } catch (e) {
     return e.response.data;
