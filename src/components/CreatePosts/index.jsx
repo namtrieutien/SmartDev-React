@@ -7,38 +7,22 @@ import * as yup from "yup";
 
 import "./createPostsStyle.css"
 import { getAllCategoriesRequestAction } from '../../redux/actions/category/category.action';
-import loading from './login-image/loading.gif';
-
 
 CreatePosts.propTypes = {
 
 };
 
-
-const SigninSchema = yup.object().shape({
-  title: yup.string().required('Title is required'),
-  description: yup.string().required('Description is required'),
-  price: yup.string().required('Price is required')
-});
-
 function CreatePosts(props) {
-
-  const [checkRegister, setCheckRegister] = useState(false)
-
-  const [check, setCheck] = useState({
-    checkCity: false,
-    checkDistrict: false,
-    checkCommute: false
-  });
-
   const categories = useSelector(state => {
     return state.categoryReducer.data_getAllCategories;
   });
 
-  const responseData = useSelector(state => {
-    return state.registerReducer.data;
+  const SigninSchema = yup.object().shape({
+    title: yup.string().required('Title is required'),
+    description: yup.string().required('Description is required'),
+    price: yup.string().required('Price is required')
   });
- 
+
   useEffect(() => {
     console.log('useEffect');
     props.getAllCatogires();
@@ -49,7 +33,7 @@ function CreatePosts(props) {
   });
 
   const onSubmit = (data) => {
-    console.log('submit data of create post');
+    console.log('submit data of create post', data);
   };
 
   return (
@@ -68,7 +52,6 @@ function CreatePosts(props) {
                     <div className="col-lg-10 col-xl-7 mx-auto">
                       <h3 className="display-4">Create post</h3>
                       <form onSubmit={handleSubmit(onSubmit)}>
-                        
                         <div className="form-group mb-3">
                           <input {...register("title")}
                             id="input-title"
@@ -109,39 +92,45 @@ function CreatePosts(props) {
                         </div>
                         
                         <div className="form-group mb-3">
-                          <input {...register("Size")}
+                          <input {...register("size")}
                             id="input-size"
                             placeholder="Size"
                             className="form-control rounded-pill border-0 shadow-sm px-4" />
                         </div>
 
                         <div className="form-group mb-3">
-                          <input {...register("Image")}
+                          <input {...register("image")}
                             id="input-image"
                             placeholder="Image"
                             className="form-control rounded-pill border-0 shadow-sm px-4" />
                         </div>
 
                         <div className="form-group mb-3">
-                          <select {...register("Category")}
+                          <select {...register("category")}
                             className="form-control rounded-pill border-0 shadow-sm px-4"
                             onChange={(e) => {
                               console.log('change category: ', e.target.value)
                             }}
                           >
                             {
-                              !props.load_getAllCategories && <option>&#8594;Select category&#8592;</option>
+                              //!props.load_getAllCategories && <option>&#8594;Select category&#8592;</option>
                             }
                             {
                               categories.length > 0 && categories.map((category) =>
                               <option key={category.id} value={category.name}>{category.name}</option>)
                             }
                           </select>
+
+                          { errors.category && 
+                            <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
+                              {errors.category.message}
+                            </p>
+                          }
                         </div>
 
                         <button
                           type="submit"
-                          onClick={() => setCheckRegister(true)}
+                          onClick={console.log('click create post button')}
                           className="btn btn-login btn-block text-uppercase mb-2 rounded-pill shadow-sm">
                           Create Post
                         </button>
@@ -156,7 +145,7 @@ function CreatePosts(props) {
         </div>
 
         {/* modal notification */}
-        <div className={responseData && responseData.httpStatus === 200 ? "modal d-block " : "modal modal-notification"} role="dialog">
+        <div className={false ? "modal d-block " : "modal modal-notification"} role="dialog">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
@@ -198,6 +187,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAllCatogires: () => {
       dispatch(getAllCategoriesRequestAction());
+    },
+    createPost: (postContent) => {
+      
     },
   };
 };
