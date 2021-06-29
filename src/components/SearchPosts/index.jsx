@@ -21,14 +21,14 @@ function SearchPosts(props) {
     props.searchPost(params);
   };
 
-  const {load, error} = props;
-  if(!load){
-    if(error.code != 200){  
-      return <Redirect to="/home" />;
-    }
+  // const {load, error} = props;
+  // if(!load){
+  //   if(error.code != 200){  
+  //     return <Redirect to="/home" />;
+  //   }
     
-    return <Redirect to="/product" />;
-  }
+  //   return <Redirect to="/product" />;
+  // }
 
   // console.log(watch("search")); // watch input value by passing the name of it
   return (
