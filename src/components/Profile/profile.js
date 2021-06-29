@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
 import Header from '../../components/Header';
 import "./profile.css"
 import userApi from '../../api/management/userApi';
-
-import { setStatictisByCategory } from '../../redux/actions/user/manage.action';
 
 function ListItem({ label, src }) {
   const photo = require(`./img/${src}`).default;
@@ -29,11 +27,17 @@ function ProgressBar({ label, width, aria_valuenow }) {
 }
 
 function Profile(props) {
+  const [total, setTotal_all_orders] = useState();
+  const [list, setList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const fetchStatistic = async () => {
     try {
-      const response =  await userApi.statisticByPrice();
-      props.statistic(response);
-      console.log("Statistic", response);
+      setIsLoading(true);
+      const response = await userApi.statisticByPrice();
+      setTotal_all_orders(response[0]);
+      setList(response.slice(1, response.length));
+      setIsLoading(false);
     } catch (error) {
       console.log("failed to fetch list users", error);
     }
@@ -41,12 +45,10 @@ function Profile(props) {
 
   useEffect(() => {
     fetchStatistic();
-  }, [])
-  const { total_all_orders, by_category  } = props;
-  console.log("total_all_orders", total_all_orders);
-  console.log("by_category", by_category);
 
+  }, [])
   const { user: data } = props;
+
   if (!data) {
     return <Redirect to="/home" />;
   }
@@ -131,11 +133,16 @@ function Profile(props) {
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">BUY</i>Statistics</h6>
-                      <ProgressBar label="Electronics" width='30%' aria_valuenow={30} ></ProgressBar>
-                      <ProgressBar label="Vehicles" width='55%' aria_valuenow={55} ></ProgressBar>
-                      <ProgressBar label="Pet" width='15%' aria_valuenow={15} ></ProgressBar>
-                      <ProgressBar label="House" width='5%' aria_valuenow={6} ></ProgressBar>
-                      <ProgressBar label="Furniture" width='70%' aria_valuenow={70} ></ProgressBar>
+                      {isLoading ? (
+                        <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
+                      ) : (
+                        <div>
+                          <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">{total.total_all_orders}</i>VND</h7>
+                          {list.map(item => (
+                            <ProgressBar label={item.category} width={`${item.percentage}%`} aria_valuenow={item.percentage} ></ProgressBar>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -163,18 +170,9 @@ function Profile(props) {
 
 function mapStateToProps(state) {
   const { user } = state.userReducer;
-  const { total_all_orders, by_category } = state.manageUserReducer;
   return {
-    user,
-    total_all_orders,
-    by_category
+    user
   };
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    statistic: (data_statistic) => {
-      dispatch(setStatictisByCategory(data_statistic));
-    },
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+
+export default connect(mapStateToProps)(Profile);
