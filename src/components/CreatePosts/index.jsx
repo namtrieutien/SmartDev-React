@@ -15,9 +15,9 @@ CreatePosts.propTypes = {
 
 
 const SigninSchema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().required('Password is required'),
-  phone: yup.string().required('Phone is required')
+  title: yup.string().required('Title is required'),
+  description: yup.string().required('Description is required'),
+  price: yup.string().required('Price is required')
 });
 
 function CreatePosts(props) {
@@ -90,58 +90,62 @@ function CreatePosts(props) {
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-10 col-xl-7 mx-auto">
-                      <h3 className="display-4">Welcome to Chotot</h3>
-                      <p className="text-muted mb-4">
-                        Not a member yet?
-                        <a className="register-anchor ml-1" href="/login">Login now</a>
-                      </p>
+                      <h3 className="display-4">Create post</h3>
                       <form onSubmit={handleSubmit(onSubmit)}>
+                        
                         <div className="form-group mb-3">
-                          <input {...register("name")}
-                            id="inputname"
-                            // type="email" 
-                            placeholder="Full name"
-                            // required="" 
-                            // autoFocus="" 
+                          <input {...register("title")}
+                            id="input-title"
+                            placeholder="Title"
+                            className="form-control rounded-pill border-0 shadow-sm px-4" />
+
+                          { errors.title && 
+                            <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
+                              {errors.title.message}
+                            </p>
+                          }
+                        </div>
+
+                        <div className="form-group mb-3">
+                          <input {...register("description")}
+                            id="input-description"
+                            placeholder="Description"
+                            className="form-control rounded-pill border-0 shadow-sm px-4" />
+
+                          { errors.description && 
+                            <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
+                              {errors.description.message}
+                            </p>
+                          }
+                        </div>
+
+                        <div className="form-group mb-3">
+                          <input {...register("price")}
+                            id="input-price"
+                            placeholder="Price"
+                            className="form-control rounded-pill border-0 shadow-sm px-4" />
+
+                          { errors.price && 
+                            <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
+                              {errors.price.message}
+                            </p>
+                          }
+                        </div>
+                        
+                        <div className="form-group mb-3">
+                          <input {...register("Size")}
+                            id="input-size"
+                            placeholder="Size"
                             className="form-control rounded-pill border-0 shadow-sm px-4" />
                         </div>
+
                         <div className="form-group mb-3">
-                          <input {...register("email")}
-                            id="inputEmail"
-                            type="text"
-                            placeholder="Email address"
-                            // required=""
-                            // autoFocus="" 
+                          <input {...register("Image")}
+                            id="input-image"
+                            placeholder="Image"
                             className="form-control rounded-pill border-0 shadow-sm px-4" />
-                          {errors.email && <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                            {errors.email.message === "email must be a valid email" ? "Email must be a valid email" : errors.email.message}
-                          </p>}
-                          {responseData && responseData.httpStatus !== 200 && <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                            {responseData && responseData.httpStatus && <span>{responseData.email.message}!</span>}
-                          </p>}
                         </div>
-                        <div className="form-group mb-3">
-                          <input  {...register("password", { required: true, maxLength: 40 })}
-                            id="inputPassword"
-                            type="password"
-                            placeholder="Password"
-                            required=""
-                            className="form-control rounded-pill border-0 shadow-sm px-4" />
-                          {errors.password && <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                            {errors.password.message}
-                          </p>}
-                        </div>
-                        <div className="form-group mb-3">
-                          <input {...register("phone")}
-                            id="inputPhone"
-                            placeholder="Phone"
-                            required
-                            // autoFocus="" 
-                            className="form-control rounded-pill border-0 shadow-sm px-4" />
-                          {errors.phone && <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                            {errors.phone.message}
-                          </p>}
-                        </div>
+
                         <div className="form-group mb-3">
                           <select {...register("city")}
                             className="form-control rounded-pill border-0 shadow-sm px-4"
@@ -154,57 +158,20 @@ function CreatePosts(props) {
                             }}
                           // required
                           >
-                            {!check.checkCity && <option>&#8594;Select city&#8592;</option>}
+                            {!check.checkCity && <option>&#8594;Select category&#8592;</option>}
                             {cities.length > 0 && cities.map((value, index) =>
                               <option value={value.name} key={value.id}>{value.name}</option>
                             )}
                           </select>
                         </div>
-                        <div className="form-group mb-3">
-                          <select {...register("district")}
-                            className="form-control rounded-pill border-0 shadow-sm px-4"
-                            onChange={(e) => {
-                              if (districts.length > 0) {
-                                let district_id = findByName(districts, e.target.value)
-                                setCheck({ ...check, checkDistrict: true })
-                                dispatch(getCommute(district_id))
-                              }
-                            }}
-                          // required
-                          >
-                            {!check.checkDistrict && <option>&#8594;Select district&#8592;</option>}
-                            {districts.length > 0 && districts.map((value, index) =>
-                              <option value={value.name} key={value.id}>{value.name}</option>
-                            )}
-                          </select>
-                        </div>
-                        <div className="form-group mb-3">
-                          <select {...register("commute")}
-                            className="form-control rounded-pill border-0 shadow-sm px-4"
-                            onChange={(e) => {
-                              if (commutes.length > 0) {
-                                setCheck({ ...check, checkCommute: true })
-                              }
-                            }}
-                            required
-                          >
-                            {!check.checkCommute && <option>&#8594;Select commute&#8592;</option>}
-                            {commutes.length > 0 && commutes.map((value, index) =>
-                              <option value={value.name} key={value.id}>{value.name}</option>
-                            )}
-                          </select>
-                        </div>
+
                         <button
                           type="submit"
                           onClick={() => setCheckRegister(true)}
                           className="btn btn-login btn-block text-uppercase mb-2 rounded-pill shadow-sm">
-                          Sign up
+                          Create Post
                         </button>
-                        {/* <div className="text-center d-flex justify-content-between mt-4">
-                        <p>Forgot your <a href="/" className="font-italic text-muted">
-                          <u>password</u></a>?
-                        </p>
-                      </div> */}
+                  
                       </form>
                     </div>
                   </div>
