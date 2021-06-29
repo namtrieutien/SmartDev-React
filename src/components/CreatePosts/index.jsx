@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from 'react-hook-form'
+import {connect} from 'react-redux'
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import "./createPostsStyle.css"
-import { getCities, getDistrict, getCommute } from '../../redux/actions/address.action';
-import { register as userRegister } from '../../redux/actions/user/register.action';
+import { getAllCategoriesRequestAction } from '../../redux/actions/category/category.action';
 import loading from './login-image/loading.gif';
+
 
 CreatePosts.propTypes = {
 
@@ -30,33 +31,16 @@ function CreatePosts(props) {
     checkCommute: false
   });
 
-  const dispatch = useDispatch();
-  const cities = useSelector(state => {
-    return state.addressReducer.cities.slice(1)
-  });
-
-  const districts = useSelector(state => {
-    return state.addressReducer.districts;
-  });
-
-  const commutes = useSelector(state => {
-    return state.addressReducer.commutes;
+  const categories = useSelector(state => {
+    return state.categoryReducer.data;
   });
 
   const responseData = useSelector(state => {
     return state.registerReducer.data;
   });
-
-  const checkTemp = useSelector(state => {
-    return state.registerReducer.check;
-  });
-  
-  // let user = useSelector(state => {
-  //   return state;
-  // });
-
+ 
   useEffect(() => {
-    dispatch(getCities())
+    props.getAllCatogires();
   }, []);
 
   const { register, formState: { errors }, handleSubmit } = useForm({
@@ -64,21 +48,12 @@ function CreatePosts(props) {
   });
 
   const onSubmit = (data) => {
-    dispatch(userRegister(data));
+    console.log('submit data of create post');
   };
 
-  const findByName = (array, name) => {
-    return array.find(element => element.name === name).id;
-  }
-  
-
-  const array = [200, 400, 500];
   return (
     <div>
-      <div className={checkTemp ? "loading-bg" : "loading-bg d-none"}>
-        <img src={loading} alt="Loading..."/>
-      </div>
-      <div className="Login">
+      <div className="create-post">
         <div className="container-fluid">
           <div className="row no-gutter">
             {/* <!-- The image half --> */}
@@ -147,20 +122,15 @@ function CreatePosts(props) {
                         </div>
 
                         <div className="form-group mb-3">
-                          <select {...register("city")}
+                          <select {...register("Category")}
                             className="form-control rounded-pill border-0 shadow-sm px-4"
                             onChange={(e) => {
-                              if (cities.length > 0) {
-                                let city_id = findByName(cities, e.target.value)
-                                setCheck({ ...check, checkCity: true })
-                                dispatch(getDistrict(city_id))
-                              }
+                              console.log('change category: ', e.target.value)
                             }}
-                          // required
                           >
-                            {!check.checkCity && <option>&#8594;Select category&#8592;</option>}
-                            {cities.length > 0 && cities.map((value, index) =>
-                              <option value={value.name} key={value.id}>{value.name}</option>
+                            {!props.load_getAllCategories && <option>&#8594;Select category&#8592;</option>}
+                            {categories.length > 0 && categories.map((category) =>
+                              <option key={category.id} value={category.name}>{category.name}</option>
                             )}
                           </select>
                         </div>
@@ -212,4 +182,20 @@ function CreatePosts(props) {
   );
 }
 
-export default CreatePosts;
+const mapStateToProps = (state) => {
+  const { load_getAllCategories, data_getAllCategories, error_getAllCategories } = state.categoryReducer;
+  return {
+    load_getAllCategories,
+    data_getAllCategories,
+    error_getAllCategories
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllCatogires: () => {
+      dispatch(getAllCategoriesRequestAction());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePosts);

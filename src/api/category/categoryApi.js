@@ -1,10 +1,10 @@
-import axiosManagement from './axiosManagement';
+import axiosManagement from '../management/axiosManagement';
 
-const categoryApi = {
-    getAllCategoriesData = () => {
-        const url = `categories/get-all-categories`; 
-        return instance.get(url, {});
+const categoryApi = {  
+    getAllCategoriesData: () => {
+        const url = `/admin/categories`; 
+        return axiosManagement.get(url, {});
     }
 }
 
-export const categoryApi;
+export default categoryApi;

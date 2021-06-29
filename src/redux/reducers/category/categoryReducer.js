@@ -1,9 +1,9 @@
 import * as type from '../../constants'
 
 const initialState = {
-    load: true,
-    data: {},
-    error:{
+    load_getAllCategories: true,
+    data_getAllCategories: {},
+    error_getAllCategories:{
         code: 200,
         error: 'success',
         message: 'ok'
@@ -15,7 +15,7 @@ export const categoryReducer = (state = initialState, action) => {
         case type.GET_ALL_CATEGORIES_REQUEST:      
             return {
                 ...state,
-                load: true
+                load_getAllCategories: true
             };
 
         case type.GET_ALL_CATEGORIES_COMPLETE:
@@ -23,17 +23,16 @@ export const categoryReducer = (state = initialState, action) => {
             if(error){
                 return {
                     ...state,
-                    load: false,
-                    error: action.data
+                    load_getAllCategories: false,
+                    error_getAllCategories: action.data
                 };
             }
 
-            const { data } = action.data;
             return {
                 ...state,
-                load: false,
-                data: data,
-                error:{
+                load_getAllCategories: false,
+                data_getAllCategories: action.data,
+                error_getAllCategories:{
                     code: 200,
                     error: 'success',
                     message: 'ok'

@@ -7,6 +7,7 @@ import paymentReducer from './user/payment.reducer'
 import {userReducer} from "./userReducer";
 
 import {searchPostReducer} from "./posts/searchPostReducer";
+import {categoryReducer} from "./category/categoryReducer";
 
 const rootReducer = combineReducers({
   addressReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   registerReducer,
   paymentReducer,
   searchPostReducer,
+  categoryReducer
 })
 
 export default rootReducer;
