@@ -32,12 +32,9 @@ function AddToCart(props) {
   const { item, cartList } = props
 
   useEffect(() => {
-    // console.log("Incomponent cartList: ", cartList);
-    const newItem = cartList.find(cartItem => cartItem === item)
-    // console.log("component item ", item);
-    // console.log("find newItem: ", newItem);
-    if (newItem === item) {
-      console.log("if newitem: ", newItem);
+    const newItem = cartList.find(cartItem => JSON.stringify(cartItem) === JSON.stringify(item))
+
+    if (JSON.stringify(newItem) === JSON.stringify(item)) {
       setActived("red");
     } else {
       setActived("black")

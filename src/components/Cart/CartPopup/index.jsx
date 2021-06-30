@@ -4,15 +4,9 @@ import { connect } from "react-redux";
 
 import { addNewToCart, RemoveCartItemAPIAction  } from '../../../redux/actions/cartAction'
 import { Link } from "react-router-dom"
+import {VNDformat} from '../../../helpers/utils'
 
 import "./cartPopup.css";
-// import { popupItem } from "../../../management-pages/dummyData";
-
-// import PropTypes from 'prop-types';
-
-// CartBadge.propTypes = {
-
-// };
 
 const mapStateToProps = (state) => {
   const { isLoggedIn } = state.userReducer;
@@ -32,16 +26,11 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 }
-const VNDformat = (money) => {
-  return money.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
-}
-
 
 const ListPopup = (props) => {
 
   const { list, addNewToCart, isLoggedIn, removeCartItem  } = props;
-  // const [listPopUpItem, setListPostItem] = useState(popupItem);
-  // const [listPopUpItem, setListPostItem] = useState(list);
+
   console.log("login", props.isLoggedIn)
 
   const handleRemovePopupItem = (item) => {

@@ -8,7 +8,6 @@ export const addNewToCart = (payload) => {
 }
 
 export const AddToCartAPI = (pid) => {
-  console.log("AddToCartAPI_action_Pid: ", pid);
   return {
     type: types.ADD_TO_CART_API,
     post_id: pid,
@@ -22,9 +21,27 @@ export const addedToCartAction = cartItem => {
 }
 
 export const RemoveCartItemAPIAction = (pid) => {
-  console.log("REMOVECartAPI_action_Pid: ", pid);
   return {
     type: types.REMOVE_CART_ITEM_API,
     post_id: pid,
+  }
+}
+
+export const loadCartAction = () => {
+  return {
+      type: types.LOAD_CART
+  }
+}
+
+export const cartLoadedAction = cartItems => {
+  return {
+      type: types.CART_LOADED,
+      cart : cartItems
+  }
+}
+
+export const RemoveCartAction = () => {
+  return {
+      type: types.REMOVE_CART,
   }
 }

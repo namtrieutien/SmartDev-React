@@ -46,9 +46,7 @@ function App() {
           </Route>
           <Route path="/register" component={Register}>
           </Route>
-          <Route path="/post" component={PostDetail}>
-          </Route>
-
+          <Route path="/post/:postId" exact component={PostDetail} />
           <Route exact path="/payment" component={Payment}>
           </Route>
           <Route  path="/payment/success" component={PaymentSuccess}>

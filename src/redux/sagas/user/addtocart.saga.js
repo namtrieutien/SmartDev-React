@@ -41,17 +41,42 @@ function* removeCartItem(action) {
     console.log(e.messages);
   }
 }
+//LOAD CART ITEMS FROM DATABASE
+const getCartItemsAPI = async () => {
+  try {
+    const response = await userApi.loadCart();
+    localStorage.setItem("cart", JSON.stringify(response));
+    return response;
+  } catch (e) {
+    console.log(e);
+    return e;
+  }
+}
+function* loadCart() {
+  try {
+      const cartItems = yield call(getCartItemsAPI)
+      const postItems = cartItems.map((item) => item.post);
+      yield put(actions.cartLoadedAction(postItems))
+  } catch (e) {
+      console.log(e)
+  }
+}
 
+//WATCHER SAGA
 function* watchAddToCart() {
     yield takeEvery(type.ADD_TO_CART_API, addToCart)
 }
 function* watchRemoveCartItem() {
   yield takeEvery(type.REMOVE_CART_ITEM_API, removeCartItem)
 }
+function* watchLoadCart() {
+  yield takeEvery(type.LOAD_CART, loadCart)
+}
 function* addToCartSaga() {
     yield all([
         watchAddToCart(),
-        watchRemoveCartItem()
+        watchRemoveCartItem(),
+        watchLoadCart()
     ])
 }
 

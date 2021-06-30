@@ -5,6 +5,10 @@ const userApi = {
     const url = '/order_details/statistic_by_price';
     return axiosManagement.get(url)
   },
+  loadCart: () => {
+    const url = '/cart/items';
+    return axiosManagement.get(url)
+  },
 
   addItemToCart: (pid) => {
     const url = `/cart/add/${pid}` ;

@@ -21,19 +21,9 @@ function Home(props) {
 
       {/* <!-- Page Content --> */}
       <Banner />
-
-      <AddToCart item={popupItem[0]}/>
-      <AddToCart item={popupItem[1]}/>
-      <AddToCart item={popupItem[2]}/>
-      <AddToCart item={popupItem[3]}/>
-      <AddToCart item={popupItem[4]}/>
       <ExploreCategories />
-
       <CarouselPosts />
-
       <Posts />
-
-      
       <Footer />
     </div>
   );
