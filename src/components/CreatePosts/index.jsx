@@ -24,6 +24,9 @@ function CreatePosts(props) {
         price: yup.string().required('Price is required')
     });
 
+    const [selectedFile, setSelectedFile] = useState(null);
+    console.log('selectedFile: ', selectedFile)
+
     useEffect(() => {
         console.log('useEffect');
         props.getAllCatogires();
@@ -120,8 +123,11 @@ function CreatePosts(props) {
                                                 <img className="img-rounded img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
                                             </figure>
                                             <div className="form-inline col-md-10 col-sm-9 col-xs-12">
-                                                <input type="file" className="file-uploader pull-left" />
-                                                <button type="submit" className="btn btn-sm btn-default-alt pull-left">Update Image</button>
+                                                <input 
+                                                    type="file" 
+                                                    className="file-uploader"
+                                                    onChange={(e) => setSelectedFile(e.target.files[0])}
+                                                />
                                             </div>
                                         </div>
 
