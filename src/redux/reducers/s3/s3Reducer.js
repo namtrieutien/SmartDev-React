@@ -2,10 +2,10 @@ import * as type from '../../constants'
 
 const initialState = {
     load: true,
-    data: ''
+    image_url: ''
 };
 
-export const s3Reducer = (state = initialState, action) => {
+export default function s3Reducer (state = initialState, action){
     switch (action.type) {
         case type.UPLOAD_FILE_REQUEST:      
             return {
@@ -17,7 +17,7 @@ export const s3Reducer = (state = initialState, action) => {
             return {
                 ...state,
                 load: false,
-                data: action.data
+                image_url: action.dataResponse.substring(16)
             };
 
         default:

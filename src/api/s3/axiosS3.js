@@ -22,7 +22,6 @@ axiosS3.interceptors.request.use(
 
 axiosS3.interceptors.response.use((response) => {
   if (response && response.data) {
-    console.log(response.data);
     return response.data;
   }
   return response;

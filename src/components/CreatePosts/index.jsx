@@ -15,8 +15,8 @@ CreatePosts.propTypes = {
 };
 
 function CreatePosts(props) {
-    const categories = useSelector(state => {
-        return state.categoryReducer.data_getAllCategories;
+    const categories = useSelector(() => {
+        return props.categoryReducer.data_getAllCategories;
     });
 
     const SigninSchema = yup.object().shape({
@@ -24,9 +24,6 @@ function CreatePosts(props) {
         description: yup.string().required('Description is required'),
         price: yup.string().required('Price is required')
     });
-
-    const [selectedFile, setSelectedFile] = useState(null);
-    console.log('selectedFile: ', selectedFile)
 
     useEffect(() => {
         console.log('useEffect');
@@ -114,6 +111,7 @@ function CreatePosts(props) {
                                             <div className="col-md-10 col-sm-9 col-xs-12">
                                                 <input {...register("image")}
                                                     id="input-image"
+                                                    value={props.s3Reducer.image_url}
                                                     placeholder="Image"
                                                     className="form-control" />
                                             </div>
@@ -121,16 +119,17 @@ function CreatePosts(props) {
 
                                         <div className="form-group avatar">
                                             <figure className="figure col-md-2 col-sm-3 col-xs-12">
-                                                <img className="img-rounded img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+                                                <img className="img-rounded img-responsive" src={props.s3Reducer.image_url} alt="" />
                                             </figure>
                                             <div className="form-inline col-md-10 col-sm-9 col-xs-12">
                                                 <input 
                                                     type="file" 
                                                     className="file-uploader"
                                                     onChange={(e) => {
-                                                            setSelectedFile(e.target.files[0]);
+                                                            let fileUpload = e.target.files[0];
+                                                            
                                                             let formData = new FormData();
-                                                            formData.append('file', selectedFile);
+                                                            formData.append('file', fileUpload);
                                                             props.uploadFile(formData);
                                                         }
                                                     }
@@ -147,7 +146,7 @@ function CreatePosts(props) {
                                                 }}
                                             >
                                                 {
-                                                    !props.load_getAllCategories && <option>&#8594;Select category&#8592;</option>
+                                                    !props.categoryReducer.load_getAllCategories && <option>&#8594;Select category&#8592;</option>
                                                 }
                                                 {
                                                     categories.length > 0 && categories.map((category) =>
@@ -180,11 +179,9 @@ function CreatePosts(props) {
 }
 
 const mapStateToProps = (state) => {
-    const { load_getAllCategories, data_getAllCategories, error_getAllCategories } = state.categoryReducer;
     return {
-        load_getAllCategories,
-        data_getAllCategories,
-        error_getAllCategories
+        s3Reducer: state.s3Reducer,
+        categoryReducer: state.categoryReducer,
     };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -9,7 +9,11 @@ const s3Api = {
                 'Content-Type': 'multipart/form-data'
             }
         }
-        return axiosS3.post(url, formData, config).then( (response) => console.log(response) );
+        return axiosS3.post(url, formData, config).then( (response) => {
+            if (response && response.data) {
+                return response.data;
+            } 
+            return response;} );
     }
 }
 

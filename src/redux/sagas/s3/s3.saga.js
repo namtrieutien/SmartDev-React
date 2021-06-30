@@ -6,7 +6,7 @@ import * as type from '../../constants';
 
 function* uploadFileSaga(action) {
     try {
-        const data = yield call(s3Api.uploadFile, action.dataRequest);
+        const data = yield call(s3Api.uploadFile, action.dataRequest);   
         yield put(s3Action.uploadFileComplete(data));
     } catch (error) {
         //handle error
