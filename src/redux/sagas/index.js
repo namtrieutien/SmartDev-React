@@ -6,6 +6,7 @@ import userSaga from "./login/userSaga"
 import paymentSaga from './user/payment.saga'
 import postSaga from './posts/post.saga'
 import categorySaga from './category/categorySaga';
+import s3Saga from './s3/s3.saga';
 
 export default function* rootSaga() {
     yield all([
@@ -14,6 +15,7 @@ export default function* rootSaga() {
       userSaga(),
       paymentSaga(),
       postSaga(),
-      categorySaga()
+      categorySaga(),
+      s3Saga()
     ])
 }

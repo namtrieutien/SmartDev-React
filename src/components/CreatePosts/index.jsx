@@ -8,6 +8,7 @@ import * as yup from "yup";
 import "./createPostsStyle.css"
 import { getAllCategoriesRequestAction } from '../../redux/actions/category/category.action';
 import postAction from '../../redux/actions/posts/post.action'
+import s3Action from '../../redux/actions/s3/s3.action'
 
 CreatePosts.propTypes = {
 
@@ -126,7 +127,13 @@ function CreatePosts(props) {
                                                 <input 
                                                     type="file" 
                                                     className="file-uploader"
-                                                    onChange={(e) => setSelectedFile(e.target.files[0])}
+                                                    onChange={(e) => {
+                                                            setSelectedFile(e.target.files[0]);
+                                                            let formData = new FormData();
+                                                            formData.append('file', selectedFile);
+                                                            props.uploadFile(formData);
+                                                        }
+                                                    }
                                                 />
                                             </div>
                                         </div>
@@ -187,6 +194,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         createPost: (postRequest) => {
             dispatch(postAction.createPostRequest(postRequest));
+        },
+        uploadFile: (file) => {
+            dispatch(s3Action.uploadFileRequest(file));
         },
     };
 };
