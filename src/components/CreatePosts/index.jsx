@@ -108,18 +108,18 @@ function CreatePosts(props) {
                         </div>
 
                         <div className="form-group mb-3">
-                          <select {...register("category")}
+                          <select {...register("categorize_id")}
                             className="form-control rounded-pill border-0 shadow-sm px-4"
                             onChange={(e) => {
                               console.log('change category: ', e.target.value)
                             }}
                           >
                             {
-                              //!props.load_getAllCategories && <option>&#8594;Select category&#8592;</option>
+                              !props.load_getAllCategories && <option>&#8594;Select category&#8592;</option>
                             }
                             {
                               categories.length > 0 && categories.map((category) =>
-                              <option key={category.id} value={category.name}>{category.name}</option>)
+                              <option key={category.id} value={category.id}>{category.name}</option>)
                             }
                           </select>
 
