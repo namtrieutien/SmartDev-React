@@ -8,7 +8,7 @@ const postApi = {
     createPost: (postContent) =>
     {
         const url = `posts/create`; 
-        return axiosPost.post(url, postContent).then;
+        return axiosPost.post(url, postContent);
     }
 }
 

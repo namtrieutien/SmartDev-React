@@ -13,8 +13,19 @@ function* getSearchPostSaga(action) {
     }
 }
 
+function* createPostSaga(action) {
+    try {
+        const data = yield call(postApi.createPost, action.dataRequest);
+        yield put(postAction.createPostComplete(data));
+    } catch (error) {
+        //handle error
+    }
+}
+
+
 function* postSaga() {
     yield takeLatest(type.POSTS_SEARCH_LOADING, getSearchPostSaga);
+    yield takeLatest(type.POSTS_CREATE_POST_REQUEST, createPostSaga);
 }
 
 export default postSaga;

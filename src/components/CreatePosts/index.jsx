@@ -7,6 +7,7 @@ import * as yup from "yup";
 
 import "./createPostsStyle.css"
 import { getAllCategoriesRequestAction } from '../../redux/actions/category/category.action';
+import postAction from '../../redux/actions/posts/post.action'
 
 CreatePosts.propTypes = {
 
@@ -34,6 +35,7 @@ function CreatePosts(props) {
 
   const onSubmit = (data) => {
     console.log('submit data of create post', data);
+    props.createPost(data);
   };
 
   return (
@@ -188,8 +190,8 @@ const mapDispatchToProps = (dispatch) => {
     getAllCatogires: () => {
       dispatch(getAllCategoriesRequestAction());
     },
-    createPost: (postContent) => {
-      
+    createPost: (postRequest) => {
+      dispatch(postAction.createPostRequest(postRequest));
     },
   };
 };

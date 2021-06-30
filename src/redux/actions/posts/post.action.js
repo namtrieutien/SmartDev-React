@@ -13,6 +13,21 @@ const postAction = {
             type: type.POSTS_SEARCH_COMPLETE,
             data
         }
+    },
+
+    createPostRequest: (dataRequest) => {
+        return {
+            type: type.POSTS_CREATE_POST_REQUEST,
+            dataRequest
+        }
+
+    },
+    createPostComplete: (dataResponse) => {
+        return {
+            type: type.POSTS_CREATE_POST_RESPONSE,
+            dataResponse
+        }
+
     }
 }
 
