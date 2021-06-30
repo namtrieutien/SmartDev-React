@@ -40,140 +40,103 @@ function CreatePosts(props) {
 
   return (
     <div>
-      <div className="create-post">
-        <div className="container-fluid">
-          <div className="row no-gutter">
-            {/* <!-- The image half --> */}
-            <div className="col-md-5 d-none d-md-flex bg-image"></div>
-            {/* <!-- The content half --> */}
-            <div className="col-md-7 bg-light">
-              <div className="login d-flex align-items-center py-5">
-                {/* <!-- Demo content--> */}
-                <div className="container">
-                  <div className="row">
-                    <div className="col-lg-10 col-xl-7 mx-auto">
-                      <h3 className="display-4">Create post</h3>
-                      <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="form-group mb-3">
-                          <input {...register("title")}
-                            id="input-title"
-                            placeholder="Title"
-                            className="form-control rounded-pill border-0 shadow-sm px-4" />
-
-                          { errors.title && 
-                            <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                              {errors.title.message}
-                            </p>
-                          }
-                        </div>
-
-                        <div className="form-group mb-3">
-                          <input {...register("description")}
-                            id="input-description"
-                            placeholder="Description"
-                            className="form-control rounded-pill border-0 shadow-sm px-4" />
-
-                          { errors.description && 
-                            <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                              {errors.description.message}
-                            </p>
-                          }
-                        </div>
-
-                        <div className="form-group mb-3">
-                          <input {...register("price")}
-                            id="input-price"
-                            placeholder="Price"
-                            className="form-control rounded-pill border-0 shadow-sm px-4" />
-
-                          { errors.price && 
-                            <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                              {errors.price.message}
-                            </p>
-                          }
-                        </div>
-                        
-                        <div className="form-group mb-3">
-                          <input {...register("size")}
-                            id="input-size"
-                            placeholder="Size"
-                            className="form-control rounded-pill border-0 shadow-sm px-4" />
-                        </div>
-
-                        <div className="form-group mb-3">
-                          <input {...register("image")}
-                            id="input-image"
-                            placeholder="Image"
-                            className="form-control rounded-pill border-0 shadow-sm px-4" />
-                        </div>
-
-                        <div className="form-group mb-3">
-                          <select {...register("categorize_id")}
-                            className="form-control rounded-pill border-0 shadow-sm px-4"
-                            onChange={(e) => {
-                              console.log('change category: ', e.target.value)
-                            }}
-                          >
-                            {
-                              !props.load_getAllCategories && <option>&#8594;Select category&#8592;</option>
-                            }
-                            {
-                              categories.length > 0 && categories.map((category) =>
-                              <option key={category.id} value={category.id}>{category.name}</option>)
-                            }
-                          </select>
-
-                          { errors.category && 
-                            <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                              {errors.category.message}
-                            </p>
-                          }
-                        </div>
-
-                        <button
-                          type="submit"
-                          onClick={console.log('click create post button')}
-                          className="btn btn-login btn-block text-uppercase mb-2 rounded-pill shadow-sm">
-                          Create Post
-                        </button>
-                  
-                      </form>
-                    </div>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+        <div className="container">
+          <div className="view-account">
+            <section className="module">
+              <div className="module-inner">
+                <div className="side-bar">
+                  <div className="user-info">
+                    <img className="img-profile img-circle img-responsive center-block" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+                    <ul className="meta list list-unstyled">
+                      <li className="name">Rebecca Sanders
+                        <label className="label label-info">UX Designer</label>
+                      </li>
+                      <li className="email"><a href="#">Rebecca.S@website.com</a></li>
+                      <li className="activity">Last logged in: Today at 2:18pm</li>
+                    </ul>
                   </div>
+                  <nav className="side-menu">
+                    <ul className="nav">
+                      <li className="active"><a href="#"><span className="fa fa-user" /> Profile</a></li>
+                      <li><a href="#"><span className="fa fa-cog" /> Settings</a></li>
+                      <li><a href="#"><span className="fa fa-credit-card" /> Billing</a></li>
+                      <li><a href="#"><span className="fa fa-envelope" /> Messages</a></li>
+                      <li><a href="user-drive.html"><span className="fa fa-th" /> Drive</a></li>
+                      <li><a href="#"><span className="fa fa-clock-o" /> Reminders</a></li>
+                    </ul>
+                  </nav>
+                </div>
+                <div className="content-panel">
+                  <h2 className="title">Profile<span className="pro-label label label-warning">PRO</span></h2>
+                  <form className="form-horizontal">
+                    <fieldset className="fieldset">
+                      <h3 className="fieldset-title">Personal Info</h3>
+                      <div className="form-group avatar">
+                        <figure className="figure col-md-2 col-sm-3 col-xs-12">
+                          <img className="img-rounded img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+                        </figure>
+                        <div className="form-inline col-md-10 col-sm-9 col-xs-12">
+                          <input type="file" className="file-uploader pull-left" />
+                          <button type="submit" className="btn btn-sm btn-default-alt pull-left">Update Image</button>
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <label className="col-md-2 col-sm-3 col-xs-12 control-label">User Name</label>
+                        <div className="col-md-10 col-sm-9 col-xs-12">
+                          <input type="text" className="form-control" defaultValue="Rebecca" />
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <label className="col-md-2 col-sm-3 col-xs-12 control-label">First Name</label>
+                        <div className="col-md-10 col-sm-9 col-xs-12">
+                          <input type="text" className="form-control" defaultValue="Rebecca" />
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <label className="col-md-2 col-sm-3 col-xs-12 control-label">Last Name</label>
+                        <div className="col-md-10 col-sm-9 col-xs-12">
+                          <input type="text" className="form-control" defaultValue="Sanders" />
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset className="fieldset">
+                      <h3 className="fieldset-title">Contact Info</h3>
+                      <div className="form-group">
+                        <label className="col-md-2  col-sm-3 col-xs-12 control-label">Email</label>
+                        <div className="col-md-10 col-sm-9 col-xs-12">
+                          <input type="email" className="form-control" defaultValue="Rebecca@website.com" />
+                          <p className="help-block">This is the email </p>
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <label className="col-md-2  col-sm-3 col-xs-12 control-label">Twitter</label>
+                        <div className="col-md-10 col-sm-9 col-xs-12">
+                          <input type="text" className="form-control" defaultValue="SpeedyBecky" />
+                          <p className="help-block">Your twitter username</p>
+                        </div>
+                      </div>
+                      <div className="form-group">
+                        <label className="col-md-2  col-sm-3 col-xs-12 control-label">Linkedin</label>
+                        <div className="col-md-10 col-sm-9 col-xs-12">
+                          <input type="url" className="form-control" defaultValue="https://www.linkedin.com/in/lorem" />
+                          <p className="help-block">eg. https://www.linkedin.com/in/yourname</p>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <hr />
+                    <div className="form-group">
+                      <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+                        <input className="btn btn-primary" type="submit" defaultValue="Update Profile" />
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* modal notification */}
-        <div className={false ? "modal d-block " : "modal modal-notification"} role="dialog">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Notification</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <p className="" style={{ fontSize: "20px" }}>
-                  <i className="far fa-envelope mr-2" style={{ fontSize: '22px' }}></i>
-                  Register successfull. Check your email to activate your account
-                </p>
-              </div>
-              <div className="modal-footer">
-                <a href="/login">
-                <button type="button" className="btn btn-login text-uppercase rounded-pill shadow-sm">
-                  Go to login
-                </button>
-                </a>
-              </div>
-            </div>
+            </section>
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
