@@ -15,7 +15,60 @@ CreatePosts.propTypes = {
 };
 
 function CreatePosts(props) {
-    let fileUpload = null;
+    const [filesState, setFilesState] = useState({
+        data: null,
+        error: true
+    });
+    const handleFileUpLoad = (e) => {
+        if (e.target.files[0] == null) {
+            setFilesState({
+                data: null,
+                error: true
+            });
+        } else {
+            setFilesState({
+                data: e.target.files[0],
+                error: false
+            });
+        }
+    }
+
+    useEffect(() => {
+        if (filesState.data == null) {
+            document.getElementById('preview_image').src = null;
+        } else {
+            document.getElementById('preview_image').src = URL.createObjectURL(filesState.data);
+        }
+    }, [filesState.data]);
+
+    const [categoryState, setCategoryState] = useState({
+        data: null,
+        error: true
+    });
+
+    const handleChangeCategory = (e) => {
+        if (e.target.value == 'Select category') {
+            setCategoryState({
+                data: null,
+                error: true
+            });
+        } else {
+            setCategoryState({
+                data: e.target.value,
+                error: false
+            });
+        }
+    }
+
+    useEffect(() => {
+        if (categoryState.data == null) {
+            
+        } else {
+            
+        }
+    }, [categoryState.data]);
+
+
     const categories = useSelector(() => {
         return props.categoryReducer.data_getAllCategories;
     });
@@ -27,7 +80,6 @@ function CreatePosts(props) {
     });
 
     useEffect(() => {
-        console.log('useEffect');
         props.getAllCatogires();
     }, []);
 
@@ -45,7 +97,7 @@ function CreatePosts(props) {
             categorize_id: data.categorize_id
         }
 
-        formData.append('file', fileUpload);
+        formData.append('file', filesState.data);
         formData.append('post', JSON.stringify(post));
         props.createPost(formData);
     };
@@ -118,20 +170,21 @@ function CreatePosts(props) {
                                         </div>
 
                                         <div className="form-group avatar">
-                                        <figure className="figure col-md-2 col-sm-3 col-xs-12">
-                                                <img id="preview_image" className="img-rounded img-responsive" src='' alt="" />
+                                            <figure className="figure col-md-2 col-sm-3 col-xs-12">
+                                                <img id="preview_image" className="img-rounded img-responsive" src="" alt="" />
                                             </figure>
                                             <div className="form-inline col-md-10 col-sm-9 col-xs-12">
                                                 <input {...register("file")}
                                                     id="upload-file"
-                                                    type="file" 
+                                                    type="file"
                                                     className="file-uploader"
-                                                    onChange={(e) => {
-                                                        fileUpload = e.target.files[0];
-                                                        document.getElementById('preview_image').src = URL.createObjectURL(fileUpload);
-                                                    }
-                                                }
+                                                    onChange={handleFileUpLoad}
                                                 />
+                                                {filesState.error &&
+                                                    <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
+                                                        Please choose a file
+                                                    </p>
+                                                }
                                             </div>
                                         </div>
 
@@ -139,12 +192,10 @@ function CreatePosts(props) {
                                             <label className="col-md-2 col-sm-3 col-xs-12 control-label">Category</label>
                                             <select {...register("categorize_id")}
                                                 className="form-control"
-                                                onChange={(e) => {
-                                                    console.log('change category: ', e.target.value)
-                                                }}
+                                                onChange={handleChangeCategory}
                                             >
                                                 {
-                                                    !props.categoryReducer.load_getAllCategories && <option>&#8594;Select category&#8592;</option>
+                                                    !props.categoryReducer.load_getAllCategories && <option>Select category</option>
                                                 }
                                                 {
                                                     categories.length > 0 && categories.map((category) =>
@@ -152,9 +203,9 @@ function CreatePosts(props) {
                                                 }
                                             </select>
 
-                                            {errors.category &&
+                                            {categoryState.error &&
                                                 <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                                                    {errors.category.message}
+                                                    Please select a category
                                                 </p>
                                             }
                                         </div>
