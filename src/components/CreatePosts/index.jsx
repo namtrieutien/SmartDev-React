@@ -15,6 +15,7 @@ CreatePosts.propTypes = {
 };
 
 function CreatePosts(props) {
+    let fileUpload = null;
     const categories = useSelector(() => {
         return props.categoryReducer.data_getAllCategories;
     });
@@ -22,7 +23,7 @@ function CreatePosts(props) {
     const SigninSchema = yup.object().shape({
         title: yup.string().required('Title is required'),
         description: yup.string().required('Description is required'),
-        price: yup.string().required('Price is required')
+        price: yup.string().matches(/^[0-9]+$/, "Price must be only digits")
     });
 
     useEffect(() => {
@@ -35,8 +36,18 @@ function CreatePosts(props) {
     });
 
     const onSubmit = (data) => {
-        console.log('submit data of create post', data);
-        props.createPost(data);
+        let formData = new FormData();
+        const post = {
+            title: data.title,
+            description: data.description,
+            price: data.price,
+            size: data.size,
+            categorize_id: data.categorize_id
+        }
+
+        formData.append('file', fileUpload);
+        formData.append('post', JSON.stringify(post));
+        props.createPost(formData);
     };
 
     return (
@@ -73,9 +84,9 @@ function CreatePosts(props) {
                                                     id="input-description"
                                                     placeholder="Description"
                                                     className="form-control" />
-                                                {errors.title &&
+                                                {errors.description &&
                                                     <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                                                        {errors.title.message}
+                                                        {errors.description.message}
                                                     </p>
                                                 }
                                             </div>
@@ -88,9 +99,9 @@ function CreatePosts(props) {
                                                     id="input-price"
                                                     placeholder="Price"
                                                     className="form-control" />
-                                                {errors.title &&
+                                                {errors.price &&
                                                     <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                                                        {errors.title.message}
+                                                        {errors.price.message}
                                                     </p>
                                                 }
                                             </div>
@@ -106,33 +117,20 @@ function CreatePosts(props) {
                                             </div>
                                         </div>
 
-                                        <div className="form-group">
-                                            <label className="col-md-2 col-sm-3 col-xs-12 control-label">Image</label>
-                                            <div className="col-md-10 col-sm-9 col-xs-12">
-                                                <input {...register("image")}
-                                                    id="input-image"
-                                                    value={props.s3Reducer.image_url}
-                                                    placeholder="Image"
-                                                    className="form-control" />
-                                            </div>
-                                        </div>
-
                                         <div className="form-group avatar">
-                                            <figure className="figure col-md-2 col-sm-3 col-xs-12">
-                                                <img className="img-rounded img-responsive" src={props.s3Reducer.image_url} alt="" />
+                                        <figure className="figure col-md-2 col-sm-3 col-xs-12">
+                                                <img id="preview_image" className="img-rounded img-responsive" src='' alt="" />
                                             </figure>
                                             <div className="form-inline col-md-10 col-sm-9 col-xs-12">
-                                                <input 
+                                                <input {...register("file")}
+                                                    id="upload-file"
                                                     type="file" 
                                                     className="file-uploader"
                                                     onChange={(e) => {
-                                                            let fileUpload = e.target.files[0];
-                                                            
-                                                            let formData = new FormData();
-                                                            formData.append('file', fileUpload);
-                                                            props.uploadFile(formData);
-                                                        }
+                                                        fileUpload = e.target.files[0];
+                                                        document.getElementById('preview_image').src = URL.createObjectURL(fileUpload);
                                                     }
+                                                }
                                                 />
                                             </div>
                                         </div>
@@ -180,7 +178,6 @@ function CreatePosts(props) {
 
 const mapStateToProps = (state) => {
     return {
-        s3Reducer: state.s3Reducer,
         categoryReducer: state.categoryReducer,
     };
 };
@@ -189,11 +186,8 @@ const mapDispatchToProps = (dispatch) => {
         getAllCatogires: () => {
             dispatch(getAllCategoriesRequestAction());
         },
-        createPost: (postRequest) => {
-            dispatch(postAction.createPostRequest(postRequest));
-        },
-        uploadFile: (file) => {
-            dispatch(s3Action.uploadFileRequest(file));
+        createPost: (formData) => {
+            dispatch(postAction.createPostRequest(formData));
         },
     };
 };

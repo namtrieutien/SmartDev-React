@@ -15,7 +15,7 @@ function* getSearchPostSaga(action) {
 
 function* createPostSaga(action) {
     try {
-        const data = yield call(postApi.createPost, action.dataRequest);
+        const data = yield call(postApi.createPost, action.formData);
         yield put(postAction.createPostComplete(data));
     } catch (error) {
         //handle error

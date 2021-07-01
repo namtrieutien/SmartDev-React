@@ -15,10 +15,10 @@ const postAction = {
         }
     },
 
-    createPostRequest: (dataRequest) => {
+    createPostRequest: (formData) => {
         return {
             type: type.POSTS_CREATE_POST_REQUEST,
-            dataRequest
+            formData
         }
 
     },

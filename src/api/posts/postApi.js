@@ -5,10 +5,19 @@ const postApi = {
         const url = `posts/search/by-title`; 
         return axiosPost.get(url, { params: requestParams});
     },
-    createPost: (postContent) =>
+    createPost: (formData) =>
     {
         const url = `posts/create`; 
-        return axiosPost.post(url, postContent);
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        return axiosPost.post(url, formData, config).then( (response) => {
+            if (response && response.data) {
+                return response.data;
+            } 
+            return response;} );
     }
 }
 
