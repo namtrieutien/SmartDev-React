@@ -7,8 +7,10 @@ import cartReducer from './cartReducer';
 
 // import {userReducer} from "./userReducer";
 
-import {searchPostReducer} from "./posts/searchPostReducer";
-
+import {postReducer} from "./posts/postReducer";
+import {categoryReducer} from "./category/categoryReducer";
+import s3Reducer from "./s3/s3Reducer";
+// import {searchPostReducer} from "./posts/searchPostReducer";
 import {userReducer} from "./login/userReducer";
 
 const rootReducer = combineReducers({
@@ -17,7 +19,10 @@ const rootReducer = combineReducers({
   registerReducer,
   paymentReducer,
   cartReducer,
-  searchPostReducer,
+  // searchPostReducer,
+  postReducer,
+  categoryReducer,
+  s3Reducer
 })
 
 export default rootReducer;

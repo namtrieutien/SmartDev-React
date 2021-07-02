@@ -7,6 +7,7 @@ import Products from './pages/Products';
 import Contact from './pages/Contact';
 import Login from './components/Login';
 import Register from './components/Register';
+import CreatePosts from './components/CreatePosts';
 import PostDetail from './pages/PostDetail';
 import Dashboard from './management-pages/pages/Dashboard';
 
@@ -47,9 +48,10 @@ function App() {
           </Route>
           <Route path="/register" component={Register}>
           </Route>
+          <Route path="/create-post" component={CreatePosts}>
+          </Route>
           <Route path="/post" component={PostDetail}>
           </Route>
-
           <Route exact path="/payment" component={Payment}>
           </Route>
           <Route  path="/payment/success" component={PaymentSuccess}>
