@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import CardPost from "../../Post/CardPost";
+import { searchLoading } from '../../../redux/actions/posts/search.action';
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+
 // import PropTypes from "prop-types";
 
 // Posts.propTypes = {};
 
 function Posts(props) {
+  const params = {
+    title: "",
+    _page: props.pagination !== undefined ?  props.pagination._page:  props.data.pagination._page,
+    // _page: props.pagination._page,
+    _limit: props.pagination !== undefined ?  props.pagination._limit:  props.data.pagination._limit,
+  }
+  console.log(params)
+  useEffect(() => {
+    props.searchPost(params);
+  }, [])
+  const postList = Array.from(props.data);
+  console.log("postList", postList)
   return (
     <div>
       <div className="latest-products">
@@ -17,216 +34,14 @@ function Posts(props) {
                 </a>
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="product-item">
-                <a href="/">
-                  <img src="assets/images/product_01.jpg" alt="" />
-                </a>
-                <div className="down-content">
-                  <a href="/">
-                    <h4>Tittle goes here</h4>
-                  </a>
-                  <h6>$25.75</h6>
-                  <p>
-                    Lorem ipsume dolor sit amet, adipisicing elite. Itaque,
-                    corporis nulla aspernatur.
-                  </p>
-                  <ul className="stars">
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                  </ul>
-                  <span>Reviews (24)</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="product-item">
-                <a href="/">
-                  <img src="assets/images/product_02.jpg" alt="" />
-                </a>
-                <div className="down-content">
-                  <a href="/">
-                    <h4>Tittle goes here</h4>
-                  </a>
-                  <h6>$30.25</h6>
-                  <p>
-                    Lorem ipsume dolor sit amet, adipisicing elite. Itaque,
-                    corporis nulla aspernatur.
-                  </p>
-                  <ul className="stars">
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                  </ul>
-                  <span>Reviews (21)</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="product-item">
-                <a href="/">
-                  <img src="assets/images/product_03.jpg" alt="" />
-                </a>
-                <div className="down-content">
-                  <a href="/">
-                    <h4>Tittle goes here</h4>
-                  </a>
-                  <h6>$20.45</h6>
-                  <p>
-                    Sixteen Clothing is free CSS template provided by
-                    TemplateMo.
-                  </p>
-                  <ul className="stars">
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                  </ul>
-                  <span>Reviews (36)</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="product-item">
-                <a href="/">
-                  <img src="assets/images/product_04.jpg" alt="" />
-                </a>
-                <div className="down-content">
-                  <a href="/">
-                    <h4>Tittle goes here</h4>
-                  </a>
-                  <h6>$15.25</h6>
-                  <p>
-                    Lorem ipsume dolor sit amet, adipisicing elite. Itaque,
-                    corporis nulla aspernatur.
-                  </p>
-                  <ul className="stars">
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                  </ul>
-                  <span>Reviews (48)</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="product-item">
-                <a href="/">
-                  <img src="assets/images/product_05.jpg" alt="" />
-                </a>
-                <div className="down-content">
-                  <a href="/">
-                    <h4>Tittle goes here</h4>
-                  </a>
-                  <h6>$12.50</h6>
-                  <p>
-                    Lorem ipsume dolor sit amet, adipisicing elite. Itaque,
-                    corporis nulla aspernatur.
-                  </p>
-                  <ul className="stars">
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                  </ul>
-                  <span>Reviews (16)</span>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="product-item">
-                <a href="/">
-                  <img src="assets/images/product_06.jpg" alt="" />
-                </a>
-                <div className="down-content">
-                  <a href="/">
-                    <h4>Tittle goes here</h4>
-                  </a>
-                  <h6>$22.50</h6>
-                  <p>
-                    Lorem ipsume dolor sit amet, adipisicing elite. Itaque,
-                    corporis nulla aspernatur.
-                  </p>
-                  <ul className="stars">
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fa fa-star"></i>
-                    </li>
-                  </ul>
-                  <span>Reviews (32)</span>
-                </div>
-              </div>
-            </div>
+            {postList!=null ? 
+            (postList.map( item => 
+            <CardPost
+            key={item.id} 
+            post = {item} />
+            )):
+            <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
+          }
           </div>
         </div>
       </div>
@@ -543,5 +358,21 @@ function Posts(props) {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  const { load, error,  pagination, data } = state.searchPostReducer;
+  return {
+    load,
+    error,
+    pagination, 
+    data
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchPost: (params) => {
+      dispatch(searchLoading(params));
+    },
+  };
+};
 
-export default Posts;
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

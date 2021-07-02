@@ -22,36 +22,36 @@ const initialState = {
 
 export const postReducer = (state = initialState, action) => {
     switch (action.type) {
-        //search post
-        case type.POSTS_SEARCH_LOADING:      
-            return {
-                ...state,
-                params: action.params,
-                load: true,
-            };
-
-        case type.POSTS_SEARCH_COMPLETE:  
-            const {error} = action.data;    
-            if(error){
-                    return {
-                        ...state,
-                        load: false,
-                        error: action.data
-                    };
-                }
-
-            const { data, pagination } = action.data;
-            return {
-                ...state,
-                load: false,
-                data: data,
-                pagination: pagination,
-                error:{
-                    code: 200,
-                    error: 'success',
-                    message: 'ok'
-                }
-            };
+        // search post
+        // case type.POSTS_SEARCH_LOADING:
+        //     return {
+        //         ...state,
+        //         params: action.params,
+        //         load: true,
+        //     };
+        //
+        // case type.POSTS_SEARCH_COMPLETE:
+        //     const {error} = action.data;
+        //     if(error){
+        //             return {
+        //                 ...state,
+        //                 load: false,
+        //                 error: action.data
+        //             };
+        //         }
+        //
+        //     const { data, pagination } = action.data;
+        //     return {
+        //         ...state,
+        //         load: false,
+        //         data: data,
+        //         pagination: pagination,
+        //         error:{
+        //             code: 200,
+        //             error: 'success',
+        //             message: 'ok'
+        //         }
+        //     };
 
         //create post
         case type.POSTS_CREATE_POST_REQUEST:
@@ -63,7 +63,7 @@ export const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 load: false,
-                data: data,
+                // data: data,
                 error:{
                     code: 200,
                     error: 'success',

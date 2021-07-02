@@ -13,9 +13,7 @@ axiosCategory.interceptors.request.use(
     if (user) {
       config.headers.Authorization = `Bearer ${user.token}`;
     }
-    //cheat authencation token
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYW0xQGdtYWlsLmNvbSIsImlhdCI6MTYyNTE4ODExMiwiZXhwIjoxNjI1MzYwOTEyfQ.cZgRB8CRtd2NRZ-tQqgIubQt93J9kqFcJIA-UWGiRwXzy33G0C2w2BckH3_yIODrw3PrbugfnvbzbNOv9qWhiQ`;
-    
+
     return config;
   }
 )

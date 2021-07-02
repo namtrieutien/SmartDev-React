@@ -14,9 +14,6 @@ instance.interceptors.request.use(
       config.headers.Authorization = `Bearer ${user.token}`;
     }
 
-    //cheat authencation token
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYW0xQGdtYWlsLmNvbSIsImlhdCI6MTYyNTExMzQ0MSwiZXhwIjoxNjI1Mjg2MjQxfQ.ABwh4bygJRKDmPFJd0b846vv4XlrZGUxJ2CRcAneWL2lUb66nIlCLA25MtLW743oVieah2iuQq6_4QzF_NBN4A`;
-
     return config;
   }
 )

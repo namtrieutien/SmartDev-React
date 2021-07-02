@@ -7,12 +7,28 @@ import { useSelector, useDispatch } from "react-redux";
 import "./paymentStyle.css";
 import { pay } from '../../redux/actions/user/payment.action'
 import loading from './images/loading.gif'
+import { useLocation } from 'react-router-dom';
 
+function CartItem({cartItem}) {
+  console.log("cartItem", cartItem)
+  const { id, title, size, description, price, status, category } = cartItem;
+  return (
+    <div>
+      <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+        <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="60" alt="" />
+          <div className="ml-2"><span className="font-weight-bold d-block">{title}</span><span className="spec">{size}</span></div>
+        </div>
+        <div className="d-flex flex-row align-items-center"><span className="d-block">1</span><span className="d-block ml-5 font-weight-bold">{price}VND</span><i className="fa fa-trash-o ml-3 text-black-50"></i></div>
+      </div>
+    </div>
+  );
+}
 const PaymentSchema = yup.object().shape({
   description: yup.string().required('Description is required'),
 });
 
 function Payment(props) {
+  const listItems = useLocation().state.listItems;
 
   const dispatch = useDispatch();
 
@@ -45,36 +61,18 @@ function Payment(props) {
               <div className="d-flex flex-row align-items-center"><i className="fa fa-long-arrow-left"></i><span className="ml-2">Continue Shopping</span></div>
               {/* <hr> */}
               <h6 className="mb-0">Shopping cart</h6>
-              <div className="d-flex justify-content-between"><span>You have 4 items in your cart</span>
+              <div className="d-flex justify-content-between"><span>You have {listItems.length} items in your cart</span>
                 <div className="d-flex flex-row align-items-center"><span className="text-black-50">Sort by:</span>
                   <div className="price ml-2"><span className="mr-1">price</span><i className="fa fa-angle-down"></i></div>
                 </div>
               </div>
-              <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="60" alt="" />
-                  <div className="ml-2"><span className="font-weight-bold d-block">Iphone 11 pro</span><span className="spec">256GB, Navy Blue</span></div>
-                </div>
-                <div className="d-flex flex-row align-items-center"><span className="d-block">2</span><span className="d-block ml-5 font-weight-bold">$900</span><i className="fa fa-trash-o ml-3 text-black-50"></i></div>
-              </div>
-              <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/GQnIUfs.jpg" width="60" alt="" />
-                  <div className="ml-2"><span className="font-weight-bold d-block">One pro 7T</span><span className="spec">256GB, Navy Blue</span></div>
-                </div>
-                <div className="d-flex flex-row align-items-center"><span className="d-block">2</span><span className="d-block ml-5 font-weight-bold">$900</span><i className="fa fa-trash-o ml-3 text-black-50"></i></div>
-              </div>
-              <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/o2fKskJ.jpg" width="60" alt="" />
-                  <div className="ml-2"><span className="font-weight-bold d-block">Google pixel 4 XL</span><span className="spec">256GB, Axe black</span></div>
-                </div>
-                <div className="d-flex flex-row align-items-center"><span className="d-block">1</span><span className="d-block ml-5 font-weight-bold">$800</span><i className="fa fa-trash-o ml-3 text-black-50"></i></div>
-              </div>
-              <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/Tja5H1c.jpg" width="60" alt="" />
-                  <div className="ml-2"><span className="font-weight-bold d-block">Samsung galaxy Note 10&nbsp;</span><span className="spec">256GB, Navy Blue</span></div>
-                </div>
-                <div className="d-flex flex-row align-items-center"><span className="d-block">1</span><span className="d-block ml-5 font-weight-bold">$999</span>
-                <i className="fa fa-trash-o ml-3 text-black-50"></i></div>
-              </div>
+              {listItems.map(item =>
+                <CartItem
+                  key={item.id}
+                  cartItem={item} />
+              )
+              }
+
             </div>
           </div>
           <div className="col-md-4">
