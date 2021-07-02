@@ -87,7 +87,7 @@ function CreatePosts(props) {
         resolver: yupResolver(SigninSchema)
     });
 
-    const onSubmit = (data) => {
+    const handleCreatePost = (data) => {
         let formData = new FormData();
         const post = {
             title: data.title,
@@ -111,7 +111,7 @@ function CreatePosts(props) {
                         <div className="module-inner">
                             <div className="content-panel">
                                 <h2 className="title">Create new post<span className="pro-label label label-warning">PRO</span></h2>
-                                <form onSubmit={handleSubmit(onSubmit)} className="form-horizontal">
+                                <form onSubmit={handleSubmit(handleCreatePost)} className="form-horizontal">
                                     <fieldset className="fieldset">
                                         <h3 className="fieldset-title">Post info</h3>
                                         <div className="form-group">

@@ -14,7 +14,7 @@ axiosCategory.interceptors.request.use(
       config.headers.Authorization = `Bearer ${user.token}`;
     }
     //cheat authencation token
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYW0xQGdtYWlsLmNvbSIsImlhdCI6MTYyNTAxNDY0NSwiZXhwIjoxNjI1MTg3NDQ1fQ.DfdYrEeMQJvRbLdCFU6chamyOzlOgoCqCj5iTIGfYkNE17bPosU7c7zyN0v4qEhQdpD_IVM9ztC-kdfaBM4GvA`;
+    config.headers.Authorization = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuYW0xQGdtYWlsLmNvbSIsImlhdCI6MTYyNTE4ODExMiwiZXhwIjoxNjI1MzYwOTEyfQ.cZgRB8CRtd2NRZ-tQqgIubQt93J9kqFcJIA-UWGiRwXzy33G0C2w2BckH3_yIODrw3PrbugfnvbzbNOv9qWhiQ`;
     
     return config;
   }
