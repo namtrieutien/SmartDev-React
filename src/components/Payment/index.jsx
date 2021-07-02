@@ -72,7 +72,8 @@ function Payment(props) {
                 <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/Tja5H1c.jpg" width="60" alt="" />
                   <div className="ml-2"><span className="font-weight-bold d-block">Samsung galaxy Note 10&nbsp;</span><span className="spec">256GB, Navy Blue</span></div>
                 </div>
-                <div className="d-flex flex-row align-items-center"><span className="d-block">1</span><span className="d-block ml-5 font-weight-bold">$999</span><i className="fa fa-trash-o ml-3 text-black-50"></i></div>
+                <div className="d-flex flex-row align-items-center"><span className="d-block">1</span><span className="d-block ml-5 font-weight-bold">$999</span>
+                <i className="fa fa-trash-o ml-3 text-black-50"></i></div>
               </div>
             </div>
           </div>

@@ -14,4 +14,10 @@ export function executePayment(paymentInfo) {
   }
 }
 
+export function paymentHistory() {
+  return {
+      type: type.USER_GET_PAYMENT_HISTORY_REQUESTED,
+  }
+}
+
 

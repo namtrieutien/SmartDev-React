@@ -95,7 +95,7 @@ function Register(props) {
                         Not a member yet?
                         <a className="register-anchor ml-1" href="/login">Login now</a>
                       </p>
-                      <form onSubmit={handleSubmit(onSubmit)}>
+                      <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
                         <div className="form-group mb-3">
                           <input {...register("name")}
                             id="inputname"

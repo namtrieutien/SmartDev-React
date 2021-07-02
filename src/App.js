@@ -13,6 +13,7 @@ import Dashboard from './management-pages/pages/Dashboard';
 import Profile from './components/Profile/profile';
 import Payment from './pages/Payment';
 import PaymentSuccess from './pages/Payment/success'
+import PaymentHistory from './pages/PaymentHistory'
 import { ErrorPage } from './pages/ErrorPage/error';
 import history from './history';
 
@@ -53,8 +54,7 @@ function App() {
           </Route>
           <Route  path="/payment/success" component={PaymentSuccess}>
           </Route>
-
-          <Route path="/payment/b" component={PaymentSuccess}>
+          <Route path="/payment/history" component={PaymentHistory}>
           </Route>
           <Route path="*" component={ErrorPage}>
           </Route>
