@@ -1,6 +1,7 @@
 .carousel-caption {
-  top: 55%;
-  transform: translateY(-50%);
+  top: 30%;
+  transform: translateX(0%);
+  
 }
 
 .btn-banner {
@@ -8,8 +9,12 @@
   width: 20%;
   border: none;
   outline: none;
-  background: #f33f3f;
+  background: #f3903f;
   color: white;
+  border-radius: 60px;
+}
+.carousel-caption h1, .carousel-caption h6 {
+  color: rgb(236, 80, 32);
   border-radius: 60px;
 }
 

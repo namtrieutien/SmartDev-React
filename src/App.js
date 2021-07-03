@@ -19,6 +19,7 @@ import { ErrorPage } from './pages/ErrorPage/error';
 import history from './history';
 
 import CartPopup from './components/Cart/CartPopup';
+import LatestPost from './components/Slide/LatestPost';
 
 function App() {
   return (

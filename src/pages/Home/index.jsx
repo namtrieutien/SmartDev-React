@@ -5,10 +5,8 @@ import Banner from "../../components/Contents/Banner";
 import Posts from "../../components/Contents/Posts";
 import Footer from "../../components/Footer";
 import ExploreCategories from "../../components/Contents/ExploreCategories";
-import CarouselPosts from "../../components/Contents/CarouselPosts";
 import "./Home.css"
-import AddToCart from "../../components/Cart/AddToCart";
-import { popupItem } from "../../management-pages/dummyData"
+import LatestPost from "../../components/Slide/LatestPost";
 
 // Home.propTypes = {};
 
@@ -22,7 +20,7 @@ function Home(props) {
       {/* <!-- Page Content --> */}
       <Banner />
       <ExploreCategories />
-      <CarouselPosts />
+      <LatestPost />
       <Posts />
       <Footer />
     </div>
