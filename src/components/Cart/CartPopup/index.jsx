@@ -29,7 +29,9 @@ const mapDispatchToProps = (dispatch) => {
 
 const ListPopup = (props) => {
 
-  const { list, addNewToCart, isLoggedIn, removeCartItem  } = props;
+
+const { list, addNewToCart, isLoggedIn, removeCartItem  } = props;
+
 
   console.log("login", props.isLoggedIn)
 
@@ -40,27 +42,30 @@ const ListPopup = (props) => {
   }
 
   const listItems = list.map((item) => (
-    <div>
-      <li key={item.id} className="popup-sm-item">
-      {/* <img src={item.img} alt="" className="popup-sm-img" /> */}
-       <img src="https://i.imgur.com/QRwjbm5.jpg" alt="" className="popup-sm-img" />
-      <div className="popup-sm-user">
-        <span className="popup-sm-username">{item.title}</span>
-        <div className="row">
-          <span className="col-sm-6">{item.category}</span>
-          <span className="col-sm-3 popup-sm-user-price">{VNDformat(item.price + 99999999)}</span>
-          <div className="col-sm-3"><button className="popup-sm-button ml-5" onClick={() => handleRemovePopupItem(item)}>
-        <RemoveShoppingCart className="popup-sm-icon" />
-      </button></div>
+    <li key={item.id} className="li-list-wrapper" >
+      <div className="popup-sm-item" data-toggle="collapse" data-target={`#${item.id}`}>
+        <img src={item.img} alt="" className="popup-sm-img" />
+        <div className="popup-sm-user">
+          <span className="popup-sm-username">{item.name}</span>
+          <div className="popup-sm-user-title">
+            <span className="popup-sm-user-category">{item.category}</span>
+            <span className="popup-sm-user-price">{item.price}</span>
+          </div>
         </div>
+        <button className="popup-sm-button" onClick={() => handleRemovePopupItem(item)}>
+          <RemoveShoppingCart className="popup-sm-icon" />
+          Remove
+        </button>
       </div>
-    </li>
-          <hr className="solid"/>
+      <div id={item.id} class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        s labore sustainable VHS.
+      </div>
     </div>
-
+    </li>
   ));
 
-  return <ul className="popup-sm-list">{listItems}</ul>;
+  return <ul className="popup-sm-list accordion" id="accordionExample">{listItems}</ul>;
 };
 
 function CartPopup(props) {

@@ -9,3 +9,12 @@
   margin-top: 10px;
 }
 
+.tricky-way-sticky {
+  flex: 1;
+}
+
+.fix-content {
+  flex: 1 1 auto;
+  overflow: auto;
+}
+

@@ -162,14 +162,16 @@ function UsersList(props) {
 
   return (
     <div className="userslist">
-      <div style={{ height: "100%", width: "100%" }}>
-        <DataGrid
-          rows={data}
-          columns={columns}
-          pageSize={8}
-          checkboxSelection
-          disableSelectionOnClick
-        />
+      <div className="userslist-table">
+        <h3 className="product-chart-title">List Users</h3>
+        <div style={{ height: "450px", width: "auto" }} className="userlist-data-table">
+          <DataGrid
+            rows={data}
+            columns={columns}
+            pageSize={6}
+            disableSelectionOnClick
+          />
+        </div>
       </div>
     </div>
   );

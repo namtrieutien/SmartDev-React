@@ -19,6 +19,7 @@ function Home(props) {
 
       {/* <!-- Page Content --> */}
       <Banner />
+    
       <ExploreCategories />
       <LatestPost />
       <Posts />

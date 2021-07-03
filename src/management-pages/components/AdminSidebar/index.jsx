@@ -22,12 +22,12 @@ import { Link } from "react-router-dom";
 
 function AdminSidebar(props) {
   return (
-    <div className="sidebar">
+    <div className="sidebar-admin">
       <div className="sidebar-wrapper">
         <div className="sidebar-menu">
           <h3 className="sidebar-title">Dashboard</h3>
           <ul className="sidebar-list">
-            <Link to="/management" className="link">
+            <Link to="/management" className="link" style={{ color: "inherit", textDecoration: "inherit" }}>
               <li className="sidebar-list-item active">
                 <LineStyle className="sidebar-icon" />
                 Home
@@ -47,14 +47,14 @@ function AdminSidebar(props) {
         <div className="sidebar-menu">
           <h3 className="sidebar-title">Quick menu</h3>
           <ul className="sidebar-list">
-            <Link to="/management/users" className="link">
+            <Link to="/management/users" className="link" style={{ color: "inherit", textDecoration: "inherit" }}>
               <li className="sidebar-list-item">
                 <PermIdentity className="sidebar-icon" />
                 Users
               </li>
             </Link>
 
-            <Link to="/management/product" className="link">
+            <Link to="/management/product" className="link" style={{ color: "inherit", textDecoration: "inherit" }}>
               <li className="sidebar-list-item">
                 <Storefront className="sidebar-icon" />
                 Products

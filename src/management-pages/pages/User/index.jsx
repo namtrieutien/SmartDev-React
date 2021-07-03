@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import PropTypes from "prop-types";
 import {
   PermIdentity,
@@ -15,19 +15,32 @@ import { Link } from "react-router-dom";
 import { loginUserAction } from '../../../redux/actions/login/authAction'
 
 import { connect } from "react-redux";
-import { Redirect } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
+import adminApi from "../../../api/management/adminApi";
 
 User.propTypes = {};
 
 function User(props) {
-  
+  let { userId } = useParams();
+  useEffect(() => {
+    const fetchUserDetail = async () => {
+      try {
+        console.log("params: ", userId);
+        const response = await adminApi.getUser(userId)
+        console.log(response);
+        
+      } catch (error) {
+        console.log("Failed to fetch user detail :", error);
+      }
+    }
+    fetchUserDetail();
+  })
+
   const { isLoggedIn, user } = props;
   if (isLoggedIn) {
     if (!user.user.roles.includes("ROLE_ADMIN"))
       return <Redirect to="/error" />;
   } else return <Redirect to="/login" />;
-
-  console.log("calling user");
 
   return (
     <div className="user">

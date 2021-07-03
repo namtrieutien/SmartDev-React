@@ -13,11 +13,14 @@
 .popup-sm-item {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
-  margin-top: 20px;
-  margin-bottom: 20px;
+  justify-content: space-between;
   margin-left: auto;
   margin-right: auto;
+}
+
+.li-list-wrapper:hover {
+  background: rgb(231, 229, 229);
+  border-radius: 10px;
 }
 
 .popup-sm-img {
@@ -57,12 +60,10 @@
 }
 
 .popup-sm-user-price {
-  /* position: absolute; */
+  position: absolute;
   color: rgb(255, 94, 0);
   font-weight: 400;
-  /* left: 60px; */
-  /* margin-left: auto; */
-  /* padding-left: 80px; */
+  padding-left: 100px;
 }
 
 .popup-sm-button {
@@ -78,8 +79,13 @@
   cursor: pointer;
 }
 
+.popup-sm-button:hover {
+  background-color: #d4d4db;
+}
+
 .popup-sm-icon {
   font-size: 16px !important;
+  margin-right: 5px;
   /* margin-right: 10px; */
   color: rgb(241, 62, 7);
 }
@@ -90,3 +96,4 @@ hr.solid{
  width:100%;
  border-top: 1px solid rgba(250, 134, 2, 0.199);
 }
+
