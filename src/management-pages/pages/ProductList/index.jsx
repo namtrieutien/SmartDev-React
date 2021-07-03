@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
+
 // import PropTypes from 'prop-types';
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
@@ -8,9 +11,8 @@ import "./ProductList.css"
 import adminApi from '../../../api/management/adminApi';
 
 import { loginUserAction } from '../../../redux/actions/login/authAction'
+import ProductChart from '../../components/ProductChart'
 
-import { connect } from "react-redux";
-import { Redirect } from 'react-router-dom';
 
 ProductList.propTypes = {
 
@@ -105,7 +107,7 @@ function ProductList(props) {
       }
     }
     fetchUserList();
-  }, [])
+  }, [isLoggedIn, user])
 
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
@@ -166,14 +168,18 @@ function ProductList(props) {
 
   return (
     <div className="product-list">
-      <div style={{ height: "100%", width: "100%" }}>
-        <DataGrid
-          rows={data}
-          columns={columns}
-          pageSize={8}
-          checkboxSelection
-          disableSelectionOnClick
-        />
+      <ProductChart />
+      <div className="product-list-table">
+        <h3 className="product-chart-title">Products:</h3>
+        <div style={{ height: "450px", width: "100%" }}>
+          <DataGrid
+            rows={data}
+            columns={columns}
+            pageSize={6}
+            checkboxSelection
+            disableSelectionOnClick
+          />
+        </div>
       </div>
     </div>
   );

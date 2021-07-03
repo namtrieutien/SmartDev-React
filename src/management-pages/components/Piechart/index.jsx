@@ -1,13 +1,27 @@
-import React from "react";
+import React, {useEffect} from "react";
 // import PropTypes from "prop-types";
 
 import "./Piechart.css";
 import { PieChart, Pie, Tooltip, ResponsiveContainer } from "recharts";
+import adminApi from "../../../api/management/adminApi";
 
 Piechart.propTypes = {};
 
 function Piechart(props) {
   const { data01, data02, title } = props;
+
+  useEffect(() => {
+    const fetchTopCategories = async () => {
+      try {
+        const reponse = await adminApi.getTopCategories()
+        console.log(reponse);
+      } catch (error) {
+        console.log("Failed to fetch top categories: ", error);
+      }
+    }
+    
+    fetchTopCategories();
+  })
 
   return (
     <div className="pie-chart">

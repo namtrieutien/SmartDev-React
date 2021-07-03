@@ -25,35 +25,37 @@ const mapDispatchToProps = {
 const ListPopup = (props) => {
 
   const { list, addNewToCart } = props;
-  // const [listPopUpItem, setListPostItem] = useState(popupItem);
-  // const [listPopUpItem, setListPostItem] = useState(list);
 
 
   const handleRemovePopupItem = (item) => {
-    // var filtered = listPopUpItem.filter(function(el) { return el !== item; });
-    // setListPostItem(filtered)
-    console.log("handle remove: ",item);
     addNewToCart(item);
   }
 
   const listItems = list.map((item) => (
-    <li key={item.id} className="popup-sm-item">
-      <img src={item.img} alt="" className="popup-sm-img" />
-      <div className="popup-sm-user">
-        <span className="popup-sm-username">{item.name}</span>
-        <div className="popup-sm-user-title">
-          <span className="popup-sm-user-category">{item.category}</span>
-          <span className="popup-sm-user-price">{item.price}</span>
+    <li key={item.id} className="li-list-wrapper" >
+      <div className="popup-sm-item" data-toggle="collapse" data-target={`#${item.id}`}>
+        <img src={item.img} alt="" className="popup-sm-img" />
+        <div className="popup-sm-user">
+          <span className="popup-sm-username">{item.name}</span>
+          <div className="popup-sm-user-title">
+            <span className="popup-sm-user-category">{item.category}</span>
+            <span className="popup-sm-user-price">{item.price}</span>
+          </div>
         </div>
+        <button className="popup-sm-button" onClick={() => handleRemovePopupItem(item)}>
+          <RemoveShoppingCart className="popup-sm-icon" />
+          Remove
+        </button>
       </div>
-      <button className="popup-sm-button" onClick={() => handleRemovePopupItem(item)}>
-        <RemoveShoppingCart className="popup-sm-icon" />
-        Remove
-      </button>
+      <div id={item.id} class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        s labore sustainable VHS.
+      </div>
+    </div>
     </li>
   ));
 
-  return <ul className="popup-sm-list">{listItems}</ul>;
+  return <ul className="popup-sm-list accordion" id="accordionExample">{listItems}</ul>;
 };
 
 function CartPopup(props) {

@@ -27,6 +27,7 @@ function Home(props) {
       <AddToCart item={popupItem[2]}/>
       <AddToCart item={popupItem[3]}/>
       <AddToCart item={popupItem[4]}/>
+      
       <ExploreCategories />
 
       <CarouselPosts />

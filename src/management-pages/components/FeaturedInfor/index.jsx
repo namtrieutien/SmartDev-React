@@ -1,7 +1,7 @@
 import React from "react";
 // import PropTypes from "prop-types";
 
-import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
+import { ArrowDownward, ArrowUpward, SupervisorAccount, PostAdd } from "@material-ui/icons";
 
 import "./FeaturedInfor.css";
 
@@ -11,11 +11,14 @@ function FeaturedInfor(props) {
   return (
     <div className="featured">
       <div className="featured-item">
-        <span className="featured-title">Revanue</span>
+        <span className="featured-title">Users</span>
         <div className="featured-money-container">
-          <span className="featured-money">$2,412</span>
+          <span className="featured-money">
+          2,412
+          </span>
+          <SupervisorAccount className="personadd-icon"/>
           <span className="featured-money-rate">
-            -11,4 <ArrowDownward className="featured-icon negative"/>
+            -11 <ArrowDownward className="featured-icon negative"/>
           </span>
         </div>
         <span className="featured-sub">
@@ -35,11 +38,12 @@ function FeaturedInfor(props) {
         </span>
       </div>
       <div className="featured-item">
-        <span className="featured-title">Cost</span>
+        <span className="featured-title">Posts</span>
         <div className="featured-money-container">
-          <span className="featured-money">$2,912</span>
+          <span className="featured-money">2,912</span>
+          <PostAdd className="postadd-icon"/>
           <span className="featured-money-rate">
-            +11,4 <ArrowUpward className="featured-icon"/>
+            +300 <ArrowUpward className="featured-icon"/>
           </span>
         </div>
         <span className="featured-sub">

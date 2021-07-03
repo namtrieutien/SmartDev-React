@@ -20,8 +20,9 @@
 .widget-sm-item {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  height: 100%;
   margin: 20px 0px;
+  align-items: center;
 }
 
 .widget-sm-img {
@@ -29,11 +30,42 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  margin-left: 15px;
 }
 
 .widget-sm-user {
   display: flex;
   flex-direction: column;
+  margin-left: 30px;
+}
+
+.link-wrapper-widget-sm {
+  margin-right: 20px;
+  margin-left: auto;
+}
+
+
+.widget-sm-button {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  padding: 7px 10px;
+  background-color: #e1e1f1;
+  color: #555;
+  cursor: pointer;
+  
+}
+
+.widget-sm-button:hover {
+  background-color: #c7c7f3;
+  color: #555;
+  cursor: pointer;
+}
+
+.widget-sm-icon {
+  font-size: 16px !important;
+  margin-right: 5px;
 }
 
 .widget-sm-username {
@@ -42,20 +74,4 @@
 
 .widget-sm-user-title {
   font-weight: 300;
-}
-
-.widget-sm-button {
-  display: flex;
-  align-items: center;
-  border: none;
-  border-radius: 10px;
-  padding: 7px 10px;
-  background-color: #eeeef7;
-  color: #555;
-  cursor: pointer;
-}
-
-.widget-sm-icon {
-  font-size: 16px !important;
-  margin-right: 5px;
 }
