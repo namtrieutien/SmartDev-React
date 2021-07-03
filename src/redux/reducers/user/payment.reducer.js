@@ -3,7 +3,8 @@ import * as type from '../../constants'
 const initialState = {
   data: {},
   check: false,
-  checkExecute: false
+  checkExecute: false,
+  paymentHistory: {}
 }
 
 export default function payment(state = initialState, action) {
@@ -11,7 +12,7 @@ export default function payment(state = initialState, action) {
     case type.USER_PAYMENT_REQUESTED:
       return {
         ...state,
-        check : true
+        check: true
       }
     case type.USER_PAYMENT:
       console.log(action.payload);
@@ -21,18 +22,27 @@ export default function payment(state = initialState, action) {
       return {
         ...state,
         data: action.payload,
-        check : false
+        check: false
       }
     case type.USER_EXECUTE_PAYMENT_REQUESTED:
       return {
         ...state,
-        checkExecute : true
+        checkExecute: true
       }
     case type.USER_EXECUTE_PAYMENT:
       return {
         ...state,
         data: action.payload,
-        checkExecute : false
+        checkExecute: false
+      }
+    case type.USER_GET_PAYMENT_HISTORY_REQUESTED:
+      return {
+        ...state,
+      }
+    case type.USER_GET_PAYMENT_HISTORY:
+      return {
+        ...state,
+        paymentHistory: action.payload,
       }
     default:
       return {

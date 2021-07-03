@@ -7,16 +7,19 @@ import Products from './pages/Products';
 import Contact from './pages/Contact';
 import Login from './components/Login';
 import Register from './components/Register';
+import CreatePosts from './components/CreatePosts';
 import PostDetail from './pages/PostDetail';
 import Dashboard from './management-pages/pages/Dashboard';
 
 import Profile from './components/Profile/profile';
 import Payment from './pages/Payment';
 import PaymentSuccess from './pages/Payment/success'
+import PaymentHistory from './pages/PaymentHistory'
 import { ErrorPage } from './pages/ErrorPage/error';
 import history from './history';
 
 import CartPopup from './components/Cart/CartPopup';
+import LatestPost from './components/Slide/LatestPost';
 
 function App() {
   return (
@@ -46,15 +49,16 @@ function App() {
           </Route>
           <Route path="/register" component={Register}>
           </Route>
+          <Route path="/create-post" component={CreatePosts}>
+          </Route>
           <Route path="/post" component={PostDetail}>
           </Route>
-
+          <Route path="/post/:postId" exact component={PostDetail} />
           <Route exact path="/payment" component={Payment}>
           </Route>
           <Route  path="/payment/success" component={PaymentSuccess}>
           </Route>
-
-          <Route path="/payment/b" component={PaymentSuccess}>
+          <Route path="/payment/history" component={PaymentHistory}>
           </Route>
           <Route path="*" component={ErrorPage}>
           </Route>

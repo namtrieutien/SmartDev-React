@@ -9,8 +9,8 @@ const initialState = {
     load: true,
     data: {},
     pagination: {
-        _page:0, 
-        _limit: 6, 
+        _page:0,
+        _limit: 6,
         _totalRows: 100
     },
     error:{
@@ -22,7 +22,8 @@ const initialState = {
 
 export const searchPostReducer = (state = initialState, action) => {
     switch (action.type) {
-        case type.POSTS_SEARCH_LOADING:      
+        case type.POSTS_SEARCH_LOADING:
+            console.log(action.params)
             return {
                 ...state,
                 params: action.params,

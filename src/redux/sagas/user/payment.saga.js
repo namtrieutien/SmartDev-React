@@ -40,8 +40,26 @@ function* userPaymentSuccess(action) {
   try {
     console.log(action.paymentInfo);
     const data = yield call(execute, action.paymentInfo);
-    console.log(data);
     yield put({type: type.USER_EXECUTE_PAYMENT, payload: data});
+  } catch (e) {
+    console.log(e.messages);
+    // yield put({type: type.GET_USERS_FAILED, message: e.message});
+  }
+}
+
+const getPaymentHistory = async (paymentInfo) => {
+  try {
+    const response = await apiSunny.get(`/order/payment/history`);
+    return response.data;
+  } catch (e) {
+    return e.response.data;
+  }
+}
+
+function* userGetPaymentHistory(action) {
+  try {
+    const data = yield call(getPaymentHistory);
+    yield put({type: type.USER_GET_PAYMENT_HISTORY, payload: data});
   } catch (e) {
     console.log(e.messages);
     // yield put({type: type.GET_USERS_FAILED, message: e.message});
@@ -51,6 +69,7 @@ function* userPaymentSuccess(action) {
 function* paymentSaga() {
   yield takeEvery(type.USER_PAYMENT_REQUESTED, userPay);
   yield takeEvery(type.USER_EXECUTE_PAYMENT_REQUESTED, userPaymentSuccess);
+  yield takeEvery(type.USER_GET_PAYMENT_HISTORY_REQUESTED, userGetPaymentHistory);
 }
 
 export default paymentSaga;

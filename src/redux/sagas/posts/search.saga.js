@@ -9,7 +9,7 @@ function* getSearchPostSaga(action) {
         const data = yield call(getSearchPostData, action.params);
         yield put(searchComplete(data));
     } catch (error) {
-        //handle error
+        console.log(error)
     }
 }
 

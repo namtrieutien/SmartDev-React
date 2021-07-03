@@ -1,12 +1,19 @@
 import React from "react";
-// import PropTypes from "prop-types";
 
-import "./ExploreCategories.css";
-
-// ExploreCategories.propTypes = {};
-
+const CategoryButton = ({ title, src }) => {
+  const photo = require(`../../../images/${src}`).default;
+  return (
+    <td class="col-md-2">
+      <button className="btn shadow-none btn-block">
+        <img className="feather feather-globe mr-2 icon-inline" width="50" height="50" src={photo} alt="" />
+        <br /><p className="font-weight-light">{title}</p>
+</button>
+    </td>
+  )
+}
 function ExploreCategories(props) {
   return (
+    <div className="container my-5 ">
     <div className="explore-categories mt-5">
       <div className="container">
         <div className="row">
@@ -35,63 +42,31 @@ function ExploreCategories(props) {
             </div>
           </div>
         </div>
-        <div className="explore-items d-flex flex-row justify-content-around">
-            <div className="">
-              <div className="category-item d-flex flex-column justify-content-around">
-                <i className="fas fa-home"></i>
-                <h5>Car</h5>
-              </div>
-            </div>
-            <div className="">
-              <div className="category-item d-flex flex-column justify-content-around">
-                <i className="fas fa-car"></i>
-                <h5>Car</h5>
-              </div>
-            </div>
-            <div className="">
-              <div className="category-item d-flex flex-column justify-content-around">
-                <i className="fas fa-paw"></i>
-                <h5>Car</h5>
-              </div>
-            </div>
-            <div className="">
-              <div className="category-item d-flex flex-column justify-content-around">
-                <i className="fas fa-plug"></i>
-                <h5>Car</h5>
-              </div>
-            </div>
-            <div className="">
-              <div className="category-item d-flex flex-column justify-content-around">
-                <i className="fas fa-laptop"></i>
-                <h5>Car</h5>
-              </div>
-            </div>
-            <div className="">
-              <div className="category-item d-flex flex-column justify-content-around">
-                <i className="fas fa-coffee"></i>
-                <h5>Car</h5>
-              </div>
-            </div>
-            <div className="">
-              <div className="category-item d-flex flex-column justify-content-around">
-                <i className="fas fa-couch"></i>
-                <h5>Car</h5>
-              </div>
-            </div>
-            <div className="">
-              <div className="category-item d-flex flex-column justify-content-around">
-                <i className="fas fa-air-freshener"></i>
-                <h5>Car</h5>
-              </div>
-            </div>
-            <div className="">
-              <div className="category-item d-flex flex-column justify-content-around">
-                <i className="fas fa-tshirt"></i>
-                <h5>Car</h5>
-              </div>
-            </div>
-          </div>
+        <div class="container">
+
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+            <CategoryButton title='Điện thoại - Máy tính bảng' src='smartphone.png'/>
+            <CategoryButton title='Điện gia dụng' src='washing-machine.png'/>
+            <CategoryButton title='Thời trang - Phụ kiện'src='fashion.png' />
+            <CategoryButton title='Sách, VPP, Quà tặng' src='book.png'/>
+            <CategoryButton title='Trang trí nội thất' src='furnitures.png'/>
+            <CategoryButton title='Làm vườn và cây cảnh' src='magnolia.png'/>
+            </tr>
+            <tr>
+            <CategoryButton title='Chăm sóc Mẹ và Bé' src='mother.png'/>
+            <CategoryButton title='Vật nuôi trong nhà' src='pet.png'/>
+            <CategoryButton title='Bất động sản' src='home.png'/>
+            <CategoryButton title='Ô tô - Xe máy' src='car.png'/>
+            <CategoryButton title='Thực phẩm' src='restaurant.png'/>
+            <CategoryButton title='Tất cả các mục' src='shapes.png'/>
+            </tr>
+          </tbody>
+        </table>
+        </div>
       </div>
+    </div>
     </div>
   );
 }

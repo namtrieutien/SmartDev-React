@@ -9,7 +9,7 @@ import PostList from '../../components/PostList';
 import Pagination from '../../components/Pagination';
 
 import { connect } from 'react-redux';
-import { searchLoading as searchLoadingAction } from '../../redux/actions/posts/search.action';
+import postAction from '../../redux/actions/posts/post.action';
 
 // Products.propTypes = {
 
@@ -101,7 +101,7 @@ class Content extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { load, params, data, pagination } = state.searchPostReducer;
+  const { load, params, data, pagination } = state.postReducer;
   return {
     load,
     params,
@@ -113,7 +113,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     searchPost: (params) => {
-      dispatch(searchLoadingAction(params));
+      dispatch(postAction.searchLoading(params));
     },
   };
 };

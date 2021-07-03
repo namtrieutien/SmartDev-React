@@ -2,33 +2,43 @@ import React, { useState } from "react";
 import { RemoveShoppingCart } from "@material-ui/icons";
 import { connect } from "react-redux";
 
-import { addNewToCart } from '../../../redux/actions/cartAction'
+import { addNewToCart, RemoveCartItemAPIAction  } from '../../../redux/actions/cartAction'
+import { Link } from "react-router-dom"
+import {VNDformat} from '../../../helpers/utils'
+
 import "./cartPopup.css";
-// import { popupItem } from "../../../management-pages/dummyData";
-
-// import PropTypes from 'prop-types';
-
-// CartBadge.propTypes = {
-
-// };
 
 const mapStateToProps = (state) => {
+  const { isLoggedIn } = state.userReducer;
   return {
     list: state.cartReducer.list,
-  };
-};
+    isLoggedIn
+  }
+}
 
-const mapDispatchToProps = {
-  addNewToCart,
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeCartItemAPI: (pid) => {
+      dispatch(RemoveCartItemAPIAction(pid));
+    },
+    addNewToCart: (item) => {
+      dispatch(addNewToCart(item));
+    },
+  };
 }
 
 const ListPopup = (props) => {
 
-  const { list, addNewToCart } = props;
 
+const { list, addNewToCart, isLoggedIn, removeCartItem  } = props;
+
+
+  console.log("login", props.isLoggedIn)
 
   const handleRemovePopupItem = (item) => {
     addNewToCart(item);
+
+    if (isLoggedIn) removeCartItem(item.id) 
   }
 
   const listItems = list.map((item) => (
@@ -72,7 +82,7 @@ function CartPopup(props) {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
-              Item was added:
+              Shopping Cart
             </h5>
             <button
               type="button"
@@ -84,15 +94,28 @@ function CartPopup(props) {
             </button>
           </div>
           <div className="modal-body">
-            <ListPopup list={props.list} addNewToCart={props.addNewToCart}/>
+            <ListPopup list={props.list} addNewToCart={props.addNewToCart} isLoggedIn= {props.isLoggedIn} removeCartItem={props.removeCartItemAPI}/>
           </div>
+          <div className="row ml-5">
+
+            <h4 className="col-md-6">Total</h4>
+            <h4 className="row ml-4" >678.000VND</h4>
+            </div>
           <div className="modal-footer">
             <button type="button" className="btn" data-dismiss="modal">
               Close
             </button>
-            <button type="button" className="btn btn-danger">
-              purchase
-            </button>
+            <Link to={{
+              pathname: '/payment',
+              state: {
+                listItems: props.list
+              }
+            }}>
+              <button type="button" className="btn btn-danger"  >
+                Checkout
+              </button>
+            </Link>
+
           </div>
         </div>
       </div>

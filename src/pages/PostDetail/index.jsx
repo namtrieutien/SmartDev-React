@@ -1,93 +1,195 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import PaymentForm from '../../components/PaymentForm';
+import { useLocation } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 import "./PostDetail.css"
+import { VNDformat } from '../../helpers/utils'
+import { addNewToCart, AddToCartAPI } from '../../redux/actions/cartAction'
 
-// PostDetail.propTypes = {
-  
-// };
+const mapStateToProps = (state) => {
+  const { isLoggedIn } = state.userReducer;
+  return {
+    cartList: state.cartReducer.list,
+    isLoggedIn
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCartAPI: (pid) => {
+      dispatch(AddToCartAPI(pid));
+    },
+    addNewToCart: (item) => {
+      dispatch(addNewToCart(item));
+    },
+  };
+}
 
 function PostDetail(props) {
+  const location = useLocation();
+  const { id, title, description, price, category } = location.state.post;
+  const discount = 15
+  const price_discount = price * discount / 100
+  const price_before = price + price_discount
+
+  const { cartList } = props
+
+  const [status, setStatus] = useState("Add to Cart");
+  useEffect(() => {
+    const newItem = cartList.find(cartItem => JSON.stringify(cartItem) === JSON.stringify(location.state.post))
+
+    if (JSON.stringify(newItem) === JSON.stringify(location.state.post)) {
+      setStatus("Added");
+    } else {
+      setStatus("Add to Cart")
+    }
+  }, [cartList])
+
+  const handleCartItemClick = () => {
+    props.addNewToCart(location.state.post);
+    if (props.isLoggedIn) props.addToCartAPI(id)
+  };
+  
   return (
     <div className="PostDetail">
       <Header />
-      {/* <!-- Page Content --> */}
-      <div className="page-heading about-heading header-text">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="text-content">
-                <h4>about us</h4>
-                <h2>our company</h2>
+      <div className="super_container">
+        <div className="single_product">
+          <div className="container-fluid" style={{ backgroundColor: '#fff', padding: '11px' }}>
+            <div className="row">
+              <div className="col-lg-4 order-lg-2 order-1 ml-5">
+                <div className="image_selected"><img src="https://i.imgur.com/K4b71NV.jpg" alt="post_img" /></div>
+              </div>
+              <div className="col-lg-6 order-3 ml-5">
+                <div className="product_description">
+                  <nav>
+                    <ol className="breadcrumb">
+                      <li className="breadcrumb-item active">Home</li>
+                      <li className="breadcrumb-item active">Products</li>
+                      <li className="breadcrumb-item active">{category}</li>
+                    </ol>
+                  </nav>
+                  <div className="product_name">⚡⚡{title}</div>
+                  <div className="product-rating"><span className="badge badge-success"><i className="fa fa-star" /> 4.5 Star</span> <span className="rating-review">35 Ratings &amp; 45 Reviews</span></div>
+                  <div> <span className="product_price"> {VNDformat(price)}</span> <strike className="product_discount"> <span style={{ color: 'black' }}>{VNDformat(price_before)}<span> </span></span></strike> </div>
+                  <div> <span className="product_saved">You Saved {discount}%:</span> <span style={{ color: 'black' }}>{VNDformat(price_discount)}<span> </span></span></div>
+                  <hr className="singleline" />
+                  <div> <span className="product_info">{description}<span><br />
+                    <span className="product_info">Nhanh tay bấm mua ngày để rinh ngay sản phẩm siêu hót siêu rẻ này thôi<span><br />
+                    </span></span></span></span></div>
+                  <div>
+                    <div className="row">
+                      <div className="col-md-5">
+                        <div className="br-dashed">
+                          <div className="row">
+                            <div className="col-md-3 col-xs-3"> <img src="https://img.icons8.com/color/48/000000/price-tag.png" /> </div>
+                            <div className="col-md-9 col-xs-9">
+                              <div className="pr-info"> <span className="break-all">Voucher giảm 5% + Miễn phí vẫn chuyển</span> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-7"> </div>
+                    </div>
+                    <div className="row" style={{ marginTop: '15px' }}>
+                      <div className="col-xs-6" style={{ marginLeft: '15px' }}> <span className="product_options">Size</span><br /> <button className="btn btn-primary btn-sm">Small</button> <button className="btn btn-primary btn-sm">Medium</button> <button className="btn btn-primary btn-sm">Big</button> </div>
+                    </div>
+                  </div>
+                  <hr className="singleline" />
+                  <div className="order_info d-flex flex-row">
+                    <form action="#">
+                    </form></div>
+                  <div className="row">
+                    <div className="col-xs-6" style={{ marginLeft: '13px' }}>
+                      <div className="product_quantity"> <span>QTY: </span> <input id="quantity_input" type="text" pattern="[0-9]*" defaultValue={1} disabled />
+                        <div className="quantity_buttons">
+                          <div id="quantity_inc_button" className="quantity_inc quantity_control"><i className="fas fa-chevron-up" /></div>
+                          <div id="quantity_dec_button" className="quantity_dec quantity_control"><i className="fas fa-chevron-down" /></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xs-6">
+                      <button className="btn btn-outline-primary mr-2" onClick={handleCartItemClick} >
+                        <img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`../../components/Profile/img/cart.png`).default} alt="Cart" />{status}
+                      </button>
+                      <button type="button" className="btn btn-danger shop-button">Buy Now</button>
+                      <div className="product_fav"><i className="fas fa-heart" /></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div className="row row-underline">
+              <div className="col-md-6"> <span className=" deal-text">Specifications</span> </div>
+              <div className="col-md-6"> <a href="#" data-abc="true"> <span className="ml-auto view-all" /> </a> </div>
+            </div>
+            <div className="row">
+              <div className="col-md-12">
+                <table className="col-md-12">
+                  <tbody>
+                    <tr className="row mt-10">
+                      <td className="col-md-4"><span className="p_specification">Sales Package :</span> </td>
+                      <td className="col-md-8">
+                        <ul>
+                          <li>2 in 1 Laptop, Power Adaptor, Active Stylus Pen, User Guide, Warranty Documents</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr className="row mt-10">
+                      <td className="col-md-4"><span className="p_specification">Model Number :</span> </td>
+                      <td className="col-md-8">
+                        <ul>
+                          <li> 14-dh0107TU </li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr className="row mt-10">
+                      <td className="col-md-4"><span className="p_specification">Part Number :</span> </td>
+                      <td className="col-md-8">
+                        <ul>
+                          <li>7AL87PA</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr className="row mt-10">
+                      <td className="col-md-4"><span className="p_specification">Color :</span> </td>
+                      <td className="col-md-8">
+                        <ul>
+                          <li>Black</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr className="row mt-10">
+                      <td className="col-md-4"><span className="p_specification">Suitable for :</span> </td>
+                      <td className="col-md-8">
+                        <ul>
+                          <li>Processing &amp; Multitasking</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr className="row mt-10">
+                      <td className="col-md-4"><span className="p_specification">Processor Brand :</span> </td>
+                      <td className="col-md-8">
+                        <ul>
+                          <li>Intel</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="best-features about-features">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="section-heading">
-                <h2>Product</h2>
-              </div>
-            </div>
-            <div className="col-md-8">
-              <div className="right-image">
-              <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-                <ol className="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div className="carousel-inner">
-                  <div className="carousel-item active">
-                    <img className="d-block w-100" src="assets/images/car.jpg" alt="First slide" />
-                  </div>
-                  <div className="carousel-item">
-                    <img className="d-block w-100" src="assets/images/car-2.jpg" alt="Second slide" />
-                  </div>
-                  <div className="carousel-item">
-                    <img className="d-block w-100" src="assets/images/car-3.jpg" alt="Third slide" />
-                  </div>
-                </div>
-                <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                  <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span className="sr-only">Previous</span>
-                </a>
-                <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                  <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span className="sr-only">Next</span>
-                </a>
-              </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="left-content">
-                <h4>Mitsubishi Triton 2011 Tự động hai cầu</h4>
-                <p>xe gia đình sử dụng bao ngon. đi xa ok máy móc êm máy lạnh mát. nội thất sạch sẽ vỏ mới. 
-                  xe mua về sử dụng ngay ko phải sửa chữa gì. xe chính chủ bao ủy quyền</p>
-                <h3 className="price">Price: 350.000.000đ</h3>
-                {/* <ul className="social-icons">
-                  <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                  <li><a href="#"><i className="fa fa-behance"></i></a></li>
-                </ul> */}
-                <PaymentForm />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>  
       <Footer />
     </div>
   );
 }
-
-export default PostDetail;
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);

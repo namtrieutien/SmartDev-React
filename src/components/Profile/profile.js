@@ -133,11 +133,11 @@ function Profile(props) {
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">BUY</i>Statistics</h6>
-                      {isLoading ? (
+                      {isLoading || total==null || list==[] ? (
                         <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
                       ) : (
                         <div>
-                          <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">{total.total_all_orders}</i>VND</h7>
+                          {/* <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">{total.total_all_orders}</i>VND</h7> */}
                           {list.map(item => (
                             <ProgressBar label={item.category} width={`${item.percentage}%`} aria_valuenow={item.percentage} ></ProgressBar>
                           ))}

@@ -4,7 +4,11 @@ import addressSaga from "./address.saga";
 import registerSaga from "./user/register.saga"
 import userSaga from "./login/userSaga"
 import paymentSaga from './user/payment.saga'
+import postSaga from './posts/post.saga'
+import categorySaga from './category/categorySaga';
+import s3Saga from './s3/s3.saga';
 import searchPostsSaga from './posts/search.saga'
+import addToCartSaga from './user/addtocart.saga'
 
 export default function* rootSaga() {
     yield all([
@@ -12,6 +16,10 @@ export default function* rootSaga() {
       registerSaga(),
       userSaga(),
       paymentSaga(),
-      searchPostsSaga()
+      searchPostsSaga(),
+      addToCartSaga(),
+      postSaga(),
+      categorySaga(),
+      s3Saga()
     ])
 }
