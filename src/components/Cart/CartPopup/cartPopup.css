@@ -50,11 +50,10 @@
 }
 
 .popup-sm-user-price {
+  position: absolute;
   color: red;
   font-weight: 400;
-  left: 60px;
-  margin-left: auto;
-  padding-left: 80px;
+  padding-left: 100px;
 }
 
 .popup-sm-button {
@@ -78,18 +77,3 @@
   font-size: 16px !important;
   margin-right: 5px;
 }
-
-/* // <li key={item.id} className="popup-sm-item">
-//   <img src={item.img} alt="" className="popup-sm-img" />
-//   <div className="popup-sm-user">
-//     <span className="popup-sm-username">{item.name}</span>
-//     <div className="popup-sm-user-title">
-//       <span className="popup-sm-user-category">{item.category}</span>
-//       <span className="popup-sm-user-price">{item.price}</span>
-//     </div>
-//   </div>
-//   <button className="popup-sm-button" onClick={() => handleRemovePopupItem(item)}>
-//     <RemoveShoppingCart className="popup-sm-icon" />
-//     Remove
-//   </button>
-// </li> */
