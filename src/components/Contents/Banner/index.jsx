@@ -38,6 +38,9 @@ function Banner(props) {
               className="d-block w-100"
               alt="..."
             />
+            <div className="carousel-caption d-none d-md-block ml-5">
+              <h1 className="btn btn-warning btn-lg">SUMMER SALE</h1><br />
+            </div>
           </div>
           <div className="carousel-item-banner carousel-item">
             <img
@@ -59,9 +62,6 @@ function Banner(props) {
               className="d-block w-100"
               alt="..."
             />
-            <div className="carousel-caption d-none d-md-block ml-5">
-              <h1>SUMMER SALE</h1><br />
-            </div>
           </div>
 
         </div>

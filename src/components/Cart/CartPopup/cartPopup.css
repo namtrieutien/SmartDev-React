@@ -1,6 +1,5 @@
-
 .popup-sm-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   margin-left: 10px;
 }
@@ -23,8 +22,8 @@
 
 .popup-sm-img {
   margin-left: 20px;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -37,7 +36,9 @@
 }
 
 .popup-sm-username {
-  font-weight: 600;
+  color: rgb(1, 22, 70);
+  width: 160px;
+  font-weight: 700;
     word-break: break-word;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -79,5 +80,13 @@
 
 .popup-sm-icon {
   font-size: 16px !important;
-  margin-right: 5px;
+  /* margin-right: 10px; */
+  color: rgb(241, 62, 7);
+}
+hr.solid{
+  margin-top:5px;
+ margin-bottom:5px;
+ height:1px;
+ width:100%;
+ border-top: 1px solid rgba(250, 134, 2, 0.199);
 }
