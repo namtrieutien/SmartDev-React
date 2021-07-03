@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -34,6 +34,19 @@ function PostDetail(props) {
   const discount = 15
   const price_discount = price * discount / 100
   const price_before = price + price_discount
+
+  const { cartList } = props
+
+  const [status, setStatus] = useState("Add to Cart");
+  useEffect(() => {
+    const newItem = cartList.find(cartItem => JSON.stringify(cartItem) === JSON.stringify(location.state.post))
+
+    if (JSON.stringify(newItem) === JSON.stringify(location.state.post)) {
+      setStatus("Added");
+    } else {
+      setStatus("Add to Cart")
+    }
+  }, [cartList])
 
   const handleCartItemClick = () => {
     props.addNewToCart(location.state.post);
@@ -99,8 +112,8 @@ function PostDetail(props) {
                       </div>
                     </div>
                     <div className="col-xs-6">
-                      <button className="btn btn-outline-primary mr-2" onClick={handleCartItemClick}>
-                        <img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`../../components/Profile/img/cart.png`).default} alt="Cart" />Add to Cart
+                      <button className="btn btn-outline-primary mr-2" onClick={handleCartItemClick} >
+                        <img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`../../components/Profile/img/cart.png`).default} alt="Cart" />{status}
                       </button>
                       <button type="button" className="btn btn-danger shop-button">Buy Now</button>
                       <div className="product_fav"><i className="fas fa-heart" /></div>

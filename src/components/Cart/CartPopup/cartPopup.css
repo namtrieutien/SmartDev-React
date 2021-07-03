@@ -38,21 +38,30 @@
 
 .popup-sm-username {
   font-weight: 600;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px; /* fallback */
+    max-height: 32px; /* fallback */
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 
 .popup-sm-user-title {
+
   display: flex;
   font-weight: 300;
   justify-content: space-between;
 }
 
 .popup-sm-user-price {
-  position: absolute;
-  color: red;
+  /* position: absolute; */
+  color: rgb(255, 94, 0);
   font-weight: 400;
   /* left: 60px; */
   /* margin-left: auto; */
-  padding-left: 80px;
+  /* padding-left: 80px; */
 }
 
 .popup-sm-button {

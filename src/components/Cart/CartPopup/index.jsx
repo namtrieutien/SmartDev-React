@@ -45,16 +45,17 @@ const ListPopup = (props) => {
       {/* <img src={item.img} alt="" className="popup-sm-img" /> */}
       <img src="https://i.imgur.com/QRwjbm5.jpg" alt="" className="popup-sm-img" />
       <div className="popup-sm-user">
-        <span className="popup-sm-username">{item.title}</span>
-        <div className="popup-sm-user-title">
-          <span className="popup-sm-user-category">{item.category}</span>
-          <span className="popup-sm-user-price">{VNDformat(item.price)}</span>
-        </div>
-      </div>
-      <button className="popup-sm-button" onClick={() => handleRemovePopupItem(item)}>
+        <span className="popup-sm-username">{item.title}hhhhhhhhhhhhhhhhhhhhhhhh677777777777777</span>
+        <div className="row">
+          {/* <span className="col-sm-6">{item.category}</span> */}
+          <span className="col-sm-4 popup-sm-user-price">{VNDformat(item.price + 99999999)}</span>
+          <button className="popup-sm-button" onClick={() => handleRemovePopupItem(item)}>
         <RemoveShoppingCart className="popup-sm-icon" />
         Remove
       </button>
+        </div>
+      </div>
+      
     </li>
   ));
 
@@ -71,11 +72,11 @@ function CartPopup(props) {
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div className="modal-dialog" role="document">
+      <div className="modal-dialog modal-notify modal-danger" role="document">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
-              Item was added:
+              Shopping Cart
             </h5>
             <button
               type="button"
