@@ -25,7 +25,6 @@ function Products(props) {
   })
 
   function handlePageChange(newPage) {
-    console.log("page change", newPage);
     setFilters({
       ...filters,
       _page: newPage
@@ -33,8 +32,6 @@ function Products(props) {
   }
 
   useEffect(() => {
-    console.log('useEffect props.data', props.data);
-    console.log('useEffect props.pagination', props.pagination);
     const params = {
       title: props.params.title,
       _page: filters._page,
