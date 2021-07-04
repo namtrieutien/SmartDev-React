@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Header from '../../components/Header';
 import "./profile.css"
 import userApi from '../../api/management/userApi';
+import history from '../../history'
 
 function ListItem({ label, src }) {
   const photo = require(`./img/${src}`).default;
@@ -47,6 +48,12 @@ function Profile(props) {
     fetchStatistic();
 
   }, [])
+
+  const handleClickCreatePostButton = () =>
+  {
+    history.push('/create-post')
+  }
+
   const { user: data } = props;
 
   if (!data) {
@@ -67,7 +74,7 @@ function Profile(props) {
                       <h4>{data.user.name}</h4>
                       <p className="text-secondary mb-1">Premium Member</p>
                       <button className="btn btn-outline-primary mr-2"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/cart.png`).default} alt="Cart" />Cart</button>
-                      <button className="btn btn-outline-primary"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/heart.png`).default} alt="Fav" />Create Post</button>
+                      <button onClick={handleClickCreatePostButton} className="btn btn-outline-primary"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/heart.png`).default} alt="Fav" />Create Post</button>
                     </div>
                   </div>
                 </div>
