@@ -28,6 +28,7 @@ function* checkJWT() {
     if (result ===  true) {
         yield call(AuthService.logout)
         yield put(actions.userLoggedOutAction())
+        yield put(cartAction.RemoveCartAction())
     } 
 }
 

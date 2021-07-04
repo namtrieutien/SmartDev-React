@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { RemoveShoppingCart } from "@material-ui/icons";
 import { connect } from "react-redux";
 
-import { addNewToCart, RemoveCartItemAPIAction  } from '../../../redux/actions/cartAction'
+import { addNewToCart, RemoveCartItemAPIAction } from '../../../redux/actions/cartAction'
 import { Link } from "react-router-dom"
-import {VNDformat} from '../../../helpers/utils'
+import { VNDformat } from '../../../helpers/utils'
 
 import "./cartPopup.css";
 
@@ -29,41 +29,39 @@ const mapDispatchToProps = (dispatch) => {
 
 const ListPopup = (props) => {
 
-  const { list, addNewToCart, isLoggedIn, removeCartItem  } = props;
-
-  console.log("login", props.isLoggedIn)
+  const { list, addNewToCart, isLoggedIn, removeCartItem } = props;
 
   const handleRemovePopupItem = (item) => {
     addNewToCart(item);
 
-    if (isLoggedIn) removeCartItem(item.id) 
+    if (isLoggedIn) removeCartItem(item.id)
   }
-
   const listItems = list.map((item) => (
-    <div>
-      <li key={item.id} className="popup-sm-item">
-      {/* <img src={item.img} alt="" className="popup-sm-img" /> */}
-       <img src="https://i.imgur.com/QRwjbm5.jpg" alt="" className="popup-sm-img" />
-      <div className="popup-sm-user">
-        <span className="popup-sm-username">{item.title}</span>
-        <div className="row">
-          <span className="col-sm-6">{item.category}</span>
-          <span className="col-sm-3 popup-sm-user-price">{VNDformat(item.price + 99999999)}</span>
-          <div className="col-sm-3"><button className="popup-sm-button ml-5" onClick={() => handleRemovePopupItem(item)}>
-        <RemoveShoppingCart className="popup-sm-icon" />
-      </button></div>
+    <li key={item.id} className="li-list-wrapper">
+      <div className="popup-sm-item p-3" data-toggle="collapse" data-target={`#${item.id}`}>
+        {/* <img src={item.img} alt="" className="popup-sm-img" /> */}
+        <img src="https://i.imgur.com/QRwjbm5.jpg" alt="" className="popup-sm-img" />
+        <div className="popup-sm-user">
+          <span className="popup-sm-username">{item.title}</span>
+          <span className="popup-sm-user-price mt-2">{VNDformat(item.price)}</span>
         </div>
+        <button className="popup-sm-button" onClick={() => handleRemovePopupItem(item)}>
+          <RemoveShoppingCart className="popup-sm-icon" />
+          Remove
+        </button>
       </div>
+      <div id={item.id} class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <span className="ml-3">{item.category}</span>
+      </div>
+      <hr className="solid"/>
     </li>
-          <hr className="solid"/>
-    </div>
-
   ));
 
   return <ul className="popup-sm-list">{listItems}</ul>;
 };
 
 function CartPopup(props) {
+  const priceTotal = props.list.reduce((total, item) => total + item.price, 0);
   return (
     <div
       className="modal fade cart-popup"
@@ -75,8 +73,8 @@ function CartPopup(props) {
     >
       <div className="modal-dialog" role="document">
         <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">
+          <div className="modal-header text-light bg-danger">
+            <h5 className="modal-title ml-4" id="exampleModalLabel">
               Shopping Cart
             </h5>
             <button
@@ -89,13 +87,12 @@ function CartPopup(props) {
             </button>
           </div>
           <div className="modal-body">
-            <ListPopup list={props.list} addNewToCart={props.addNewToCart} isLoggedIn= {props.isLoggedIn} removeCartItem={props.removeCartItemAPI}/>
+            <ListPopup list={props.list} addNewToCart={props.addNewToCart} isLoggedIn={props.isLoggedIn} removeCartItem={props.removeCartItemAPI} />
           </div>
           <div className="row ml-5">
-
-            <h4 className="col-md-6">Total</h4>
-            <h4 className="row ml-4" >678.000VND</h4>
-            </div>
+            <h5 className="col-md-6">Total</h5>
+            <h6 className="row ml-4 text-info mb-3" >{VNDformat(priceTotal)}</h6>
+          </div>
           <div className="modal-footer">
             <button type="button" className="btn" data-dismiss="modal">
               Close
