@@ -80,7 +80,7 @@ function PaymentHistory(props) {
               <ul>
                 {posts.map((value, index) => {
                   return (
-                    <li key={value.id} className="popup-sm-item">
+                    <li key={value.id} className="popup-sm-item mb-2">
                       <img src={value.post.image} alt="" className="rounded" width="65" height="65" />
                       <div className="d-flex col-12 pl-1">
                         <span className="col-7 pl-1 post-title">{value.post.title}</span>
