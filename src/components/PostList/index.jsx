@@ -1,7 +1,5 @@
 import React from "react";
-// import PropTypes from 'prop-types';
-
-// PostList.propTypes = {};
+import CardPost from '../Post/CardPost'
 
 let defaultPosts = [
   {
@@ -46,39 +44,10 @@ function Posts(props) {
   const posts = props.posts;
   return (
     <>
-      {posts.map((post) => (
-        <div key={post.id} className="col-lg-4 col-md-4">
-          <div className="product-item">
-            <a href="/">
-              <img src={post.image} alt="" />
-            </a>
-            <div className="down-content">
-              <a href="/">
-                <h4>{post.title}</h4>
-              </a>
-              <h6>{post.price}</h6>
-              <p>{post.text}</p>
-              <ul className="stars">
-                <li>
-                  <i className="fa fa-star"></i>
-                </li>
-                <li>
-                  <i className="fa fa-star"></i>
-                </li>
-                <li>
-                  <i className="fa fa-star"></i>
-                </li>
-                <li>
-                  <i className="fa fa-star"></i>
-                </li>
-                <li>
-                  <i className="fa fa-star"></i>
-                </li>
-              </ul>
-              <span>Reviews (12)</span>
-            </div>
-          </div>
-        </div>
+      {posts.map((item) => (
+         <CardPost
+         key={item.id} 
+         post = {item} />
       ))}
     </>
   );
@@ -88,9 +57,12 @@ function Posts(props) {
 
 function PostList(props) {
   const posts = props.posts;
+  const postList = Array.from(posts);
   return (
     <>
-      <Posts posts={posts}/>
+    { 
+      postList.length > 0 && <Posts posts={posts}/>
+    }
     </>
   );
 }

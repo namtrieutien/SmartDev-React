@@ -1,4 +1,4 @@
-import instance from '../sunny';
+import instance from './axiosPost';
 
 export const getSearchPostData = (requestParams) => {
     const url = `posts/search/by-title`; 

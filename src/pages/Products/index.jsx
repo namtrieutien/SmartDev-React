@@ -9,7 +9,8 @@ import PostList from '../../components/PostList';
 import Pagination from '../../components/Pagination';
 
 import { connect } from 'react-redux';
-import postAction from '../../redux/actions/posts/post.action';
+import {searchLoading} from '../../redux/actions/posts/search.action';
+import SearchNotFound from '../../components/SearchPosts/SearchNotFound';
 
 // Products.propTypes = {
 
@@ -25,7 +26,6 @@ function Products(props) {
   })
 
   function handlePageChange(newPage) {
-    console.log("page change", newPage);
     setFilters({
       ...filters,
       _page: newPage
@@ -33,22 +33,24 @@ function Products(props) {
   }
 
   useEffect(() => {
-    console.log('useEffect props.data', props.data);
-    console.log('useEffect props.pagination', props.pagination);
+    
     const params = {
       title: props.params.title,
       _page: filters._page,
       _limit: props.params._limit
     }
     props.searchPost(params);
-    setPostList(props.data);
-    setPagination(props.pagination);
-  }, [filters])
+    if(props.error.code == 200){
+      setPostList(props.data);
+      setPagination(props.pagination);
+    }
+  }, [filters, props.params.title])
 
   return (
     <div>
       <Header />
-      <Content postList={props.data} handlePageChange={handlePageChange} pagination={props.pagination} />
+      <Content postList={props.error.code == 200?props.data:{}} handlePageChange={handlePageChange} pagination={props.error.code == 200?props.pagination:{}} />
+      {props.error.code != 200 && <SearchNotFound />}
       <Footer />
     </div>
   );
@@ -84,14 +86,18 @@ class Content extends React.Component {
                   </ul>
                 </div>
               </div>
+             
               <div className="col-md-12">
                 <div className="filters-content">
                   <div className="row">
-                    <PostList posts={this.props.postList} />
+                   <PostList posts={this.props.postList} />
                   </div>
                 </div>
               </div>
-              <Pagination handlePageChange={this.props.handlePageChange} pagination={this.props.pagination} />
+             
+           
+              
+              <Pagination handlePageChange={this.props.handlePageChange} pagination={this.props.pagination} /> 
             </div>
           </div>
         </div>
@@ -101,19 +107,20 @@ class Content extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { load, params, data, pagination } = state.postReducer;
+  const { load, params, data, pagination, error } = state.searchPostReducer;
   return {
     load,
     params,
     data,
-    pagination
+    pagination,
+    error
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     searchPost: (params) => {
-      dispatch(postAction.searchLoading(params));
+      dispatch(searchLoading(params));
     },
   };
 };
