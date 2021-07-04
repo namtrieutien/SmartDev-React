@@ -6,19 +6,19 @@ import { useSelector, useDispatch } from "react-redux";
 
 import "./paymentStyle.css";
 import { pay } from '../../redux/actions/user/payment.action'
+import { getCartItems } from '../../redux/actions/user/payment.action'
 import loading from './images/loading.gif'
 import { useLocation } from 'react-router-dom';
-
-function CartItem({cartItem}) {
+import { formatPrice } from '../../helper/helper'
+function CartItem({ cartItem }) {
   console.log("cartItem", cartItem)
-  const { id, title, size, description, price, status, category } = cartItem;
+  const { id, title, size, description, price, status, category, image } = cartItem.post;
   return (
-    <div>
-      <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-        <div className="d-flex flex-row"><img className="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="60" alt="" />
-          <div className="ml-2"><span className="font-weight-bold d-block">{title}</span><span className="spec">{size}</span></div>
-        </div>
-        <div className="d-flex flex-row align-items-center"><span className="d-block">1</span><span className="d-block ml-5 font-weight-bold">{price}VND</span><i className="fa fa-trash-o ml-3 text-black-50"></i></div>
+    <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+      <img src={image} alt="" class="rounded" width="80" height="65" />
+      <div class="d-flex col-12 pl-1">
+        <span class="col-6 pl-1 post-title m">{title}</span>
+        <span class="col-4 text-danger pl-1">{formatPrice(price)} VND</span>
       </div>
     </div>
   );
@@ -28,7 +28,10 @@ const PaymentSchema = yup.object().shape({
 });
 
 function Payment(props) {
-  const listItems = useLocation().state.listItems;
+
+  const { register, formState: { errors }, handleSubmit } = useForm({
+    resolver: yupResolver(PaymentSchema)
+  });
 
   const dispatch = useDispatch();
 
@@ -40,14 +43,18 @@ function Payment(props) {
     return state.paymentReducer.check;
   });
 
-  const { register, formState: { errors }, handleSubmit } = useForm({
-    resolver: yupResolver(PaymentSchema)
+  const listItems = useSelector(state => {
+    return state.paymentReducer.listItems;
   });
 
   const onSubmit = (data) => {
     dispatch(pay(data))
     // alert(JSON.stringify(data))
   };
+
+  useEffect(() => {
+    dispatch(getCartItems());
+  }, []);
 
   return (
     <div>
@@ -66,22 +73,25 @@ function Payment(props) {
                   <div className="price ml-2"><span className="mr-1">price</span><i className="fa fa-angle-down"></i></div>
                 </div>
               </div>
-              {listItems.map(item =>
+              {listItems.posts && listItems.posts.map(item =>
                 <CartItem
                   key={item.id}
                   cartItem={item} />
-              )
-              }
-
+              )}
             </div>
           </div>
           <div className="col-md-4">
             <div className="payment-info">
-              <div className="d-flex justify-content-between align-items-center"><span>Card details</span><img className="rounded" src="https://i.imgur.com/WU501C8.jpg" width="30" alt="" /></div><span className="type d-block mt-3 mb-1">Card type</span>
-              {/* <label className="radio"> <input type="radio" name="card" value="payment" checked="" /> <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" alt=""/></span> </label> */}
-              {/* <label className="radio"> <input type="radio" name="card" value="payment" /> <span><img width="30" src="https://img.icons8.com/officel/48/000000/visa.png" alt="" /></span> </label> */}
-              {/* <label className="radio"> <input type="radio" name="card" value="payment" /> <span><img width="30" src="https://img.icons8.com/ultraviolet/48/000000/amex.png" alt="" /></span> </label> */}
-              <label className="radio"> <input type="radio" name="card" value="payment" /> <span><img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png" alt="" /></span> </label>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>Card details</span>
+                <img className="rounded" src="https://i.imgur.com/WU501C8.jpg" width="30" alt="" />
+              </div>
+              <span className="type d-block mt-3 mb-1">Card type</span>
+              <label className="radio"> <input type="radio" name="card" value="payment"/>
+              <span>
+                <img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png" alt="" />
+                </span>
+              </label>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                   <label className="credit-card-label">Currency</label>
@@ -107,13 +117,14 @@ function Payment(props) {
                 {/* <div className="d-flex justify-content-between information"><span>Subtotal</span><span>$3000.00</span></div> */}
                 {/* <div className="d-flex justify-content-between information"><span>Shipping</span><span>$20.00</span></div> */}
                 <div className="d-flex justify-content-between information mt-3">
-                  <span>Total(Incl. taxes)</span><span>$3020.00</span>
+                  <span>Total(Incl. taxes)</span><span>{formatPrice(listItems.totalPrice)} VND</span>
                 </div>
                 <button
                   className="btn btn-primary btn-block d-flex justify-content-between mt-3"
                   type="submit"
+                  disabled={!listItems.totalPrice > 0 && 'disabled'}
                 >
-                  <span>$3020.00</span><span>Checkout<i className="fa fa-long-arrow-right ml-1"></i></span>
+                  <span>{formatPrice(listItems.totalPrice)} VND</span><span>Checkout<i className="fa fa-long-arrow-right ml-1"></i></span>
                 </button>
               </form>
             </div>

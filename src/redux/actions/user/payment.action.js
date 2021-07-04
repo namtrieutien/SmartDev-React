@@ -20,4 +20,9 @@ export function paymentHistory() {
   }
 }
 
+export function getCartItems() {
+  return {
+      type: type.USER_GET_CART_ITEMS_REQUEST,
+  }
+}
 

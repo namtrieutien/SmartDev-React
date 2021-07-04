@@ -66,10 +66,30 @@ function* userGetPaymentHistory(action) {
   }
 }
 
+const getCartItems = async () => {
+  try {
+    const response = await apiSunny.get(`/order/cart`);
+    return response.data;
+  } catch (e) {
+    return e.response.data;
+  }
+} 
+
+function* userGetCartItems(action) {
+  try {
+    const data = yield call(getCartItems);
+    yield put({type: type.USER_GET_CART_ITEMS, payload: data});
+  } catch (e) {
+    console.log(e.messages);
+    // yield put({type: type.GET_USERS_FAILED, message: e.message});
+  }
+}
+
 function* paymentSaga() {
   yield takeEvery(type.USER_PAYMENT_REQUESTED, userPay);
   yield takeEvery(type.USER_EXECUTE_PAYMENT_REQUESTED, userPaymentSuccess);
   yield takeEvery(type.USER_GET_PAYMENT_HISTORY_REQUESTED, userGetPaymentHistory);
+  yield takeEvery(type.USER_GET_CART_ITEMS_REQUEST, userGetCartItems);
 }
 
 export default paymentSaga;

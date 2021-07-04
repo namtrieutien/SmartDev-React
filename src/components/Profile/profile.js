@@ -5,13 +5,17 @@ import Header from '../../components/Header';
 import "./profile.css"
 import userApi from '../../api/management/userApi';
 
-function ListItem({ label, src }) {
+function ListItem({ label, src, link }) {
   const photo = require(`./img/${src}`).default;
   return (
-    <li className="btn btn-outline-primary list-group-item d-flex justify-content-between align-items-center flex-wrap">
-      <h6 className="mb-0">
-        <img className="feather feather-globe mr-5 icon-inline" width="40" height="40" src={photo} alt={label} />{label}</h6>
-    </li>
+    <a href={link} className="btn btn-outline-primary list-group-item">
+      <li className="d-flex justify-content-between align-items-center flex-wrap">
+        <h6 className="mb-0">
+          <img className="feather feather-globe mr-5 icon-inline" width="40" height="40" src={photo} alt={label} />
+          {label}
+        </h6>
+      </li>
+    </a>
   );
 }
 function ProgressBar({ label, width, aria_valuenow }) {
@@ -74,10 +78,10 @@ function Profile(props) {
               </div>
               <div className="card mt-3">
                 <ul className="list-group list-group-flush">
-                  <ListItem label="Profile" src='user.png'></ListItem>
-                  <ListItem label="History" src='bill.png'></ListItem>
-                  <ListItem label="Notification" src='megaphone.png'></ListItem>
-                  <ListItem label="Voucher" src='voucher.png'></ListItem>
+                  <ListItem label="Profile" src='user.png' link="#"></ListItem>
+                  <ListItem label="History" src='bill.png' link="/payment/history"></ListItem>
+                  <ListItem label="Notification" src='megaphone.png' link="#"></ListItem>
+                  <ListItem label="Voucher" src='voucher.png' link="#"></ListItem>
                 </ul>
               </div>
             </div>
@@ -133,7 +137,7 @@ function Profile(props) {
                   <div className="card h-100">
                     <div className="card-body">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">BUY</i>Statistics</h6>
-                      {isLoading || total==null || list==[] ? (
+                      {isLoading || total == null || list == [] ? (
                         <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
                       ) : (
                         <div>
