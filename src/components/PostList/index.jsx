@@ -1,8 +1,5 @@
 import React from "react";
 import CardPost from '../Post/CardPost'
-// import PropTypes from 'prop-types';
-
-// PostList.propTypes = {};
 
 let defaultPosts = [
   {
@@ -60,9 +57,12 @@ function Posts(props) {
 
 function PostList(props) {
   const posts = props.posts;
+  const postList = Array.from(posts);
   return (
     <>
-      <Posts posts={posts}/>
+    { 
+      postList.length > 0 && <Posts posts={posts}/>
+    }
     </>
   );
 }
