@@ -17,6 +17,10 @@ const userApi = {
   removeCartItem: (pid) => {
     const url = `/cart/delete?post_id=${pid}` ;
     return axiosManagement.delete(url)
+  },
+  statisticBuy: () => {
+    const url = '/posts/statistic_buy';
+    return axiosManagement.get(url)
   }
 }
 

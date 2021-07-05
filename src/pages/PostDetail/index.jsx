@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
 
 function PostDetail(props) {
   const location = useLocation();
-  const { id, title, description, price, category } = location.state.post;
+  const { id, title, description, price, category, image } = location.state.post;
   const discount = 15
   const price_discount = price * discount / 100
   const price_before = price + price_discount
@@ -61,7 +61,7 @@ function PostDetail(props) {
           <div className="container-fluid" style={{ backgroundColor: '#fff', padding: '11px' }}>
             <div className="row">
               <div className="col-lg-4 order-lg-2 order-1 ml-5">
-                <div className="image_selected"><img src="https://i.imgur.com/K4b71NV.jpg" alt="post_img" /></div>
+                <div className="image_selected"><img className="img-fluid" src={image} alt="post_img" /></div>
               </div>
               <div className="col-lg-6 order-3 ml-5">
                 <div className="product_description">
@@ -113,7 +113,7 @@ function PostDetail(props) {
                     </div>
                     <div className="col-xs-6">
                       <button className="btn btn-outline-primary mr-2" onClick={handleCartItemClick} >
-                        <img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`../../components/Profile/img/cart.png`).default} alt="Cart" />{status}
+                        <img className="feather feather-globe mr-2 icon-inline" width={30} height={30} src={require(`../../components/Profile/img/cart.png`).default} alt="Cart" />{status}
                       </button>
                       <button type="button" className="btn btn-danger shop-button">Buy Now</button>
                       <div className="product_fav"><i className="fas fa-heart" /></div>

@@ -20,6 +20,7 @@ import history from './history';
 
 import CartPopup from './components/Cart/CartPopup';
 import LatestPost from './components/Slide/LatestPost';
+import EditUser from './components/EditUser';
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
           </Route>
           <Route path="/payment/history" component={PaymentHistory}>
           </Route>
+          <Route path="/edit_profile" component={EditUser}/>
           <Route path="*" component={ErrorPage}>
           </Route>
         </Switch>
