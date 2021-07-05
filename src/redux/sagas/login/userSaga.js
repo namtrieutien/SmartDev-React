@@ -4,13 +4,18 @@ import * as types from "../../actions/login/types";
 import * as actions from '../../actions/login/authAction'
 import * as cartAction from '../../actions/cartAction'
 import history from '../../../history'
+import { Redirect } from "react-router-dom";
 
 function* login({ email, password }) {
     try {
-        const user = yield call(AuthService.login, { email, password })
-        yield put(actions.userLoggedIn(user))
+        const data = yield call(AuthService.login, { email, password })
+        yield put(actions.userLoggedIn(data))
         yield put(cartAction.loadCartAction())
-        history.push('/profile')
+
+        if (data.user.roles.includes("ROLE_ADMIN"))
+            return <Redirect to="/management" />;
+        else return <Redirect to="/profile" />;
+
     } catch (e) {
         console.log("error login:", e.msg)
     }
@@ -25,10 +30,10 @@ function* logout() {
 
 function* checkJWT() {
     const result = yield call(AuthService.isExpired);
-    if (result ===  true) {
+    if (result === true) {
         yield call(AuthService.logout)
         yield put(actions.userLoggedOutAction())
-    } 
+    }
 }
 
 function* watchLoginUser() {

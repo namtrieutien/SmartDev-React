@@ -43,3 +43,7 @@ export const UPLOAD_FILE_COMPLETE = 'UPLOAD_FILE_COMPLETE'
 export const LOAD_CART = 'LOAD_CART'
 export const CART_LOADED = 'CART_LOADED'
 export const REMOVE_CART = 'REMOVE_CART'
+
+//user edit profile
+export const EDIT_USER = 'EDIT_USER'
+export const USER_EDITED = 'USER_EDITED'

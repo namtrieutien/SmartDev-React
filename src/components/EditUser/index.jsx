@@ -1,13 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { connect } from "react-redux";
+import { useSelector, useDispatch, connect } from "react-redux";
 import Header from '../../components/Header';
+import { getCities, getDistrict, getCommute } from '../../redux/actions/address.action';
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useForm } from 'react-hook-form'
+import { edit } from '../../redux/actions/user/edit.action'
+import { Link } from "react-router-dom"
 import "./edituser.css"
+
+const UpdateSchema = yup.object().shape({
+    phone: yup.string().required('Phone is required')
+});
 
 function EditUser(props) {
     const { user: data } = props;
-    const {name, email, phone, address} = data.user;
-    const {commune, district, city} = address;
+    const { name, email, phone, address } = data.user;
+    const { commune, district, city } = address;
+
+    const [checkUpdate, setCheckUpdate] = useState(false)
+
+    const { register, formState: { errors }, handleSubmit } = useForm({
+        resolver: yupResolver(UpdateSchema)
+    });
+
+    const [check, setCheck] = useState({
+        checkCity: false,
+        checkDistrict: false,
+        checkCommute: false
+    });
+
+    const dispatch = useDispatch();
+    const cities = useSelector(state => {
+        return state.addressReducer.cities.slice(1)
+    });
+
+    const districts = useSelector(state => {
+        return state.addressReducer.districts;
+    });
+
+    const commutes = useSelector(state => {
+        return state.addressReducer.commutes;
+    });
+    const findByName = (array, name) => {
+        return array.find(element => element.name === name).id;
+    }
+
+    useEffect(() => {
+        dispatch(getCities())
+    }, []);
+
+    const onSubmit = (data) => {
+        console.log("submit", data)
+        dispatch(edit(data));
+    };
+
     if (!data) {
         return <Redirect to="/home" />;
     }
@@ -32,65 +80,116 @@ function EditUser(props) {
                         </div>
                     </div>
                     <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                        <div className="card-edit h-100">
-                            <div className="card-body">
-                                <div className="row gutters">
-                                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <h6 className="mb-2 text-primary">Personal Details</h6>
-                                    </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div className="form-group">
-                                            <label htmlFor="fullName">Full Name</label>
-                                            <input type="text" className="form-control" id="fullName" placeholder={name} />
+                        <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+                            <div className="card-edit h-100">
+                                <div className="card-body">
+                                    <div className="row gutters">
+                                        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6 className="mb-2 text-primary">Personal Details</h6>
+                                        </div>
+                                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div className="form-group">
+                                                <label htmlFor="fullName">Full Name</label>
+                                                <input {...register("name")} type="text" className="form-control" id="fullName" defaultValue={name} />
+                                            </div>
+                                        </div>
+                                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div className="form-group">
+                                                <label htmlFor="eMail">Email</label>
+                                                <input {...register("email")} type="email" className="form-control" id="eMail" value={email} />
+                                            </div>
+                                        </div>
+                                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div className="form-group">
+                                                <label htmlFor="phone">Phone</label>
+                                                <input {...register("phone")} type="number" className="form-control" id="phone"  required defaultValue={phone} />
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div className="form-group">
-                                            <label htmlFor="eMail">Email</label>
-                                            <input type="email" className="form-control" disabled id="eMail" placeholder={email} />
+                                    <div className="row gutters">
+                                        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6 className="mt-3 mb-2 text-primary">Address</h6>
+                                        </div>
+                                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div className="form-group">
+                                                <label htmlFor="Street">District</label>
+                                                {/* <input type="name" className="form-control" id="Street" defaultValue={district} /> */}
+                                                <select {...register("district")}
+                                                    className="form-control rounded-pill border-0 shadow-sm px-4"
+                                                    onChange={(e) => {
+                                                        if (districts.length > 0) {
+                                                            let district_id = findByName(districts, e.target.value)
+                                                            setCheck({ ...check, checkDistrict: true })
+                                                            dispatch(getCommute(district_id))
+                                                        }
+                                                    }}
+                                                >
+                                                    {!check.checkDistrict && <option>{district}</option>}
+                                                    {districts.length > 0 && districts.map((value, index) =>
+                                                        <option value={value.name} key={value.id}>{value.name}</option>
+                                                    )}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div className="form-group">
+                                                <label htmlFor="ciTy">City</label>
+                                                {/* <input type="name" className="form-control" id="ciTy" defaultValue={city} /> */}
+                                                <div className="form-group mb-3">
+                                                    <select {...register("city")}
+                                                        className="form-control rounded-pill border-0 shadow-sm px-4"
+                                                        onChange={(e) => {
+                                                            if (cities.length > 0) {
+                                                                let city_id = findByName(cities, e.target.value)
+                                                                setCheck({ ...check, checkCity: true })
+                                                                dispatch(getDistrict(city_id))
+                                                            }
+                                                        }}
+                                                    >
+                                                        {!check.checkCity && <option>{city}</option>}
+                                                        {cities.length > 0 && cities.map((value, index) =>
+                                                            <option value={value.name} key={value.id}>{value.name}</option>
+                                                        )}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div className="form-group">
+                                                <label htmlFor="sTate">Commune</label>
+                                                {/* <input type="text" className="form-control" id="sTate" defaultValue={commune} /> */}
+                                                <div className="form-group mb-3">
+                                                    <select {...register("commute")}
+                                                        className="form-control rounded-pill border-0 shadow-sm px-4"
+                                                        onChange={(e) => {
+                                                            if (commutes.length > 0) {
+                                                                setCheck({ ...check, checkCommute: true })
+                                                            }
+                                                        }}
+                                                        required
+                                                    >
+                                                        {!check.checkCommute && <option>{commune}</option>}
+                                                        {commutes.length > 0 && commutes.map((value, index) =>
+                                                            <option value={value.name} key={value.id}>{value.name}</option>
+                                                        )}
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div className="form-group">
-                                            <label htmlFor="phone">Phone</label>
-                                            <input type="number" className="form-control" id="phone" placeholder={data.user.phone}/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row gutters">
-                                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <h6 className="mt-3 mb-2 text-primary">Address</h6>
-                                    </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div className="form-group">
-                                            <label htmlFor="Street">District</label>
-                                            <input type="name" className="form-control" id="Street" placeholder={district} />
-                                        </div>
-                                    </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                        <div className="form-group">
-                                            <label htmlFor="ciTy">City</label>
-                                            <input type="name" className="form-control" id="ciTy" placeholder={city} />
-                                        </div>
-                                    </div>
-                                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                        <div className="form-group">
-                                            <label htmlFor="sTate">Commune</label>
-                                            <input type="text" className="form-control" id="sTate" placeholder={commune} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row gutters">
-                                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div className="text-right">
-                                            <button type="button" id="submit" name="submit" className="btn btn-secondary mr-3">Cancel</button>
-                                            <button type="button" id="submit" name="submit" className="btn btn-danger">Update</button>
+                                    <div className="row gutters">
+                                        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div className="text-right">
+                                                <Link to="/profile" className="btn btn-secondary mr-3">Cancel</Link>
+                                                <button type="submit" onClick={() => setCheckUpdate(true)} id="submit" name="submit" className="btn btn-danger">Update</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
+
                 </div>
             </div>
         </div>
