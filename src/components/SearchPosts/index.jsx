@@ -3,6 +3,7 @@ import React from "react";
 import "./SearchPosts.css";
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux';
+import { useEffect } from "react";
 
 import { searchLoading } from '../../redux/actions/posts/search.action';
 
@@ -31,6 +32,10 @@ function SearchPosts(props) {
     submitedSearch = false;
   }
 
+  useEffect(() => {
+    document.getElementById('search').value = props.params.title;
+  }, [props.params.title])
+
   // console.log(watch("search")); // watch input value by passing the name of it
   return (
     <div onSubmit={handleSubmit(onSubmit)}>
@@ -52,11 +57,12 @@ function SearchPosts(props) {
 }
 
 const mapStateToProps = (state) => {
-  const { load, error, pagination } = state.searchPostReducer;
+  const { load, error, pagination, params } = state.searchPostReducer;
   return {
     load,
     error,
-    pagination
+    pagination,
+    params
   };
 };
 const mapDispatchToProps = (dispatch) => {
