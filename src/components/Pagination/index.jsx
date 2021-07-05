@@ -5,7 +5,7 @@ import "./Pagination.css"
 
 
 let SHOW_PAGES_MAX = 5;
-let currentPages = [0,1,2,3,4];
+let currentPages;
 
 function Pagination(props) {
   const { pagination, handlePageChange } = props;
@@ -13,23 +13,32 @@ function Pagination(props) {
   const totalPages = Math.ceil(_totalRows / _limit)
   
   var startIndexOfPages;
-  if(_page < SHOW_PAGES_MAX){
-    startIndexOfPages = 0;
-  } else if(_page >= SHOW_PAGES_MAX && _page <= totalPages - SHOW_PAGES_MAX) {
-    if(_page > currentPages[currentPages.length - 1]){
-      startIndexOfPages = _page;
-    } else if(_page < currentPages[0]){
-      startIndexOfPages = _page - SHOW_PAGES_MAX + 1;
-    } else {
-      startIndexOfPages = currentPages[0];
+  if(totalPages < SHOW_PAGES_MAX)
+  {
+    currentPages = new Array();
+    for (var i = 0; i < totalPages; i++) {
+      currentPages[i] = i;
     }
   } else {
-    startIndexOfPages = totalPages - SHOW_PAGES_MAX;
+    if(_page < SHOW_PAGES_MAX){
+      startIndexOfPages = 0;
+    } else if(_page >= SHOW_PAGES_MAX && _page <= totalPages - SHOW_PAGES_MAX) {
+      if(_page > currentPages[currentPages.length - 1]){
+        startIndexOfPages = _page;
+      } else if(_page < currentPages[0]){
+        startIndexOfPages = _page - SHOW_PAGES_MAX + 1;
+      } else {
+        startIndexOfPages = currentPages[0];
+      }
+    } else {
+      startIndexOfPages = totalPages - SHOW_PAGES_MAX;
+    }
+    currentPages = new Array();
+    for (var i = 0; i < SHOW_PAGES_MAX; i++) {
+      currentPages[i] = startIndexOfPages + i;
+    }
   }
-  currentPages = new Array();
-  for (var i = 0; i < SHOW_PAGES_MAX; i++) {
-    currentPages[i] = startIndexOfPages + i;
-  }
+  
 
   return (
     <>
