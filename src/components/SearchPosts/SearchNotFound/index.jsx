@@ -11,8 +11,8 @@ const SearchNotFound = (props) => {
   {
     const params = {
       title: '',
-      _page: props.pagination._page,
-      _limit: props.pagination._limit
+      _page: 0,
+      _limit: 10
     }
     props.searchPost(params);
     setSubmitedSearch(true);

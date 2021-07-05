@@ -4,13 +4,13 @@ const initialState = {
     params: {
         title: '',
         _page: 0,
-        _limit: 6
+        _limit: 10
     },
     load: true,
     data: {},
     pagination: {
         _page:0, 
-        _limit: 6, 
+        _limit: 10, 
         _totalRows: 100
     },
     error:{

@@ -4,33 +4,37 @@ import PropTypes from 'prop-types';
 import "./Pagination.css"
 
 
-let  SHOW_PAGES_MAX = 5;
+let SHOW_PAGES_MAX = 5;
+let currentPages = [0,1,2,3,4];
 
 function Pagination(props) {
   const { pagination, handlePageChange } = props;
   const { _page, _limit, _totalRows } = pagination;
   const totalPages = Math.ceil(_totalRows / _limit)
   
-  var currentPages = new Array();
-  var startIndexOfPages = 0;
-  
+  var startIndexOfPages;
   if(_page < SHOW_PAGES_MAX){
-
-  } else if((_page <= totalPages - SHOW_PAGES_MAX)) {
-    startIndexOfPages = _page;
+    startIndexOfPages = 0;
+  } else if(_page >= SHOW_PAGES_MAX && _page <= totalPages - SHOW_PAGES_MAX) {
+    if(_page > currentPages[currentPages.length - 1]){
+      startIndexOfPages = _page;
+    } else if(_page < currentPages[0]){
+      startIndexOfPages = _page - SHOW_PAGES_MAX + 1;
+    } else {
+      startIndexOfPages = currentPages[0];
+    }
   } else {
     startIndexOfPages = totalPages - SHOW_PAGES_MAX;
   }
-  
-  for (var i = startIndexOfPages; i < startIndexOfPages + SHOW_PAGES_MAX; i++) {
-    currentPages[i] = i;
+  currentPages = new Array();
+  for (var i = 0; i < SHOW_PAGES_MAX; i++) {
+    currentPages[i] = startIndexOfPages + i;
   }
 
   return (
     <>
       <div className="col-md-12">
         <ul className="pages">
-
           {
             _page > 0 ?
               <li>
@@ -41,7 +45,7 @@ function Pagination(props) {
           {
             (_page >= SHOW_PAGES_MAX) ?
               <li>
-                <a onClick={() => handlePageChange(1)}>{1}</a>
+                <a onClick={() => handlePageChange(0)}>{1}</a>
               </li>
               : null
           }

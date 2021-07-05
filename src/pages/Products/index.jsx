@@ -94,9 +94,6 @@ class Content extends React.Component {
                   </div>
                 </div>
               </div>
-             
-           
-              
               <Pagination handlePageChange={this.props.handlePageChange} pagination={this.props.pagination} /> 
             </div>
           </div>
