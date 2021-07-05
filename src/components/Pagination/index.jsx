@@ -12,7 +12,16 @@ function Pagination(props) {
   const totalPages = Math.ceil(_totalRows / _limit)
   
   var currentPages = new Array();
-  var startIndexOfPages = (_page <= totalPages - SHOW_PAGES_MAX) ? _page: (totalPages - SHOW_PAGES_MAX);
+  var startIndexOfPages = 0;
+  
+  if(_page < SHOW_PAGES_MAX){
+
+  } else if((_page <= totalPages - SHOW_PAGES_MAX)) {
+    startIndexOfPages = _page;
+  } else {
+    startIndexOfPages = totalPages - SHOW_PAGES_MAX;
+  }
+  
   for (var i = startIndexOfPages; i < startIndexOfPages + SHOW_PAGES_MAX; i++) {
     currentPages[i] = i;
   }
@@ -30,7 +39,7 @@ function Pagination(props) {
               : null
           }
           {
-            _page >= 1 ?
+            (_page >= SHOW_PAGES_MAX) ?
               <li>
                 <a onClick={() => handlePageChange(1)}>{1}</a>
               </li>
@@ -38,7 +47,7 @@ function Pagination(props) {
           }
 
           {
-            _page >= 2 ?
+            _page >= SHOW_PAGES_MAX ?
               <li>
                 <a onClick={() => handlePageChange(_page - SHOW_PAGES_MAX <= 0 ? 0 : _page - SHOW_PAGES_MAX)}> <i className="fa fa-angle-double-left"></i> </a>
               </li>

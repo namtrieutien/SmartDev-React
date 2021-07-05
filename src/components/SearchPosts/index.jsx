@@ -14,27 +14,26 @@ import history from '../../history'
 
 let submitedSearch = false;
 function SearchPosts(props) {
+  useEffect(() => {
+    document.getElementById('search').value = props.params.title;
+  }, [props.params.title])
+  
   const { register, handleSubmit, watch } = useForm();
   const onSubmit = (data) => {
     const { search } = data;
     const params = {
       title: search,
-      _page: props.pagination._page,
-      _limit: props.pagination._limit
+      _page: 0,
+      _limit: 6
     }
     props.searchPost(params);
     submitedSearch = true;
-    document.getElementById("search").value = "";
   };
 
   if (!props.load && submitedSearch) {
     history.push('/product');
     submitedSearch = false;
   }
-
-  useEffect(() => {
-    document.getElementById('search').value = props.params.title;
-  }, [props.params.title])
 
   // console.log(watch("search")); // watch input value by passing the name of it
   return (
