@@ -21,8 +21,9 @@ function SearchPosts(props) {
   const { register, handleSubmit, watch } = useForm();
   const onSubmit = (data) => {
     const { search } = data;
+    var searchLowCase = search.toLowerCase();
     const params = {
-      title: search,
+      title: searchLowCase,
       _page: 0,
       _limit: 10
     }
