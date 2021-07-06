@@ -47,7 +47,3 @@ export const REMOVE_CART = 'REMOVE_CART'
 //user edit profile
 export const EDIT_USER = 'EDIT_USER'
 export const USER_EDITED = 'USER_EDITED'
-
-//latest posts
-export const LOAD_LATEST_POST = 'LOAD_LATEST_POST'
-export const LOADED_LATEST_POST = 'LOADED_LATEST_POST'

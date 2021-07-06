@@ -22,24 +22,6 @@ function ExploreCategories(props) {
                 <h2>Explore Categories</h2>
               </div>
             </div>
-            {/* <div className="col-md-2">
-              <div className="controls pull-right hidden-xs">
-                <a
-                  className="left btn btn-danger mr-2"
-                  href="/carousel-example"
-                  data-slide="prev"
-                >
-                  <i className="fas fa-chevron-left"></i>
-                </a>
-                <a
-                  className="right btn btn-danger"
-                  href="#carousel-example"
-                  data-slide="next"
-                >
-                  <i className="fas fa-chevron-right"></i>
-                </a>
-              </div>
-            </div> */}
           </div>
             <table className="table table-responsive w-100 d-block d-md-table table-borderless">
               <tbody>
