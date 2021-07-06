@@ -110,14 +110,13 @@ function CreatePosts(props) {
     if (!props.load && submitedForm) {
         setSubmitedForm(false);
         setCreatePostStatus(true);
-        
-        document.getElementById("create-post-btn").disabled = true;  
+
+        document.getElementById("create-post-btn").disabled = true;
     }
 
-    const handleCloseToast = () =>
-    {
+    const handleCloseToast = () => {
         setCreatePostStatus(false);
-        document.getElementById("create-post-btn").disabled = false;  
+        document.getElementById("create-post-btn").disabled = false;
     }
 
     return (
@@ -131,13 +130,14 @@ function CreatePosts(props) {
                             <div className="module-inner">
                                 <div className="side-bar">
                                     <div className="user-info">
-                                        
+
                                     </div>
                                 </div>
                                 <div className="content-panel">
                                     <h2 className="title">Create new post</h2>
                                     <form onSubmit={handleSubmit(handleCreatePost)} className="form-horizontal">
                                         <fieldset className="fieldset">
+
                                             <div className="form-group">
                                                 <label className="col-md-2 col-sm-3 col-xs-12 control-label">Title</label>
                                                 <div className="col-md-10 col-sm-9 col-xs-12">
@@ -184,6 +184,31 @@ function CreatePosts(props) {
                                             </div>
 
                                             <div className="form-group">
+                                                <label className="col-md-2 col-sm-3 col-xs-12 control-label">Category</label>
+                                                <div className="col-md-10 col-sm-9 col-xs-12">
+                                                    <select {...register("categorize_id")}
+                                                        className="form-control"
+                                                        onChange={handleChangeCategory}
+                                                    >
+                                                        {
+                                                            !props.categoryReducer.load_getAllCategories && <option>Select category</option>
+                                                        }
+                                                        {
+                                                            categories.length > 0 && categories.map((category) =>
+                                                                <option key={category.id} value={category.id}>{category.name}</option>)
+                                                        }
+                                                    </select>
+
+                                                    {categoryState.error &&
+                                                        <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
+                                                            Please select a category
+                                                        </p>
+                                                    }
+                                                </div>
+
+                                            </div>
+
+                                            <div className="form-group">
                                                 <label className="col-md-2 col-sm-3 col-xs-12 control-label">Size</label>
                                                 <div className="col-md-10 col-sm-9 col-xs-12">
                                                     <input {...register("size")}
@@ -211,30 +236,8 @@ function CreatePosts(props) {
                                                     </p>
                                                 }
                                             </div>
-
-                                            <div className="form-group">
-                                                <label className="col-md-2 col-sm-3 col-xs-12 control-label">Category</label>
-                                                <select {...register("categorize_id")}
-                                                    className="form-control"
-                                                    onChange={handleChangeCategory}
-                                                >
-                                                    {
-                                                        !props.categoryReducer.load_getAllCategories && <option>Select category</option>
-                                                    }
-                                                    {
-                                                        categories.length > 0 && categories.map((category) =>
-                                                            <option key={category.id} value={category.id}>{category.name}</option>)
-                                                    }
-                                                </select>
-
-                                                {categoryState.error &&
-                                                    <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                                                        Please select a category
-                                                    </p>
-                                                }
-                                            </div>
                                         </fieldset>
-                                        
+
                                         <br />
                                         <div className="form-group">
                                             <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
