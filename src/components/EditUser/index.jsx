@@ -3,16 +3,10 @@ import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch, connect } from "react-redux";
 import Header from '../../components/Header';
 import { getCities, getDistrict, getCommute } from '../../redux/actions/address.action';
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useForm } from 'react-hook-form'
 import { edit } from '../../redux/actions/user/edit.action'
 import { Link } from "react-router-dom"
 import "./edituser.css"
-
-const UpdateSchema = yup.object().shape({
-    phone: yup.string().required('Phone is required')
-});
 
 function EditUser(props) {
     const { user: data } = props;
@@ -21,9 +15,7 @@ function EditUser(props) {
 
     const [checkUpdate, setCheckUpdate] = useState(false)
 
-    const { register, formState: { errors }, handleSubmit } = useForm({
-        resolver: yupResolver(UpdateSchema)
-    });
+    const { register, formState: { errors }, handleSubmit } = useForm();
 
     const [check, setCheck] = useState({
         checkCity: false,
@@ -90,7 +82,7 @@ function EditUser(props) {
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div className="form-group">
                                                 <label htmlFor="fullName">Full Name</label>
-                                                <input {...register("name")} type="text" className="form-control" id="fullName" defaultValue={name} />
+                                                <input {...register("name")} type="text" className="form-control" id="fullName" defaultValue={name} required />
                                             </div>
                                         </div>
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -102,7 +94,10 @@ function EditUser(props) {
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div className="form-group">
                                                 <label htmlFor="phone">Phone</label>
-                                                <input {...register("phone")} type="number" className="form-control" id="phone"  required defaultValue={phone} />
+                                                {errors.phone && <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
+                                                    {errors.phone.message}
+                                                </p>}
+                                                <input {...register("phone")} type="number" className="form-control" id="phone" required defaultValue={phone} />
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +108,6 @@ function EditUser(props) {
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div className="form-group">
                                                 <label htmlFor="Street">District</label>
-                                                {/* <input type="name" className="form-control" id="Street" defaultValue={district} /> */}
                                                 <select {...register("district")}
                                                     className="form-control rounded-pill border-0 shadow-sm px-4"
                                                     onChange={(e) => {
@@ -144,7 +138,7 @@ function EditUser(props) {
                                                                 setCheck({ ...check, checkCity: true })
                                                                 dispatch(getDistrict(city_id))
                                                             }
-                                                        }}
+                                                        }} required
                                                     >
                                                         {!check.checkCity && <option>{city}</option>}
                                                         {cities.length > 0 && cities.map((value, index) =>

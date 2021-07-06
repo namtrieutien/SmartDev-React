@@ -14,7 +14,7 @@ const CategoryButton = ({ title, src }) => {
 function ExploreCategories(props) {
   return (
     <div className="container my-5 ">
-      <div className="explore-categories mt-5">
+      <div className="explore-categories">
         <div className="container">
           <div className="row">
             <div className="col-md-10">
@@ -22,8 +22,7 @@ function ExploreCategories(props) {
                 <h2>Explore Categories</h2>
               </div>
             </div>
-            <div className="col-md-2">
-              {/* <!-- Controls --> */}
+            {/* <div className="col-md-2">
               <div className="controls pull-right hidden-xs">
                 <a
                   className="left btn btn-danger mr-2"
@@ -40,7 +39,7 @@ function ExploreCategories(props) {
                   <i className="fas fa-chevron-right"></i>
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
             <table className="table table-responsive w-100 d-block d-md-table table-borderless">
               <tbody>
