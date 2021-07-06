@@ -4,13 +4,13 @@ const initialState = {
   params: {
     title: '',
     _page: 0,
-    _limit: 6
+    _limit: 18
   },
   load: true,
   data: {},
   pagination: {
     _page: 0,
-    _limit: 6,
+    _limit: 18,
     _totalRows: 100
   },
   error: {
@@ -78,7 +78,7 @@ export const searchPostReducer = (state = initialState, action) => {
         checkPostReport: false,
         report: action.payload
       }
-    case type.RESET_STATUS_REPORT: 
+    case type.RESET_STATUS_REPORT:
       return {
         ...state,
         report: undefined

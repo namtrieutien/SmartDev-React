@@ -10,12 +10,15 @@ import { getAllCategoriesRequestAction } from '../../redux/actions/category/cate
 import postAction from '../../redux/actions/posts/post.action'
 import Header from '../Header'
 import Footer from '../Footer'
+import CreatePostsSuccess from './Toast/CreatePostSuccess';
 
 CreatePosts.propTypes = {
 
 };
 
 function CreatePosts(props) {
+    const [submitedForm, setSubmitedForm] = useState(false)
+    const [createPostStatus, setCreatePostStatus] = useState(false)
     const [filesState, setFilesState] = useState({
         data: null,
         error: true
@@ -101,7 +104,21 @@ function CreatePosts(props) {
         formData.append('file', filesState.data);
         formData.append('post', JSON.stringify(post));
         props.createPost(formData);
+        setSubmitedForm(true);
     };
+
+    if (!props.load && submitedForm) {
+        setSubmitedForm(false);
+        setCreatePostStatus(true);
+        
+        document.getElementById("create-post-btn").disabled = true;  
+    }
+
+    const handleCloseToast = () =>
+    {
+        setCreatePostStatus(false);
+        document.getElementById("create-post-btn").disabled = false;  
+    }
 
     return (
         <div>
@@ -112,11 +129,15 @@ function CreatePosts(props) {
                     <div className="view-account">
                         <section className="module">
                             <div className="module-inner">
+                                <div className="side-bar">
+                                    <div className="user-info">
+                                        
+                                    </div>
+                                </div>
                                 <div className="content-panel">
-                                    <h2 className="title">Create new post<span className="pro-label label label-warning">PRO</span></h2>
+                                    <h2 className="title">Create new post</h2>
                                     <form onSubmit={handleSubmit(handleCreatePost)} className="form-horizontal">
                                         <fieldset className="fieldset">
-                                            <h3 className="fieldset-title">Post info</h3>
                                             <div className="form-group">
                                                 <label className="col-md-2 col-sm-3 col-xs-12 control-label">Title</label>
                                                 <div className="col-md-10 col-sm-9 col-xs-12">
@@ -183,12 +204,12 @@ function CreatePosts(props) {
                                                         className="file-uploader"
                                                         onChange={handleFileUpLoad}
                                                     />
-                                                    {filesState.error &&
-                                                        <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                                                            Please choose a file
-                                                        </p>
-                                                    }
                                                 </div>
+                                                {filesState.error &&
+                                                    <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
+                                                        Please choose a file
+                                                    </p>
+                                                }
                                             </div>
 
                                             <div className="form-group">
@@ -214,11 +235,13 @@ function CreatePosts(props) {
                                             </div>
                                         </fieldset>
 
-                                        <hr />
                                         <div className="form-group">
                                             <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
-                                                <button className="btn btn-primary" type="submit">Create Post</button>
+                                                <button id="create-post-btn" className="btn btn-primary" type="submit">Create Post</button>
                                             </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <CreatePostsSuccess handleCloseToast={handleCloseToast} isShow={createPostStatus ? 'show' : ''} />
                                         </div>
                                     </form>
                                 </div>

@@ -3,6 +3,7 @@ import React from "react";
 import "./SearchPosts.css";
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux';
+import { useEffect } from "react";
 
 import { searchLoading } from '../../redux/actions/posts/search.action';
 
@@ -13,17 +14,21 @@ import history from '../../history'
 
 let submitedSearch = false;
 function SearchPosts(props) {
+  useEffect(() => {
+    document.getElementById('search').value = props.params.title;
+  }, [props.params.title])
+  
   const { register, handleSubmit, watch } = useForm();
   const onSubmit = (data) => {
     const { search } = data;
+    var searchLowCase = search.toLowerCase();
     const params = {
-      title: search,
-      _page: props.pagination._page,
-      _limit: props.pagination._limit
+      title: searchLowCase,
+      _page: 0,
+      _limit: 18
     }
     props.searchPost(params);
     submitedSearch = true;
-    document.getElementById("search").value = "";
   };
 
   if (!props.load && submitedSearch) {
@@ -52,11 +57,12 @@ function SearchPosts(props) {
 }
 
 const mapStateToProps = (state) => {
-  const { load, error, pagination } = state.searchPostReducer;
+  const { load, error, pagination, params } = state.searchPostReducer;
   return {
     load,
     error,
-    pagination
+    pagination,
+    params
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -49,7 +49,7 @@ function Products(props) {
   return (
     <div>
       <Header />
-      <Content postList={props.error.code == 200?props.data:{}} handlePageChange={handlePageChange} pagination={props.error.code == 200?props.pagination:{}} />
+      <Content postList={props.error.code == 200?props.data:{}} handlePageChange={handlePageChange} pagination={props.error.code == 200?props.pagination:null} />
       {props.error.code != 200 && <SearchNotFound />}
       <Footer />
     </div>
@@ -94,10 +94,9 @@ class Content extends React.Component {
                   </div>
                 </div>
               </div>
-             
-           
-              
-              <Pagination handlePageChange={this.props.handlePageChange} pagination={this.props.pagination} /> 
+              {
+                this.props.pagination && <Pagination handlePageChange={this.props.handlePageChange} pagination={this.props.pagination} /> 
+              }
             </div>
           </div>
         </div>
