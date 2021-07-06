@@ -275,8 +275,8 @@ const mapDispatchToProps = (dispatch) => {
         createPost: (formData) => {
             dispatch(postAction.createPostRequest(formData));
         },
-        getSizeCategory: (id) => {
-            dispatch(getSizeCategoryRequestAction(id));
+        getSizeCategory: (param) => {
+            dispatch(getSizeCategoryRequestAction(param));
         }
     };
 };

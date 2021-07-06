@@ -19,7 +19,7 @@ const initialState = {
 };
 
 export const categoryReducer = (state = initialState, action) => {
-    const {error} = action.data;
+    
     switch (action.type) {
         case type.GET_ALL_CATEGORIES_REQUEST:      
             return {
@@ -28,7 +28,8 @@ export const categoryReducer = (state = initialState, action) => {
             };
 
         case type.GET_ALL_CATEGORIES_COMPLETE:
-            if(error){
+            const errorGetAllCategorieResponse = action.data.error;
+            if(errorGetAllCategorieResponse){
                 return {
                     ...state,
                     load_getAllCategories: false,
@@ -54,7 +55,8 @@ export const categoryReducer = (state = initialState, action) => {
             };
 
         case type.GET_SIZE_CATEGORY_COMPLETE:      
-            if(error){
+            const errorGetSizeCategoryResponse = action.data.error;
+            if(errorGetSizeCategoryResponse){
                 return {
                     ...state,
                     load_getSizeCategory: false,

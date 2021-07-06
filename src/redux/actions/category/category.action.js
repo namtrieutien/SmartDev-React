@@ -13,10 +13,10 @@ export function getAllCategoriesCompleteAction(data) {
     }
 }
 
-export function getSizeCategoryRequestAction(id) {
+export function getSizeCategoryRequestAction(param) {
     return {
         type: type.GET_SIZE_CATEGORY_REQUEST,
-        id
+        param
     }
 }
 
