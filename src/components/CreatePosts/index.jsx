@@ -131,14 +131,13 @@ function CreatePosts(props) {
                             <div className="module-inner">
                                 <div className="side-bar">
                                     <div className="user-info">
-                                        <CreatePostsSuccess handleCloseToast={handleCloseToast} isShow={createPostStatus ? 'show' : ''} />
+                                        
                                     </div>
                                 </div>
                                 <div className="content-panel">
-                                    <h2 className="title">Create new post<span className="pro-label label label-warning">PRO</span></h2>
+                                    <h2 className="title">Create new post</h2>
                                     <form onSubmit={handleSubmit(handleCreatePost)} className="form-horizontal">
                                         <fieldset className="fieldset">
-                                            <h3 className="fieldset-title">Post info</h3>
                                             <div className="form-group">
                                                 <label className="col-md-2 col-sm-3 col-xs-12 control-label">Title</label>
                                                 <div className="col-md-10 col-sm-9 col-xs-12">
@@ -236,11 +235,13 @@ function CreatePosts(props) {
                                             </div>
                                         </fieldset>
 
-                                        <hr />
                                         <div className="form-group">
                                             <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
                                                 <button id="create-post-btn" className="btn btn-primary" type="submit">Create Post</button>
                                             </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <CreatePostsSuccess handleCloseToast={handleCloseToast} isShow={createPostStatus ? 'show' : ''} />
                                         </div>
                                     </form>
                                 </div>
