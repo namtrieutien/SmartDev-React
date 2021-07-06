@@ -5,6 +5,7 @@ import apiSunny from '../../../api/sunny'
 import * as type from '../../constants';
 
 function* getSearchPostSaga(action) {
+  console.log("si");
   try {
     const data = yield call(getSearchPostData, action.params);
     yield put(searchComplete(data));
@@ -59,7 +60,7 @@ function* userPostReport(action) {
 function* searchPostsSaga() {
   yield takeEvery(type.POST_REPORT_REQUEST, userPostReport);
   yield takeEvery(type.GET_REPORT_TYPES_REQUEST, userGetReportTypes);
-  yield takeLatest(type.POSTS_SEARCH_LOADING, getSearchPostSaga);
+  yield takeEvery(type.POSTS_SEARCH_LOADING, getSearchPostSaga);
 }
 
 export default searchPostsSaga;

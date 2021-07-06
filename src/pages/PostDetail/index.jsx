@@ -61,13 +61,10 @@ function PostDetail(props) {
     }
   }, [cartList])
 
-
-
   const handleCartItemClick = () => {
     props.addNewToCart(location.state.post);
     if (props.isLoggedIn) props.addToCartAPI(id)
   };
-
 
   //report
   const dispatch = useDispatch();
@@ -138,7 +135,7 @@ function PostDetail(props) {
                   <div className="product_name">{title}</div>
                   {/* <div className="product-rating"><span className="badge badge-success"><i className="fa fa-star" /> 4.5 Star</span> <span className="rating-review">35 Ratings &amp; 45 Reviews</span></div> */}
                   <div>
-                    <span className="product_price"> {VNDformat(price)}</span>
+                    <span className="product_price text-danger"> {VNDformat(price)}</span>
                     {/* <strike className="product_discount">
                       <span style={{ color: 'black' }}>{VNDformat(price_before)}
                         <span></span>

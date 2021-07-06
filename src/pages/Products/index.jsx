@@ -74,7 +74,7 @@ class Content extends React.Component {
         </div>
 
         <div className="products">
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-md-12">
                 <div className="filters">
@@ -89,7 +89,7 @@ class Content extends React.Component {
              
               <div className="col-md-12">
                 <div className="filters-content">
-                  <div className="row">
+                  <div className="row m-1">
                    <PostList posts={this.props.postList} />
                   </div>
                 </div>

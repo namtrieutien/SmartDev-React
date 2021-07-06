@@ -2,7 +2,7 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 const axiosCategory = axios.create({
-  baseURL : 'https://smartdev-sunny.herokuapp.com/',
+  baseURL: process.env.REACT_APP_LOCAL_API_URL,
   // baseURL: 'http://localhost:8080/',
   paramsSerializer: param => queryString.stringify(param)
 });

@@ -9,45 +9,23 @@ import './index.css'
 const CardPost = (props) => {
   const { id, title, description, price, category, image } = props.post;
   return (
-    <div className="col-md-4">
+    <div className="col-md-2">
       <Link to={{ pathname: `/post/${id}`, state: { post: props.post } }}>
-        <div className="product-item p-3 mb-5 ml-3 bg-light">
-          <a href="/">
-            <img src={image} alt=""/>
-          </a>
+        <div className="product-item mb-5 bg-light">
+          <img className="mt-3" src={image} alt=""/>
           <div className="down-content">
-            <a href="/">
-              <h4 className="text-break-head">{title}</h4>
-            </a>
+            <h4 className="text-break-head">{title.trim()}</h4>
             <div className="text-break">
-              <p>{description}</p>
+              <p>{description.trim()}</p>
             </div>
-            <div className="row">
-              {/* <div className="col">
-                <ul className="stars">
-                  <li>
-                    <i className="fa fa-star"></i>
-                  </li>
-                  <li>
-                    <i className="fa fa-star"></i>
-                  </li>
-                  <li>
-                    <i className="fa fa-star"></i>
-                  </li>
-                  <li>
-                    <i className="fa fa-star"></i>
-                  </li>
-                  <li>
-                    <i className="fa fa-star"></i>
-                  </li>
-                </ul>
-              </div> */}
-              <div className="col">
-                <h6>{VNDformat(price)}</h6>
+            <div className="row d-flex justify-content-between">
+              <div className="ml-3">
+                <AddToCart item={props.post} />
               </div>
+              {/* <div className=""> */}
+                <p style={{fontSize: '14px'}} className="text-danger font-weight-bold mr-2">{VNDformat(price)}</p>
+              {/* </div> */}
             </div>
-
-            <AddToCart item={props.post} />
           </div>
         </div>
       </Link>

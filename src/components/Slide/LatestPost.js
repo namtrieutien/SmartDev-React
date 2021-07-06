@@ -1,133 +1,85 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './latestPost.css'
-import AddToCart from '../Cart/AddToCart';
+import CardPost from "../Post/CardPost";
+import { connect } from "react-redux";
+import { searchLoading } from '../../redux/actions/posts/search.action';
+
 function LatestPost(props) {
+    const params = {
+        title: "",
+        _page: props.pagination !== undefined ? props.pagination._page : props.data.pagination._page,
+        // _page: props.pagination._page,
+        _limit: props.pagination !== undefined ? props.pagination._limit : props.data.pagination._limit,
+    }
+    useEffect(() => {
+        props.searchPost(params);
+    }, [])
+    const postList = Array.from(props.data);
+    const slide1 = postList.slice(0, 6);
+    const slide2 = postList.slice(6, 12);
+    const slide3 = postList.slice(12, 18);
+
     return (
-        <div className="container my-5 ">
-            <div className="container">
+        <div className="container-fluid my-5 ">
+            <div className="container-fluid">
                 <div className="row">
-                    <div className="col-lg-3">
+                    <div className="col-md-2">
                         <div className="bbb_container">
-                            <h2 className="bbb_title">Latest Posts Today</h2>
+                            <h3 className="bbb_title" style={{ fontSize: '1.7vw' }}>Latest Posts Today</h3>
                             <div className="bbb_text mb-3">
                                 <p>Buy now before they sold out</p>
                             </div>
                             {/*Controls*/}
-                            <div className="controls-top">
+                            <div className="controls-top d-flex mb-3">
                                 <a className="left btn btn-danger mr-3" href="#multi-item-example" data-slide="prev"><i className="fa fa-chevron-left" /></a>
                                 <a className="right btn btn-danger" href="#multi-item-example" data-slide="next"><i className="fa fa-chevron-right" /></a>
                             </div>
                             {/*/.Controls*/}
                         </div>
                     </div>
-                    <div id="multi-item-example" className="col-lg-9 carousel slide carousel-multi-item" data-ride="carousel">
+                    <div id="multi-item-example" className="col-md-10 carousel slide carousel-multi-item" data-ride="carousel">
                         {/*Slides*/}
                         <div className="carousel-inner " role="listbox">
                             {/*First slide*/}
                             <div className="carousel-item active">
                                 <div className="row">
-                                    <div className="col-md-4">
-                                        <div className="card mb-2">
-                                            <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg" alt="Card image cap" />
-                                            <div className="card-body">
-                                                <h4 className="card-title">Card title</h4>
-                                                <p className="card-text">Bán cái gì đó thì ghi vào đây.Bán cái gì đó thì ghi vào đây.</p>
-                                                <AddToCart />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4 clearfix d-none d-md-block">
-                                        <div className="card mb-2">
-                                            <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg" alt="Card image cap" />
-                                            <div className="card-body">
-                                                <h4 className="card-title">Card title</h4>
-                                                <p className="card-text">Bán cái gì đó thì ghi vào đây.Bán cái gì đó thì ghi vào đây.</p>
-                                                <AddToCart />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4 clearfix d-none d-md-block">
-                                        <div className="card mb-2">
-                                            <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg" alt="Card image cap" />
-                                            <div className="card-body">
-                                                <h4 className="card-title">Card title</h4>
-                                                <p className="card-text">Bán cái gì đó thì ghi vào đây.Bán cái gì đó thì ghi vào đây.</p>
-                                                <AddToCart />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {slide1 != null ?
+                                        (slide1.map(item =>
+                                            <CardPost
+                                                key={item.id}
+                                                post={item} />
+                                        )) :
+                                        <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
+                                    }
+
                                 </div>
                             </div>
                             {/*/.First slide*/}
                             {/*Second slide*/}
                             <div className="carousel-item">
                                 <div className="row">
-                                    <div className="col-md-4">
-                                        <div className="card mb-2">
-                                            <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap" />
-                                            <div className="card-body">
-                                                <h4 className="card-title">Card title</h4>
-                                                <p className="card-text">Bán cái gì đó thì ghi vào đây.Bán cái gì đó thì ghi vào đây.</p>
-                                                <AddToCart />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4 clearfix d-none d-md-block">
-                                        <div className="card mb-2">
-                                            <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg" alt="Card image cap" />
-                                            <div className="card-body">
-                                                <h4 className="card-title">Card title</h4>
-                                                <p className="card-text">Bán cái gì đó thì ghi vào đây.Bán cái gì đó thì ghi vào đây.</p>
-                                                <AddToCart />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4 clearfix d-none d-md-block">
-                                        <div className="card mb-2">
-                                            <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg" alt="Card image cap" />
-                                            <div className="card-body">
-                                                <h4 className="card-title">Card title</h4>
-                                                <p className="card-text">Bán cái gì đó thì ghi vào đây.Bán cái gì đó thì ghi vào đây.</p>
-                                                <AddToCart />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {slide2 != null ?
+                                        (slide2.map(item =>
+                                            <CardPost
+                                                key={item.id}
+                                                post={item} />
+                                        )) :
+                                        <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
+                                    }
                                 </div>
                             </div>
                             {/*/.Second slide*/}
                             {/*Third slide*/}
                             <div className="carousel-item">
                                 <div className="row">
-                                    <div className="col-md-4">
-                                        <div className="card mb-2">
-                                            <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg" alt="Card image cap" />
-                                            <div className="card-body">
-                                                <h4 className="card-title">Card title</h4>
-                                                <p className="card-text">Bán cái gì đó thì ghi vào đây.Bán cái gì đó thì ghi vào đây.</p>
-                                                <AddToCart />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4 clearfix d-none d-md-block">
-                                        <div className="card mb-2">
-                                            <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(45).jpg" alt="Card image cap" />
-                                            <div className="card-body">
-                                                <h4 className="card-title">Card title</h4>
-                                                <p className="card-text">Bán cái gì đó thì ghi vào đây.Bán cái gì đó thì ghi vào đây.</p>
-                                                <AddToCart />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4 clearfix d-none d-md-block">
-                                        <div className="card mb-2">
-                                            <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg" alt="Card image cap" />
-                                            <div className="card-body">
-                                                <h4 className="card-title">Card title</h4>
-                                                <p className="card-text">Bán cái gì đó thì ghi vào đây.Bán cái gì đó thì ghi vào đây.</p>
-                                                <AddToCart />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {slide3 != null ?
+                                        (slide3.map(item =>
+                                            <CardPost
+                                                key={item.id}
+                                                post={item} />
+                                        )) :
+                                        <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
+                                    }
                                 </div>
                             </div>
                             {/*/.Third slide*/}
@@ -140,4 +92,19 @@ function LatestPost(props) {
 
     );
 }
-export default LatestPost;
+const mapStateToProps = (state) => {
+    const { pagination, data } = state.searchPostReducer;
+    return {
+        pagination,
+        data
+    };
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        searchPost: (params) => {
+            dispatch(searchLoading(params));
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LatestPost);

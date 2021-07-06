@@ -12,7 +12,7 @@ import {categoryReducer} from "./category/categoryReducer";
 import s3Reducer from "./s3/s3Reducer";
 import {searchPostReducer} from "./posts/searchPostReducer";
 import {userReducer} from "./login/userReducer";
-
+ import {editUserReducer} from "./user/edituser.reducer";
 const rootReducer = combineReducers({
   addressReducer,
   userReducer,
@@ -22,7 +22,8 @@ const rootReducer = combineReducers({
   searchPostReducer,
   postReducer,
   categoryReducer,
-  s3Reducer
+  s3Reducer, 
+  editUserReducer
 })
 
 export default rootReducer;

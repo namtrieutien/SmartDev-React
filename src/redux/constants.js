@@ -55,3 +55,7 @@ export const GET_REPORT_TYPES = 'GET_REPORT_TYPES'
 export const POST_REPORT_REQUEST = 'POST_REPORT_REQUEST'
 export const POST_REPORT = 'POST_REPORT'
 export const RESET_STATUS_REPORT = 'RESET_STATUS_REPORT'
+
+//user edit profile
+export const EDIT_USER = 'EDIT_USER'
+export const USER_EDITED = 'USER_EDITED'
