@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Rubik&display=swap');
 
 body {
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -404,8 +404,8 @@ header .navbar {
 
 .latest-products {
 	margin-top: 35px;
-	margin-right: 100px;
-	margin-left: 100px;
+	margin-right: 15px;
+	margin-left: 15px;
 }
 
 .latest-products .section-heading a {
@@ -442,10 +442,10 @@ header .navbar {
 }
 
 .product-item .down-content h4 {
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	color: #1a6692;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 }
 
 .product-item .down-content h6 {
@@ -458,7 +458,7 @@ header .navbar {
 
 .product-item .down-content p {
 	margin-bottom: 20px;
-	font-size: 10px;
+	font-size: 13px;
 }
 
 .product-item .down-content ul li {

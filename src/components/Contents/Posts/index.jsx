@@ -26,19 +26,19 @@ function Posts(props) {
             <div className="col-md-12">
               <div className="section-heading">
                 <h2>Flash Deals</h2>
-                <a href="products.html">
+                {/* <a href="products.html">
                   view all products <i className="fa fa-angle-right"></i>
-                </a>
+                </a> */}
               </div>
             </div>
-            {postList!=null ? 
-            (postList.map( item => 
-            <CardPost
-            key={item.id} 
-            post = {item} />
-            )):
-            <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
-          }
+              {postList != null ?
+                (postList.map(item =>
+                  <CardPost
+                    key={item.id}
+                    post={item} />
+                )) :
+                <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
+              }
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@ function Posts(props) {
   );
 }
 const mapStateToProps = (state) => {
-  const { load, error,  pagination, data } = state.searchPostReducer;
+  const { load, error, pagination, data } = state.searchPostReducer;
   return {
     load,
     error,

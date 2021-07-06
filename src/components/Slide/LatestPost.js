@@ -30,7 +30,7 @@ function LatestPost(props) {
                                 <p>Buy now before they sold out</p>
                             </div>
                             {/*Controls*/}
-                            <div className="controls-top">
+                            <div className="controls-top d-flex mb-3">
                                 <a className="left btn btn-danger mr-3" href="#multi-item-example" data-slide="prev"><i className="fa fa-chevron-left" /></a>
                                 <a className="right btn btn-danger" href="#multi-item-example" data-slide="next"><i className="fa fa-chevron-right" /></a>
                             </div>

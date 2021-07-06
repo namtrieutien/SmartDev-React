@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 
 function AddToCart(props) {
   const [actived, setActived] = useState("black");
-  const { item, cartList } = props
+  const { item, cartList, price } = props
 
   useEffect(() => {
     const newItem = cartList.find(cartItem => JSON.stringify(cartItem) === JSON.stringify(item))

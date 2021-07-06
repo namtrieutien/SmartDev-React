@@ -10,22 +10,25 @@ const CardPost = (props) => {
   const { id, title, description, price, category, image } = props.post;
   return (
     <div className="col-md-2">
+      <Link to={{ pathname: `/post/${id}`, state: { post: props.post } }}>
         <div className="product-item mb-5 bg-light">
-        <Link to={{ pathname: `/post/${id}`, state: { post: props.post } }}>
-          <img className="mt-3" src={image} alt=""/></Link>
+          <img className="mt-3" src={image} alt=""/>
           <div className="down-content">
-            <h4 className="text-break-head">{title}</h4>
+            <h4 className="text-break-head">{title.trim()}</h4>
             <div className="text-break">
-              <p>{description}</p>
+              <p>{description.trim()}</p>
             </div>
-            <div className="row">
-              <div className="col">
-                <h6 style={{fontSize: '0.7vw'}}>{VNDformat(price)}</h6>
+            <div className="row d-flex justify-content-between">
+              <div className="ml-3">
+                <AddToCart item={props.post} />
               </div>
+              {/* <div className=""> */}
+                <p style={{fontSize: '14px'}} className="text-danger font-weight-bold mr-2">{VNDformat(price)}</p>
+              {/* </div> */}
             </div>
-            <AddToCart item={props.post} />
           </div>
         </div>
+      </Link>
     </div>
   )
 }
