@@ -12,3 +12,17 @@ export function getAllCategoriesCompleteAction(data) {
         data
     }
 }
+
+export function getSizeCategoryRequestAction(id) {
+    return {
+        type: type.GET_SIZE_CATEGORY_REQUEST,
+        id
+    }
+}
+
+export function getSizeCategoryCompleteAction(data) {
+    return {
+        type: type.GET_SIZE_CATEGORY_COMPLETE,
+        data
+    }
+}

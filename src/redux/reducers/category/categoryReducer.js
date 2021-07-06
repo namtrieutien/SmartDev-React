@@ -7,10 +7,19 @@ const initialState = {
         code: 200,
         error: 'success',
         message: 'ok'
+    },
+
+    load_getSizeCategory: true,
+    data_getSizeCategory: [],
+    error_getSizeCategory:{
+        code: 200,
+        error: 'success',
+        message: 'ok'
     }
 };
 
 export const categoryReducer = (state = initialState, action) => {
+    const {error} = action.data;
     switch (action.type) {
         case type.GET_ALL_CATEGORIES_REQUEST:      
             return {
@@ -19,7 +28,6 @@ export const categoryReducer = (state = initialState, action) => {
             };
 
         case type.GET_ALL_CATEGORIES_COMPLETE:
-            const {error} = action.data;
             if(error){
                 return {
                     ...state,
@@ -33,6 +41,32 @@ export const categoryReducer = (state = initialState, action) => {
                 load_getAllCategories: false,
                 data_getAllCategories: action.data,
                 error_getAllCategories:{
+                    code: 200,
+                    error: 'success',
+                    message: 'ok'
+                }
+            };
+        
+        case type.GET_SIZE_CATEGORY_REQUEST:      
+            return {
+                ...state,
+                load_getSizeCategory: true
+            };
+
+        case type.GET_SIZE_CATEGORY_COMPLETE:      
+            if(error){
+                return {
+                    ...state,
+                    load_getSizeCategory: false,
+                    error_getSizeCategory: action.data
+                };
+            }
+        
+            return {
+                ...state,
+                load_getSizeCategory: false,
+                data_getSizeCategorys: action.data,
+                error_getSizeCategory:{
                     code: 200,
                     error: 'success',
                     message: 'ok'
