@@ -3,11 +3,23 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { useLocation } from 'react-router-dom';
-import { connect } from 'react-redux'
+import { useSelector, useDispatch, connect } from 'react-redux'
+import * as yup from "yup";
 
 import "./PostDetail.css"
 import { VNDformat } from '../../helpers/utils'
 import { addNewToCart, AddToCartAPI } from '../../redux/actions/cartAction'
+
+import { useForm } from 'react-hook-form'
+import { yupResolver } from "@hookform/resolvers/yup";
+import loading from '../../components/Register/login-image/loading.gif';
+
+import { getReportTypes, report, resetStatus } from '../../redux/actions/posts/search.action'
+
+const ReportSchema = yup.object().shape({
+  description: yup.string().required('Description is required'),
+  type: yup.string().required('Type is required'),
+});
 
 const mapStateToProps = (state) => {
   const { isLoggedIn } = state.userReducer;
@@ -48,13 +60,58 @@ function PostDetail(props) {
     }
   }, [cartList])
 
+
+
   const handleCartItemClick = () => {
     props.addNewToCart(location.state.post);
     if (props.isLoggedIn) props.addToCartAPI(id)
   };
-  
+
+
+  //report
+  const dispatch = useDispatch();
+
+  const reportTypes = useSelector(state => {
+    return state.searchPostReducer.reportTypes;
+  });
+
+  const checkPostReport = useSelector(state => {
+    return state.searchPostReducer.checkPostReport;
+  });
+
+  const reportData = useSelector(state => {
+    return state.searchPostReducer.report;
+  });
+
+  useEffect(() => {
+    dispatch(getReportTypes())
+  }, [])
+
+  const clickClose = () => {
+    dispatch(resetStatus())
+    reset('', {
+      keepValues: false,
+      keepErrors: false,
+    })
+  }
+
+  const { register, formState: { errors }, handleSubmit, reset } = useForm({
+    resolver: yupResolver(ReportSchema)
+  });
+
+  const onSubmit = (data, e) => {
+    dispatch(report({ ...data, postId: window.location.pathname.split('/post/')[1] }));
+    reset('', {
+      keepValues: false,
+      keepErrors: false,
+    })
+  };
+
   return (
     <div className="PostDetail">
+      <div className={checkPostReport ? "loading-bg" : "loading-bg d-none"}>
+        <img src={loading} alt="Loading..." />
+      </div>
       <Header />
       <div className="super_container">
         <div className="single_product">
@@ -85,7 +142,7 @@ function PostDetail(props) {
                       <div className="col-md-5">
                         <div className="br-dashed">
                           <div className="row">
-                            <div className="col-md-3 col-xs-3"> <img src="https://img.icons8.com/color/48/000000/price-tag.png" /> </div>
+                            <div className="col-md-3 col-xs-3"> <img src="https://img.icons8.com/color/48/000000/price-tag.png" alt="" /> </div>
                             <div className="col-md-9 col-xs-9">
                               <div className="pr-info"> <span className="break-all">Voucher giảm 5% + Miễn phí vẫn chuyển</span> </div>
                             </div>
@@ -116,14 +173,12 @@ function PostDetail(props) {
                         <img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`../../components/Profile/img/cart.png`).default} alt="Cart" />{status}
                       </button>
                       <button type="button" className="btn btn-danger shop-button">Buy Now</button>
-                      <div className="product_fav"><i className="fas fa-heart" /></div>
+                      <button type="button" className="btn btn-warning shop-button ml-2" data-toggle="modal" data-target="#reportModal">Report</button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-
 
             <div className="row row-underline">
               <div className="col-md-6"> <span className=" deal-text">Specifications</span> </div>
@@ -183,6 +238,65 @@ function PostDetail(props) {
                     </tr>
                   </tbody>
                 </table>
+              </div>
+            </div>
+            <div className="modal fade cart-popup" id="reportModal" tabIndex="-1" role="dialog" aria-hidden="false" modal-toggle>
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">
+                      Report:
+                    </h5>
+                    <button
+                      type="button"
+                      className="close"
+                      data-dismiss="modal"
+                      aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="modal-body">
+                      {reportData && <p className="badge badge-success mb-2" style={{ fontSize: "15px" }}>Report Success</p>}
+                      <div className="form-group">
+                        <label className="control-label">Problem</label>
+                        <select {...register("type")}
+                          className="form-control"
+                        >
+                          <option> </option>
+                          {reportTypes && Object.keys(reportTypes).map((key, value) => {
+                            return (
+                              <option value={key} >{reportTypes[key]}</option>
+                            )
+                          })}
+                        </select>
+                        {errors.type &&
+                          <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px" }}>
+                            {errors.type.message}
+                          </p>
+                        }
+                      </div>
+
+                      <div className="form-group">
+                        <label className="control-label">Description</label>
+                        <div className="">
+                          <textarea {...register("description")}
+                            id="input-description"
+                            className="form-control"></textarea>
+                          {errors.description &&
+                            <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px" }}>
+                              {errors.description.message}
+                            </p>
+                          }
+                        </div>
+                      </div>
+                    </div>
+                    <div className="modal-footer">
+                      <button type="button" className="btn" data-dismiss="modal" onClick={() => clickClose()} >Close</button>
+                      <button type="submit" className="btn btn-success">Submit</button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

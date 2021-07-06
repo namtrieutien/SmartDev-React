@@ -18,12 +18,18 @@ export default function payment(state = initialState, action) {
     case type.USER_PAYMENT:
       console.log(action.payload);
       if (action.payload.payment_link) {
-        window.open(action.payload.payment_link, '_blank')
+        window.open(action.payload.payment_link, '_self')
+        return {
+          ...state,
+          data: action.payload,
+          check: false
+        }
       }
-      return {
-        ...state,
-        data: action.payload,
-        check: false
+      else {
+        return {
+          ...state,
+          check: false
+        }
       }
     case type.USER_EXECUTE_PAYMENT_REQUESTED:
       return {

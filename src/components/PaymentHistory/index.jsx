@@ -53,14 +53,7 @@ function PaymentHistory(props) {
           })}
         </div>
       </div>
-      <div
-        className="modal fade cart-popup"
-        id="postsModal"
-        tabIndex="-1"
-        role="dialog"
-        aria-hidden="false"
-        modal-toggle
-      >
+      <div className="modal fade cart-popup" id="postsModal" tabIndex="-1" role="dialog" aria-hidden="false" modal-toggle>
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -71,8 +64,7 @@ function PaymentHistory(props) {
                 type="button"
                 className="close"
                 data-dismiss="modal"
-                aria-label="Close"
-              >
+                aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
