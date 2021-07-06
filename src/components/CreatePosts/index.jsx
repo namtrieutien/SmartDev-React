@@ -234,7 +234,8 @@ function CreatePosts(props) {
                                                 }
                                             </div>
                                         </fieldset>
-
+                                        
+                                        <br />
                                         <div className="form-group">
                                             <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
                                                 <button id="create-post-btn" className="btn btn-primary" type="submit">Create Post</button>
