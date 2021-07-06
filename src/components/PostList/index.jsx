@@ -42,14 +42,24 @@ let defaultPosts = [
 
 function Posts(props) {
   const posts = props.posts;
+  const postList = Array.from(posts);
   return (
-    <>
-      {posts.map((item) => (
-         <CardPost
-         key={item.id} 
-         post = {item} />
-      ))}
-    </>
+    <div>
+      <div className="latest-products">
+        <div className="container-fluid">
+          <div className="row">
+            {postList!=null ? 
+            (posts.map( item => 
+            <CardPost
+            key={item.id} 
+            post = {item} />
+            )):
+            <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
+          }
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

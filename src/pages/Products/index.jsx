@@ -9,7 +9,7 @@ import PostList from '../../components/PostList';
 import Pagination from '../../components/Pagination';
 
 import { connect } from 'react-redux';
-import {searchLoading} from '../../redux/actions/posts/search.action';
+import { searchLoading } from '../../redux/actions/posts/search.action';
 import SearchNotFound from '../../components/SearchPosts/SearchNotFound';
 
 // Products.propTypes = {
@@ -33,14 +33,14 @@ function Products(props) {
   }
 
   useEffect(() => {
-    
+
     const params = {
       title: props.params.title,
       _page: filters._page,
       _limit: props.params._limit
     }
     props.searchPost(params);
-    if(props.error.code == 200){
+    if (props.error.code == 200) {
       setPostList(props.data);
       setPagination(props.pagination);
     }
@@ -49,7 +49,7 @@ function Products(props) {
   return (
     <div>
       <Header />
-      <Content postList={props.error.code == 200?props.data:{}} handlePageChange={handlePageChange} pagination={props.error.code == 200?props.pagination:null} />
+      <Content postList={props.error.code == 200 ? props.data : {}} handlePageChange={handlePageChange} pagination={props.error.code == 200 ? props.pagination : null} />
       {props.error.code != 200 && <SearchNotFound />}
       <Footer />
     </div>
@@ -72,7 +72,6 @@ class Content extends React.Component {
             </div>
           </div>
         </div>
-
         <div className="products">
           <div className="container-fluid">
             <div className="row">
@@ -86,17 +85,18 @@ class Content extends React.Component {
                   </ul>
                 </div>
               </div>
-             
-              <div className="col-md-12">
-                <div className="filters-content">
-                  <div className="row m-1">
-                   <PostList posts={this.props.postList} />
-                  </div>
-                </div>
+            </div>
+          </div>
+        </div>
+        <PostList posts={this.props.postList} />
+        <div>
+          <div className="products">
+            <div className="container-fluid">
+              <div className="row">
+                {
+                  this.props.pagination && <Pagination handlePageChange={this.props.handlePageChange} pagination={this.props.pagination} />
+                }
               </div>
-              {
-                this.props.pagination && <Pagination handlePageChange={this.props.handlePageChange} pagination={this.props.pagination} /> 
-              }
             </div>
           </div>
         </div>
