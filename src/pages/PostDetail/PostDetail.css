@@ -16,7 +16,7 @@
 
 .single_product {
   padding-top: 66px;
-  padding-bottom: 140px;
+  /* padding-bottom: 140px; */
   background-color: #e5e5e5;
   margin-top: 0px;
   padding: 17px
@@ -351,7 +351,7 @@ ul {
 
 .single_product {
   padding-top: 16px;
-  padding-bottom: 140px
+  /* padding-bottom: 140px */
 }
 
 .image_list li {
@@ -399,7 +399,7 @@ ul {
   justify-content: center;
   align-items: center;
   width: calc(100% + 15px);
-  height: 525px;
+  /* height: calc(100% + 30px); */
   -webkit-transform: translateX(-15px);
   -moz-transform: translateX(-15px);
   -ms-transform: translateX(-15px);
