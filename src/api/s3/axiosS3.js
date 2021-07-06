@@ -2,8 +2,8 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 const axiosS3 = axios.create({
-  //baseURL : 'https://smartdev-sunny.herokuapp.com/',
-  baseURL: 'http://localhost:8080/',
+  baseURL : 'https://smartdev-sunny.herokuapp.com/',
+  // baseURL: 'http://localhost:8080/',
 });
 
 axiosS3.interceptors.request.use(
