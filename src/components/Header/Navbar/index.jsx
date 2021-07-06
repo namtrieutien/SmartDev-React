@@ -46,9 +46,8 @@ function Navbar(props) {
   }
   return (
     <>
-      <ul className="navbar-nav m-auto mb-2 mb-lg-0 Navbar">
+      <ul className="navbar-nav m-auto">
         <CustomLink activeOnlyWhenExact={true} to="/" label="Home" />
-        {/* <CustomLink to="/product" label="Product" /> */}
         {isLoggedIn ? (
           <div className="navbar-nav">
             <CustomLink to="/profile" label={data.user.name} />
