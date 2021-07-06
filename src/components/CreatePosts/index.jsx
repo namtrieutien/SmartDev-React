@@ -205,12 +205,12 @@ function CreatePosts(props) {
                                                         className="file-uploader"
                                                         onChange={handleFileUpLoad}
                                                     />
-                                                    {filesState.error &&
-                                                        <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
-                                                            Please choose a file
-                                                        </p>
-                                                    }
                                                 </div>
+                                                {filesState.error &&
+                                                    <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px", }}>
+                                                        Please choose a file
+                                                    </p>
+                                                }
                                             </div>
 
                                             <div className="form-group">
