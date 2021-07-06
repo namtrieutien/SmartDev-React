@@ -25,7 +25,7 @@ function SearchPosts(props) {
     const params = {
       title: searchLowCase,
       _page: 0,
-      _limit: 10
+      _limit: 18
     }
     props.searchPost(params);
     submitedSearch = true;
