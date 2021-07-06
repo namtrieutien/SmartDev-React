@@ -11,6 +11,7 @@ import postAction from '../../redux/actions/posts/post.action'
 import Header from '../Header'
 import Footer from '../Footer'
 import CreatePostsSuccess from './Toast/CreatePostSuccess';
+import categoryApi from '../../api/category/categoryApi'
 
 CreatePosts.propTypes = {
 
@@ -61,6 +62,8 @@ function CreatePosts(props) {
                 data: e.target.value,
                 error: false
             });
+            console.log('fetchSizeCategory e.target.value: ', e.target.value);
+            fetchSizeCategory(e.target.value);
         }
     }
 
@@ -71,7 +74,6 @@ function CreatePosts(props) {
 
         }
     }, [categoryState.data]);
-
 
     const categories = useSelector(() => {
         return props.categoryReducer.data_getAllCategories;
@@ -118,6 +120,15 @@ function CreatePosts(props) {
         setCreatePostStatus(false);
         document.getElementById("create-post-btn").disabled = false;
     }
+
+    const fetchSizeCategory = async (id) => {
+        try {
+          const sizeList = await categoryApi.getSizeCategory(id);
+          console.log('sizeList: ', sizeList);
+        } catch (error) {
+          console.log("failed to fetch size category", error);
+        }
+      }
 
     return (
         <div>
