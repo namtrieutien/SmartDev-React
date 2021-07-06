@@ -1,42 +1,4 @@
-.navbar-brand {
-  font-size: 2rem;
-  font-family: 'Lobster', cursive;
-}
 
-
-@media (max-width: 992px) {
-
-  .reponsive-header {
-    display: flex;
-    justify-content: space-between !important;
-  }
-
-  .navbar-brand {
-    flex: 1;
-  }
-
-  .search-posts {
-    flex: 3;
-    padding-right: 80px;
-  }
-
-
-}
-
-/* Responsive Style */
-@media (max-width: 768px) {
-
-  .reponsive-header {
-    display: flex;
-    justify-content: space-between !important;
-  }
-
-  .navbar-brand {
-    flex: 1;
-  }
-
-  .search-posts {
-    flex: 3;
-  }
-
+.Header {
+  margin-bottom: 120px;
 }
