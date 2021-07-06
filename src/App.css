@@ -72,15 +72,14 @@ a.filled-button:hover {
 
 .section-heading {
 	text-align: left;
-	margin-bottom: 60px;
+	margin-bottom: 20px;
 	border-bottom: 1px solid #eee;
 }
 
 .section-heading h2 {
-	font-size: 28px;
-	font-weight: 400;
+	font-size: 24px;
+	font-weight: 500;
 	color: #1e1e1e;
-	margin-bottom: 15px;
 }
 
 .products-heading {
@@ -404,7 +403,9 @@ header .navbar {
 /* Latest Produtcs */
 
 .latest-products {
-	margin-top: 100px;
+	margin-top: 35px;
+	margin-right: 100px;
+	margin-left: 100px;
 }
 
 .latest-products .section-heading a {
@@ -427,31 +428,37 @@ header .navbar {
 	transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
 .product-item .down-content {
-	padding: 30px;
+	padding: 20px;
 	position: relative;
 }
 
 .product-item img {
-	width: 100%;
+	width: 60%;
+	height: 20%;
 	overflow: hidden;
+	margin-left: auto;
+  	margin-right: auto;
+  	display: block;
 }
 
 .product-item .down-content h4 {
-	font-size: 16px;
+	font-size: 12px;
+	font-weight: bold;
 	color: #1a6692;
 	margin-bottom: 20px;
 }
 
 .product-item .down-content h6 {
 	position: absolute;
-	top: 30px;
+	top: 10px;
 	right: 30px;
-	font-size: 17px;
-	color: #121212;
+	/* font-size: 13px; */
+	color: #be1e09;
 }
 
 .product-item .down-content p {
 	margin-bottom: 20px;
+	font-size: 10px;
 }
 
 .product-item .down-content ul li {

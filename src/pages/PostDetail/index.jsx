@@ -61,13 +61,10 @@ function PostDetail(props) {
     }
   }, [cartList])
 
-
-
   const handleCartItemClick = () => {
     props.addNewToCart(location.state.post);
     if (props.isLoggedIn) props.addToCartAPI(id)
   };
-
 
   //report
   const dispatch = useDispatch();

@@ -16,3 +16,17 @@
 .btn-outline-primary.focus {
   box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
 }
+.card-profile {
+  background: -webkit-linear-gradient(left, #fd5d9b48, #00c8ff56);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 0;
+}
+.card-statistic {
+  background: -webkit-linear-gradient(left, #d5cbfde3, #caacfa);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 0;
+}
