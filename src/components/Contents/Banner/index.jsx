@@ -27,16 +27,18 @@ function Banner(props) {
         <div className="carousel-inner">
           <div className="carousel-item-banner carousel-item active">
             <img
-              src={require(`../../../images/slide_02.jpg`).default}
+              src="https://smartdev-sunny-bucket.s3.ap-southeast-1.amazonaws.com/slide_01.jpg"
               className="d-block w-100"
               alt="..."
+              style={{height: '100%'}}
             />
           </div>
           <div className="carousel-item-banner carousel-item">
             <img
-              src={require(`../../../images/slide_04.png`).default}
+              src="https://smartdev-sunny-bucket.s3.ap-southeast-1.amazonaws.com/slide_02.jpg"
               className="d-block w-100"
               alt="..."
+              style={{height: '100%'}}
             />
             <div className="carousel-caption d-none d-md-block ml-5">
               <h1 className="btn btn-warning btn-lg">SUMMER SALE</h1><br />
@@ -44,8 +46,9 @@ function Banner(props) {
           </div>
           <div className="carousel-item-banner carousel-item">
             <img
-              src={require(`../../../images/slide_03.jpg`).default}
+              src="https://smartdev-sunny-bucket.s3.ap-southeast-1.amazonaws.com/slide_03.jpg"
               className="d-block w-100"
+              style={{height: '100%'}}
               alt="..."
             />
             <div className="carousel-caption d-none d-md-block ml-5">
@@ -58,7 +61,7 @@ function Banner(props) {
           </div>
           <div className="carousel-item-banner carousel-item">
             <img
-              src={require(`../../../images/slide_01.jpg`).default}
+              src="https://smartdev-sunny-bucket.s3.ap-southeast-1.amazonaws.com/slide_04.png"
               className="d-block w-100"
               alt="..."
             />

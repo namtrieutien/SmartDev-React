@@ -42,7 +42,6 @@ const mapDispatchToProps = (dispatch) => {
 
 function PostDetail(props) {
   const location = useLocation();
-  console.log(location.state.post);
   const { id, title, description, price, category, image, user } = location.state.post;
   const discount = 15
   const price_discount = price * discount / 100
@@ -81,7 +80,13 @@ function PostDetail(props) {
     return state.searchPostReducer.report;
   });
 
+  const [auth, setAuth] = useState(false)
+
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setAuth(true)
+    }
     window.scrollTo({
       top: 0,
       left: 0,
@@ -96,6 +101,12 @@ function PostDetail(props) {
       keepValues: false,
       keepErrors: false,
     })
+  }
+
+  const checkAuth = () => {
+    if (!auth) {
+      window.open('/login', '_self');
+    }
   }
 
   const { register, formState: { errors }, handleSubmit, reset } = useForm({
@@ -196,7 +207,9 @@ function PostDetail(props) {
                         <button type="button" className="btn btn-danger shop-button">Buy Now</button>
                       </div>
                       <div className="col-12 col-md-6">
-                        <button type="button" className="btn btn-warning shop-button mt-2" data-toggle="modal" data-target="#reportModal">Report</button>
+                        <button type="button" className="btn btn-warning shop-button mt-2" data-toggle={auth && "modal"} data-target={auth && "#reportModal"} onClick={() => checkAuth()}>
+                          Report
+                        </button>
                       </div>
                     </div>
                   </div>

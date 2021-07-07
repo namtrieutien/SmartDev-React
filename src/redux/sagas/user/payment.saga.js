@@ -3,6 +3,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import * as type from '../../constants';
 
 import apiSunny from '../../../api/sunny';
+import * as cartAction from '../../actions/cartAction'
 
 const pay = async (requestPayment) => {
   try {
@@ -41,6 +42,7 @@ function* userPaymentSuccess(action) {
     console.log(action.paymentInfo);
     const data = yield call(execute, action.paymentInfo);
     yield put({type: type.USER_EXECUTE_PAYMENT, payload: data});
+    yield put(cartAction.RemoveCartAction())
   } catch (e) {
     console.log(e.messages);
     // yield put({type: type.GET_USERS_FAILED, message: e.message});
