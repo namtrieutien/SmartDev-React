@@ -109,11 +109,35 @@ function CreatePosts(props) {
         setSubmitedForm(false);
         setCreatePostStatus(true);
         document.getElementById("create-post-btn").disabled = true;
+        document.getElementById("input-title").disabled = true;
+        document.getElementById("input-description").disabled = true;
+        document.getElementById("input-price").disabled = true;
+        document.getElementById("select-category").disabled = true;
+        if(sizes)
+        {
+            document.getElementById("select-size").disabled = true;
+        }
+        document.getElementById("upload-file").disabled = true;
     }
 
     const handleCloseToast = () => {
         setCreatePostStatus(false);
         document.getElementById("create-post-btn").disabled = false;
+        document.getElementById("input-title").disabled = false;
+        document.getElementById("input-title").value = "";
+        document.getElementById("input-description").disabled = false;
+        document.getElementById("input-description").value = "";
+        document.getElementById("input-price").disabled = false;
+        document.getElementById("input-price").value = "";
+        document.getElementById("select-category").disabled = false;
+        document.getElementById("select-category").value = "";
+        if(sizes)
+        {
+            document.getElementById("select-size").disabled = false;
+            document.getElementById("select-size").value = "";
+        }
+        document.getElementById("upload-file").disabled = false;
+        document.getElementById("upload-file").value = null;
     }
 
     return (
@@ -184,6 +208,7 @@ function CreatePosts(props) {
                                                 <label className="col-md-2 col-sm-3 col-xs-12 control-label">Category</label>
                                                 <div className="col-md-10 col-sm-9 col-xs-12">
                                                     <select {...register("categorize_id")}
+                                                        id="select-category"
                                                         className="form-control"
                                                         onChange={handleChangeCategory}
                                                     >
@@ -211,6 +236,7 @@ function CreatePosts(props) {
                                                     <label className="col-md-2 col-sm-3 col-xs-12 control-label">Size</label>
                                                     <div className="col-md-10 col-sm-9 col-xs-12">
                                                         <select {...register("size")}
+                                                            id="select-size"
                                                             className="form-control"
                                                         >
                                                             {
@@ -221,7 +247,6 @@ function CreatePosts(props) {
                                                     </div>
                                                 </div>
                                             }
-
 
                                             <div className="form-group avatar">
                                                 <figure className="figure col-md-2 col-sm-3 col-xs-12">
