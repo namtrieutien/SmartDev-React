@@ -3,6 +3,7 @@ import { Mood, MoodBad } from "@material-ui/icons";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 import "./ProductChart.css"
+import adminApi from "../../../api/management/adminApi";
 
 const data = [
   {
@@ -189,6 +190,7 @@ const data = [
 
 
 export default function ProductChart(props) {
+
   return (
     <div className="product-chart">
       <h3 className="product-chart-title">Posts Per Months</h3>

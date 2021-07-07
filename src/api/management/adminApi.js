@@ -53,7 +53,7 @@ const adminApi = {
 
   getUser: (idUser) => {
     const url = `/admin/users/${idUser}`;
-    return axiosManagement.post(url)
+    return axiosManagement.get(url)
   },
 
   updateUser: (params) => {

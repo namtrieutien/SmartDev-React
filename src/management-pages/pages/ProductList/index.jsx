@@ -89,7 +89,7 @@ function ProductList(props) {
 
   const { isLoggedIn, user } = props;
 
-  const [usersList, setUsersList] = useState()
+  const [postsList, setPostsList] = useState([])
 
   useEffect(() => {
 
@@ -98,37 +98,40 @@ function ProductList(props) {
         return <Redirect to="/404" />;
     } else return <Redirect to="/login" />;
 
-    const fetchUserList = async () => {
+  }, [isLoggedIn, user])
+
+  useEffect(() => {
+    const fetchProductList = async () => {
       try {
         const response = await adminApi.getAllPosts();
-        console.log(response);
+        console.log("post-list-res: ", response)
+        setPostsList(response);
       } catch (error) {
-        console.log("failed to fetch list users", error);
+        console.log('Failed to fetch users per months', error);
       }
     }
-    fetchUserList();
-  }, [isLoggedIn, user])
+    fetchProductList();
+  }, [])
 
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
     {
-      field: "product",
+      field: "title",
       headerName: "Product",
-      width: 180,
+      width: 400,
       renderCell: (params) => {
         return (
           <div className="product-list-user">
             <img
               className="product-list-image"
-              src={params.row.img}
+              src={params.row.image}
               alt="img"
             />
-            {params.row.name}
+            {params.row.title}
           </div>
         );
       },
     },
-    { field: "stock", headerName: "Stock", width: 220 },
     {
       field: "status",
       headerName: "Status",
@@ -173,7 +176,7 @@ function ProductList(props) {
         <h3 className="product-chart-title">Products:</h3>
         <div style={{ height: "450px", width: "100%" }}>
           <DataGrid
-            rows={data}
+            rows={postsList}
             columns={columns}
             pageSize={6}
             checkboxSelection

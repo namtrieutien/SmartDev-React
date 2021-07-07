@@ -32,8 +32,8 @@ function Home(props) {
           className="chart-line"
           data={dataTemp}
           title={"User Analystics"}
-          dataKey1={"This Year User"}
-          dataKey2={"Last Year User"}
+          dataKey1={dataTemp.thisYearUser}
+          dataKey2={dataTemp.lastYearUser}
           // grid make grid layout
         />
         <Piechart

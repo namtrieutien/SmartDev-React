@@ -14,81 +14,35 @@ import { Redirect } from 'react-router-dom';
 
 UsersList.propTypes = {};
 
-const rows = [
-  {
-    id: 1,
-    username: "Geralt",
-    avatar: "https://avatars.dicebear.com/api/avataaars/a.svg",
-    email: "butcherofblaviken@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 2,
-    username: "Geralt",
-    avatar: "https://avatars.dicebear.com/api/avataaars/b.svg",
-    email: "butcherofblaviken@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 3,
-    username: "Geralt",
-    avatar: "https://avatars.dicebear.com/api/avataaars/c.svg",
-    email: "butcherofblaviken@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 4,
-    username: "Geralt",
-    avatar: "https://avatars.dicebear.com/api/avataaars/d.svg",
-    email: "butcherofblaviken@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 5,
-    username: "Geralt",
-    avatar: "https://avatars.dicebear.com/api/avataaars/d.svg",
-    email: "butcherofblaviken@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 6,
-    username: "Geralt",
-    avatar: "https://avatars.dicebear.com/api/avataaars/e.svg",
-    email: "butcherofblaviken@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 7,
-    username: "Geralt",
-    avatar: "https://avatars.dicebear.com/api/avataaars/f.svg",
-    email: "butcherofblaviken@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 8,
-    username: "Geralt",
-    avatar: "https://avatars.dicebear.com/api/avataaars/h.svg",
-    email: "butcherofblaviken@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-];
 
 function UsersList(props) {
-
   const { isLoggedIn, user } = props;
+  const [usersList, setUsersList] = useState([])
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      if (!user.user.roles.includes("ROLE_ADMIN"))
+        return <Redirect to="/404" />;
+    } else return <Redirect to="/login" />;
+  }, [isLoggedIn, user])
+
+  useEffect(() => {
+    const fetchUserList = async () => {
+      try {
+        const response = await adminApi.getAllUsers();
+        console.log("user-list-res: ", response)
+        setUsersList(response);
+      } catch (error) {
+        console.log('Failed to fetch users per months', error);
+      }
+    }
+    fetchUserList();
+  }, [])
 
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
     {
-      field: "username",
+      field: "name",
       headerName: "User Name",
       width: 180,
       renderCell: (params) => {
@@ -96,23 +50,18 @@ function UsersList(props) {
           <div className="userslist-user">
             <img
               className="userslist-image"
-              src={params.row.avatar}
+              src={params.row.avatar ? params.row.avatar : `https://avatars.dicebear.com/api/micah/${params.row.name}.svg`}
               alt="avatar"
             />
-            {params.row.username}
+            {params.row.name}
           </div>
         );
       },
     },
     { field: "email", headerName: "Email", width: 220 },
     {
-      field: "status",
-      headerName: "Status",
-      width: 120,
-    },
-    {
-      field: "transaction",
-      headerName: "Transaction Volume",
+      field: "phone",
+      headerName: "Phone",
       width: 160,
     },
     {
@@ -135,29 +84,12 @@ function UsersList(props) {
     },
   ];
 
-  const [data, setData] = useState(rows);
-  // const [usersList, setUsersList] = useState()
+  
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      if (!user.user.roles.includes("ROLE_ADMIN"))
-        return <Redirect to="/404" />;
-    } else return <Redirect to="/login" />;
-
-    const fetchUserList = async () => {
-      try {
-        const response = await adminApi.getAllUsers();
-        console.log(response);
-      } catch (error) {
-        console.log("failed to fetch list users", error);
-      }
-    }
-
-    fetchUserList();
-  }, [])
+  
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    setUsersList(usersList.filter((item) => item.id !== id));
   };
 
   return (
@@ -166,7 +98,7 @@ function UsersList(props) {
         <h3 className="product-chart-title">List Users</h3>
         <div style={{ height: "450px", width: "auto" }} className="userlist-data-table">
           <DataGrid
-            rows={data}
+            rows={usersList}
             columns={columns}
             pageSize={6}
             disableSelectionOnClick

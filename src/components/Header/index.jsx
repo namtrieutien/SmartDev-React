@@ -34,6 +34,7 @@ function Header(props) {
 		<nav className="navbar navbar-expand-lg bg-light ftco-navbar-light" id="ftco-navbar">
 	    <div className="container">
 	    	<a className="navbar-brand" href="/">Chợ Tốt <span>Chợ người Việt</span></a>
+				<CartBadge />
         <SearchPosts />
 	      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span className="fa fa-bars"></span> Menu
