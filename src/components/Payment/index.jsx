@@ -95,7 +95,7 @@ function Payment(props) {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                   <label className="credit-card-label">Currency</label>
-                  <select className="form-control credit-inputs" {...register("currency")}>
+                  <select className="form-control" {...register("currency")}>
                     <option value="USD">United States dollar (USD)</option>
                     <option value="THB">Thai baht (THB)</option>
                     <option value="RUB">Russian ruble (RUB)</option>
@@ -103,7 +103,7 @@ function Payment(props) {
                 </div>
                 <div>
                   <label className="credit-card-label">Description</label>
-                  <input type="text" className="form-control credit-inputs" {...register("description")} />
+                  <input type="text" className="form-control" {...register("description")} />
                   {errors.description && <p className="badge badge-danger">{errors.description.message}</p>}
                 </div>
                 <div>
