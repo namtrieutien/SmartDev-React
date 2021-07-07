@@ -56,10 +56,7 @@ export const POST_REPORT_REQUEST = 'POST_REPORT_REQUEST'
 export const POST_REPORT = 'POST_REPORT'
 export const RESET_STATUS_REPORT = 'RESET_STATUS_REPORT'
 
-//user edit profile
-export const EDIT_USER = 'EDIT_USER'
-export const USER_EDITED = 'USER_EDITED'
-
 //get size category
 export const GET_SIZE_CATEGORY_REQUEST = 'GET_SIZE_CATEGORY_REQUEST'
 export const GET_SIZE_CATEGORY_COMPLETE = 'GET_SIZE_CATEGORY_COMPLETE'
+
