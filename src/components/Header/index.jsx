@@ -12,7 +12,7 @@ function Header(props) {
     <div className="Header">
       {/* <!-- Header --> */}
       <header>
-        <nav className="navbar navbar-expand-lg bg-dark fixed-top">
+        <nav className="navbar navbar-expand-lg fixed-top navbar-grad">
           <div className="container reponsive-header">
             <a className="navbar-brand" href="/">
               <h2>

@@ -32,3 +32,21 @@ export const resetStatus = () => {
     type: type.RESET_STATUS_REPORT
   }
 }
+export const searchByCatLoading = (params) => {
+  return {
+    type: type.LOAD_POST_BY_CAT,
+    params
+  }
+}
+
+export function searchByCatComplete(data) {
+  return {
+    type: type.LOADED_POST_BY_CAT,
+    data
+  }
+}
+export function resetPage() {
+  return {
+    type: type.RESET_PAGE,
+  }
+}

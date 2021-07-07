@@ -59,3 +59,8 @@ export const RESET_STATUS_REPORT = 'RESET_STATUS_REPORT'
 //user edit profile
 export const EDIT_USER = 'EDIT_USER'
 export const USER_EDITED = 'USER_EDITED'
+
+// search post by cat
+export const LOAD_POST_BY_CAT = 'LOAD_POST_BY_CAT'
+export const LOADED_POST_BY_CAT = 'LOADED_POST_BY_CAT'
+export const RESET_PAGE = 'RESET_PAGE'

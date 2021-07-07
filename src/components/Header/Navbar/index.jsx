@@ -48,7 +48,18 @@ function Navbar(props) {
     <>
       <ul className="navbar-nav m-auto mb-2 mb-lg-0 Navbar">
         <CustomLink activeOnlyWhenExact={true} to="/" label="Home" />
-        {/* <CustomLink to="/product" label="Product" /> */}
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Điện thoại - Máy tính bảng</a>
+          <a class="dropdown-item" href="#">Điện gia dụng</a>
+          <a class="dropdown-item" href="#">Thời trang - Phụ kiện</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Tất cả các mục</a>
+        </div>
+      </li>
         {isLoggedIn ? (
           <div className="navbar-nav">
             <CustomLink to="/profile" label={data.user.name} />

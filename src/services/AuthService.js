@@ -17,8 +17,6 @@ export const login = ({ email, password }) => {
 }
 
 export const logout = () => {
-  // localStorage.removeItem("user");
-  // localStorage.removeItem("token");
   localStorage.clear();
 }
 

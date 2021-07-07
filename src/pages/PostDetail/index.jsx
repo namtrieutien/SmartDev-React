@@ -42,7 +42,6 @@ const mapDispatchToProps = (dispatch) => {
 
 function PostDetail(props) {
   const location = useLocation();
-  console.log(location.state.post);
   const { id, title, description, price, category, image, user } = location.state.post;
   const discount = 15
   const price_discount = price * discount / 100

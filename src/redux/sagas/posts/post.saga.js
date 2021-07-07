@@ -13,6 +13,7 @@ function* createPostSaga(action) {
     }
 }
 
+
 function* postSaga() {
     yield takeLatest(type.POSTS_CREATE_POST_REQUEST, createPostSaga);
 }
