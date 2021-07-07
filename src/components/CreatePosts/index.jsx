@@ -13,6 +13,7 @@ import Footer from '../Footer'
 import CreatePostsSuccess from './Toast/CreatePostSuccess';
 import categoryApi from '../../api/category/categoryApi'
 import { getSizeCategoryRequestAction } from '../../redux/actions/category/category.action';
+import history from '../../history'
 
 CreatePosts.propTypes = {
 
@@ -122,22 +123,7 @@ function CreatePosts(props) {
 
     const handleCloseToast = () => {
         setCreatePostStatus(false);
-        document.getElementById("create-post-btn").disabled = false;
-        document.getElementById("input-title").disabled = false;
-        document.getElementById("input-title").value = "";
-        document.getElementById("input-description").disabled = false;
-        document.getElementById("input-description").value = "";
-        document.getElementById("input-price").disabled = false;
-        document.getElementById("input-price").value = "";
-        document.getElementById("select-category").disabled = false;
-        document.getElementById("select-category").value = "";
-        if(sizes)
-        {
-            document.getElementById("select-size").disabled = false;
-            document.getElementById("select-size").value = "";
-        }
-        document.getElementById("upload-file").disabled = false;
-        document.getElementById("upload-file").value = null;
+        history.push('/profile');
     }
 
     return (
