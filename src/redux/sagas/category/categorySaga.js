@@ -13,9 +13,10 @@ function* getAllCatogiresSaga() {
     }
 }
 
-function* getSizeCategorySaga(action) {
+function* getSizeCategorySaga(action) { 
     try {
-        const data = yield call(categoryApi.getSizeCategory(action.data));
+        const data = yield call(categoryApi.getSizeCategory, action.param);
+       
         yield put(getSizeCategoryCompleteAction(data));
     } catch (error) {
         //handle error

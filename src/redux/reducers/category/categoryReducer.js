@@ -10,26 +10,26 @@ const initialState = {
     },
 
     load_getSizeCategory: true,
-    data_getSizeCategory: [],
+    data_getSizeCategory: null,
     error_getSizeCategory:{
         code: 200,
         error: 'success',
         message: 'ok'
-    }
+    },
 };
 
-export const categoryReducer = (state = initialState, action) => {
-    
+export const categoryReducer = (state = initialState, action) => { 
     switch (action.type) {
         case type.GET_ALL_CATEGORIES_REQUEST:      
             return {
                 ...state,
-                load_getAllCategories: true
+                load_getAllCategories: true,
+                data_getAllCategories: null
             };
 
         case type.GET_ALL_CATEGORIES_COMPLETE:
-            const errorGetAllCategorieResponse = action.data.error;
-            if(errorGetAllCategorieResponse){
+            const {error} = action.data;
+            if(error){
                 return {
                     ...state,
                     load_getAllCategories: false,
@@ -51,23 +51,25 @@ export const categoryReducer = (state = initialState, action) => {
         case type.GET_SIZE_CATEGORY_REQUEST:      
             return {
                 ...state,
-                load_getSizeCategory: true
+                load_getSizeCategory: true,
+                data_getSizeCategory: null
             };
 
-        case type.GET_SIZE_CATEGORY_COMPLETE:      
-            const errorGetSizeCategoryResponse = action.data.error;
-            if(errorGetSizeCategoryResponse){
+        case type.GET_SIZE_CATEGORY_COMPLETE:       
+            const errorCode = action.data.code;     
+            if(errorCode != undefined && errorCode != 200)
+            {
                 return {
                     ...state,
                     load_getSizeCategory: false,
-                    error_getSizeCategory: action.data
+                    data_getSizeCategory: null,
+                    error_getSizeCategory: action.data,
                 };
             }
-        
-            return {
+            return {        
                 ...state,
                 load_getSizeCategory: false,
-                data_getSizeCategorys: action.data,
+                data_getSizeCategory: action.data,
                 error_getSizeCategory:{
                     code: 200,
                     error: 'success',

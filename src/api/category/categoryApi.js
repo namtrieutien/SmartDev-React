@@ -5,8 +5,8 @@ const categoryApi = {
         const url = `categories/get-all-categories`; 
         return axiosCategory.get(url, {});
     },
-    getSizeCategory: (id) => {
-        const url = `categories/get-size-category?id=${id}`; 
+    getSizeCategory: (param) => {
+        const url = `categories/get-size-category?id=${param}`; 
         return axiosCategory.get(url, {});
     }
     

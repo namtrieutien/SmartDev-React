@@ -12,7 +12,7 @@ import Header from '../Header'
 import Footer from '../Footer'
 import CreatePostsSuccess from './Toast/CreatePostSuccess';
 import categoryApi from '../../api/category/categoryApi'
-import {getSizeCategoryRequestAction} from '../../redux/actions/category/category.action';
+import { getSizeCategoryRequestAction } from '../../redux/actions/category/category.action';
 
 CreatePosts.propTypes = {
 
@@ -63,21 +63,16 @@ function CreatePosts(props) {
                 data: e.target.value,
                 error: false
             });
-            console.log('fetchSizeCategory e.target.value: ', e.target.value);
             props.getSizeCategory(e.target.value);
         }
     }
 
-    useEffect(() => {
-        if (categoryState.data == null) {
-
-        } else {
-
-        }
-    }, [categoryState.data]);
-
     const categories = useSelector(() => {
         return props.categoryReducer.data_getAllCategories;
+    });
+
+    const sizes = useSelector(() => {
+        return props.categoryReducer.data_getSizeCategory;
     });
 
     const SigninSchema = yup.object().shape({
@@ -100,7 +95,7 @@ function CreatePosts(props) {
             title: data.title,
             description: data.description,
             price: data.price,
-            size: data.size,
+            size: sizes?data.size:"N/A",
             categorize_id: data.categorize_id
         }
 
@@ -113,7 +108,6 @@ function CreatePosts(props) {
     if (!props.load && submitedForm) {
         setSubmitedForm(false);
         setCreatePostStatus(true);
-
         document.getElementById("create-post-btn").disabled = true;
     }
 
@@ -197,7 +191,7 @@ function CreatePosts(props) {
                                                             !props.categoryReducer.load_getAllCategories && <option>Select category</option>
                                                         }
                                                         {
-                                                            categories.length > 0 && categories.map((category) =>
+                                                            categories && categories.length > 0 && categories.map((category) =>
                                                                 <option key={category.id} value={category.id}>{category.name}</option>)
                                                         }
                                                     </select>
@@ -211,15 +205,23 @@ function CreatePosts(props) {
 
                                             </div>
 
-                                            <div className="form-group">
-                                                <label className="col-md-2 col-sm-3 col-xs-12 control-label">Size</label>
-                                                <div className="col-md-10 col-sm-9 col-xs-12">
-                                                    <input {...register("size")}
-                                                        id="input-size"
-                                                        placeholder="Size"
-                                                        className="form-control" />
+                                            {
+                                                sizes &&
+                                                <div className="form-group">
+                                                    <label className="col-md-2 col-sm-3 col-xs-12 control-label">Size</label>
+                                                    <div className="col-md-10 col-sm-9 col-xs-12">
+                                                        <select {...register("size")}
+                                                            className="form-control"
+                                                        >
+                                                            {
+                                                                sizes && sizes.length > 0 && sizes.map((size) =>
+                                                                    <option key={size} value={size}>{size}</option>)
+                                                            }
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            }
+
 
                                             <div className="form-group avatar">
                                                 <figure className="figure col-md-2 col-sm-3 col-xs-12">
