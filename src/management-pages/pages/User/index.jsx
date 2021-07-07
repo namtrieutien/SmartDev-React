@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 // import PropTypes from "prop-types";
 import {
   PermIdentity,
-  CalendarToday,
   PhoneAndroid,
   MailOutline,
   LocationSearching,
   Publish,
+  VerifiedUser,
 } from "@material-ui/icons";
 
 import "./User.css";
@@ -22,19 +22,22 @@ User.propTypes = {};
 
 function User(props) {
   let { userId } = useParams();
+  const [userDetail, setUserDetail] = useState({})
+  const [address, setAddress] = useState({})
   useEffect(() => {
     const fetchUserDetail = async () => {
       try {
         console.log("params: ", userId);
         const response = await adminApi.getUser(userId)
         console.log(response);
-        
+        setUserDetail(response)
+        setAddress(response.address)
       } catch (error) {
         console.log("Failed to fetch user detail :", error);
       }
     }
     fetchUserDetail();
-  })
+  }, [])
 
   const { isLoggedIn, user } = props;
   if (isLoggedIn) {
@@ -54,39 +57,39 @@ function User(props) {
         <div className="user-show">
           <div className="user-show-top">
             <img
-              src="https://avatars.dicebear.com/api/avataaars/.svg"
+              src={userDetail.avatar ? userDetail.avatar : `https://avatars.dicebear.com/api/avataaars/${userDetail.id}.svg`}
               alt=""
               className="user-show-top-image"
             />
             <div className="user-show-top-title">
-              <span className="user-show-username">Rick Sanchez</span>
-              <span className="user-show-usertitle">The Scientist</span>
+              <span className="user-show-username">{userDetail.name}</span>
+              <span className="user-show-usertitle">{userDetail.roles}</span>
             </div>
           </div>
           <div className="user-show-bottom">
             <span className="user-show-title">Account Details</span>
             <div className="user-show-infor">
               <PermIdentity className="user-show-icon" />
-              <span className="user-show-infor-title">ricksanchez99</span>
+              <span className="user-show-infor-title">{userDetail.email}</span>
             </div>
             <div className="user-show-infor">
-              <CalendarToday className="user-show-icon" />
-              <span className="user-show-infor-title">10.12.1999</span>
+              <VerifiedUser className="user-show-icon" />
+              <span className="user-show-infor-title">auth {userDetail.auth}</span>
             </div>
             <span className="user-show-title">Contact Details</span>
             <div className="user-show-infor">
               <PhoneAndroid className="user-show-icon" />
-              <span className="user-show-infor-title">+1 123 456 67</span>
+              <span className="user-show-infor-title">+{userDetail.phone}</span>
             </div>
             <div className="user-show-infor">
               <MailOutline className="user-show-icon" />
               <span className="user-show-infor-title">
-                ricksanchez99@gmail.com
+                {userDetail.email}
               </span>
             </div>
             <div className="user-show-infor">
               <LocationSearching className="user-show-icon" />
-              <span className="user-show-infor-title">Danang | Vietnam</span>
+              <span className="user-show-infor-title">{address.city} | {address.district} | {address.commune}</span>
             </div>
           </div>
         </div>
@@ -95,18 +98,10 @@ function User(props) {
           <form action="submit" className="user-update-form">
             <div className="user-update-left">
               <div className="user-update-item">
-                <label>Username</label>
+                <label>Name</label>
                 <input
                   type="text"
-                  placeholder="ricksanchez99"
-                  className="user-update-input"
-                />
-              </div>
-              <div className="user-update-item">
-                <label>Full name</label>
-                <input
-                  type="text"
-                  placeholder="rick sanchez"
+                  placeholder={userDetail.name}
                   className="user-update-input"
                 />
               </div>
@@ -114,7 +109,7 @@ function User(props) {
                 <label>Email</label>
                 <input
                   type="text"
-                  placeholder="ricksanchez99@gmail.com"
+                  placeholder={userDetail.email}
                   className="user-update-input"
                 />
               </div>
@@ -122,15 +117,31 @@ function User(props) {
                 <label>Phone</label>
                 <input
                   type="text"
-                  placeholder="+1 123 456 67"
+                  placeholder={`+ ${userDetail.phone}`}
                   className="user-update-input"
                 />
               </div>
               <div className="user-update-item">
-                <label>Address</label>
+                <label>City</label>
                 <input
                   type="text"
-                  placeholder="Danang | Vietnam"
+                  placeholder={address.city}
+                  className="user-update-input"
+                />
+              </div>
+              <div className="user-update-item">
+                <label>District</label>
+                <input
+                  type="text"
+                  placeholder={address.district}
+                  className="user-update-input"
+                />
+              </div>
+              <div className="user-update-item">
+                <label>Commune</label>
+                <input
+                  type="text"
+                  placeholder={address.commune}
                   className="user-update-input"
                 />
               </div>

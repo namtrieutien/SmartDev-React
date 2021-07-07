@@ -1,5 +1,5 @@
 .card-badge {
-  color: white !important;
+  color: dark !important;
   margin-top: 5px;
   margin-right: 20px;
 }
@@ -25,6 +25,6 @@
 }
 
 .cart-icon {
-  color: white !important;
+  color: black !important;
 }
 

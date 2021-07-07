@@ -40,8 +40,8 @@ function SearchPosts(props) {
   return (
     <form action="#" className="searchform order-sm-start order-lg-last" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-group d-flex">
-        <input id="search" type="search" className="form-control pl-3" placeholder="Search" />
-        <button {...register("search", { maxLength: 100 })}  type="submit" placeholder="" className="form-control search"><span className="fa fa-search"></span></button>
+        <input {...register("search", { maxLength: 100 })}  id="search" type="search" className="form-control pl-3" placeholder="Search" />
+        <button type="submit" placeholder="" className="form-control search"><span className="fa fa-search"></span></button>
       </div>
     </form>
   );

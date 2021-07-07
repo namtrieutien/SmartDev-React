@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import adminApi from "../../../api/management/adminApi";
 // import PropTypes from "prop-types";
 import {
@@ -17,17 +17,20 @@ import "./Chart.css";
 function Chart(props) {
   const { data, title, dataKey1, dataKey2, grid } = props;
 
+  const [usersPerMonths, setUsersPerMonths] = useState(data)
+
   useEffect(() => {
     const fetchUserPerMonth = async () => {
       try {
         const response = await adminApi.getUsersPerMonths();
         console.log(response)
+        setUsersPerMonths(data);
       } catch (error) {
         console.log('Failed to fetch users per months', error);
       }
     }
     fetchUserPerMonth();
-  })
+  }, [])
 
   return (
     <div className="chart">

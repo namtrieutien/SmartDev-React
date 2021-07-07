@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import PropTypes from "prop-types";
 
 import adminApi from "../../../api/management/adminApi";
@@ -9,25 +9,28 @@ import { Link } from "react-router-dom";
 
 // WidgetSm.propTypes = {};
 const WidgetSmList = (props) => {
-  const list = widgetSmList;
+  // const list = widgetSmList;
+  const [list, setList] = useState(widgetSmList)
 
   useEffect(() => {
     const fetchLastestPost = async () => {
       try {
         const response = await adminApi.getFiveNewestUsers();
         console.log(response);
+        setList(response);
+        console.log("list: ",list);
       } catch (error) {
         console.log("Failed to fetch newest users", error);
       }
     };
 
     fetchLastestPost();
-  });
+  }, []);
 
   const listUsers = list.map((user) => (
     <li className="widget-sm-item" key={user.id}>
       <img
-        src={user.img}
+        src={user.img ? user.img : `https://avatars.dicebear.com/api/micah/${user.name}.svg`}
         alt="user img"
         className="widget-sm-img"
         width="400"
