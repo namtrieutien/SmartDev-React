@@ -5,7 +5,6 @@ import apiSunny from '../../../api/sunny'
 import * as type from '../../constants';
 
 function* getSearchPostSaga(action) {
-  console.log("si");
   try {
     const data = yield call(getSearchPostData, action.params);
     yield put(searchComplete(data));

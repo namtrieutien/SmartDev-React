@@ -59,7 +59,7 @@ export const searchPostReducer = (state = initialState, action) => {
         ...state,
       }
     case type.GET_REPORT_TYPES:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         reportTypes: action.payload
@@ -72,7 +72,7 @@ export const searchPostReducer = (state = initialState, action) => {
         report: undefined
       }
     case type.POST_REPORT:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         checkPostReport: false,
