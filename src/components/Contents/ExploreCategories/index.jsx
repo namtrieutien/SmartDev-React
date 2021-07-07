@@ -13,7 +13,7 @@ const CategoryButton = ({ title, src }) => {
 }
 function ExploreCategories(props) {
   return (
-    <div className="container my-5 ">
+    <div className="container-fluid my-5 ">
       <div className="explore-categories">
         <div className="row">
           <div className="col-md-10">
