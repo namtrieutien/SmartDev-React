@@ -102,7 +102,7 @@ function CartPopup(props) {
                 listItems: props.list
               }
             }}>
-              <button type="button" className="btn btn-danger"  >
+              <button type="button" className="btn btn-danger">
                 Checkout
               </button>
             </Link>
