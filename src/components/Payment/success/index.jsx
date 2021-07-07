@@ -8,6 +8,7 @@ import loading from '../images/loading.gif'
 
 import { useLocation } from 'react-router-dom'
 import { formatPrice } from '../../../helper/helper'
+import { Link } from "react-router-dom"
 
 
 const searchToObject = (pairs) => {
@@ -56,6 +57,7 @@ function PaymentSuccess(props) {
         <div className="row">
           <div className="col-12">
             <div className="product-details mr-2">
+              <div className="d-flex flex-row align-items-center"><Link to={{pathname: '/',}} style={{color: 'blue'}}><i class="fas fa-arrow-left"></i><span className="ml-2 text">Back to Homepage</span></Link></div>
               {/* <hr> */}
               <div className="mb-2">
                 {data.error && <h3 className="text-center text-danger">Payment failed</h3>}

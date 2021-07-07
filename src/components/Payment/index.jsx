@@ -61,11 +61,11 @@ function Payment(props) {
       <div className={check ? "loading-bg" : "loading-bg d-none"}>
         <img src={loading} alt="Loading..." />
       </div>
-      <div className="container mt-5 pt-5 rounded cart">
+      <div className="container mt-2 pt-5 rounded cart">
         <div className="row">
           <div className="col-md-8">
             <div className="product-details mr-2">
-              <div className="d-flex flex-row align-items-center"><i className="fa fa-long-arrow-left"></i><span className="ml-2">Continue Shopping</span></div>
+              {/* <div className="d-flex flex-row align-items-center"><i className="fa fa-long-arrow-left"></i><span className="ml-2">Continue Shopping</span></div> */}
               {/* <hr> */}
               <h6 className="mb-0">Shopping cart</h6>
               <div className="d-flex justify-content-between"><span>You have {listItems.length} items in your cart</span>
@@ -95,7 +95,7 @@ function Payment(props) {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                   <label className="credit-card-label">Currency</label>
-                  <select className="form-control credit-inputs" {...register("currency")}>
+                  <select className="form-control" {...register("currency")}>
                     <option value="USD">United States dollar (USD)</option>
                     <option value="THB">Thai baht (THB)</option>
                     <option value="RUB">Russian ruble (RUB)</option>
@@ -103,7 +103,7 @@ function Payment(props) {
                 </div>
                 <div>
                   <label className="credit-card-label">Description</label>
-                  <input type="text" className="form-control credit-inputs" {...register("description")} />
+                  <input type="text" className="form-control" {...register("description")} />
                   {errors.description && <p className="badge badge-danger">{errors.description.message}</p>}
                 </div>
                 <div>

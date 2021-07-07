@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import "./Login.css";
-
+import loading from '../Register/login-image/loading.gif'
 // Login.propTypes = {};
 
 const SigninSchema = yup.object().shape({
@@ -25,7 +25,7 @@ function Login(props) {
   } = useForm({
     resolver: yupResolver(SigninSchema),
   });
-  const { isLoggedIn, user } = props;
+  const { isLoggedIn, user, check } = props;
   if (isLoggedIn) {
     if(user.user.roles.includes("ROLE_ADMIN"))
     return <Redirect to="/management" />;
@@ -36,6 +36,10 @@ function Login(props) {
   };
 
   return (
+    <div>
+      <div className={check ? "loading-bg" : "loading-bg d-none"}>
+        <img src={loading} alt="Loading..."/>
+      </div>
     <div className="Login">
       <div className="container-fluid">
         <div className="row no-gutter">
@@ -120,13 +124,16 @@ function Login(props) {
         </div>
       </div>
     </div>
+    </div>
   );
 }
 const mapStateToProps= state => {
-  const { isLoggedIn , user} = state.userReducer;
+  console.log(state.userReducer);
+  const { isLoggedIn , user, check } = state.userReducer;
   return {
     isLoggedIn,
-    user
+    user,
+    check
   };
 };
 const mapDispatchToProps = (dispatch) => {
