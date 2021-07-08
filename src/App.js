@@ -21,11 +21,15 @@ import history from './history';
 import CartPopup from './components/Cart/CartPopup';
 import EditUser from './components/EditUser';
 import CategoryPosts from './pages/CategoryPosts/CategoryPosts';
+import {Helmet} from "react-helmet";
 
 function App() {
   return (
     <Router history={history}>
       <div className="./App.css">
+        <Helmet>
+          <title>Chợ tốt - Chợ người Việt</title>  
+        </Helmet>  
         {/* only visible when click in cart icon in navbar */}
         <CartPopup />
         <Switch>
