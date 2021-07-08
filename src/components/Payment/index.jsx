@@ -61,7 +61,7 @@ function Payment(props) {
       <div className={check ? "loading-bg" : "loading-bg d-none"}>
         <img src={loading} alt="Loading..." />
       </div>
-      <div className="container pt-5 rounded cart" style={{marginTop: '140px'}}>
+      <div className="container pt-5 rounded cart" style={{marginTop: "140px"}}>
         <div className="row">
           <div className="col-md-8">
             <div className="product-details mr-2">
