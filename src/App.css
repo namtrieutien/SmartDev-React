@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Rubik&display=swap');
 
+@import './style.css';
+
 header {
 	font-family: 'Rubik', sans-serif !important;
 }

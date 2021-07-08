@@ -2,8 +2,7 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 const axiosS3 = axios.create({
-  baseURL : 'https://smartdev-sunny.herokuapp.com/',
-  // baseURL: 'http://localhost:8080/',
+  baseURL: process.env.REACT_APP_LOCAL_API_URL,
 });
 
 axiosS3.interceptors.request.use(

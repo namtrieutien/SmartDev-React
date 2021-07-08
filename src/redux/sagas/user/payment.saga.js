@@ -22,6 +22,7 @@ function* userPay(action) {
     console.log(action.requestPayment);
     const data = yield call(pay, action.requestPayment);
     yield put({type: type.USER_PAYMENT, payload: data});
+    localStorage.removeItem('cart');
   } catch (e) {
     console.log(e.messages);
     // yield put({type: type.GET_USERS_FAILED, message: e.message});

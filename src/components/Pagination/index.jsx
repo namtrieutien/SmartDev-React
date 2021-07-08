@@ -43,7 +43,7 @@ function Pagination(props) {
   return (
     <>
       <div className="col-md-12">
-        <ul className="pages">
+        <ul className="pages mb-5">
           {
             _page > 0 ?
               <li>

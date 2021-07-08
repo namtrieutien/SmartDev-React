@@ -1,6 +1,6 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { getSearchPostData } from '../../../api/posts/search';
-import { searchComplete } from '../../actions/posts/search.action';
+import { call, put, takeEvery } from 'redux-saga/effects';
+import { getSearchPostData , getPostByCat} from '../../../api/posts/search';
+import { searchComplete, searchByCatComplete } from '../../actions/posts/search.action';
 import apiSunny from '../../../api/sunny'
 import * as type from '../../constants';
 
@@ -55,11 +55,20 @@ function* userPostReport(action) {
     console.log(e);
   }
 }
+function* getPostByCatSaga(action) {
+  try {
+    const data = yield call(getPostByCat, action.params);
+    yield put(searchByCatComplete(data));
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 function* searchPostsSaga() {
   yield takeEvery(type.POST_REPORT_REQUEST, userPostReport);
   yield takeEvery(type.GET_REPORT_TYPES_REQUEST, userGetReportTypes);
   yield takeEvery(type.POSTS_SEARCH_LOADING, getSearchPostSaga);
+  yield takeEvery(type.LOAD_POST_BY_CAT, getPostByCatSaga);
 }
 
 export default searchPostsSaga;
