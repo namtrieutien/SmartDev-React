@@ -21,6 +21,7 @@ import history from './history';
 import CartPopup from './components/Cart/CartPopup';
 import EditUser from './components/EditUser';
 import CategoryPosts from './pages/CategoryPosts/CategoryPosts';
+import MyPosts from './pages/MyPosts/MyPosts';
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
           </Route>
           <Route path="/edit_profile" component={EditUser}/>
           <Route path="/category/:catId" component={CategoryPosts} />
+          <Route path="/my-post" component={MyPosts} />
           <Route path="*" component={ErrorPage}>
           </Route>
         </Switch>

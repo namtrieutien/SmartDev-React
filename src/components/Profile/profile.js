@@ -90,17 +90,18 @@ function Profile(props) {
                       <h4>{data.user.name}</h4>
                       <p className="text-secondary mb-1">Premium Member</p>
                       <button className="btn btn-outline-primary mr-2"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/cart.png`).default} alt="Cart" />Cart</button>
-                      <button onClick={handleClickCreatePostButton} className="btn btn-outline-primary"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/heart.png`).default} alt="Fav" />Create Post</button>
+                      <button onClick={handleClickCreatePostButton} className="btn btn-outline-primary"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/create.png`).default} alt="Fav" />Create Post</button>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="card mt-3">
                 <ul className="list-group list-group-flush">
-                  <ListItem label="Profile" src='user.png' link="#"></ListItem>
+                  <ListItem label="Profile" src='user.png' link="/profile"></ListItem>
                   <ListItem label="History" src='bill.png' link="/payment/history"></ListItem>
                   <ListItem label="Notification" src='megaphone.png' link="#"></ListItem>
-                  <ListItem label="Voucher" src='voucher.png' link="#"></ListItem>
+                  <ListItem label="Voucher" src='voucher.png' link="/voucher"></ListItem>
+                  <ListItem label="My Posts" src='post.png' link="/my-post"></ListItem>
                 </ul>
               </div>
             </div>
@@ -157,10 +158,10 @@ function Profile(props) {
                     <div className="card-body card-statistic">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">BUY</i>Statistics</h6>
                       {isLoading || total == null || list == [] ? (
-                        <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
+                        <h6 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h6>
                       ) : (
                         <div>
-                          <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">{VNDformat(total.total_all_orders)}</i></h7>
+                          <h6 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">{VNDformat(total.total_all_orders)}</i></h6>
                           {list.map(item => (
                             <ProgressBar label={item.category} width={`${item.percentage}%`} aria_valuenow={item.percentage} ></ProgressBar>
                           ))}
@@ -174,10 +175,10 @@ function Profile(props) {
                     <div className="card-body card-statistic">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">SALE</i>Statistics</h6>
                       {isLoading || total_buy==null || list_buy==[] ? (
-                        <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
+                        <h6 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h6>
                       ) : (
                         <div>
-                          <h7 className="d-flex align-items-center ml-5 mb-3 text-success"><i className="material-icons text-success ml-5 mr-2">{VNDformat(total_buy.total_price)}</i></h7>
+                          <h6 className="d-flex align-items-center ml-5 mb-3 text-success"><i className="material-icons text-success ml-5 mr-2">{VNDformat(total_buy.total_price)}</i></h6>
                           {list_buy.map(item => (
                             <ProgressBar label={item.category} width={`${item.percentage}%`} aria_valuenow={item.percentage} ></ProgressBar>
                           ))}
