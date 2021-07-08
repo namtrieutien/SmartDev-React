@@ -12,9 +12,8 @@ const axiosManagement = axios.create({
 axiosManagement.interceptors.request.use(async (config) => {
   const token = JSON.parse(localStorage.getItem("token"));
   if (token) {
-  config.headers.Authorization = `Bearer ${token}`
-
-  return config
+    config.headers.Authorization = `Bearer ${token}`
+    return config
   } else return null;
   
 })

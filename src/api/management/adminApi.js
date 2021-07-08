@@ -56,14 +56,14 @@ const adminApi = {
     return axiosManagement.get(url)
   },
 
-  updateUser: (params) => {
+  updateUser: (body) => {
     const url = '/admin/users';
-    return axiosManagement.put(url, { params })
+    return axiosManagement.put(url, body)
   },
 
-  createUser: (params) => {
-    const url = '/admin/users';
-    return axiosManagement.post(url, { params })
+  createUser: (body) => {
+    const url = '/admin/users';  
+    return axiosManagement.post(url, body)
   },
 
   deleteUser: (params) => {

@@ -48,7 +48,7 @@ const ListProducts = (props) => {
         <span className="widget-lg-name">{product.title}</span>
       </td>
       <td className="widget-lg-date">{handleTimeStamp(product.createdAt)}</td>
-      <td className="widget-lg-amount">{product.price}</td>
+      <td className="widget-lg-amount">{product.price}Đ</td>
       <td className="widget-lg-status">
         <Button type={product.status} />
       </td>

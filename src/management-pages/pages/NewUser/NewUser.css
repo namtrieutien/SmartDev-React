@@ -23,17 +23,18 @@
 }
 
 .newuser-item>input {
-  height: 20px;
+  font-size: medium;
+  height: 40px;
   padding: 10px;
   border: 1px solid gray;
   border-radius: 5px;
 }
 
-.newuser-gender>input {
-  margin-top: 15px;
+.newuser-role>input {
+  margin-top: 0px;
 }
 
-.newuser-gender>label {
+.newuser-role>label {
   margin: 10px;
   font-size: 18px;
   color: #555;
