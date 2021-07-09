@@ -8,8 +8,28 @@ import "./WidgetLg.css";
 
 // WidgetLg.propTypes = {};
 
+
+const LoadinngPostsFrame = () => {
+
+  const [listProduct, setListProduct] = useState([{}, {}, {}, {}]);
+
+  const listItems = listProduct.map((product) => (
+    <tr className="widget-lg-tr" key={product.index }>
+      <td className="widget-lg-user">
+        <div  className="widget-lg-img"> <Skeleton circle={true} height={40} width={40} /></div>
+        <span className="widget-lg-name"><Skeleton width="100px" /></span>
+      </td>
+      <td className="widget-lg-date"><Skeleton /></td>
+      <td className="widget-lg-amount"><Skeleton /></td>
+      <td className="widget-lg-status">
+        <Skeleton />
+      </td>
+    </tr>
+  ));
+  return <>{listItems}</>;
+}
+
 const ListProducts = (props) => {
-  // const listProduct = widgetLgList;
   const [listProduct, setListProduct] = useState([]);
   useEffect(() => {
     const fetchLastestPost = async () => {
@@ -74,7 +94,8 @@ function WidgetLg(props) {
               <th className="widget-lg-th">Price</th>
               <th className="widget-lg-th">Status</th>
             </tr>
-            <ListProducts />
+            {/* <ListProducts /> */}
+            <LoadinngPostsFrame />s
           </tbody>
         </table>
       </SkeletonTheme>
