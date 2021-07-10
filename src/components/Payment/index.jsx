@@ -10,6 +10,7 @@ import { getCartItems } from '../../redux/actions/user/payment.action'
 import loading from './images/loading.gif'
 import { useLocation } from 'react-router-dom';
 import { formatPrice } from '../../helper/helper'
+
 function CartItem({ cartItem }) {
   console.log("cartItem", cartItem)
   const { id, title, size, description, price, status, category, image } = cartItem.post;
@@ -23,6 +24,7 @@ function CartItem({ cartItem }) {
     </div>
   );
 }
+
 const PaymentSchema = yup.object().shape({
   description: yup.string().required('Description is required'),
 });

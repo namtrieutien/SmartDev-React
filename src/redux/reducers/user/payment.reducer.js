@@ -5,7 +5,8 @@ const initialState = {
   check: false,
   checkExecute: false,
   paymentHistory: {},
-  listItems: {}
+  listItems: {},
+  checkGetPayment: false
 }
 
 export default function payment(state = initialState, action) {
@@ -45,11 +46,13 @@ export default function payment(state = initialState, action) {
     case type.USER_GET_PAYMENT_HISTORY_REQUESTED:
       return {
         ...state,
+        checkGetPayment: true
       }
     case type.USER_GET_PAYMENT_HISTORY:
       return {
         ...state,
         paymentHistory: action.payload,
+        checkGetPayment: false
       }
 
     case type.USER_GET_CART_ITEMS_REQUEST:
