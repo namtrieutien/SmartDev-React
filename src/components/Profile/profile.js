@@ -101,8 +101,8 @@ function Profile(props) {
                 <ul className="list-group list-group-flush">
                   <ListItem label="Profile" src='user.png' link="#"></ListItem>
                   <ListItem label="History" src='bill.png' link="/payment/history"></ListItem>
-                  <ListItem label="Notification" src='megaphone.png' link="#"></ListItem>
-                  <ListItem label="Voucher" src='voucher.png' link="#"></ListItem>
+                  {/* <ListItem label="Notification" src='megaphone.png' link="#"></ListItem>
+                  <ListItem label="Voucher" src='voucher.png' link="#"></ListItem> */}
                 </ul>
               </div>
             </div>

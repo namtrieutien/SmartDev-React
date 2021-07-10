@@ -14,9 +14,10 @@ export function executePayment(paymentInfo) {
   }
 }
 
-export function paymentHistory() {
+export function paymentHistory(date) {
   return {
       type: type.USER_GET_PAYMENT_HISTORY_REQUESTED,
+      date
   }
 }
 

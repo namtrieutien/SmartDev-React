@@ -64,8 +64,8 @@ class Content extends React.Component {
             <div className="row">
               <div className="col-md-12">
                 <div className="text-content">
-                  <h4>new arrivals</h4>
-                  <h2>CHỢ TỐT PRODUCTS</h2>
+                  {/* <h4>new arrivals</h4>
+                  <h2>CHỢ TỐT PRODUCTS</h2> */}
                 </div>
               </div>
             </div>

@@ -2,10 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 
 import PaymentOrder from './payment/paymentOrder.component'
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import './style.css'
 import { paymentHistory } from '../../redux/actions/user/payment.action'
 import { formatPrice } from '../../helper/helper'
+
+const PaymentHistorySchema = yup.object().shape({
+  dateFrom: yup.string().required('dateFrom is required'),
+  dateTo: yup.string().required('dateTo is required'),
+});
 
 function PaymentHistory(props) {
 
@@ -24,12 +32,26 @@ function PaymentHistory(props) {
 
   const [posts, setPosts] = useState([]);
 
+  console.log(data)
+
   useEffect(() => {
-    dispatch(paymentHistory());
+    dispatch(paymentHistory({
+      dateFrom : '',
+      dateTo: ''
+    }));
   }, [])
 
   const handleGetPosts = (posts) => {
     setPosts(posts)
+  }
+
+  const { register, formState: { errors }, handleSubmit, watch } = useForm({
+    resolver: yupResolver(PaymentHistorySchema)
+  });
+
+  const onSubmit = (dataForm) => {
+    console.log(dataForm);
+    dispatch(paymentHistory(dataForm));
   }
 
   return (
@@ -37,7 +59,34 @@ function PaymentHistory(props) {
       <div className="row">
         <div className="col-12">
           <div className="product-details mx-2"></div>
-          <h2>Payment History</h2>
+          <h2 className="mt-3">Payment History</h2>
+          <form action="#" className="" onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-group">
+              <div className="d-md-flex">
+                <div className="col-12 col-md-6 d-md-flex m-0 p-0">
+                  <div className="col-12 col-md-6">
+                    <input {...register("dateFrom", { maxLength: 100 })} id="dateFrom" type="date" className="form-control date mr-0"/>
+                    {errors.dateFrom && <span className="text-danger">{errors.dateFrom.message}</span>}
+                  </div>
+                  <div className="col-12 col-md-1">
+                    <p className="font-weight-bold mt-md-2">
+                      ~
+                    </p>
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <input {...register("dateTo", { maxLength: 100 })} id="dateTo" type="date" className="form-control date" />
+                    {errors.dateTo && <span className="text-danger">{errors.dateTo.message}</span>}
+                  </div>
+                  <div className="col-3 mt-2 col-md-2 mt-md-0 ">
+                    <button type="submit" placeholder="" className="form-control search"><span className="fa fa-search"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div className="d-flex justify-content-center">
+            {data && !data.length > 0 && <img className="mt-2" src="https://smartdev-sunny-bucket.s3.ap-southeast-1.amazonaws.com/no_item.png" alt="" />}
+          </div>
           {data && data.map((value, index) => {
             return (
               <div className="row">
