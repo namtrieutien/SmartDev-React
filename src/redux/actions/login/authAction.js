@@ -1,6 +1,6 @@
 import * as types from "./types";
 
- export const loginUserAction = (email, password) => {
+export const loginUserAction = (email, password) => {
   return {
       type: types.LOGIN_USER,
       email, 

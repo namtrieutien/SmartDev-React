@@ -17,7 +17,7 @@ function* login({ email, password }) {
         else return <Redirect to="/profile" />;
 
     } catch (e) {
-        yield put({type: types.ERROR, payload: true});
+        yield put({type: types.ERROR, payload: e.response.data});
         console.log("error login:", e.response.data)
     }
 }

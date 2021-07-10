@@ -10,13 +10,20 @@ export default function register(state = initialState, action) {
     case type.USER_REGISTER_REQUESTED:
       return {
         ...state,
-        check : true
+        check: true
       }
     case type.USER_REGISTER:
       return {
         ...state,
         data: action.payload,
-        check : false
+        check: false
+      }
+    case type.RESEND_ACTIVATION_LINK_REQUEST:
+      console.log("si");
+      console.log(action);
+      return {
+        ...state,
+        email: action.email
       }
     default:
       return {

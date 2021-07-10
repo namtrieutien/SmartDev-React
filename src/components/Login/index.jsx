@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 // import PropTypes from 'prop-types';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { loginUserAction } from "../../redux/actions/login/authAction";
-
+import { resendActivationLink } from '../../redux/actions/user/register.action'
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
@@ -25,15 +25,24 @@ function Login(props) {
   } = useForm({
     resolver: yupResolver(SigninSchema),
   });
-  const { isLoggedIn, user, check, error } = props;
+  const { isLoggedIn, user, check, error, checkAuth } = props;
+
+  const [email, setEmail] = useState('')
+
   if (isLoggedIn) {
     if (user.user.roles.includes("ROLE_ADMIN"))
       return <Redirect to="/management" />;
     else return <Redirect to="/profile" />;
   }
+
   const onSubmit = (data) => {
+    setEmail(data.email);
     props.login(data.email, data.password);
   };
+
+  const clickResendActivationLink = () => {
+    props.resend("sitranhue@gmail.com")
+  }
 
   return (
     <div>
@@ -64,6 +73,11 @@ function Login(props) {
                           {error && <p className='badge badge-danger mb-2 ml-1'>
                             <span>Email or password is wrong!</span>
                           </p>}
+                          {!false &&
+                            <div className='mb-2 ml-1'>
+                              <p><span className="text-danger">You need to active your email.</span></p>
+                              <p><span>Click <a href="#" style={{ color: 'blue' }} onClick={() => clickResendActivationLink()}>here</a> to resend the activation link</span></p>
+                            </div>}
                           <input
                             {...register("email")}
                             id="inputEmail"
@@ -132,12 +146,13 @@ function Login(props) {
 }
 const mapStateToProps = state => {
   console.log(state.userReducer);
-  const { isLoggedIn, user, check, error } = state.userReducer;
+  const { isLoggedIn, user, check, error, checkAuth } = state.userReducer;
   return {
     isLoggedIn,
     user,
     check,
-    error
+    error,
+    checkAuth
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -145,6 +160,9 @@ const mapDispatchToProps = (dispatch) => {
     login: (email, password) => {
       dispatch(loginUserAction(email, password));
     },
+    resend: (email) => {
+      dispatch(resendActivationLink(email));
+    }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -23,9 +23,29 @@ function* userRegister(action) {
   }
 }
 
+const sendActivationLink = async (email) => {
+  try {
+    const response = await apiSunny.post(`api/user/register/resend-activation-link`,  email);
+    return response.data;
+  } catch (e) {
+    return e.response.data;
+  }
+}
+
+function* userSendActivationLink(action) {
+  try {
+    const data = yield call(sendActivationLink, action.email);
+    console.log(data);
+    // yield put({type: type.USER_REGISTER, payload: data});
+  } catch (e) {
+    console.log(e.messages);
+    // yield put({type: type.GET_USERS_FAILED, message: e.message});
+  }
+}
 
 function* registerSaga() {
   yield takeEvery(type.USER_REGISTER_REQUESTED, userRegister);
+  yield takeEvery(type.RESEND_ACTIVATION_LINK_REQUEST, userSendActivationLink)
 }
 
 export default registerSaga;

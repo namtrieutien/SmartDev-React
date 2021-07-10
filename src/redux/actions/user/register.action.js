@@ -7,3 +7,9 @@ export function register(user) {
     }
 }
 
+export const resendActivationLink = (email) => {
+  return {
+      type: type.RESEND_ACTIVATION_LINK_REQUEST,
+      email,
+  }
+}
