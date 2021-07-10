@@ -8,8 +8,10 @@ import { edit } from '../../redux/actions/user/edit.action'
 import { Link } from "react-router-dom"
 import "./edituser.css"
 
+import loading from '../Register/login-image/loading.gif'
+
 function EditUser(props) {
-    const { user: data } = props;
+    const { user: data, checkStatus, checkSuccessful } = props;
     const { name, email, phone, address } = data.user;
     const { commune, district, city } = address;
 
@@ -54,6 +56,9 @@ function EditUser(props) {
     else return (
         <div>
             <Header />
+            <div className={checkStatus ? "loading-bg" : "loading-bg d-none"}>
+              <img src={loading} alt="Loading..." />
+            </div>
             <div className="container mt-5">
                 <div className="row gutters">
                     <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -78,6 +83,7 @@ function EditUser(props) {
                                     <div className="row gutters">
                                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <h6 className="mb-2 text-primary">Personal Details</h6>
+                                            {/* {checkSuccessful && <h6 className="badge badge-success" >Update successful</h6>} */}
                                         </div>
                                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div className="form-group">
@@ -193,8 +199,11 @@ function EditUser(props) {
 
 function mapStateToProps(state) {
     const { user } = state.userReducer;
+    const {checkStatus, checkSuccessful} = state.editUserReducer
     return {
-        user
+        user,
+        checkStatus,
+        checkSuccessful
     };
 }
 

@@ -50,9 +50,11 @@ function* userPaymentSuccess(action) {
   }
 }
 
-const getPaymentHistory = async (paymentInfo) => {
+const getPaymentHistory = async (date) => {
   try {
-    const response = await apiSunny.get(`/order/payment/history`);
+    const response = await apiSunny.get(`/order/payment/history`, {
+      params: date
+    });
     return response.data;
   } catch (e) {
     return e.response.data;
@@ -61,7 +63,8 @@ const getPaymentHistory = async (paymentInfo) => {
 
 function* userGetPaymentHistory(action) {
   try {
-    const data = yield call(getPaymentHistory);
+    console.log(action.date);
+    const data = yield call(getPaymentHistory, action.date);
     yield put({type: type.USER_GET_PAYMENT_HISTORY, payload: data});
   } catch (e) {
     console.log(e.messages);

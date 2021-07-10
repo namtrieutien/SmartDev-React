@@ -11,13 +11,14 @@ function* login({ email, password }) {
         const data = yield call(AuthService.login, { email, password })
         yield put(actions.userLoggedIn(data))
         yield put(cartAction.loadCartAction())
-
+        // yield put({type: types.USER_LOGGEDIN, payload: false});
         if (data.user.roles.includes("ROLE_ADMIN"))
             return <Redirect to="/management" />;
         else return <Redirect to="/profile" />;
 
     } catch (e) {
-        console.log("error login:", e.msg)
+        yield put({type: types.ERROR, payload: true});
+        console.log("error login:", e.response.data)
     }
 }
 
