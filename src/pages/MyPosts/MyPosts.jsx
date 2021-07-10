@@ -19,7 +19,9 @@ function PostItem({ postItem, handelClick }) {
             <td>{size}</td>
             <td className="text-center">{createdAt}</td>
             <td className="text-right">{VNDformat(price)}</td>
-            <td className="text-right"><button className="btn btn-sm btn-danger" onClick={() => handelClick(id)}><i className="fa fa-trash" /> </button> </td>
+            <td className="text-right">
+                <button className="btn btn-sm btn-danger" onClick={() => handelClick(id)} data-toggle="modal" data-target="#deleteModal">
+                    <i className="fa fa-trash" /></button> </td>
         </tr>
     );
 }
@@ -32,7 +34,6 @@ function MyPosts(props) {
     }, [])
 
     const postList = props.postList;
-    console.log("postListMyPosts", postList)
     return (
         <div>
             <Header />
@@ -49,7 +50,7 @@ function MyPosts(props) {
                                 <div className="card-body">
                                     <div className="media d-flex">
                                         <div className="align-self-center">
-                                            <img className="d-block  float-left" style={{ width: '20%', height: '40%' }} src="https://image.flaticon.com/icons/png/512/3578/3578169.png" alt="Card image cap" />
+                                            <img className="d-block  float-left" style={{ width: '20%', height: '40%' }} src="https://image.flaticon.com/icons/png/512/3578/3578169.png" alt="" />
                                         </div>
                                         <div className="media-body text-right">
                                             <h4 className="text-info mb-3">SOLDOUT</h4>
@@ -67,7 +68,7 @@ function MyPosts(props) {
                                 <div className="card-body">
                                     <div className="media d-flex">
                                         <div className="align-self-center">
-                                            <img className="d-block  float-left" style={{ width: '20%', height: '40%' }} src="https://image.flaticon.com/icons/png/512/4454/4454332.png" alt="Card image cap" />
+                                            <img className="d-block  float-left" style={{ width: '20%', height: '40%' }} src="https://image.flaticon.com/icons/png/512/4454/4454332.png" alt="" />
                                         </div>
                                         <div className="media-body text-right">
                                             <h4 className="text-info mb-3">SELLING</h4>
@@ -114,6 +115,29 @@ function MyPosts(props) {
                 </div>
             </div>
 
+            <div className={props.response ? "modal fade d-block " : "modal fade modal-notification"} id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="col-11 modal-title text-center ml-3">Successfully!</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <h5 className="col-12 text-center">
+                                <img style={{ width: '30%', height: '50%' }} src="https://www.legalpillers.com/wp-content/uploads/2020/09/success.gif" alt="Card image cap" />
+                            </h5>
+                            <p className="text-center my-3" style={{ fontSize: "17px" }}>
+                                {props.response}
+                            </p>
+                        </div>
+                        <div className="modal-footer">
+                            <button className="btn btn-success btn-block" type="button" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <Footer />
         </div>
     );
