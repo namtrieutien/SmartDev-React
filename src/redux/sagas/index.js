@@ -10,6 +10,7 @@ import s3Saga from './s3/s3.saga';
 import addToCartSaga from './user/addtocart.saga'
 import editUserSaga from './user/edituser.saga';
 import searchPostsSaga from './posts/search.saga'
+import managePostSaga from './user/managepost.saga';
 
 export default function* rootSaga() {
     yield all([
@@ -22,6 +23,7 @@ export default function* rootSaga() {
       categorySaga(),
       s3Saga(),
       editUserSaga(),
-      searchPostsSaga()
+      searchPostsSaga(),
+      managePostSaga()
     ])
 }

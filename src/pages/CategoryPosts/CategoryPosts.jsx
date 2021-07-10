@@ -3,7 +3,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import PostList from '../../components/PostList';
 import Pagination from '../../components/Pagination';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { searchByCatLoading } from '../../redux/actions/posts/search.action';
 import SearchNotFound from '../../components/SearchPosts/SearchNotFound';
@@ -13,8 +13,7 @@ import SearchNotFound from '../../components/SearchPosts/SearchNotFound';
 // };
 
 function CategoryPosts(props) {
-  const location = useLocation();
-  const cat_id = location.state;
+  const { cat_id } = useParams();
   const [postList, setPostList] = useState(props.data);
   const [pagination, setPagination] = useState(props.pagination);
 
@@ -31,7 +30,6 @@ function CategoryPosts(props) {
   }
 
   useEffect(() => {
-
     const params = {
       title: props.params.title,
       _page: filters._page,
@@ -43,7 +41,7 @@ function CategoryPosts(props) {
       setPostList(props.data);
       setPagination(props.pagination);
     }
-  }, [filters, props.params.title])
+  }, [filters, props.params.title, cat_id])
 
   return (
     <div>

@@ -64,3 +64,10 @@ export const USER_EDITED = 'USER_EDITED'
 export const LOAD_POST_BY_CAT = 'LOAD_POST_BY_CAT'
 export const LOADED_POST_BY_CAT = 'LOADED_POST_BY_CAT'
 export const RESET_PAGE = 'RESET_PAGE'
+
+//manage user's post
+export const LOAD_POST_USER = 'LOAD_POST_USER'
+export const LOADED_POST_USER = 'LOADED_POST_USER'
+export const DELETE_POST = 'DELETE_POST'
+export const DELETED_POST = 'DELETED_POST'
+

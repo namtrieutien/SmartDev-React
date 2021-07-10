@@ -1,7 +1,5 @@
 import * as type from '../../constants'
 
-const user = JSON.parse(localStorage.getItem("user"));
-
 const initialState = {
     user: {}
   }

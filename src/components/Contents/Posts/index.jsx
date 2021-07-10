@@ -18,12 +18,10 @@ function Posts(props) {
   }
 
   useEffect(() => {
-    props.getCat();
     props.searchPost(params);
   }, [])
   const postList = Array.from(props.data);
   console.log("postList", postList)
-  const cat = Array.from(props.category);
     return (
     <div>
       <div className="latest-products">
@@ -67,9 +65,6 @@ const mapDispatchToProps = (dispatch) => {
     searchPost: (params) => {
       dispatch(searchByCatLoading(params));
     },
-    getCat: () => {
-      dispatch(getAllCategoriesRequestAction());
-    }
   };
 };
 

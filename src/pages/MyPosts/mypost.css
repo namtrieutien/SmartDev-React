@@ -1,12 +1,11 @@
 
          .jumbotron {background-image: linear-gradient(to right, #4CB8C4 0%, #3CD3AD  51%, #4CB8C4  100%)}
          .jumbotron {
-            letter-spacing: 5px;
+            letter-spacing: 12px;
             text-align: center;
             text-transform: uppercase;
             transition: 0.5s;
             background-size: 200% auto;
-            color: white;            
             box-shadow: 0 0 20px #eee;
             display: block; 
           }
@@ -16,4 +15,31 @@
             color: #fff;
             text-decoration: none;
           }
-         
+          
+          .card-my-post {background-image: linear-gradient(to right, #ffffff 0%, #d3c2fa  51%, #ff9f9f  100%)}
+          .card-my-post {
+             transition: 0.5s;
+             background-size: 200% auto;
+             box-shadow: 0 0 20px #eee;
+           }
+ 
+           .card-my-post:hover {
+             background-position: right center; /* change the direction of the change here */
+             color: #fff;
+           }
+           .item-img {
+            margin-left: 20px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          .modal-header, .btn-success, .modal-title {
+            color: #fff;
+            border-radius: 4px;
+        background: #82ce34;
+        text-decoration: none;
+        transition: all 0.4s;
+            line-height: normal;
+            border: none;
+        }

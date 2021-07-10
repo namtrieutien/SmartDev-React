@@ -1,27 +1,88 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import { loadPosts, deletePost } from '../../redux/actions/user/managepost.action'
+import { connect } from 'react-redux'
 
 import "./mypost.css";
+import { VNDformat } from '../../helpers/utils';
 
-// function CartItem({ cartItem }) {
-//   return (
-
-//   );
-// }
+function PostItem({ postItem, handelClick }) {
+    const { id, title, size, price, status, category, image, createdAt } = postItem;
+    return (
+        <tr>
+            <td><img className="item-img" src={image} /> </td>
+            <td>{title}</td>
+            <td className="text-center">{id}</td>
+            <td className="text-center">{category}</td>
+            <td>{status ? <div class="p-3 mb-2 bg-success text-white text-center">Sold</div> : <div class="p-3 mb-2  bg-light text-dark">Selling</div>}</td>
+            <td>{size}</td>
+            <td className="text-center">{createdAt}</td>
+            <td className="text-right">{VNDformat(price)}</td>
+            <td className="text-right"><button className="btn btn-sm btn-danger" onClick={() => handelClick(id)}><i className="fa fa-trash" /> </button> </td>
+        </tr>
+    );
+}
 
 
 function MyPosts(props) {
+
+    useEffect(() => {
+        props.loadPosts();
+    }, [])
+
+    const postList = props.postList;
+    console.log("postListMyPosts", postList)
     return (
         <div>
             <Header />
-
             <section className="jumbotron text-center">
                 <div className="container">
-                    <h1 className="jumbotron-heading">My Posts</h1>
+                    <h1 className="jumbotron-heading text-light">My Posts</h1>
                 </div>
             </section>
-            <div className="container mb-4">
+            <div class="grey-bg container">
+                <div className="row p-5">
+                    <div className="col-xl-6 col-sm-6 col-12">
+                        <div className="card card-my-post">
+                            <div className="card-content">
+                                <div className="card-body">
+                                    <div className="media d-flex">
+                                        <div className="align-self-center">
+                                            <img className="d-block  float-left" style={{ width: '20%', height: '40%' }} src="https://image.flaticon.com/icons/png/512/3578/3578169.png" alt="Card image cap" />
+                                        </div>
+                                        <div className="media-body text-right">
+                                            <h4 className="text-info mb-3">SOLDOUT</h4>
+                                            <h6>{VNDformat(props.total_sold)}</h6>
+                                            <span>{props.total_sold_posts} posts</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-xl-6 col-sm-6 col-12">
+                        <div className="card card-my-post">
+                            <div className="card-content">
+                                <div className="card-body">
+                                    <div className="media d-flex">
+                                        <div className="align-self-center">
+                                            <img className="d-block  float-left" style={{ width: '20%', height: '40%' }} src="https://image.flaticon.com/icons/png/512/4454/4454332.png" alt="Card image cap" />
+                                        </div>
+                                        <div className="media-body text-right">
+                                            <h4 className="text-info mb-3">SELLING</h4>
+                                            <h6>{VNDformat(props.total_selling)}</h6>
+                                            <span>{props.total_selling_posts} posts</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div className="container mb-5">
                 <div className="row">
                     <div className="col-12">
                         <div className="table-responsive">
@@ -29,81 +90,60 @@ function MyPosts(props) {
                                 <thead>
                                     <tr>
                                         <th scope="col"> </th>
-                                        <th scope="col">Product</th>
+                                        <th scope="col" className="text-center">Post</th>
+                                        <th scope="col" className="text-center">ID</th>
+                                        <th scope="col" className="text-center">Category</th>
                                         <th scope="col">Available</th>
-                                        <th scope="col" className="text-center">Quantity</th>
+                                        <th scope="col">Size</th>
+                                        <th scope="col" className="text-center">Create At</th>
                                         <th scope="col" className="text-right">Price</th>
                                         <th> </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                                        <td>Product Name Dada</td>
-                                        <td>In stock</td>
-                                        <td><input className="form-control" type="text" defaultValue={1} /></td>
-                                        <td className="text-right">124,90 €</td>
-                                        <td className="text-right"><button className="btn btn-sm btn-danger"><i className="fa fa-trash" /> </button> </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                                        <td>Product Name Toto</td>
-                                        <td>In stock</td>
-                                        <td><input className="form-control" type="text" defaultValue={1} /></td>
-                                        <td className="text-right">33,90 €</td>
-                                        <td className="text-right"><button className="btn btn-sm btn-danger"><i className="fa fa-trash" /> </button> </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                                        <td>Product Name Titi</td>
-                                        <td>In stock</td>
-                                        <td><input className="form-control" type="text" defaultValue={1} /></td>
-                                        <td className="text-right">70,00 €</td>
-                                        <td className="text-right"><button className="btn btn-sm btn-danger"><i className="fa fa-trash" /> </button> </td>
-                                    </tr>
-                                    <tr>
-                                        <td />
-                                        <td />
-                                        <td />
-                                        <td />
-                                        <td>Sub-Total</td>
-                                        <td className="text-right">255,90 €</td>
-                                    </tr>
-                                    <tr>
-                                        <td />
-                                        <td />
-                                        <td />
-                                        <td />
-                                        <td>Shipping</td>
-                                        <td className="text-right">6,90 €</td>
-                                    </tr>
-                                    <tr>
-                                        <td />
-                                        <td />
-                                        <td />
-                                        <td />
-                                        <td><strong>Total</strong></td>
-                                        <td className="text-right"><strong>346,90 €</strong></td>
-                                    </tr>
+                                    {postList && postList.map(item =>
+                                        <PostItem
+                                            key={item.id}
+                                            postItem={item}
+                                            handelClick={props.deletePost} />
+                                    )}
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div className="col mb-2">
-                        <div className="row">
-                            <div className="col-sm-12  col-md-6">
-                                <button className="btn btn-block btn-light">Continue Shopping</button>
-                            </div>
-                            <div className="col-sm-12 col-md-6 text-right">
-                                <button className="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
+
             <Footer />
         </div>
     );
 }
+const mapStateToProps = (state) => {
+    const { postList,
+        total_sold,
+        total_selling,
+        total_sold_posts,
+        total_selling_posts,
+        response } = state.managePostReducer
+    return {
+        postList,
+        total_sold,
+        total_selling,
+        total_sold_posts,
+        total_selling_posts,
+        response
+    }
+}
 
-export default MyPosts;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadPosts: () => {
+            dispatch(loadPosts());
+        },
+        deletePost: (pid) => {
+            dispatch(deletePost(pid));
+        }
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPosts);

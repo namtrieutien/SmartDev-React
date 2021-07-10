@@ -62,7 +62,6 @@ function Profile(props) {
 
   useEffect(() => {
     fetchStatistic();
-
   }, [])
 
   const handleClickCreatePostButton = () =>
@@ -92,7 +91,7 @@ function Profile(props) {
                       <h4>{data.user.name}</h4>
                       <p className="text-secondary mb-1">Premium Member</p>
                       <button className="btn btn-outline-primary mr-2"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/cart.png`).default} alt="Cart" />Cart</button>
-                      <button onClick={handleClickCreatePostButton} className="btn btn-outline-primary"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/heart.png`).default} alt="Fav" />Create Post</button>
+                      <button onClick={handleClickCreatePostButton} className="btn btn-outline-primary"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/create.png`).default} alt="Fav" />Create Post</button>
                     </div>
                   </div>
                 </div>
@@ -100,9 +99,10 @@ function Profile(props) {
               <div className="card mt-3">
                 <ul className="list-group list-group-flush">
                   <ListItem label="Profile" src='user.png' link="#"></ListItem>
+                  <ListItem label="My Posts" src='post.png' link="/my-posts"></ListItem>
                   <ListItem label="History" src='bill.png' link="/payment/history"></ListItem>
                   <ListItem label="Notification" src='megaphone.png' link="#"></ListItem>
-                  <ListItem label="Voucher" src='voucher.png' link="#"></ListItem>
+                  <ListItem label="Voucher" src='voucher.png' link="/my-voucher"></ListItem>
                 </ul>
               </div>
             </div>

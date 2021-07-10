@@ -23,7 +23,6 @@ const initialState = {
 export const postByCatReducer = (state = initialState, action) => {
     switch (action.type) {
         case type.LOAD_POST_BY_CAT:
-            console.log("action.params", action.params)
             return {
                 ...state,
                 params: action.params,

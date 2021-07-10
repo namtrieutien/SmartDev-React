@@ -4,7 +4,7 @@ import userApi from '../../../api/management/userApi';
 import * as actions from '../../actions/user/edit.action'
 import * as authAction from '../../actions/login/authAction'
 
-//ADD TO CART
+//EDIT USER
 const editUserAPI = async (user) => {
   try {
     const response = await userApi.editUser(user);
