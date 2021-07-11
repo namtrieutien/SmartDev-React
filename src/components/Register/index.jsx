@@ -9,20 +9,28 @@ import { getCities, getDistrict, getCommute } from '../../redux/actions/address.
 import { register as userRegister } from '../../redux/actions/user/register.action';
 import loading from './login-image/loading.gif';
 
+import defaultAvatar from '../../images/avatar.png';
+
 Register.propTypes = {
 
 };
 
 
 const SigninSchema = yup.object().shape({
-  email: yup.string().email().required(),
+  email: yup.string().email().required('Email is required'),
   password: yup.string().required('Password is required'),
-  phone: yup.string().required('Phone is required')
+  phone: yup.string().required('Phone is required'),
+  avatar: yup.mixed().test('type', 'We only support jpeg/jpg/png', (value) => {
+    return (value[0].type === "image/jpg" || value[0].type === "image/jpeg" || value[0].type === "image/png");
+  }),
+  name: yup.string().required('Name is required'),
 });
 
 function Register(props) {
 
   const [checkRegister, setCheckRegister] = useState(false)
+
+  const [image, setImage] = useState(null)
 
   const [check, setCheck] = useState({
     checkCity: false,
@@ -50,7 +58,7 @@ function Register(props) {
   const checkTemp = useSelector(state => {
     return state.registerReducer.check;
   });
-  
+
   // let user = useSelector(state => {
   //   return state;
   // });
@@ -64,19 +72,34 @@ function Register(props) {
   });
 
   const onSubmit = (data) => {
-    dispatch(userRegister(data));
+    delete data.avatar;
+
+    let formData = new FormData();
+    formData.append('name', data.name)
+    formData.append('email', data.email)
+    formData.append('password', data.password)
+    formData.append('phone', data.phone)
+    formData.append('commute', data.commute)
+    formData.append('district', data.district)
+    formData.append('city', data.city)
+    if (image !== null) {
+      formData.append('avatar', image)
+    }
+    dispatch(userRegister(formData));
   };
 
   const findByName = (array, name) => {
     return array.find(element => element.name === name).id;
   }
-  
 
-  const array = [200, 400, 500];
+  const handleChangeFile = (e) => {
+    setImage(e.target.files[0])
+  }
+
   return (
     <div>
       <div className={checkTemp ? "loading-bg" : "loading-bg d-none"}>
-        <img src={loading} alt="Loading..."/>
+        <img src={loading} alt="Loading..." />
       </div>
       <div className="Login">
         <div className="container-fluid">
@@ -91,11 +114,25 @@ function Register(props) {
                   <div className="row">
                     <div className="col-lg-10 col-xl-7 mx-auto">
                       <h3 className="display-4">Welcome to Chotot</h3>
-                      <p className="text-muted mb-4">
-                        Not a member yet?
+                      <p className="text-muted mb-4 ml-1">
+                        You are already a member?
                         <a className="register-anchor ml-1" href="/login">Login now</a>
                       </p>
                       <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+                        <div className="form-group mb-3 d-flex">
+                          <img src={image ? URL.createObjectURL(image) : defaultAvatar}
+                            alt="" className="rounded-circle mr-3" width="85" id="avatar" />
+                          <div className="align-self-end">
+                            <input
+                              type="file"
+                              {...register('avatar')}
+                              className=""
+                              onChange={handleChangeFile} />
+                          </div>
+                        </div>
+                        {errors.avatar && <p className="ml-2 text-danger mt-1" style={{ fontSize: "15px", }}>
+                          {errors.avatar.message}
+                        </p>}
                         <div className="form-group mb-3">
                           <input {...register("name")}
                             id="inputname"
@@ -104,6 +141,9 @@ function Register(props) {
                             // required="" 
                             // autoFocus="" 
                             className="form-control rounded-pill border-0 shadow-sm px-4" />
+                          {errors.name && <p className="ml-2 text-danger mt-1" style={{ fontSize: "15px", }}>
+                            {errors.name.message}
+                          </p>}
                         </div>
                         <div className="form-group mb-3">
                           <input {...register("email")}
@@ -226,15 +266,15 @@ function Register(props) {
               </div>
               <div className="modal-body">
                 <p className="" style={{ fontSize: "20px" }}>
-                  <i className="far fa-envelope mr-2" style={{ fontSize: '22px' }}></i>
+                  <i className="fa fa-envelope mr-2" style={{ fontSize: '22px' }}></i>
                   Register successfull. Check your email to activate your account
                 </p>
               </div>
               <div className="modal-footer">
                 <a href="/login">
-                <button type="button" className="btn btn-login text-uppercase rounded-pill shadow-sm">
-                  Go to login
-                </button>
+                  <button type="button" className="btn btn-login text-uppercase rounded-pill shadow-sm">
+                    Go to login
+                  </button>
                 </a>
               </div>
             </div>

@@ -25,7 +25,7 @@ function Login(props) {
   } = useForm({
     resolver: yupResolver(SigninSchema),
   });
-  const { isLoggedIn, user, check, error, checkAuth } = props;
+  const { isLoggedIn, user, check, error, checkAuth, checkMail, checkSent } = props;
 
   const [email, setEmail] = useState('')
 
@@ -41,12 +41,12 @@ function Login(props) {
   };
 
   const clickResendActivationLink = () => {
-    props.resend("sitranhue@gmail.com")
+    props.resend(email)
   }
 
   return (
     <div>
-      <div className={check ? "loading-bg" : "loading-bg d-none"}>
+      <div className={check || checkMail ? "loading-bg" : "loading-bg d-none"}>
         <img src={loading} alt="Loading..." />
       </div>
       <div className="Login">
@@ -73,10 +73,14 @@ function Login(props) {
                           {error && <p className='badge badge-danger mb-2 ml-1'>
                             <span>Email or password is wrong!</span>
                           </p>}
-                          {!false &&
+                          {!checkAuth && !error &&
                             <div className='mb-2 ml-1'>
                               <p><span className="text-danger">You need to active your email.</span></p>
-                              <p><span>Click <a href="#" style={{ color: 'blue' }} onClick={() => clickResendActivationLink()}>here</a> to resend the activation link</span></p>
+                              <p><span>Click <a href="#" style={{ color: 'blue' }} onClick={() => clickResendActivationLink()}>here</a> to resend the activation link.</span></p>
+                            </div>
+                            }
+                            {checkSent && <div className='mb-2 ml-1'>
+                              <p><span className="badge badge-success">Email has sent to your mailbox.</span></p>
                             </div>}
                           <input
                             {...register("email")}
@@ -145,14 +149,18 @@ function Login(props) {
   );
 }
 const mapStateToProps = state => {
-  console.log(state.userReducer);
+  // console.log(state.userReducer);
   const { isLoggedIn, user, check, error, checkAuth } = state.userReducer;
+  const { checkMail, checkSent } = state.registerReducer;
+
   return {
     isLoggedIn,
     user,
     check,
     error,
-    checkAuth
+    checkAuth,
+    checkMail,
+    checkSent
   };
 };
 const mapDispatchToProps = (dispatch) => {

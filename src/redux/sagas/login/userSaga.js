@@ -18,7 +18,7 @@ function* login({ email, password }) {
 
     } catch (e) {
         yield put({type: types.ERROR, payload: e.response.data});
-        console.log("error login:", e.response.data)
+        // console.log("error login:", e.response.data)
     }
 }
 
@@ -44,9 +44,11 @@ function* watchLoginUser() {
 function* watchLogoutUser() {
     yield takeEvery(types.LOGOUT_USER, logout)
 }
+
 function* watchCheckJWT() {
     yield takeLatest(types.CHECK_JWT_EXP, checkJWT)
 }
+
 function* userSaga() {
     yield all([
         watchLoginUser(),

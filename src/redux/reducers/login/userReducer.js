@@ -23,7 +23,7 @@ export const userReducer = (state = initialState, action) => {
         check: false,
       }
     case ERROR:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         check: false,
         error: action.payload.code === 500,

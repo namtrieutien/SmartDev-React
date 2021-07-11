@@ -6,7 +6,11 @@ import apiSunny from '../../../api/sunny';
 
 const register = async (user) => {
   try {
-    const response = await apiSunny.post(`api/user/register`, user);
+    const response = await apiSunny.post(`api/user/register`, user, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
     return response.data;
   } catch (e) {
     return e.response.data;
@@ -25,7 +29,7 @@ function* userRegister(action) {
 
 const sendActivationLink = async (email) => {
   try {
-    const response = await apiSunny.post(`api/user/register/resend-activation-link`,  email);
+    const response = await apiSunny.post(`api/user/register/resend-activation-link`, {email});
     return response.data;
   } catch (e) {
     return e.response.data;
@@ -35,8 +39,7 @@ const sendActivationLink = async (email) => {
 function* userSendActivationLink(action) {
   try {
     const data = yield call(sendActivationLink, action.email);
-    console.log(data);
-    // yield put({type: type.USER_REGISTER, payload: data});
+    yield put({type: type.RESEND_ACTIVATION_LINK, payload: data});
   } catch (e) {
     console.log(e.messages);
     // yield put({type: type.GET_USERS_FAILED, message: e.message});

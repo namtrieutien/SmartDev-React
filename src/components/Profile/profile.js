@@ -86,7 +86,7 @@ function Profile(props) {
                 <div className="card-body card-profile">
                   <div className="d-flex flex-column align-items-center text-center">
 
-                    <img src="https://avatars.dicebear.com/api/bottts/sad.svg" alt="Admin" className="rounded-circle" width={150} />
+                    <img src={data.user.avatar ? data.user.avatar : "https://avatars.dicebear.com/api/bottts/sad.svg"} alt="avatar" className="rounded-circle" width={150} />
 
                     <div className="mt-3">
                       <h4>{data.user.name}</h4>

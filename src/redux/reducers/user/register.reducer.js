@@ -2,7 +2,9 @@ import * as type from '../../constants'
 
 const initialState = {
   data: {},
-  check: false
+  check: false,
+  checkMail: false,
+  checkSent: false
 }
 
 export default function register(state = initialState, action) {
@@ -19,11 +21,17 @@ export default function register(state = initialState, action) {
         check: false
       }
     case type.RESEND_ACTIVATION_LINK_REQUEST:
-      console.log("si");
-      console.log(action);
       return {
         ...state,
-        email: action.email
+        email: action.email,
+        checkMail: true,
+        checkSent: false
+      }
+    case type.RESEND_ACTIVATION_LINK:
+      return {
+        ...state,
+        checkMail: false,
+        checkSent: true
       }
     default:
       return {

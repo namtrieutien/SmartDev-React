@@ -74,7 +74,7 @@ function PaymentHistory(props) {
                       {errors.dateFrom && <span className="text-danger">{errors.dateFrom.message}</span>}
                     </div>
                     <div className="col-12 col-md-1">
-                      <p className="font-weight-bold mt-md-2">
+                      <p className="font-weight-bold mt-md-3 text-center">
                         ~
                       </p>
                     </div>
