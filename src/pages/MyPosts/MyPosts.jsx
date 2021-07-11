@@ -115,7 +115,7 @@ function MyPosts(props) {
                 </div>
             </div>
 
-            <div className={props.response ? "modal fade d-block " : "modal fade modal-notification"} id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div className={props.response ? "modal fade display-block " : "modal fade display-none"} id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
