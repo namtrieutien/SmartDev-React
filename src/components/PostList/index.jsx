@@ -1,14 +1,17 @@
 import React from "react";
 import CardPost from '../Post/CardPost'
+import CardPostLoading from '../Post/CardPostLoading'
+
 
 function Posts(props) {
   const posts = props.posts;
+  const load = props.load;
   return (
     <>
       {posts.map((item) => (
-         <CardPost
+         !load?(<CardPost
          key={item.id} 
-         post = {item} />
+         post = {item} />):(<CardPostLoading />)
       ))}
     </>
   );
@@ -18,12 +21,10 @@ function Posts(props) {
 
 function PostList(props) {
   const posts = props.posts;
-  const postList = Array.from(posts);
+  const load = props.load;
   return (
     <>
-    { 
-      postList.length > 0 && <Posts posts={posts}/>
-    }
+      <Posts load={load} posts={posts}/>
     </>
   );
 }

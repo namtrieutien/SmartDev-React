@@ -16,6 +16,7 @@ import SearchNotFound from '../../components/SearchPosts/SearchNotFound';
 
 // };
 
+
 function Products(props) {
   const [postList, setPostList] = useState(props.data);
   const [pagination, setPagination] = useState(props.pagination);
@@ -49,10 +50,10 @@ function Products(props) {
   return (
     <div>
       <Header />
-      <Content postList={props.error.code == 200?props.data:{}} handlePageChange={handlePageChange} pagination={props.error.code == 200?props.pagination:null} />
+      <Content load={props.load} postList={props.error.code == 200?props.data:{}} handlePageChange={handlePageChange} pagination={props.error.code == 200?props.pagination:null} />
       {props.error.code != 200 && <SearchNotFound />}
       <Footer />
-    </div>
+      </div>
   );
 }
 
@@ -90,12 +91,12 @@ class Content extends React.Component {
               <div className="col-md-12">
                 <div className="filters-content">
                   <div className="row m-1">
-                   <PostList posts={this.props.postList} />
+                   <PostList load={this.props.load} posts={this.props.postList} />
                   </div>
                 </div>
               </div>
               {
-                this.props.pagination && <Pagination handlePageChange={this.props.handlePageChange} pagination={this.props.pagination} /> 
+                !this.props.load&&this.props.pagination && <Pagination handlePageChange={this.props.handlePageChange} pagination={this.props.pagination} /> 
               }
             </div>
           </div>
