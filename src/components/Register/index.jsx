@@ -20,9 +20,9 @@ const SigninSchema = yup.object().shape({
   email: yup.string().email().required('Email is required'),
   password: yup.string().required('Password is required'),
   phone: yup.string().required('Phone is required'),
-  avatar: yup.mixed().test('type', 'We only support jpeg/jpg/png', (value) => {
-    return (value[0].type === "image/jpg" || value[0].type === "image/jpeg" || value[0].type === "image/png");
-  }),
+  // avatar: yup.mixed().test('type', 'We only support jpeg/jpg/png', (value) => {
+  //   return (value[0].type === "image/jpg" || value[0].type === "image/jpeg" || value[0].type === "image/png");
+  // }),
   name: yup.string().required('Name is required'),
 });
 
@@ -72,8 +72,6 @@ function Register(props) {
   });
 
   const onSubmit = (data) => {
-    delete data.avatar;
-
     let formData = new FormData();
     formData.append('name', data.name)
     formData.append('email', data.email)

@@ -17,7 +17,7 @@ function CustomLink({ label, to, activeOnlyWhenExact }) {
 
   return (
     <li className={match ? "nav-item active" : "nav-item"}>
-      <Link to={to} className="nav-link">
+      <Link to={to} className="nav-link w-auto">
         {label}
       </Link>
     </li>
@@ -61,19 +61,23 @@ function Navbar(props) {
         </div>
       </li>
         {isLoggedIn ? (
-          <div className="navbar-nav">
+          // <div className="navbar-nav">
+          <>
             <CustomLink to="/profile" label={data.user.name} />
             <CustomLinkHasAction
               to="/home"
               label="Logout"
               handelClick={handelLogout}
             />
-          </div>
+            </>
+          // </div>
         ) : (
-          <div className="navbar-nav">
+          // <div className="navbar-nav">
+            <>
             <CustomLink to="/login" label="Login" />
-            <CustomLink to="/register" label="Sign Up" />
-          </div>
+            <CustomLink to="/register" label="Register" />
+            </>
+          // {/* </div> */}
         )}
       </ul>
     </>
