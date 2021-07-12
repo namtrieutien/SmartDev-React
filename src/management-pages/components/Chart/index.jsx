@@ -35,7 +35,7 @@ function Chart(props) {
   return (
     <div className="chart">
       <h3 className="chart-title">{title}</h3>
-      <ResponsiveContainer width="100%" aspect={3 / 1}>
+      <ResponsiveContainer width="100%" aspect={4 / 1}>
         <LineChart data={data}>
           <XAxis dataKey="name" stroke="#5550bd" />
           <Line type="monotone" dataKey={dataKey1} stroke="red" />

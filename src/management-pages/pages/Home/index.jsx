@@ -36,12 +36,6 @@ function Home(props) {
           dataKey2={dataTemp.lastYearUser}
           // grid make grid layout
         />
-        <Piechart
-          className="chart-pie"
-          title="Top Categories"
-          data01={pieData01}
-          data02={pieData02}
-        />
       </div>
       <div className="home-widgets">
         <WidgetSm />

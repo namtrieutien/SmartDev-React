@@ -34,9 +34,9 @@ function NewUser(props) {
 
   return (
     <div className="newuser">
-      <h1 className="newuser-title">
+      <h3 className="newuser-title">
         New User
-      </h1>
+      </h3>
       <form action="submit" className="newuser-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="newuser-item">
           <label htmlFor="">Full Name</label>

@@ -1,21 +1,28 @@
 .admin-topbar {
   width: 100%;
-  height: 50px;
+  height: 80px;
   background-color: white;
+  margin-left: 5rem;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 9998;
+  /* background-color: var(--bg-primary); */
+  background: white;
 }
 
 .admin-topbar-wrapper {
-  height: 100%;
+  margin-left: auto;
+  height: auto;
   padding: 0px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .top-right {
+  margin-left: auto;
   display: flex;
   align-items: center;
 }

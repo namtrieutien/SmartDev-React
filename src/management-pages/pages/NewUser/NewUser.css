@@ -1,16 +1,25 @@
 .newuser {
   flex: 4;
+  background: white;
+}
+
+.newuser-title {
+  font-weight: 600;
+  color: teal;
 }
 
 .newuser-form {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .newuser-item {
   width: 400px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin-top: 10px;
   margin-right: 20px;
 }

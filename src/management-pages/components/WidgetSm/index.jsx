@@ -26,8 +26,8 @@ const WidgetSmList = (props) => {
         <div className="widget-sm-item">
           <img
             src={
-              user.img
-                ? user.img
+              user.avatar
+                ? user.avatar
                 : `https://avatars.dicebear.com/api/micah/${user.name}.svg`
             }
             alt="user img"

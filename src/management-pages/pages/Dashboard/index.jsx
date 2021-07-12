@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 // import PropTypes from 'prop-types';
 import { Switch, Route, } from 'react-router-dom';
 
 
 import AdminHeader from '../../components/AdminHeader';
-import AdminSidebar from '../../components/AdminSidebar';
 import "./Dashboard.css"
 
 import Home from '../Home';
@@ -18,6 +17,7 @@ import { loginUserAction } from '../../../redux/actions/login/authAction'
 
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom';
+import Sidebar from '../../components/Sidebar';
 
 Dashboard.propTypes = {
 
@@ -25,16 +25,47 @@ Dashboard.propTypes = {
 
 function Dashboard(props) {
   const { isLoggedIn, user } = props;
+  const [theme, setTheme] = useState('solar')
+
+  // useEffect(() => {
+  //   if (localStorage) {
+  //     if(localStorage.getItem('currentTheme') === "undefined") {
+  //       localStorage.setItem ('currentTheme', theme);
+  //     } else {
+  //       console.log("current color", theme);
+  //       setTheme(localStorage.setItem ('currentTheme', theme))
+  //     }
+  //   } else {
+  //     console.log("LocalStorage is not supported");
+  //   }
+  // }, [theme])
+
   if (isLoggedIn) {
     if (!user.user.roles.includes("ROLE_ADMIN"))
       return <Redirect to="404" />;
   } else return <Redirect to="/login" />;
 
+  
+
+  const handleChangeTheme = (changedTheme) => {
+    if (changedTheme === "dark") {
+      console.log("get solar");
+      changedTheme = "solar"
+    } else if (changedTheme === "solar") {
+      console.log("get light");
+      changedTheme = "light"
+    } else if (changedTheme === "light") {
+      console.log("get dark");
+      changedTheme = "dark"
+    }
+    setTheme(changedTheme)
+  }
+
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${theme}`}>
+      <Sidebar handleChangeTheme={handleChangeTheme} theme={theme}/>
       <AdminHeader />
-      <div className="admin-container">
-        <AdminSidebar />
+      <body className="admin-container">
         <Switch>
           <Route exact path={props.match.path} component={Home}></Route>
           <Route exact path={`${props.match.path}/users`} component={UsersList}></Route>
@@ -43,7 +74,7 @@ function Dashboard(props) {
           <Route exact path={`${props.match.path}/product/`} component={ProductList}></Route>
           <Route exact path={`${props.match.path}/product/:productId`} component={Product}></Route>
         </Switch>
-      </div>
+      </body>
     </div>
   );
 }
