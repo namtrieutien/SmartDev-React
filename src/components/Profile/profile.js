@@ -11,14 +11,14 @@ import { Link } from "react-router-dom"
 function ListItem({ label, src, link }) {
   const photo = require(`./img/${src}`).default;
   return (
-    <a href={link} className="btn btn-outline-primary list-group-item">
+    <Link to={link} style={{ color: 'inherit', textDecoration: 'inherit'}} className="btn btn-outline-primary list-group-item">
       <li className="d-flex justify-content-between align-items-center flex-wrap">
         <h6 className="mb-0">
           <img className="feather feather-globe mr-5 icon-inline" width="40" height="40" src={photo} alt={label} />
           {label}
         </h6>
       </li>
-    </a>
+    </Link>
   );
 }
 function ProgressBar({ label, width, aria_valuenow }) {

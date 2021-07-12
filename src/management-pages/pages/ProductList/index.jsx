@@ -173,7 +173,7 @@ function ProductList(props) {
     <div className="product-list">
       <ProductChart />
       <div className="product-list-table">
-        <h3 className="product-chart-title">Products:</h3>
+        <h3 className="product-lists-title">Products:</h3>
         <div style={{ height: "450px", width: "100%" }}>
           <DataGrid
             rows={postsList}

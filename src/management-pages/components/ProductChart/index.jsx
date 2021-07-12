@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react";
-import { Mood, MoodBad } from "@material-ui/icons";
+import React from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 import "./ProductChart.css"
