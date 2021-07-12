@@ -1,6 +1,6 @@
 import { takeLatest, takeEvery, call, put, all } from "redux-saga/effects";
 import * as AuthService from "../../../services/AuthService";
-import * as types from "../../actions/login/types";
+import * as types from "../../constants";
 import * as actions from '../../actions/login/authAction'
 import * as cartAction from '../../actions/cartAction'
 import history from '../../../history'

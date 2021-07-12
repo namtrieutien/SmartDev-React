@@ -26,6 +26,14 @@ const userApi = {
     const url = '/user/edit';
     return axiosManagement.put(url, user)
   },
+  loadPosts: () => {
+    const url = '/posts';
+    return axiosManagement.get(url)
+  },
+  deletePost: (pid) => {
+    const url = `/posts/delete/${pid}` ;
+    return axiosManagement.delete(url)
+  },
 }
 
 export default userApi;

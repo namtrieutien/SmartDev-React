@@ -149,7 +149,6 @@ function Login(props) {
   );
 }
 const mapStateToProps = state => {
-  // console.log(state.userReducer);
   const { isLoggedIn, user, check, error, checkAuth } = state.userReducer;
   const { checkMail, checkSent } = state.registerReducer;
 

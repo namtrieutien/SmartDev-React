@@ -6,7 +6,6 @@ import * as actions from '../../actions/cartAction'
 const addItemAPI = async (pid) => {
     try {
       const response = await userApi.addItemToCart(pid);
-      console.log("addItem",response);
       return response.data;
     } catch (e) {
       console.log(e.response.data);
@@ -26,7 +25,6 @@ const addItemAPI = async (pid) => {
 const removeItemAPI = async (pid) => {
   try {
     const response = await userApi.removeCartItem(pid);
-    console.log("removeItem",response);
     return response.data;
   } catch (e) {
     console.log(e.response.data);
@@ -55,8 +53,7 @@ const getCartItemsAPI = async () => {
 function* loadCart() {
   try {
       const cartItems = yield call(getCartItemsAPI)
-      const postItems = cartItems.map((item) => item.post);
-      yield put(actions.cartLoadedAction(postItems))
+      yield put(actions.cartLoadedAction(cartItems))
   } catch (e) {
       console.log(e)
   }

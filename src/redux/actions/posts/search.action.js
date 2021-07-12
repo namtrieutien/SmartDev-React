@@ -45,8 +45,16 @@ export function searchByCatComplete(data) {
     data
   }
 }
-export function resetPage() {
+export const searchByPriceLoading = (params) => {
   return {
-    type: type.RESET_PAGE,
+    type: type.LOAD_POST_BY_PRICE,
+    params
+  }
+}
+
+export function searchByPriceComplete(data) {
+  return {
+    type: type.LOADED_POST_BY_PRICE,
+    data
   }
 }

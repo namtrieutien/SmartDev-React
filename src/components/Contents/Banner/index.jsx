@@ -25,45 +25,37 @@ function Banner(props) {
 
         </ol>
         <div className="carousel-inner">
-          <div className="carousel-item-banner carousel-item active">
+        <div className="carousel-item-banner carousel-item active">
             <img
-              src="https://smartdev-sunny-bucket.s3.ap-southeast-1.amazonaws.com/slide_01.jpg"
+              src="https://eu94j8zj53i.exactdn.com/wp-content/uploads/2021/07/re-vo-cuc-lazada-7.7.png?strip=all&lossy=1&ssl=1"
+              className="d-block w-100"
+              style={{height: '100%'}}
+              alt="..."
+            />
+          </div>
+          <div className="carousel-item-banner carousel-item">
+            <img
+              src="https://i.pinimg.com/originals/e8/41/c9/e841c97abf4b19814dc67f4328ac7b5b.png"
+              className="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div className="carousel-item-banner carousel-item">
+            <img
+              src="http://chuongtrinh.chotot.com/wp-content/uploads/sites/9/2020/04/850x3501.png"
               className="d-block w-100"
               alt="..."
               style={{height: '100%'}}
             />
           </div>
+
           <div className="carousel-item-banner carousel-item">
             <img
-              src="https://smartdev-sunny-bucket.s3.ap-southeast-1.amazonaws.com/slide_02.jpg"
+              src="https://demaitinh.vn/wp-content/uploads/2020/03/Affiliate1200-X-628-700x366.png"
               className="d-block w-100"
               alt="..."
               style={{height: '100%'}}
-            />
-            <div className="carousel-caption d-none d-md-block ml-5">
-              <h1 className="btn btn-warning btn-lg">SUMMER SALE</h1><br />
-            </div>
-          </div>
-          <div className="carousel-item-banner carousel-item">
-            <img
-              src="https://smartdev-sunny-bucket.s3.ap-southeast-1.amazonaws.com/slide_03.jpg"
-              className="d-block w-100"
-              style={{height: '100%'}}
-              alt="..."
-            />
-            <div className="carousel-caption d-none d-md-block ml-5">
-              <h1>SALE UP TO 30%</h1><br />
-              <h6>
-                ACCESORIES FOR YOUR DOGS
-              </h6>
-              <button className="btn-banner mt-3">SHOP NOW</button>
-            </div>
-          </div>
-          <div className="carousel-item-banner carousel-item">
-            <img
-              src="https://smartdev-sunny-bucket.s3.ap-southeast-1.amazonaws.com/slide_04.png"
-              className="d-block w-100"
-              alt="..."
+
             />
           </div>
 

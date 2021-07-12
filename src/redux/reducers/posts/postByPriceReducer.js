@@ -2,10 +2,10 @@ import * as type from '../../constants'
 
 const initialState = {
     params: {
-        title: '',
         _page: 0,
         _limit: 18,
-        cat_id: null,
+        from: 0,
+        to: 10000000,
     },
     load: true,
     data: {},
@@ -14,28 +14,28 @@ const initialState = {
         _limit: 18,
         _totalRows: 100
     },
-    error: {
+    response: {
         code: 200,
-        error: 'success',
+        response: 'success',
         message: 'ok'
     }
 };
-export const postByCatReducer = (state = initialState, action) => {
+export const postByPriceReducer = (state = initialState, action) => {
     switch (action.type) {
-        case type.LOAD_POST_BY_CAT:
+        case type.LOAD_POST_BY_PRICE:
             return {
                 ...state,
                 params: action.params,
                 load: true,
             };
 
-        case type.LOADED_POST_BY_CAT:
-            const { error } = action.data;
-            if (error) {
+        case type.LOADED_POST_BY_PRICE:
+            const { response } = action.data;
+            if (response) {
                 return {
                     ...state,
                     load: false,
-                    error: action.data
+                    response: action.data
                 };
             }
             const { data, pagination } = action.data;
@@ -44,9 +44,9 @@ export const postByCatReducer = (state = initialState, action) => {
                 load: false,
                 data: data,
                 pagination: pagination,
-                error: {
+                response: {
                     code: 200,
-                    error: 'success',
+                    response: 'success',
                     message: 'ok'
                 }
             };

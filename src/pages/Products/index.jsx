@@ -1,8 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import queryString from 'query-string';
-
-import PreLoader from '../../components/PreLoader'
+import React, { useState } from 'react';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import PostList from '../../components/PostList';
@@ -27,17 +23,15 @@ function Products(props) {
   })
 
   function handlePageChange(newPage) {
+    console.log('handlePageChange newPage', newPage)
     setFilters({
       ...filters,
       _page: newPage
     })
-  }
 
-  useEffect(() => {
-    
     const params = {
       title: props.params.title,
-      _page: filters._page,
+      _page: newPage,
       _limit: props.params._limit
     }
     props.searchPost(params);
@@ -45,8 +39,7 @@ function Products(props) {
       setPostList(props.data);
       setPagination(props.pagination);
     }
-  }, [filters, props.params.title])
-
+  }
   return (
     <div>
       <Header />

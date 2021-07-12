@@ -1,29 +1,23 @@
 import React, { useEffect } from "react";
 import CardPost from "../../Post/CardPost";
-import { searchByCatLoading } from '../../../redux/actions/posts/search.action';
+import { searchByPriceLoading } from '../../../redux/actions/posts/search.action';
 
 import { connect } from "react-redux";
-import { getAllCategoriesRequestAction } from "../../../redux/actions/category/category.action";
-// import PropTypes from "prop-types";
-
-// Posts.propTypes = {};
+import './posts.css'
+import { Link } from "react-router-dom";
 
 function Posts(props) {
   const params = {
-    title: "",
-    _page: props.pagination !== undefined ? props.pagination._page : props.data.pagination._page,
-    // _page: props.pagination._page,
-    _limit: props.pagination !== undefined ? props.pagination._limit : props.data.pagination._limit,
-    cat_id: 2
+    _page: 0,
+    _limit:props.pagination._limit,
+    from:0,
+    to:77000
   }
 
   useEffect(() => {
-    props.getCat();
     props.searchPost(params);
   }, [])
   const postList = Array.from(props.data);
-  console.log("postList", postList)
-  const cat = Array.from(props.category);
     return (
     <div>
       <div className="latest-products">
@@ -31,10 +25,10 @@ function Posts(props) {
           <div className="row">
             <div className="col-md-12">
               <div className="section-heading">
-                <h2>Flash Deals</h2>
-                {/* <a href="products.html">
+                <h2 className="blink_me text-danger text-center col-md-11">July Best Price 77K</h2>
+                <Link to="/best-price">
                   view all products <i className="fa fa-angle-right"></i>
-                </a> */}
+                </Link>
               </div>
             </div>
               {postList != null ?
@@ -52,24 +46,19 @@ function Posts(props) {
   );
 }
 const mapStateToProps = (state) => {
-  const { load, error, pagination, data } = state.searchPostReducer;
-  const { data_getAllCategories : category } = state.categoryReducer;
+  const { load, error, pagination, data } = state.postByPriceReducer;
   return {
     load,
     error,
     pagination, 
     data,
-    category
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     searchPost: (params) => {
-      dispatch(searchByCatLoading(params));
+      dispatch(searchByPriceLoading(params));
     },
-    getCat: () => {
-      dispatch(getAllCategoriesRequestAction());
-    }
   };
 };
 

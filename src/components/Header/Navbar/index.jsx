@@ -44,22 +44,34 @@ function Navbar(props) {
   function handelLogout() {
     props.logout();
   }
+  const CategoryItem = ({ title, src, id }) => {
+    const photo = require(`../../../images/${src}`).default;
+    return (
+      <Link to={{ pathname: `/category/${id}`, state: id }} className="dropdown-item" >
+          <span><img className="img-responsive" width={20} height={20} src={photo} alt="" /></span> {title}
+      </Link>
+    )
+  }
   return (
     <>
       <ul className="navbar-nav m-auto">
         <CustomLink activeOnlyWhenExact={true} to="/" label="Home" />
         <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Category
-        </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="#">Điện thoại - Máy tính bảng</a>
-          <a className="dropdown-item" href="#">Điện gia dụng</a>
-          <a className="dropdown-item" href="#">Thời trang - Phụ kiện</a>
-          <div className="dropdown-divider"></div>
-          <a className="dropdown-item" href="#">Tất cả các mục</a>
-        </div>
-      </li>
+          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Category
+          </a>
+          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <CategoryItem title='Điện thoại - Máy tính bảng' src='smartphone.png' id={1} />
+            <CategoryItem title='Điện gia dụng' src='washing-machine.png' id={2} />
+            <CategoryItem title='Thời trang - Phụ kiện' src='fashion.png' id={3} />
+            <CategoryItem title='Sách, VPP, Quà tặng' src='book.png' id={4} />
+            <div className="dropdown-divider"></div>
+            <Link to={`/product`}>
+              <a className="dropdown-item" >
+                <span><img className="img-responsive" width={20} height={20} src={require(`../../../images/shapes.png`).default} alt="" /></span>Tất cả các mục</a>
+            </Link>
+          </div>
+        </li>
         {isLoggedIn ? (
           // <div className="navbar-nav">
           <>
@@ -94,7 +106,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => {
       dispatch(logoutUserAction());
-    },
+    }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

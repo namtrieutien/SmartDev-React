@@ -63,8 +63,25 @@ export const USER_EDITED = 'USER_EDITED'
 // search post by cat
 export const LOAD_POST_BY_CAT = 'LOAD_POST_BY_CAT'
 export const LOADED_POST_BY_CAT = 'LOADED_POST_BY_CAT'
-export const RESET_PAGE = 'RESET_PAGE'
 
+//manage user's post
+export const LOAD_POST_USER = 'LOAD_POST_USER'
+export const LOADED_POST_USER = 'LOADED_POST_USER'
+export const DELETE_POST = 'DELETE_POST'
+export const DELETED_POST = 'DELETED_POST'
+
+//login - security
+export const LOGIN_USER = 'LOGIN_USER'
+export const USER_LOGGEDIN = 'USER_LOGGEDIN'
+
+export const LOGOUT_USER = 'LOGOUT_USER'
+export const USER_LOGGEDOUT = 'USER_LOGGEDOUT'
+export const CHECK_JWT_EXP = 'CHECK_JWT_EXP'
+export const ERROR = 'ERROR'
 // send activation link
 export const RESEND_ACTIVATION_LINK_REQUEST = 'RESEND_ACTIVATION_LINK_REQUEST'
 export const RESEND_ACTIVATION_LINK = 'RESEND_ACTIVATION_LINK'
+
+//search by price
+export const LOAD_POST_BY_PRICE = 'LOAD_POST_BY_PRICE'
+export const LOADED_POST_BY_PRICE = 'LOADED_POST_BY_PRICE'
