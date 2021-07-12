@@ -30,21 +30,8 @@ const LoadinngPostsFrame = () => {
 }
 
 const ListProducts = (props) => {
-  const [listProduct, setListProduct] = useState([]);
-  useEffect(() => {
-    const fetchLastestPost = async () => {
-      try {
-        const response = await adminApi.getLastestPost();
-        console.log(response);
-        setListProduct(response);
-      } catch (error) {
-        console.log("Failed to fetch lastest posts", error);
-      }
-    };
-
-    fetchLastestPost();
-  }, []);
-
+  
+  const {listProduct} = props;
   const handleTimeStamp = (timestamp) => {
     // const timestamp = Date.now(); 
     // ⏲ 
@@ -82,6 +69,24 @@ const ListProducts = (props) => {
 };
 
 function WidgetLg(props) {
+  
+  const [loading, setLoading] = useState(false)
+  const [listProduct, setListProduct] = useState([]);
+  useEffect(() => {
+    const fetchLastestPost = async () => {
+      try {
+        const response = await adminApi.getLastestPost();
+        console.log(response);
+        setListProduct(response);
+        setLoading(true)
+      } catch (error) {
+        console.log("Failed to fetch lastest posts", error);
+      }
+    };
+
+    fetchLastestPost();
+  }, []);
+
   return (
     <div className="widget-lg">
       <span className="widget-lg-title">Lastest Posts</span>
@@ -94,8 +99,10 @@ function WidgetLg(props) {
               <th className="widget-lg-th">Price</th>
               <th className="widget-lg-th">Status</th>
             </tr>
-            {/* <ListProducts /> */}
-            <LoadinngPostsFrame />s
+            {
+              loading === true ? <ListProducts  listProduct={listProduct}/>
+              : <LoadinngPostsFrame />
+            }            
           </tbody>
         </table>
       </SkeletonTheme>

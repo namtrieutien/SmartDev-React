@@ -2,19 +2,65 @@
 
 .dashboard {
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  --transition-speed: 500ms;
 }
+
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #f33f3f;
+}
+
 
 .admin-container {
   display: flex;
-  margin-top: 10px;
+  /* margin-top: 20px; */
+  flex-direction: column;
+  margin-left: 5rem;
+  padding: 0 1rem;
+  background: rgba(192, 188, 188, 0.144);
 }
 
-.tricky-way-sticky {
-  flex: 1;
+.dark {
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #23232e;
+  --bg-secondary: #141418;
 }
 
-.fix-content {
-  flex: 1 1 auto;
-  overflow: auto;
+.light {
+  --text-primary: #1f1f1f;
+  --text-secondary: #000000;
+  --bg-primary: #ffffff;
+  --bg-secondary: #e4e4e4;
 }
 
+.solar {
+  --text-primary: #576e75;
+  --text-secondary: #35535c;
+  --bg-primary: #fdf6e3;
+  --bg-secondary: #f5e5b8;
+}
+
+.theme-icon {
+  display: none;
+}
+
+.dark #darkIcon {
+  display: block;
+}
+
+.light #lightIcon {
+  display: block;
+}
+
+.solar #solarIcon {
+  display: block;
+}

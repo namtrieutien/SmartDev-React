@@ -21,9 +21,6 @@ function AdminHeader(props) {
   return (
     <div className="admin-topbar">
       <div className="admin-topbar-wrapper">
-        <div className="top-left">
-          <span className="logo">Chợ Tốt</span>
-        </div>
         <div className="top-right">
           <div className="topbar-icon-container">
             <NotificationsNone />
