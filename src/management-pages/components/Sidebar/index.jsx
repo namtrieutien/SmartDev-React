@@ -15,7 +15,7 @@ const Themes = (props) => {
   const {color} = props
   let changeColor = <div></div>;
   if(color === "dark") {
-    changeColor = <div href="#" className="nav-link"><svg id="lightIcon" aria-hidden="true" focusable="false" data-prefix="fad"
+    changeColor = <div className="nav-link-custom"><svg id="lightIcon" aria-hidden="true" focusable="false" data-prefix="fad"
     data-icon="moon-stars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
     className="svg-inline--fa fa-moon-stars fa-w-16 fa-7x">
     <g className="fa-group">
@@ -29,7 +29,7 @@ const Themes = (props) => {
   </svg>
   <span className="link-text">Moon</span></div>
   } else if (color === "solar") {
-    changeColor = <div href="#" className="nav-link"><svg id="solarIcon" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="sun"
+    changeColor = <div className="nav-link-custom"><svg id="solarIcon" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="sun"
     role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
     className="svg-inline--fa fa-sun fa-w-16 fa-7x">
     <g className="fa-group">
@@ -42,7 +42,7 @@ const Themes = (props) => {
   </svg>
   <span className="link-text">Solar</span></div>
   } else if (color === "light") {
-    changeColor = <div href="#" className="nav-link"><svg id="darkIcon" aria-hidden="true" focusable="false" data-prefix="fad"
+    changeColor = <div className="nav-link-custom"><svg id="darkIcon" aria-hidden="true" focusable="false" data-prefix="fad"
     data-icon="sunglasses" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
     className="svg-inline--fa fa-sunglasses fa-w-18 fa-7x">
     <g className="fa-group">
@@ -75,9 +75,9 @@ function Sidebar(props) {
 
   return (
       <nav className="navbar-custom">
-    <ul className="navbar-nav">
+    <ul className="navbar-nav-custom">
       <li className="logo">
-      <Link to="/management" className="nav-link">
+      <Link to="/management" className="nav-link-custom">
           <span className="link-text logo-text">Chợ tốt</span>
           <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="angle-double-right" role="img"
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
@@ -94,42 +94,42 @@ function Sidebar(props) {
         </Link>
       </li>
 
-      <li className="nav-item">
-        <Link to="/management" className="nav-link">
+      <li className="nav-item-custom">
+        <Link to="/management" className="nav-link-custom">
           <TrendingUp className="sidebar-icon" />
           <span className="link-text">Home</span>
         </Link>
       </li>
 
-      <li className="nav-item">
-        <Link to="/management/users" className="nav-link">
+      <li className="nav-item-custom">
+        <Link to="/management/users" className="nav-link-custom">
           <PermIdentity className="sidebar-icon" />
           <span className="link-text">Users</span>
         </Link>
       </li>
 
-      <li className="nav-item">
-        <Link to="/management/product" href="#" className="nav-link">
+      <li className="nav-item-custom">
+        <Link to="/management/product" href="#" className="nav-link-custom">
           <Storefront className="sidebar-icon" /> 
           <span className="link-text">Products</span>
         </Link>
       </li>
 
-      <li className="nav-item">
-        <a href="./management" className="nav-link">
+      <li className="nav-item-custom">
+        <a href="#" className="nav-link-custom">
           <BarChart className="sidebar-icon" />
           <span className="link-text">Reports</span>
         </a>
       </li>
 
-      <li className="nav-item">
-        <a href="./management" className="nav-link">
+      <li className="nav-item-custom">
+        <a href="#" className="nav-link-custom">
           <AttachMoney className="sidebar-icon" />
           <span className="link-text">Transactions</span>
         </a>
       </li>
 
-      <li className="nav-item" onClick={() => onChangeTheme()}>
+      <li className="nav-item-custom" onClick={() => onChangeTheme()}>
           <Themes color={theme}/>
       </li>
     </ul>

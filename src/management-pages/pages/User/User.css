@@ -156,3 +156,18 @@
 .user-update-icon {
   cursor: pointer;  
 }
+
+@media only screen and (max-width: 780px) {
+  .user-container {
+    flex-direction: column;
+  }
+
+  .user-update-button {
+    margin-bottom: 350px;
+  }
+
+  .user-update {
+    margin-left: 0;
+    margin-bottom: 70px;
+  }
+}

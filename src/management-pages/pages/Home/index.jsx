@@ -38,8 +38,12 @@ function Home(props) {
         />
       </div>
       <div className="home-widgets">
-        <WidgetSm />
-        <WidgetLg />
+        <div className="left-wg">
+          <WidgetSm />
+        </div>
+        <div className="right-wg">
+          <WidgetLg />
+        </div>
       </div>
     </div>
   );

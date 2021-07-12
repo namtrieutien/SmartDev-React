@@ -38,8 +38,8 @@ function AdminHeader(props) {
             <Settings />
           </div>
           <img className="top-avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjFh4BaZWOa9wIjURVtjwfFum5feHcWt0lN7UyMsOdmH7MKAGymN8_GBlhqJr1SHwV9cE&usqp=CAU" alt="" />
-          <div className="btn topbar-icon-container ml-2" onClick={handelLogout}>
-            <ExitToApp />
+          <div className="topbar-icon-container ml-2" onClick={handelLogout}>
+            <ExitToApp className="exit-admin-icon" />
           </div>
         </div>
       </div>
