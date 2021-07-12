@@ -63,7 +63,6 @@ export const USER_EDITED = 'USER_EDITED'
 // search post by cat
 export const LOAD_POST_BY_CAT = 'LOAD_POST_BY_CAT'
 export const LOADED_POST_BY_CAT = 'LOADED_POST_BY_CAT'
-export const RESET_PAGE = 'RESET_PAGE'
 
 //manage user's post
 export const LOAD_POST_USER = 'LOAD_POST_USER'

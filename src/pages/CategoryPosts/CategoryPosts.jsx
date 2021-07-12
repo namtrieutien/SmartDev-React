@@ -41,7 +41,21 @@ function CategoryPosts(props) {
       setPostList(props.data);
       setPagination(props.pagination);
     }
-  }, [filters, props.params.title, cat_id])
+  }, [filters, props.params.title])
+
+  useEffect(() => {
+    const params = {
+      title: "",
+      _page: 0,
+      _limit: 18,
+      cat_id
+    }
+    props.searchPost(params);
+    if (props.error.code == 200) {
+      setPostList(props.data);
+      setPagination(props.pagination);
+    }
+  }, [cat_id])
 
   return (
     <div>

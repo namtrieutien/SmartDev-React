@@ -41,7 +41,7 @@
   object-fit: cover;
 }
 
-.modal-header, .btn-success, .modal-title {
+.modal-header, .btn-success, .modal-title-success {
   color: #fff;
   border-radius: 4px;
   background: #82ce34;
@@ -57,4 +57,7 @@
 
 .display-none {
   display: none;
+}
+.table-hover tbody tr:hover td {
+  background: rgba(229, 184, 250, 0.514);
 }

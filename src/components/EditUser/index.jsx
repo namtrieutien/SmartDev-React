@@ -56,13 +56,13 @@ function EditUser(props) {
             <Header />
             <div className="container mt-5">
                 <div className="row gutters">
-                    <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                    <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mt-5 pb-3">
                         <div className="card-edit h-100">
                             <div className="card-body">
                                 <div className="account-settings">
                                     <div className="user-profile">
                                         <div className="user-avatar">
-                                            <img src="https://meetanentrepreneur.lu/wp-content/uploads/2019/08/profil-linkedin.jpg" alt="Maxwell Admin" />
+                                            <img src="https://avatars.dicebear.com/api/bottts/sad.svg" alt="Maxwell Admin" />
                                         </div>
                                         <h4 className="user-name">{name}</h4>
                                         <h5 className="user-email">{email}</h5>
@@ -71,7 +71,7 @@ function EditUser(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                    <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mt-5">
                         <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
                             <div className="card-edit h-100">
                                 <div className="card-body">

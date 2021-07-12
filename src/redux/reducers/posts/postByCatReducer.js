@@ -50,16 +50,6 @@ export const postByCatReducer = (state = initialState, action) => {
                     message: 'ok'
                 }
             };
-        case type.RESET_PAGE:
-            return {
-                ...state,
-                data: {},
-                pagination: {
-                    _page: 0,
-                    _limit: 18,
-                    _totalRows: 100
-                },
-            }
         default:
             return state;
     }

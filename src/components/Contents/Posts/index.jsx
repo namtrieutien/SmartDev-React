@@ -3,17 +3,13 @@ import CardPost from "../../Post/CardPost";
 import { searchByCatLoading } from '../../../redux/actions/posts/search.action';
 
 import { connect } from "react-redux";
-import { getAllCategoriesRequestAction } from "../../../redux/actions/category/category.action";
-// import PropTypes from "prop-types";
-
-// Posts.propTypes = {};
+import './posts.css'
 
 function Posts(props) {
   const params = {
     title: "",
-    _page: props.pagination !== undefined ? props.pagination._page : props.data.pagination._page,
-    // _page: props.pagination._page,
-    _limit: props.pagination !== undefined ? props.pagination._limit : props.data.pagination._limit,
+    _page: props.pagination._page,
+    _limit:props.pagination._limit,
     cat_id: 2
   }
 
@@ -21,7 +17,6 @@ function Posts(props) {
     props.searchPost(params);
   }, [])
   const postList = Array.from(props.data);
-  console.log("postList", postList)
     return (
     <div>
       <div className="latest-products">
@@ -29,10 +24,10 @@ function Posts(props) {
           <div className="row">
             <div className="col-md-12">
               <div className="section-heading">
-                <h2>Flash Deals</h2>
-                {/* <a href="products.html">
+                <h2 className="blink_me text-danger text-center">July Best Price 77K</h2>
+                <a href="products.html">
                   view all products <i className="fa fa-angle-right"></i>
-                </a> */}
+                </a>
               </div>
             </div>
               {postList != null ?

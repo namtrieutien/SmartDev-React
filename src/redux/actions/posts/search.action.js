@@ -45,8 +45,3 @@ export function searchByCatComplete(data) {
     data
   }
 }
-export function resetPage() {
-  return {
-    type: type.RESET_PAGE,
-  }
-}

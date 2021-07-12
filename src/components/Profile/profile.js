@@ -84,9 +84,7 @@ function Profile(props) {
               <div className="card">
                 <div className="card-body card-profile">
                   <div className="d-flex flex-column align-items-center text-center">
-
                     <img src="https://avatars.dicebear.com/api/bottts/sad.svg" alt="Admin" className="rounded-circle" width={150} />
-
                     <div className="mt-3">
                       <h4>{data.user.name}</h4>
                       <p className="text-secondary mb-1">Premium Member</p>
@@ -98,7 +96,7 @@ function Profile(props) {
               </div>
               <div className="card mt-3">
                 <ul className="list-group list-group-flush">
-                  <ListItem label="Profile" src='user.png' link="#"></ListItem>
+                  <ListItem label="Profile" src='user.png' link="/edit_profile"></ListItem>
                   <ListItem label="My Posts" src='post.png' link="/my-posts"></ListItem>
                   <ListItem label="History" src='bill.png' link="/payment/history"></ListItem>
                   <ListItem label="Notification" src='megaphone.png' link="#"></ListItem>

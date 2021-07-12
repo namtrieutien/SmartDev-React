@@ -83,43 +83,49 @@ function MyPosts(props) {
 
                 </div>
             </div>
-            <div className="container mb-5">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="table-responsive">
-                            <table className="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"> </th>
-                                        <th scope="col" className="text-center">Post</th>
-                                        <th scope="col" className="text-center">ID</th>
-                                        <th scope="col" className="text-center">Category</th>
-                                        <th scope="col">Available</th>
-                                        <th scope="col">Size</th>
-                                        <th scope="col" className="text-center">Create At</th>
-                                        <th scope="col" className="text-right">Price</th>
-                                        <th> </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {postList && postList.map(item =>
-                                        <PostItem
-                                            key={item.id}
-                                            postItem={item}
-                                            handelClick={props.deletePost} />
-                                    )}
-                                </tbody>
-                            </table>
+            {postList && !postList.length ? (
+                <p className="text-center my-3">
+                    <img className="img-responsive" style={{ width: '15%', height: '25%' }} src="https://image.flaticon.com/icons/png/512/2765/2765311.png" alt="" />
+                    <h3 className="my-3 mb-5 text-info" style={{fontSize: '3vw'}}>No Posts Yet.</h3>
+                </p>
+            ) : (
+                <div className="container mb-5">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="table-responsive">
+                                <table className="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"> </th>
+                                            <th scope="col" className="text-center">Post</th>
+                                            <th scope="col" className="text-center">ID</th>
+                                            <th scope="col" className="text-center">Category</th>
+                                            <th scope="col">Available</th>
+                                            <th scope="col">Size</th>
+                                            <th scope="col" className="text-center">Create At</th>
+                                            <th scope="col" className="text-right">Price</th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {postList && postList.map(item =>
+                                            <PostItem
+                                                key={item.id}
+                                                postItem={item}
+                                                handelClick={props.deletePost} />
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>)}
 
             <div className={props.response ? "modal fade display-block " : "modal fade display-none"} id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="col-11 modal-title text-center ml-3">Successfully!</h5>
+                            <h5 className="modal-title-success col-11 modal-title text-center ml-3">Successfully!</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

@@ -1,8 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom"
-import { resetPage } from "../../../redux/actions/posts/search.action";
-
-import { connect } from "react-redux";
 
 function ExploreCategories(props) {
 
@@ -49,7 +46,7 @@ function ExploreCategories(props) {
                 <CategoryButton title='Thực phẩm' src='restaurant.png' id={0} />
                 
                 <td className="col-md-2">
-                  <Link to={`/product`} onClick={() => props.resetPage()}>
+                  <Link to={`/product`}>
                     <button className="btn shadow-none btn-block">
                       <img className="img-responsive" width={40} height={40} src={require(`../../../images/shapes.png`).default} alt="" />
                       <br /><p className="font-weight-light" style={{ fontSize: '1.05vw' }}>Tất cả các mục</p>
@@ -64,11 +61,4 @@ function ExploreCategories(props) {
     </div>
   );
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    resetPage: () => {
-      dispatch(resetPage());
-    },
-  };
-};
-export default connect(null, mapDispatchToProps)(ExploreCategories);
+export default ExploreCategories;

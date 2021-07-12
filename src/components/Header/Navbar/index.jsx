@@ -4,7 +4,6 @@ import { Link, useRouteMatch } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { logoutUserAction } from "../../../redux/actions/login/authAction";
-import { resetPage } from "../../../redux/actions/posts/search.action";
 
 import "./Navbar.css";
 
@@ -48,7 +47,7 @@ function Navbar(props) {
   const CategoryItem = ({ title, src, id }) => {
     const photo = require(`../../../images/${src}`).default;
     return (
-      <Link to={{ pathname: `/category/${id}`, state: id }} onClick={() => props.resetPage()} className="dropdown-item" >
+      <Link to={{ pathname: `/category/${id}`, state: id }} className="dropdown-item" >
           <span><img className="img-responsive" width={20} height={20} src={photo} alt="" /></span> {title}
       </Link>
     )
@@ -103,9 +102,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => {
       dispatch(logoutUserAction());
-    },
-    resetPage: () => {
-      dispatch(resetPage());
     }
   };
 };
