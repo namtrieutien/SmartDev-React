@@ -15,6 +15,7 @@ import { userReducer } from "./login/userReducer";
 import { editUserReducer } from "./user/edituser.reducer";
 import { postByCatReducer } from "./posts/postByCatReducer";
 import { managePostReducer } from "./user/managepost.reducer";
+import { postByPriceReducer } from "./posts/postByPriceReducer";
 
 
 const rootReducer = combineReducers({
@@ -29,7 +30,8 @@ const rootReducer = combineReducers({
   s3Reducer,
   editUserReducer,
   postByCatReducer,
-  managePostReducer
+  managePostReducer,
+  postByPriceReducer
 })
 
 export default rootReducer;

@@ -70,3 +70,15 @@ export const LOADED_POST_USER = 'LOADED_POST_USER'
 export const DELETE_POST = 'DELETE_POST'
 export const DELETED_POST = 'DELETED_POST'
 
+//login - security
+export const LOGIN_USER = 'LOGIN_USER'
+export const USER_LOGGEDIN = 'USER_LOGGEDIN'
+
+export const LOGOUT_USER = 'LOGOUT_USER'
+export const USER_LOGGEDOUT = 'USER_LOGGEDOUT'
+
+export const CHECK_JWT_EXP = 'CHECK_JWT_EXP'
+
+//search by price
+export const LOAD_POST_BY_PRICE = 'LOAD_POST_BY_PRICE'
+export const LOADED_POST_BY_PRICE = 'LOADED_POST_BY_PRICE'

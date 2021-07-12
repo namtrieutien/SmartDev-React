@@ -3,6 +3,7 @@ import './latestPost.css'
 import CardPost from "../Post/CardPost";
 import { connect } from "react-redux";
 import { searchLoading } from '../../redux/actions/posts/search.action';
+import { Link } from "react-router-dom";
 
 function LatestPost(props) {
     const params = {
@@ -25,7 +26,8 @@ function LatestPost(props) {
                 <div className="row">
                     <div className="col-md-2">
                         <div className="bbb_container">
-                            <h3 className="bbb_title" style={{ fontSize: '1.7vw' }}>Latest Posts Today</h3>
+                        <Link to={`/product`}>
+                            <h3 className="bbb_title" style={{ fontSize: '1.7vw' }}>Latest Posts Today</h3></Link>
                             <div className="bbb_text mb-3">
                                 <p>Buy now before they sold out</p>
                             </div>

@@ -45,3 +45,16 @@ export function searchByCatComplete(data) {
     data
   }
 }
+export const searchByPriceLoading = (params) => {
+  return {
+    type: type.LOAD_POST_BY_PRICE,
+    params
+  }
+}
+
+export function searchByPriceComplete(data) {
+  return {
+    type: type.LOADED_POST_BY_PRICE,
+    data
+  }
+}

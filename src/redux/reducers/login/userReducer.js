@@ -1,4 +1,4 @@
-import { USER_LOGGEDIN, USER_LOGGEDOUT, LOGIN_USER } from "../../actions/login/types";
+import { USER_LOGGEDIN, USER_LOGGEDOUT, LOGIN_USER } from "../../constants";
 
 const user = JSON.parse(localStorage.getItem("user"));
 

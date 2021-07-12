@@ -14,8 +14,6 @@ import SearchNotFound from '../../components/SearchPosts/SearchNotFound';
 
 function CategoryPosts(props) {
   const { cat_id } = useParams();
-  const [postList, setPostList] = useState(props.data);
-  const [pagination, setPagination] = useState(props.pagination);
 
   const [filters, setFilters] = useState({
     _page: props.pagination._page,
@@ -37,10 +35,6 @@ function CategoryPosts(props) {
       cat_id
     }
     props.searchPost(params);
-    if (props.error.code == 200) {
-      setPostList(props.data);
-      setPagination(props.pagination);
-    }
   }, [filters, props.params.title])
 
   useEffect(() => {
@@ -51,10 +45,6 @@ function CategoryPosts(props) {
       cat_id
     }
     props.searchPost(params);
-    if (props.error.code == 200) {
-      setPostList(props.data);
-      setPagination(props.pagination);
-    }
   }, [cat_id])
 
   return (
@@ -87,17 +77,6 @@ class Content extends React.Component {
         <div className="products">
           <div className="container-fluid ml-5">
             <div className="row mr-5">
-              <div className="col-md-12">
-                {/* <div className="filters">
-                  <ul>
-                    <li className="active" data-filter="*">All Products</li>
-                    <li data-filter=".des">Featured</li>
-                    <li data-filter=".dev">Flash Deals</li>
-                    <li data-filter=".gra">Last Minute</li>
-                  </ul>
-                </div> */}
-              </div>
-
               <div className="col-md-12">
                 <div className="filters-content">
                   <div className="row">
