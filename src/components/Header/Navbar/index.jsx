@@ -47,7 +47,7 @@ function Navbar(props) {
   const CategoryItem = ({ title, src, id }) => {
     const photo = require(`../../../images/${src}`).default;
     return (
-      <Link to={{ pathname: `/category/${id}`, state: id }} className="dropdown-item" >
+      <Link to={{ pathname: `/category/${id}`, state: " " } } className="dropdown-item" >
           <span><img className="img-responsive" width={20} height={20} src={photo} alt="" /></span> {title}
       </Link>
     )

@@ -69,6 +69,7 @@ export const LOAD_POST_USER = 'LOAD_POST_USER'
 export const LOADED_POST_USER = 'LOADED_POST_USER'
 export const DELETE_POST = 'DELETE_POST'
 export const DELETED_POST = 'DELETED_POST'
+export const RESET_STATE = 'RESET_STATE'
 
 //login - security
 export const LOGIN_USER = 'LOGIN_USER'
@@ -85,3 +86,6 @@ export const RESEND_ACTIVATION_LINK = 'RESEND_ACTIVATION_LINK'
 //search by price
 export const LOAD_POST_BY_PRICE = 'LOAD_POST_BY_PRICE'
 export const LOADED_POST_BY_PRICE = 'LOADED_POST_BY_PRICE'
+
+export const GET_POST = 'GET_POST'
+export const POST_LOADED= 'POST_LOADED'

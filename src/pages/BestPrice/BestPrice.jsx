@@ -47,7 +47,7 @@ function BestPrice(props) {
                         <div className="col-md-12">
                             <div className="filters-content">
                                 <div className="row">
-                                    <PostList posts={props.data} />
+                                    <PostList load={props.load} posts={props.data} />
                                 </div>
                             </div>
                         </div>

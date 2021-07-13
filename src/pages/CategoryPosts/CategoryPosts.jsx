@@ -3,7 +3,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import PostList from '../../components/PostList';
 import Pagination from '../../components/Pagination';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { searchByCatLoading } from '../../redux/actions/posts/search.action';
 import SearchNotFound from '../../components/SearchPosts/SearchNotFound';
@@ -14,7 +14,8 @@ import SearchNotFound from '../../components/SearchPosts/SearchNotFound';
 
 function CategoryPosts(props) {
   const { cat_id } = useParams();
-
+  const location = useLocation();
+  const title = location.state;
   const [filters, setFilters] = useState({
     _page: props.pagination._page,
     _limit: props.pagination._limit
@@ -26,20 +27,24 @@ function CategoryPosts(props) {
       _page: newPage
     })
   }
-
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+  });
   useEffect(() => {
     const params = {
-      title: props.params.title,
+      title: title ? title : props.params.title,
       _page: filters._page,
       _limit: props.params._limit,
       cat_id
     }
     props.searchPost(params);
-  }, [filters, props.params.title])
+  }, [filters, title])
 
   useEffect(() => {
     const params = {
-      title: "",
+      title: title ? title : props.params.title,
       _page: 0,
       _limit: 18,
       cat_id
@@ -50,7 +55,7 @@ function CategoryPosts(props) {
   return (
     <div>
       <Header />
-      <Content postList={props.error.code == 200 ? props.data : {}} handlePageChange={handlePageChange} pagination={props.error.code == 200 ? props.pagination : null} />
+      <Content load={props.load} cat_id={cat_id} postList={props.error.code == 200 ? props.data : {}} handlePageChange={handlePageChange} pagination={props.error.code == 200 ? props.pagination : null} />
       {props.error.code != 200 && <SearchNotFound />}
       <Footer />
     </div>
@@ -59,9 +64,11 @@ function CategoryPosts(props) {
 
 class Content extends React.Component {
   render() {
+    let class_heading
+    {this.props.cat_id == 3 ? (class_heading ="page-heading-fashion products-heading header-text" ):(class_heading="page-heading products-heading header-text")}
     return (
       <div>
-        <div className="page-heading products-heading header-text">
+        <div className={class_heading}>
           <div className="container">
             <div className="row">
               <div className="col-md-12">
@@ -80,7 +87,7 @@ class Content extends React.Component {
               <div className="col-md-12">
                 <div className="filters-content">
                   <div className="row">
-                    <PostList posts={this.props.postList} />
+                    <PostList load={this.props.load} posts={this.props.postList} />
                   </div>
                 </div>
               </div>

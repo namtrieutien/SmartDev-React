@@ -54,9 +54,7 @@ function App() {
           </Route>
           <Route path="/create-post" component={CreatePosts}>
           </Route>
-          <Route path="/post" component={PostDetail}>
-          </Route>
-          <Route path="/post/:postId" exact component={PostDetail} />
+          <Route path="/post/:post_id" component={PostDetail} />
           <Route exact path="/payment" component={Payment}>
           </Route>
           <Route  path="/payment/success" component={PaymentSuccess}>

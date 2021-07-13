@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader'
 
-const CardPostLoading = (props) => {
+export const CardPostLoading = (props) => {
   return (
     <div>   
         <ContentLoader
@@ -18,5 +18,13 @@ const CardPostLoading = (props) => {
     </div>
   )
 }
-
-export default CardPostLoading;
+export const PostListLoading = ({size}) => {
+  const posts =Array.from(Array(size).keys());
+  return (
+    <>
+      {posts.map((item) => 
+         <CardPostLoading />
+      )}
+    </>
+  );
+}
