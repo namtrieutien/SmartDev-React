@@ -14,6 +14,13 @@ export function executePayment(paymentInfo) {
   }
 }
 
+export function cancelPayment(token) {
+  return {
+      type: type.USER_CANCEL_PAYMENT_REQUESTED,
+      token
+  }
+}
+
 export function paymentHistory(date) {
   return {
       type: type.USER_GET_PAYMENT_HISTORY_REQUESTED,

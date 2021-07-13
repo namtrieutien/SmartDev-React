@@ -19,10 +19,10 @@ const pay = async (requestPayment) => {
 function* userPay(action) {
   try {
     action.requestPayment= {...action.requestPayment, intent:'SALE', method: 'Paypal'}
-    console.log(action.requestPayment);
+    // console.log(action.requestPayment);
     const data = yield call(pay, action.requestPayment);
+    console.log(data);
     yield put({type: type.USER_PAYMENT, payload: data});
-    localStorage.removeItem('cart');
   } catch (e) {
     console.log(e.messages);
     // yield put({type: type.GET_USERS_FAILED, message: e.message});
@@ -40,9 +40,9 @@ const execute = async (paymentInfo) => {
 
 function* userPaymentSuccess(action) {
   try {
-    console.log(action.paymentInfo);
     const data = yield call(execute, action.paymentInfo);
     yield put({type: type.USER_EXECUTE_PAYMENT, payload: data});
+    localStorage.removeItem('cart');
     yield put(cartAction.RemoveCartAction())
   } catch (e) {
     console.log(e.messages);
@@ -91,11 +91,32 @@ function* userGetCartItems(action) {
   }
 }
 
+const cancelPayment = async (token) => {
+  try {
+    const response = await apiSunny.post(`/order/payment/cancel`, token);
+    return response.data;
+  } catch (e) {
+    return e.response.data;
+  }
+} 
+
+function* userCancelPayment(action) {
+  try {
+    const data = yield call(cancelPayment, action.token);
+    console.log(data);
+    yield put({type: type.USER_CANCEL_PAYMENT, payload: data});
+  } catch (e) {
+    console.log(e.messages);
+    // yield put({type: type.GET_USERS_FAILED, message: e.message});
+  }
+}
+
 function* paymentSaga() {
   yield takeEvery(type.USER_PAYMENT_REQUESTED, userPay);
   yield takeEvery(type.USER_EXECUTE_PAYMENT_REQUESTED, userPaymentSuccess);
   yield takeEvery(type.USER_GET_PAYMENT_HISTORY_REQUESTED, userGetPaymentHistory);
   yield takeEvery(type.USER_GET_CART_ITEMS_REQUEST, userGetCartItems);
+  yield takeEvery(type.USER_CANCEL_PAYMENT_REQUESTED, userCancelPayment);
 }
 
 export default paymentSaga;
