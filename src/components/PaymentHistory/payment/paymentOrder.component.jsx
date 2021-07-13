@@ -17,7 +17,7 @@ function PaymentOrder({ payment, handleGetPosts }) {
       <div className="d-flex flex-row"><img className="rounded" src="https://cdn.iconscout.com/icon/free/png-256/paypal-4-226455.png" width="50" height="50" alt="" />
         <div className="ml-2">
           {payment.status && <span className="font-weight-bold d-block">Order #{payment.order.id}</span>}
-          {!payment.status && <span className="font-weight-bold d-block text-danger">Payment Canceled</span>}
+          {!payment.status && <span className="font-weight-bold d-block text-danger">Payment Failed</span>}
           <span className="spec d-block">{new Date(payment.createdAt).toLocaleString()}</span>
           {payment.status && <span className="spec">Items: {payment.order.details.length}</span>}
         </div>
