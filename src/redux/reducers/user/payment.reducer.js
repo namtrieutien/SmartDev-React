@@ -6,7 +6,8 @@ const initialState = {
   checkExecute: false,
   paymentHistory: {},
   listItems: {},
-  checkGetPayment: false
+  checkGetPayment: false,
+  cancel: false
 }
 
 export default function payment(state = initialState, action) {
@@ -43,6 +44,16 @@ export default function payment(state = initialState, action) {
         data: action.payload,
         checkExecute: false
       }
+    case type.USER_CANCEL_PAYMENT_REQUESTED:
+      return {
+        ...state,
+        cancel: false
+      }
+    case type.USER_CANCEL_PAYMENT:
+      return {
+        ...state,
+        cancel: true,
+      }
     case type.USER_GET_PAYMENT_HISTORY_REQUESTED:
       return {
         ...state,
@@ -61,10 +72,10 @@ export default function payment(state = initialState, action) {
       }
     case type.USER_GET_CART_ITEMS:
       console.log(action.payload);
-        return {
-          ...state,
-          listItems: action.payload
-        }
+      return {
+        ...state,
+        listItems: action.payload
+      }
     default:
       return {
         ...state,
