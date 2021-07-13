@@ -30,7 +30,7 @@ function App() {
     <Router history={history}>
       <div className="./App.css">
         <Helmet>
-          <title>Chợ tốt - Chợ người Việt</title>
+          <title>Chợ tốt</title>
         </Helmet>
         {/* only visible when click in cart icon in navbar */}
         <CartPopup />
