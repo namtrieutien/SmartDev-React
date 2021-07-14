@@ -19,7 +19,6 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use((respone) => {
   if (respone && respone.data) {
-    console.log(respone.data);
     return respone.data;
   }
   return respone

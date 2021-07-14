@@ -23,7 +23,6 @@ function Products(props) {
   })
 
   function handlePageChange(newPage) {
-    console.log('handlePageChange newPage', newPage)
     setFilters({
       ...filters,
       _page: newPage
