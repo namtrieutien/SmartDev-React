@@ -4,7 +4,7 @@ import adminApi from "../../../api/management/adminApi";
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 // import PropTypes from "prop-types";
 
-import "./WidgetLg.css";
+
 
 // WidgetLg.propTypes = {};
 
@@ -15,11 +15,14 @@ const LoadinngPostsFrame = () => {
 
   const listItems = listProduct.map((product) => (
     <tr className="widget-lg-tr" key={product.index }>
-      <td className="widget-lg-user">
+      <td className="">
         <div  className="widget-lg-img"> <Skeleton circle={true} height={40} width={40} /></div>
+      </td>
+      <td className="">
         <span className="widget-lg-name"><Skeleton width="100px" /></span>
       </td>
       <td className="widget-lg-date"><Skeleton /></td>
+      <td className="widget-lg-amount"><Skeleton /></td>
       <td className="widget-lg-amount"><Skeleton /></td>
       <td className="widget-lg-status">
         <Skeleton />
@@ -51,12 +54,15 @@ const ListProducts = (props) => {
 
   const listItems = listProduct.map((product) => (
     <tr className="widget-lg-tr" key={product.id }>
-      <td className="widget-lg-user">
-        <img src={product.image} alt="product img" className="widget-lg-img" />
-        <span className="widget-lg-name">{product.title || <Skeleton />}</span>
+      <td className="">
+        <img src='https://image.flaticon.com/icons/png/512/888/888870.png' alt="product img" className="widget-lg-img" />
+      </td>
+      <td className="">
+        <span className="widget-lg-description">{product.title || <Skeleton />}</span>
       </td>
       <td className="widget-lg-date">{handleTimeStamp(product.createdAt) || <Skeleton />}</td>
-      <td className="widget-lg-amount">{product.price || <Skeleton />}Đ</td>
+      <td className="widget-lg-amount">{product.totalPrice || <Skeleton />}</td>
+      <td className="widget-lg-amount">Dollar</td>
       <td className="widget-lg-status">
         {
           product.status === undefined ?
@@ -68,10 +74,12 @@ const ListProducts = (props) => {
   return <>{listItems}</>;
 };
 
-function WidgetLg(props) {
-  
+function TopTransactionTale(props) {
   const [loading, setLoading] = useState(false)
   const [listProduct, setListProduct] = useState([]);
+
+  const {topPriceTransaction} = props;
+
   useEffect(() => {
     const fetchLastestPost = async () => {
       try {
@@ -89,18 +97,20 @@ function WidgetLg(props) {
 
   return (
     <div className="widget-lg">
-      <span className="widget-lg-title">Latest Posts</span>
+      <span className="widget-lg-title">Top Transactions</span>
       <SkeletonTheme color="#e1e1f1" highlightColor="#c7c7f3" >
           <table className="widget-lg-table">
           <tbody>
             <tr className="widget-lg-tr">
-              <th className="widget-lg-th">Product</th>
+              <th className="widget-lg-th">Method</th>
+              <th className="widget-lg-th">Description</th>
               <th className="widget-lg-th">Date</th>
               <th className="widget-lg-th">Price</th>
+              <th className="widget-lg-th">Currency</th>
               <th className="widget-lg-th">Status</th>
             </tr>
             {
-              loading === true ? <ListProducts  listProduct={listProduct}/>
+              loading === true ? <ListProducts  listProduct={topPriceTransaction}/>
               : <LoadinngPostsFrame />
             }            
           </tbody>
@@ -110,4 +120,4 @@ function WidgetLg(props) {
   );
 }
 
-export default WidgetLg;
+export default TopTransactionTale;

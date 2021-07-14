@@ -18,6 +18,7 @@ import { loginUserAction } from '../../../redux/actions/login/authAction'
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar';
+import Transaction from '../Transaction';
 
 Dashboard.propTypes = {
 
@@ -73,6 +74,7 @@ function Dashboard(props) {
           <Route exact path={`${props.match.path}/users/:userId`} component={User}></Route>
           <Route exact path={`${props.match.path}/product/`} component={ProductList}></Route>
           <Route exact path={`${props.match.path}/product/:productId`} component={Product}></Route>
+          <Route exact path={`${props.match.path}/transaction/`} component={Transaction}></Route>
         </Switch>
       </body>
     </div>

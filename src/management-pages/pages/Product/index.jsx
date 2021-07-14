@@ -1,123 +1,196 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { Publish } from "@material-ui/icons";
-
-import "./Product.css";
-import Chart from "../../components/Chart";
-import { productDataTemp } from "../../dummyData";
-
-import { loginUserAction } from '../../../redux/actions/login/authAction'
-
+import { makeStyles } from "@material-ui/core/styles";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import { connect } from "react-redux";
-import { Redirect } from 'react-router-dom';
+import { Redirect, useParams } from "react-router-dom";
+
+import { loginUserAction } from "../../../redux/actions/login/authAction";
+import adminApi from "../../../api/management/adminApi";
+import "./Product.css";
+
 Product.propTypes = {};
 
-function Product(props) {
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+  },
+});
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function Product(props) {
+  let { productId } = useParams();
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
   const { isLoggedIn, user } = props;
+  const [loading, setLoading] = useState(false);
+  const [post, setPost] = useState({});
+
+  useEffect(() => {
+    const fetchPostDetail = async () => {
+      try {
+        console.log("calling effect");
+        setLoading(false);
+        const response = await adminApi.getPost(productId);
+        setPost(response);
+        setLoading(loading);
+      } catch (error) {
+        console.log("Failed to fetch user detail :", error);
+      }
+    };
+    fetchPostDetail();
+  }, []);
+
   if (isLoggedIn) {
-    if (!user.user.roles.includes("ROLE_ADMIN"))
-      return <Redirect to="/404" />;
+    if (!user.user.roles.includes("ROLE_ADMIN")) return <Redirect to="/404" />;
   } else return <Redirect to="/login" />;
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <div className="product">
-      <div className="product-title-container">
-        <h1 className="product-title">Product</h1>
-        <Link to="/management/product/create">
-          <button className="product-add-button">Create</button>
-        </Link>
-      </div>
       <div className="product-top">
-        <div className="product-top-left">
-          <Chart
-            data={productDataTemp}
-            title={"Sales Performance"}
-            dataKey1={"Sales"}
-            dataKey2={"pv"}
-          />
-        </div>
         <div className="product-top-right">
           <div className="product-infor-top">
             <img
-              src="https://source.unsplash.com/random/abc"
+              src={post.image}
               alt="product-img"
               className="product-infor-img"
             />
-            <span className="product-name">Apple Airpods</span>
           </div>
           <div className="product-infor-bottom">
-            <div className="product-infor-item">
-              <span className="product-infor-key">id:</span>
-              <span className="product-infor-value">123</span>
+            <div className="product-infor-title">
+              <span className="product-name">{post.title}</span>
             </div>
             <div className="product-infor-item">
-              <span className="product-infor-key">sales:</span>
-              <span className="product-infor-value">5123</span>
+              <span
+                className="product-infor-key"
+                style={{ fontSize: "20px", fontWeight: "600" }}
+              >
+                {`${post.price} VND`}
+              </span>
+              <button className="product-remove">Remove</button>
             </div>
-            <div className="product-infor-item">
-              <span className="product-infor-key">acvite:</span>
-              <span className="product-infor-value">Yes</span>
+            <div className="product-infor-description">
+              <span className="product-infor-key">Description: </span>
+              <span className="product-infor-description-value">
+                {post.description}
+              </span>
             </div>
-            <div className="product-infor-item">
-              <span className="product-infor-key">id:</span>
-              <span className="product-infor-value">123</span>
-            </div>
-            <div className="product-infor-item">
-              <span className="product-infor-key">in stock</span>
-              <span className="product-infor-value">no</span>
-            </div>
+            <Paper className={classes.root}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+              >
+                <Tab label="Product Detail" />
+                <Tab label="Seller" />
+                <Tab label="Reports" />
+              </Tabs>
+            </Paper>
+            <TabPanel value={value} index={0}>
+              <div className="content-tab">
+                <div className="content-tab-key">
+                  <span className="product-infor-key">iD:</span>
+                  <span className="product-infor-key">category:</span>
+                  <span className="product-infor-key">status:</span>
+                  <span className="product-infor-key">size:</span>
+                </div>
+                <div className="content-tab-value">
+                  <span className="product-infor-value">{post.id}</span>
+                  <span className="product-infor-value">{post.category}</span>
+                  <span className="product-infor-value">
+                    {post.status === false ? "Selling" : "true"}
+                  </span>
+                  <span className="product-infor-value">{post.size}</span>
+                </div>
+              </div>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <div className="content-tab-user">
+                <div className="product-infor-owner">
+                  <div style={{flex: "1"}}>
+                    <img
+                      src={post.user && post.user.avatar}
+                      alt="owner"
+                      className="owner-image"
+                    />
+                  </div>
+                  <span className="product-infor-value-owner">{post.user && post.user.email}</span>
+                </div>
+                <div className="product-infor-owner"  >
+                  <div className="product-infor-key-owner">
+                    ID:
+                  </div>
+                  <div className="product-infor-value-owner">
+                    {post.user && post.user.id}
+                  </div>
+                </div>
+                <div className="product-infor-owner">
+                  <div className="product-infor-key-owner">
+                    Name:
+                  </div>
+                  <div className="product-infor-value-owner">
+                    {post.user && post.user.name}
+                  </div>
+                </div>
+                <div className="product-infor-owner">
+                  <div className="product-infor-key-owner">
+                    Phone:
+                  </div>
+                  <div className="product-infor-value-owner">
+                    {post.user && post.user.phone}
+                  </div>
+                </div>
+              </div>
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+              <div className="content-tab"></div>
+            </TabPanel>
           </div>
         </div>
-      </div>
-      <div className="product-bottom">
-        <form action="submit" className="product-form">
-          <div className="product-form-left">
-            <label htmlFor="">Product Name</label>
-            <input type="text" placeholder="Apple Airpod" />
-            <label htmlFor="">In stock</label>
-            <select name="inStock" id="inStock">
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-            <label htmlFor="">Active</label>
-            <select name="active" id="active">
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
-          <div className="product-form-right">
-            <div className="product-upload">
-              <img
-                src="https://avatars.dicebear.com/api/gridy/.svg"
-                alt="product-upload-img"
-                className="product-upload-img"
-              />
-              <label for="file">
-                <Publish />
-              </label>
-              <input type="file" id="file" style={{ display: "none" }} />
-            </div>
-            <div className="product-button">Update</div>
-          </div>
-        </form>
       </div>
     </div>
   );
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { isLoggedIn, user } = state.userReducer;
   return {
     isLoggedIn,
-    user
+    user,
   };
-}
-const mapDispatchToProps = dispatch => {
+};
+const mapDispatchToProps = (dispatch) => {
   return {
     login: (email, password) => {
-      dispatch(loginUserAction(email, password))
-    }
-  }
-}
+      dispatch(loginUserAction(email, password));
+    },
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Product);
