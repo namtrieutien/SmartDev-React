@@ -12,7 +12,7 @@ import loading from '../Register/login-image/loading.gif'
 
 function EditUser(props) {
     const { user: data, checkStatus, checkSuccessful } = props;
-    const { name, email, phone, address } = data.user;
+    const { name, email, phone, address, avatar } = data.user;
     const { commune, district, city } = address;
 
     const [checkUpdate, setCheckUpdate] = useState(false)
@@ -67,7 +67,7 @@ function EditUser(props) {
                                 <div className="account-settings">
                                     <div className="user-profile">
                                         <div className="user-avatar">
-                                            <img src="https://avatars.dicebear.com/api/bottts/sad.svg" alt="Maxwell Admin" />
+                                            <img src={avatar ? avatar : "https://avatars.dicebear.com/api/bottts/sad.svg"} alt="Maxwell Admin" />
                                         </div>
                                         <h4 className="user-name">{name}</h4>
                                         <h5 className="user-email">{email}</h5>

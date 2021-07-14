@@ -23,7 +23,6 @@ function Products(props) {
   })
 
   function handlePageChange(newPage) {
-    console.log('handlePageChange newPage', newPage)
     setFilters({
       ...filters,
       _page: newPage
@@ -59,8 +58,8 @@ class Content extends React.Component {
             <div className="row">
               <div className="col-md-12">
                 <div className="text-content">
-                  <h4>new arrivals</h4>
-                  <h2>sixteen products</h2>
+                  {/* <h4>new arrivals</h4>
+                  <h2>sixteen products</h2> */}
                 </div>
               </div>
             </div>
@@ -70,7 +69,7 @@ class Content extends React.Component {
         <div className="products">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-md-12">
+              {/* <div className="col-md-12">
                 <div className="filters">
                   <ul>
                     <li className="active" data-filter="*">All Products</li>
@@ -79,7 +78,7 @@ class Content extends React.Component {
                     <li data-filter=".gra">Last Minute</li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
              
               <div className="col-md-12">
                 <div className="filters-content">

@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { getSearchPostData , getPostByCat, getPostByPrice} from '../../../api/posts/search';
-import { searchComplete, searchByCatComplete, searchByPriceComplete } from '../../actions/posts/search.action';
+import { getSearchPostData , getPostByCat, getPostByPrice, getPostById} from '../../../api/posts/search';
+import { searchComplete, searchByCatComplete, searchByPriceComplete, postLoadedAction } from '../../actions/posts/search.action';
 import apiSunny from '../../../api/sunny'
 import * as type from '../../constants';
 
@@ -77,7 +77,6 @@ function* searchPostsSaga() {
   yield takeEvery(type.POSTS_SEARCH_LOADING, getSearchPostSaga);
   yield takeEvery(type.LOAD_POST_BY_CAT, getPostByCatSaga);
   yield takeEvery(type.LOAD_POST_BY_PRICE, getPostByPriceSaga);
-
 }
 
 export default searchPostsSaga;

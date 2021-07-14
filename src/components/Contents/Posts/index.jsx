@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import CardPost from "../../Post/CardPost";
+import PostList from '../../../components/PostList';
 import { searchByPriceLoading } from '../../../redux/actions/posts/search.action';
 
 import { connect } from "react-redux";
@@ -31,14 +31,7 @@ function Posts(props) {
                 </Link>
               </div>
             </div>
-              {postList != null ?
-                (postList.map(item =>
-                  <CardPost
-                    key={item.id}
-                    post={item} />
-                )) :
-                <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
-              }
+            <PostList load={props.load} posts={postList} />
           </div>
         </div>
       </div>

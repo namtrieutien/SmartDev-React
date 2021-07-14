@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import { loadPosts, deletePost } from '../../redux/actions/user/managepost.action'
+import { loadPosts, deletePost, reset} from '../../redux/actions/user/managepost.action'
 import { connect } from 'react-redux'
+import { NavLink } from "react-router-dom";
 
 import "./mypost.css";
 import { VNDformat } from '../../helpers/utils';
@@ -12,7 +13,10 @@ function PostItem({ postItem, handelClick }) {
     return (
         <tr>
             <td><img className="item-img" src={image} /> </td>
-            <td>{title}</td>
+            <td >
+                <NavLink to={{ pathname: `/post/${id}`, state: { post: postItem } }} className="text-dark">
+                    {title}</NavLink>
+            </td>
             <td className="text-center">{id}</td>
             <td className="text-center">{category}</td>
             <td>{status ? <div class="p-3 mb-2 bg-success text-white text-center">Sold</div> : <div class="p-3 mb-2  bg-light text-dark">Selling</div>}</td>
@@ -86,7 +90,7 @@ function MyPosts(props) {
             {postList && !postList.length ? (
                 <p className="text-center my-3">
                     <img className="img-responsive" style={{ width: '15%', height: '25%' }} src="https://image.flaticon.com/icons/png/512/2765/2765311.png" alt="" />
-                    <h3 className="my-3 mb-5 text-info" style={{fontSize: '3vw'}}>No Posts Yet.</h3>
+                    <h3 className="my-3 mb-5 text-info" style={{ fontSize: '3vw' }}>No Posts Yet.</h3>
                 </p>
             ) : (
                 <div className="container mb-5">
@@ -139,7 +143,7 @@ function MyPosts(props) {
                             </p>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-success btn-block" type="button" data-dismiss="modal">Cancel</button>
+                            <button className="btn btn-success btn-block" type="button" data-dismiss="modal" onClick={props.resetResponse}>Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -172,6 +176,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         deletePost: (pid) => {
             dispatch(deletePost(pid));
+        },
+        resetResponse: () => {
+            dispatch(reset());
         }
     };
 }

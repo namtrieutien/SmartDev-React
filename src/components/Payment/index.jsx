@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector, useDispatch } from "react-redux";
-
+import { ReactDOM } from 'react';
 import "./paymentStyle.css";
 import { pay } from '../../redux/actions/user/payment.action'
 import { getCartItems } from '../../redux/actions/user/payment.action'
@@ -51,10 +51,10 @@ function Payment(props) {
 
   const onSubmit = (data) => {
     dispatch(pay(data))
-    // alert(JSON.stringify(data))
   };
 
   useEffect(() => {
+    console.log();
     dispatch(getCartItems());
   }, []);
 

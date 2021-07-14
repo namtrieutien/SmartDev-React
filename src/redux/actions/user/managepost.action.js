@@ -26,3 +26,8 @@ export const deletedPost = (response, pid) => {
       post_id: pid
   }
 }
+export const reset = () => {
+  return {
+    type: types.RESET_STATE,
+  }
+}
