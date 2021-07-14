@@ -16,7 +16,7 @@ function Header(props) {
 			<div className="container">
 				<div className="row justify-content-between">
 						<div className="col">
-							<p className="mb-0 phone"><span className="fa fa-phone"></span> <a href="#">+848 98 213 745</a></p>
+							{/* <p className="mb-0 phone"><span className="fa fa-phone"></span> <a href="#">+848 98 213 745</a></p> */}
 						</div>
 						<div className="col d-flex justify-content-end">
 							<div className="social-media">

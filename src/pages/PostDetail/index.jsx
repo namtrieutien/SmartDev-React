@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useSelector, useDispatch, connect } from 'react-redux'
 import * as yup from "yup";
 
@@ -13,6 +13,7 @@ import { addNewToCart, AddToCartAPI } from '../../redux/actions/cartAction'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup";
 import loading from '../../components/Register/login-image/loading.gif';
+import { getPostById } from '../../api/posts/search';
 
 import { getReportTypes, report, resetStatus } from '../../redux/actions/posts/search.action'
 
@@ -22,10 +23,11 @@ const ReportSchema = yup.object().shape({
 });
 
 const mapStateToProps = (state) => {
-  const { isLoggedIn } = state.userReducer;
+  const { isLoggedIn, user } = state.userReducer;
   return {
     cartList: state.cartReducer.list,
-    isLoggedIn
+    isLoggedIn,
+    user: user.user
   }
 }
 
@@ -41,28 +43,60 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function PostDetail(props) {
+  const { post_id } = useParams();
   const location = useLocation();
-  const { id, title, description, price, category, image, user } = location.state.post;
-  const discount = 15
-  const price_discount = price * discount / 100
-  const price_before = price + price_discount
+  const [isLoading, setLoading] = useState(false)
 
-  const { cartList } = props
+  const [post, setPost] = useState({})
+  const [owner, setOwner] = useState({})
+  const [address, setAddress] = useState({})
+  const [buyer, setBuyer] = useState({})
+
+
+  const { cartList, isLoggedIn, user } = props
 
   const [status, setStatus] = useState("Add to Cart");
-  useEffect(() => {
-    const newItem = cartList.find(cartItem => JSON.stringify(cartItem) === JSON.stringify(location.state.post))
 
-    if (JSON.stringify(newItem) === JSON.stringify(location.state.post)) {
-      setStatus("Added");
-    } else {
-      setStatus("Add to Cart")
+  useEffect(() => {
+    const setState = (response) => {
+      setPost(response)
+      setOwner(response.user)
+      setAddress(response.user.address)
+      setBuyer(response.buyer)
+      checkCartItem(response)
+      setLoading(false);
     }
-  }, [cartList])
+    const fetchPost = async () => {
+      try {
+        setLoading(true);
+        const response = await getPostById(post_id)
+        setState(response)
+      } catch (error) {
+        console.log("Failed to fetch post :", error);
+      }
+    }
+    const checkCartItem = (post) => {
+      const newItem = cartList.find(cartItem => JSON.stringify(cartItem) === JSON.stringify(post))
+      if (JSON.stringify(newItem) === JSON.stringify(post)) {
+        setStatus("Added");
+      } else {
+        setStatus("Add to Cart")
+      }
+    }
+
+    if (location.state) {
+      const post = location.state.post
+      setState(post)
+    }
+    else if (post_id) {
+      fetchPost();
+    }
+
+  }, [cartList, post_id])
 
   const handleCartItemClick = () => {
-    props.addNewToCart(location.state.post);
-    if (props.isLoggedIn) props.addToCartAPI(id)
+    props.addNewToCart(post);
+    if (isLoggedIn) props.addToCartAPI(post.id)
   };
 
   //report
@@ -120,201 +154,191 @@ function PostDetail(props) {
       keepErrors: false,
     })
   };
-
+  let class_loading = isLoading ? "loading-bg" : "loading-bg d-none"
   return (
     <div className="PostDetail">
       <div className={checkPostReport ? "loading-bg" : "loading-bg d-none"}>
         <img src={loading} alt="Loading..." />
       </div>
       <Header />
-      <div className="super_container">
-        <div className="single_product">
-          <div className="container-fluid" style={{ backgroundColor: '#fff', padding: '11px' }}>
-            <div className="row">
-              <div className="col-lg-4 order-lg-2 order-1 ml-3">
-                <div className="image_selected"><img src={image} alt="post_img" /></div>
-              </div>
-              <div className="col-lg-6 order-3 ml-3">
-                <div className="product_description mt-3">
-                  {/* <nav>
-                    <ol className="breadcrumb">
-                      <li className="breadcrumb-item active">Home</li>
-                      <li className="breadcrumb-item active">Products</li>
-                      <li className="breadcrumb-item active">{category}</li>
-                    </ol>
-                  </nav> */}
-                  <div className="product_name">{title}</div>
-                  {/* <div className="product-rating"><span className="badge badge-success"><i className="fa fa-star" /> 4.5 Star</span> <span className="rating-review">35 Ratings &amp; 45 Reviews</span></div> */}
-                  <div>
-                    <span className="product_price text-danger"> {VNDformat(price)}</span>
-                    {/* <strike className="product_discount">
-                      <span style={{ color: 'black' }}>{VNDformat(price_before)}
-                        <span></span>
-                      </span>
-                    </strike> */}
-                  </div>
-                  {/* <div>
-                    <span className="product_saved">You Saved {discount}%:</span>
-                    <span style={{ color: 'black' }}>{VNDformat(price_discount)}
-                      <span> </span>
-                    </span>
-                  </div> */}
-                  <hr className="singleline" />
-                  <div>
-                    <span className="product_info">{description}<span>
-                      <br />
-                      {/* <span className="product_info">Nhanh tay bấm mua ngày để rinh ngay sản phẩm siêu hót siêu rẻ này thôi<span>
-                        <br />
-                      </span></span> */}
-                    </span></span>
-                  </div>
-                  {/* <div>
-                    <div className="row">
-                      <div className="col-md-5">
-                        <div className="br-dashed">
-                          <div className="row">
-                            <div className="col-md-3 col-xs-3"> <img src="https://img.icons8.com/color/48/000000/price-tag.png" alt="" /> </div>
-                            <div className="col-md-9 col-xs-9">
-                              <div className="pr-info"> <span className="break-all">Voucher giảm 5% + Miễn phí vẫn chuyển</span> </div>
+      {isLoading === true ? (
+        <div className={class_loading} >
+          <img src={loading} alt="Loading..." />
+        </div>) : (
+        <div className="super_container">
+          <div className="single_product">
+            <div className="container-fluid" style={{ backgroundColor: '#fff', padding: '11px' }}>
+              <div className="row">
+                <div className="col-lg-4 order-lg-2 order-1 ml-3">
+                  <div className="image_selected"><img src={post.image} alt="post_img" /></div>
+                </div>
+                <div className="col-lg-6 order-3 ml-3">
+                  <div className="product_description mt-3">
+                    <nav>
+                      <ol className="breadcrumb">
+                        <li className="breadcrumb-item active">Home</li>
+                        <li className="breadcrumb-item active">Products</li>
+                        <li className="breadcrumb-item active">{post.category}</li>
+                      </ol>
+                    </nav>
+                    <div className="product_name">{post.title}</div>
+                    <div >
+                      <span className="product_price text-danger col-sm-8"> {VNDformat(post.price)}</span>
+                      {post.status && post.status === true ?
+                        (<span className="product_price col-sm-4">
+                          <img className="" style={{ width: '30%', height: '50%' }} src="https://image.flaticon.com/icons/png/512/3578/3578169.png" alt="" />
+                        </span>) : (<div />)
+                      }
+
+                    </div>
+
+                    <hr className="singleline" />
+                    <div>
+                      <span className="product_info">{post.description}<span><br />
+                      </span></span>
+                    </div>
+                    {/* Buyer */}
+                    {buyer ? (
+                      <div className="card mb-3 mt-5 ml-5" style={{ maxWidth: '540px' }}>
+                        <div className="row no-gutters">
+                          <div className="col-md-4">
+                            <img src={buyer.avatar} className="card-img rounded-circle img-responsive p-3" style={{ width: '100%', height: '100%' }} alt="" />
+                          </div>
+                          <div className="col-md-8">
+                            <div className="card-body">
+                              <h5 className="card-title text-info"><span><p className="text-secondary">Buy by</p></span>{buyer.name}</h5>
+                              <p className="card-text"><span style={{ fontSize: '18px', color: 'Dodgerblue' }}><i className="fas fa-envelope mr-2" /></span>{buyer.email}</p>
+                              <p className="card-text"><span style={{ fontSize: '18px', color: 'Dodgerblue' }}><i className="fas fa-phone mr-2" /></span>{buyer.phone}</p>
+
+                              <p className="card-text mt-3">
+                                <p className="text-secondary font-weight-normal" style={{ fontSize: '14px' }}>Sold at</p>
+                                <small className="text-muted">{buyer.created_at}</small>
+                              </p>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="col-md-7"> </div>
-                    </div> */}
-                  {/* <div className="row" style={{ marginTop: '15px' }}>
-                      <div className="col-xs-6" style={{ marginLeft: '15px' }}> <span className="product_options">Size</span><br /> <button className="btn btn-primary btn-sm">Small</button> <button className="btn btn-primary btn-sm">Medium</button> <button className="btn btn-primary btn-sm">Big</button> </div>
-                    </div> */}
-                  {/* </div> */}
-                  <hr className="singleline" />
-                  <div className="order_info d-flex flex-row">
-                    <form action="#">
-                    </form></div>
-                  <div className="row ml-">
-                    {/* <div className="col-xs-6" style={{ marginLeft: '13px' }}>
-                      <div className="product_quantity"> <span>QTY: </span> <input id="quantity_input" type="text" pattern="[0-9]*" defaultValue={1} disabled />
-                        <div className="quantity_buttons">
-                          <div id="quantity_inc_button" className="quantity_inc quantity_control"><i className="fas fa-chevron-up" /></div>
-                          <div id="quantity_dec_button" className="quantity_dec quantity_control"><i className="fas fa-chevron-down" /></div>
-                        </div>
-                      </div>
-                    </div> */}
-                    <div className="col-xs-6">
-                      <div className="col-12 col-md-6 d-flex">
-                        <button className="btn btn-outline-primary mr-2" onClick={handleCartItemClick} >
-                          <img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`../../components/Profile/img/cart.png`).default} alt="Cart" />{status}
-                        </button>
-                        <button type="button" className="btn btn-danger shop-button">Buy Now</button>
-                      </div>
-                      <div className="col-12 col-md-6">
-                        <button type="button" className="btn btn-warning shop-button mt-2" data-toggle={auth && "modal"} data-target={auth && "#reportModal"} onClick={() => checkAuth()}>
-                          Report
-                        </button>
-                      </div>
+                    ) : (<div />)}
+
+                    <div className="row ml-">
+                      {isLoggedIn && owner.id === user.id ? (<div />) : (
+                        <div className="col-xs-6">
+                          <div className="col-12 col-md-6 d-flex">
+                            <button className="btn btn-outline-primary mr-2" onClick={handleCartItemClick} >
+                              <img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`../../components/Profile/img/cart.png`).default} alt="Cart" />{status}
+                            </button>
+                          </div>
+                          <div className="col-12 col-md-6">
+                            <button type="button" className="btn btn-warning shop-button mt-2" data-toggle={auth && "modal"} data-target={auth && "#reportModal"} onClick={() => checkAuth()}>
+                              Report
+                            </button>
+                          </div>
+                        </div>)}
                     </div>
+
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="row row-underline">
-              <div className="col-md-6"> <span className=" deal-text">Specifications</span> </div>
-              <div className="col-md-6"> <a href="#" data-abc="true"> <span className="ml-auto view-all" /> </a> </div>
-            </div>
-            <div className="row">
-              <div className="col-md-12">
-                <table className="col-md-12">
-                  <tbody>
-                    <tr className="row mt-10">
-                      <td className="col-6 col-md-4"><span className="p_specification">Owner:</span> </td>
-                      <td className="col-6 col-md-8">
-                        {user.name}
-                      </td>
-                    </tr>
-                    <tr className="row mt-10">
-                      <td className="col-6 col-md-4"><span className="p_specification">Phone:</span> </td>
-                      <td className="col-6 col-md-8">
-                        {user.phone}
-                      </td>
-                    </tr>
-                    <tr className="row mt-10">
-                      <td className="col-6 col-md-4"><span className="p_specification">Email:</span> </td>
-                      <td className="col-6 col-md-8">
-                        {user.email}
-                      </td>
-                    </tr>
-                    <tr className="row mt-10">
-                      <td className="col-6 col-md-4"><span className="p_specification">Address:</span> </td>
-                      <td className="col-6 col-md-8">
-                        {user.address.commune}, {user.address.district}, {user.address.city}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="row row-underline">
+                <div className="col-md-6"> <span className=" deal-text">Specifications</span> </div>
+                <div className="col-md-6"> <a href="#" data-abc="true"> <span className="ml-auto view-all" /> </a> </div>
               </div>
-            </div>
-            <div className="modal fade cart-popup" id="reportModal" tabIndex="-1" role="dialog" aria-hidden="false" modal-toggle>
-              <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">
-                      Report:
-                    </h5>
-                    <button
-                      type="button"
-                      className="close"
-                      data-dismiss="modal"
-                      aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="modal-body">
-                      {reportData && <p className="badge badge-success mb-2" style={{ fontSize: "15px" }}>Report Success</p>}
-                      <div className="form-group">
-                        <label className="control-label">Problem</label>
-                        <select {...register("type")}
-                          className="form-control"
-                        >
-                          <option> </option>
-                          {reportTypes && Object.keys(reportTypes).map((key, value) => {
-                            return (
-                              <option value={key} >{reportTypes[key]}</option>
-                            )
-                          })}
-                        </select>
-                        {errors.type &&
-                          <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px" }}>
-                            {errors.type.message}
-                          </p>
-                        }
-                      </div>
-
-                      <div className="form-group">
-                        <label className="control-label">Description</label>
-                        <div className="">
-                          <textarea {...register("description")}
-                            id="input-description"
-                            className="form-control"></textarea>
-                          {errors.description &&
+              <div className="row">
+                <div className="col-md-12">
+                  <table className="col-md-12">
+                    <tbody>
+                      <tr className="row mt-10">
+                        <td className="col-6 col-md-4"><span className="p_specification">Owner:</span> </td>
+                        <td className="col-6 col-md-8">
+                          {owner.name}
+                        </td>
+                      </tr>
+                      <tr className="row mt-10">
+                        <td className="col-6 col-md-4"><span className="p_specification">Phone:</span> </td>
+                        <td className="col-6 col-md-8">
+                          {owner.phone}
+                        </td>
+                      </tr>
+                      <tr className="row mt-10">
+                        <td className="col-6 col-md-4"><span className="p_specification">Email:</span> </td>
+                        <td className="col-6 col-md-8">
+                          {owner.email}
+                        </td>
+                      </tr>
+                      <tr className="row mt-10">
+                        <td className="col-6 col-md-4"><span className="p_specification">Address:</span> </td>
+                        <td className="col-6 col-md-8">
+                          {address.commune}, {address.district}, {address.city}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="modal fade cart-popup" id="reportModal" tabIndex="-1" role="dialog" aria-hidden="false" modal-toggle>
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="exampleModalLabel">
+                        Report:
+                      </h5>
+                      <button
+                        type="button"
+                        className="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                      <div className="modal-body">
+                        {reportData && <p className="badge badge-success mb-2" style={{ fontSize: "15px" }}>Report Success</p>}
+                        <div className="form-group">
+                          <label className="control-label">Problem</label>
+                          <select {...register("type")}
+                            className="form-control"
+                          >
+                            <option> </option>
+                            {reportTypes && Object.keys(reportTypes).map((key, value) => {
+                              return (
+                                <option value={key} >{reportTypes[key]}</option>
+                              )
+                            })}
+                          </select>
+                          {errors.type &&
                             <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px" }}>
-                              {errors.description.message}
+                              {errors.type.message}
                             </p>
                           }
                         </div>
+
+                        <div className="form-group">
+                          <label className="control-label">Description</label>
+                          <div className="">
+                            <textarea {...register("description")}
+                              id="input-description"
+                              className="form-control"></textarea>
+                            {errors.description &&
+                              <p className="ml-2 text-danger mt-1" style={{ fontSize: "16px" }}>
+                                {errors.description.message}
+                              </p>
+                            }
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="modal-footer">
-                      <button type="button" className="btn" data-dismiss="modal" onClick={() => clickClose()} >Close</button>
-                      <button type="submit" className="btn btn-success">Submit</button>
-                    </div>
-                  </form>
+                      <div className="modal-footer">
+                        <button type="button" className="btn" data-dismiss="modal" onClick={() => clickClose()} >Close</button>
+                        <button type="submit" className="btn btn-success">Submit</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
       <Footer />
     </div>
   );

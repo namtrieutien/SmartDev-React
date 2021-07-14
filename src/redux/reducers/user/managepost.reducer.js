@@ -53,13 +53,20 @@ export const managePostReducer = (state = initialState, action) => {
         return {
           ...state,
           postList: filtered,
-          total_sold:total_sold,
+          total_sold: total_sold,
           total_selling: total_selling,
           total_sold_posts: total_sold_posts,
           total_selling_posts: total_selling_posts,
           response: action.response
 
         };
+
+      }
+      break;
+    case type.RESET_STATE:
+      return {
+        ...state,
+        response: ''
       }
     default:
       return state;

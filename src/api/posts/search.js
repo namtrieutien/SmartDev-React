@@ -12,3 +12,7 @@ export const getPostByPrice = (requestParams) => {
     const url = `posts/search/by-price`; 
     return instance.get(url, { params: requestParams});
 }
+export const getPostById = (pid) => {
+    const url = `posts/search/${pid}`; 
+    return instance.get(url);
+}

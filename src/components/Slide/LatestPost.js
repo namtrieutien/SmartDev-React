@@ -1,24 +1,19 @@
 import React, { useEffect } from "react";
 import './latestPost.css'
-import CardPost from "../Post/CardPost";
 import { connect } from "react-redux";
 import { searchLoading } from '../../redux/actions/posts/search.action';
 import { Link } from "react-router-dom";
-
+import PostList from "../PostList"
 function LatestPost(props) {
     const params = {
         title: "",
-        _page: props.pagination !== undefined ? props.pagination._page : props.data.pagination._page,
-        // _page: props.pagination._page,
-        _limit: props.pagination !== undefined ? props.pagination._limit : props.data.pagination._limit,
+        _page: props.pagination._page,
+        _limit: props.pagination._limit,
     }
     useEffect(() => {
         props.searchPost(params);
     }, [])
     const postList = Array.from(props.data);
-    const slide1 = postList.slice(0, 6);
-    const slide2 = postList.slice(6, 12);
-    const slide3 = postList.slice(12, 18);
 
     return (
         <div className="container-fluid my-5 ">
@@ -45,43 +40,21 @@ function LatestPost(props) {
                             {/*First slide*/}
                             <div className="carousel-item active">
                                 <div className="row">
-                                    {slide1 != null ?
-                                        (slide1.map(item =>
-                                            <CardPost
-                                                key={item.id}
-                                                post={item} />
-                                        )) :
-                                        <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
-                                    }
-
+                                <PostList load={props.load} posts={postList.slice(0, 6)} size={5} />
                                 </div>
                             </div>
                             {/*/.First slide*/}
                             {/*Second slide*/}
                             <div className="carousel-item">
                                 <div className="row">
-                                    {slide2 != null ?
-                                        (slide2.map(item =>
-                                            <CardPost
-                                                key={item.id}
-                                                post={item} />
-                                        )) :
-                                        <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
-                                    }
+                                <PostList load={props.load} posts={postList.slice(6, 12)} size={5}/>
                                 </div>
                             </div>
                             {/*/.Second slide*/}
                             {/*Third slide*/}
                             <div className="carousel-item">
                                 <div className="row">
-                                    {slide3 != null ?
-                                        (slide3.map(item =>
-                                            <CardPost
-                                                key={item.id}
-                                                post={item} />
-                                        )) :
-                                        <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
-                                    }
+                                <PostList load={props.load} posts={postList.slice(12, 18)} size={5}/>
                                 </div>
                             </div>
                             {/*/.Third slide*/}
@@ -95,10 +68,11 @@ function LatestPost(props) {
     );
 }
 const mapStateToProps = (state) => {
-    const { pagination, data } = state.searchPostReducer;
+    const { pagination, data, load } = state.searchPostReducer;
     return {
         pagination,
-        data
+        data, 
+        load
     };
 };
 const mapDispatchToProps = (dispatch) => {

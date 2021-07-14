@@ -100,7 +100,7 @@ a.filled-button:hover {
 	/* background-image: url(./images/contact-heading.jpg); */
 }
 
-.page-heading {
+.page-heading-fashion {
 	padding: 210px 0px 130px 0px;
 	text-align: center;
 	background-position: center center;
@@ -108,7 +108,14 @@ a.filled-button:hover {
 	background-size: cover;
   background-image: url('https://cdn.chotot.com/admincentre/2FsWOU0vfRKpFmr_Z16BkO-1VSN3c0JAXgR0K48cetM/preset:raw/plain/99766b01f2c9a50306ba85c47542ecc7-2724015571716921847.jpg');
 }
-
+.page-heading {
+	padding: 16% 25%;
+	text-align: center;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+  background-image: url('http://chuongtrinh.chotot.com/wp-content/uploads/sites/9/2020/04/850x3501.png');
+}
 .page-heading .text-content h4 {
 	color: #f33f3f;
 	font-size: 22px;

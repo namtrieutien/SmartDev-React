@@ -7,7 +7,7 @@ function ExploreCategories(props) {
     const photo = require(`../../../images/${src}`).default;
     return (
       <td className="col-md-2">
-        <Link to={{ pathname: `/category/${id}`, state: id }} >
+        <Link to={{ pathname: `/category/${id}`, state: " "}} >
           <button className="btn shadow-none btn-block">
             <img className="img-responsive" width={40} height={40} src={photo} alt="" />
             <br /><p className="font-weight-light" style={{ fontSize: '1.05vw' }}>{title}</p>
