@@ -58,17 +58,3 @@ export function searchByPriceComplete(data) {
     data
   }
 }
-export const getPost = (pid) => {
-  return {
-    type: type.GET_POST,
-    post_id: pid,
-  }
-}
-
-export const postLoadedAction = res => {
-  console.log("res",res)
-  return {
-      type: type.POST_LOADED,
-      post : res
-  }
-}

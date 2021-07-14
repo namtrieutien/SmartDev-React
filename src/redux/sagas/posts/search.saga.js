@@ -71,33 +71,12 @@ function* getPostByPriceSaga(action) {
     console.log(error)
   }
 }
-//GET POST BY ID
-const getPostAPI = async (pid) => {
-  try {
-    const response = await getPostById(pid);
-    return response;
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-function* getPostSaga(action) {
-  try {
-    const res = yield call(getPostAPI, action.post_id);
-    if(res){
-      yield put(postLoadedAction(res));
-    }
-  } catch (e) {
-    console.log(e.messages);
-  }
-}
 function* searchPostsSaga() {
   yield takeEvery(type.POST_REPORT_REQUEST, userPostReport);
   yield takeEvery(type.GET_REPORT_TYPES_REQUEST, userGetReportTypes);
   yield takeEvery(type.POSTS_SEARCH_LOADING, getSearchPostSaga);
   yield takeEvery(type.LOAD_POST_BY_CAT, getPostByCatSaga);
   yield takeEvery(type.LOAD_POST_BY_PRICE, getPostByPriceSaga);
-  yield takeEvery(type.GET_POST, getPostSaga);
 }
 
 export default searchPostsSaga;

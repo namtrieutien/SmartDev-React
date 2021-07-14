@@ -86,6 +86,3 @@ export const RESEND_ACTIVATION_LINK = 'RESEND_ACTIVATION_LINK'
 //search by price
 export const LOAD_POST_BY_PRICE = 'LOAD_POST_BY_PRICE'
 export const LOADED_POST_BY_PRICE = 'LOADED_POST_BY_PRICE'
-
-export const GET_POST = 'GET_POST'
-export const POST_LOADED= 'POST_LOADED'

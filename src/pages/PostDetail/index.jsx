@@ -50,23 +50,27 @@ function PostDetail(props) {
   const [post, setPost] = useState({})
   const [owner, setOwner] = useState({})
   const [address, setAddress] = useState({})
+  const [buyer, setBuyer] = useState({})
+
 
   const { cartList, isLoggedIn, user } = props
 
   const [status, setStatus] = useState("Add to Cart");
 
   useEffect(() => {
-
+    const setState = (response) => {
+      setPost(response)
+      setOwner(response.user)
+      setAddress(response.user.address)
+      setBuyer(response.buyer)
+      checkCartItem(response)
+      setLoading(false);
+    }
     const fetchPost = async () => {
       try {
-        console.log("call fecth")
         setLoading(true);
         const response = await getPostById(post_id)
-        setPost(response)
-        setOwner(response.user)
-        setAddress(response.user.address)
-        checkCartItem(response)
-        setLoading(false);
+        setState(response)
       } catch (error) {
         console.log("Failed to fetch post :", error);
       }
@@ -82,11 +86,7 @@ function PostDetail(props) {
 
     if (location.state) {
       const post = location.state.post
-      setPost(post);
-      setOwner(post.user)
-      setAddress(post.user.address)
-      checkCartItem(post)
-      setLoading(false);
+      setState(post)
     }
     else if (post_id) {
       fetchPost();
@@ -182,23 +182,44 @@ function PostDetail(props) {
                       </ol>
                     </nav>
                     <div className="product_name">{post.title}</div>
-                    <div>
-                      <span className="product_price text-danger"> {VNDformat(post.price)}</span>
+                    <div >
+                      <span className="product_price text-danger col-sm-8"> {VNDformat(post.price)}</span>
+                      {post.status && post.status === true ?
+                        (<span className="product_price col-sm-4">
+                          <img className="" style={{ width: '30%', height: '50%' }} src="https://image.flaticon.com/icons/png/512/3578/3578169.png" alt="" />
+                        </span>) : (<div />)
+                      }
 
                     </div>
 
                     <hr className="singleline" />
                     <div>
-                      <span className="product_info">{post.description}<span>
-                        <br />
-
+                      <span className="product_info">{post.description}<span><br />
                       </span></span>
                     </div>
+                    {/* Buyer */}
+                    {buyer ? (
+                      <div className="card mb-3 mt-5 ml-5" style={{ maxWidth: '540px' }}>
+                        <div className="row no-gutters">
+                          <div className="col-md-4">
+                            <img src={buyer.avatar} className="card-img rounded-circle img-responsive p-3" style={{ width: '100%', height: '100%' }} alt="" />
+                          </div>
+                          <div className="col-md-8">
+                            <div className="card-body">
+                              <h5 className="card-title text-info"><span><p className="text-secondary">Buy by</p></span>{buyer.name}</h5>
+                              <p className="card-text"><span style={{ fontSize: '18px', color: 'Dodgerblue' }}><i className="fas fa-envelope mr-2" /></span>{buyer.email}</p>
+                              <p className="card-text"><span style={{ fontSize: '18px', color: 'Dodgerblue' }}><i className="fas fa-phone mr-2" /></span>{buyer.phone}</p>
 
-                    <hr className="singleline" />
-                    <div className="order_info d-flex flex-row">
-                      <form action="#">
-                      </form></div>
+                              <p className="card-text mt-3">
+                                <p className="text-secondary font-weight-normal" style={{ fontSize: '14px' }}>Sold at</p>
+                                <small className="text-muted">{buyer.created_at}</small>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (<div />)}
+
                     <div className="row ml-">
                       {isLoggedIn && owner.id === user.id ? (<div />) : (
                         <div className="col-xs-6">
@@ -214,6 +235,7 @@ function PostDetail(props) {
                           </div>
                         </div>)}
                     </div>
+
                   </div>
                 </div>
               </div>
