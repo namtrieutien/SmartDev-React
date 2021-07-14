@@ -8,7 +8,7 @@ function Posts(props) {
   else
   return (
     <>
-    {posts.map((item) => (
+    {Array.from(posts).length > 0 && posts.map((item) => (
        <CardPost
        key={item.id} 
        post = {item} />
