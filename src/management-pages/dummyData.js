@@ -1,42 +1,93 @@
+export const dataTemp2 = [{
+    id: 17,
+    userCounter: 12,
+    postCounter: 3,
+    transactionCounter: 3,
+    date: "13-07-2021"
+  },
+  {
+    id: 17,
+    userCounter: 123,
+    postCounter: 133,
+    transactionCounter: 3,
+    date: "14-07-2021"
+  },
+  {
+    id: 17,
+    userCounter: 20,
+    postCounter: 40,
+    transactionCounter: 3,
+    date: "15-07-2021"
+  },
+  {
+    id: 17,
+    userCounter: 50,
+    postCounter: 40,
+    transactionCounter: 3,
+    date: "16-07-2021"
+  },
+  {
+    id: 17,
+    userCounter: 10,
+    postCounter: 10,
+    transactionCounter: 3,
+    date: "17-07-2021"
+  },
+  {
+    id: 17,
+    userCounter: 20,
+    postCounter: 20,
+    transactionCounter: 3,
+    date: "18-07-2021"
+  },
+  {
+    id: 17,
+    userCounter: 30,
+    postCounter: 30,
+    transactionCounter: 3,
+    date: "19-07-2021"
+  }
+]
+
 export const dataTemp = [{
     name: "Jan",
-    thisYearUser: 0,
-    lastYearUser: 0,
+    thisYearUser: 10,
+    lastYearUser: 10,
   },
   {
     name: "Feb",
-    thisYearUser: 0,
-    lastYearUser: 0,
+    thisYearUser: 20,
+    lastYearUser: 20,
   },
   {
     name: "Mar",
-    thisYearUser: 0,
-    lastYearUser: 0,
+    thisYearUser: 30,
+    lastYearUser: 30,
   },
   {
     name: "Apr",
-    thisYearUser: 0,
-    lastYearUser: 0,
+    thisYearUser: 40,
+    lastYearUser: 40,
   },
   {
     name: "May",
-    thisYearUser: 0,
-    lastYearUser: 0,
+    thisYearUser: 50,
+    lastYearUser: 50,
   },
   {
     name: "Jun",
-    thisYearUser: 0,
-    lastYearUser: 0,
+    thisYearUser: 10,
+    lastYearUser: 10,
   },
   {
     name: "Jul",
-    thisYearUser: 0,
-    lastYearUser: 0,
+    thisYearUser: 20,
+    lastYearUser: 20,
   },
   {
     name: "Sep",
-    thisYearUser: 0,
-    lastYearUser: 0,
+    thisYearUser: 30,
+    lastYearUser: 30,
   },
   {
     name: "Aug",
@@ -129,8 +180,7 @@ export const pieData02 = [{
   },
 ];
 
-export const widgetSmList = [
-  {
+export const widgetSmList = [{
     id: "1",
     img: "https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515396_10843.jpg",
     name: "The Weeknd",
@@ -162,8 +212,7 @@ export const widgetSmList = [
   }
 ]
 
-export const widgetLgList = [
-  {
+export const widgetLgList = [{
     id: "1",
     image: "https://image.flaticon.com/icons/png/512/188/188999.png",
     title: "Zubat Toy",
@@ -197,8 +246,7 @@ export const widgetLgList = [
   },
 ]
 
-export const popupItem = [
-  {
+export const popupItem = [{
     img: "https://image.flaticon.com/icons/png/512/4900/4900651.png",
     name: "Curry Chicken",
     category: "Food",
@@ -233,4 +281,30 @@ export const popupItem = [
     price: "49.99$",
     id: "5",
   },
+]
+
+export const tempReports = [{
+    id: 1,
+    avatar: '/static/images/avatar/1.jpg',
+    nameAvatar: 'Ali Connors',
+    name: 'Ali Connors',
+    title: "Brunch this weekend?",
+    text: " — I'll be in your neighborhood doing errands this…"
+  },
+  {
+    id: 2,
+    avatar: '/static/images/avatar/1.jpg',
+    nameAvatar: 'Ali Connors',
+    name: 'Ali Connors',
+    title: "Brunch this weekend?",
+    text: " — I'll be in your neighborhood doing errands this…"
+  },
+  {
+    id: 3,
+    avatar: '/static/images/avatar/1.jpg',
+    nameAvatar: 'Ali Connors',
+    name: 'Ali Connors',
+    title: "Brunch this weekend?",
+    text: " — I'll be in your neighborhood doing errands this…"
+  }
 ]

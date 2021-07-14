@@ -23,7 +23,6 @@ import adminApi from "../../../api/management/adminApi";
 
 User.propTypes = {};
 
-
 const LoadingFrame = (props) => {
   return (
     <div className="">

@@ -1,53 +1,71 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 // import PropTypes from "prop-types";
 
 import { ArrowDownward, ArrowUpward, SupervisorAccount, PostAdd } from "@material-ui/icons";
 
 import "./FeaturedInfor.css";
-
+import adminApi from "../../../api/management/adminApi";
 // FeaturedInfor.propTypes = {};
 
 function FeaturedInfor(props) {
+
+  const [data, setData] = useState({})
+
+  useEffect(() => {
+    const fetchFeatureInfor = async () => {
+      try {
+        const response = await adminApi.getFeatureInfor();
+        console.log("ftinfor", response);
+        setData(response);
+      } catch (error) {
+        console.log("failed to fetch feature information: ", error);
+      }
+    }
+
+    fetchFeatureInfor();
+  }, [])
+
+
   return (
     <div className="featured">
       <div className="featured-item">
         <span className="featured-title">Users</span>
         <div className="featured-money-container">
           <span className="featured-money">
-          2,412
+          {data && data.countAllUserDb}
           </span>
           <SupervisorAccount className="personadd-icon"/>
           <span className="featured-money-rate">
-            -11 <ArrowDownward className="featured-icon negative"/>
+            +{data && data.countAllUserCounter} <ArrowUpward className="featured-icon"/>
           </span>
         </div>
         <span className="featured-sub">
-          Compared to last month
+          Total users
         </span>
       </div>
       <div className="featured-item">
-        <span className="featured-title">Sales</span>
+        <span className="featured-title">Transactions</span>
         <div className="featured-money-container">
-          <span className="featured-money">$4,412</span>
+          <span className="featured-money">{data && data.countAllTransactionDb}VND</span>
           <span className="featured-money-rate">
-            -1,4 <ArrowDownward className="featured-icon negative"/>
+            +{data && data.countAllTransactionCounter}VND<ArrowUpward className="featured-icon"/>
           </span>
         </div>
         <span className="featured-sub">
-          Compared to last month
+          Total transactions
         </span>
       </div>
       <div className="featured-item">
         <span className="featured-title">Posts</span>
         <div className="featured-money-container">
-          <span className="featured-money">2,912</span>
+          <span className="featured-money">{data && data.countAllPostDb}</span>
           <PostAdd className="postadd-icon"/>
           <span className="featured-money-rate">
-            +300 <ArrowUpward className="featured-icon"/>
+            +{data && data.countAllPostCounter} <ArrowUpward className="featured-icon"/>
           </span>
         </div>
         <span className="featured-sub">
-          Compared to last month
+          Total posts
         </span>
       </div>
     </div>

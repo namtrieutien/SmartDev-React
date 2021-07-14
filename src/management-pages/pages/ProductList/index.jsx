@@ -18,73 +18,6 @@ ProductList.propTypes = {
 
 };
 
-const rows = [
-  {
-    id: 1,
-    name: "Apple",
-    img: "https://source.unsplash.com/random",
-    stock: "123",
-    status: "active",
-    price: "$120.00",
-  },
-  {
-    id: 2,
-    name: "Apple",
-    img: "https://source.unsplash.com/random",
-    stock: "123",
-    status: "active",
-    price: "$120.00",
-  },
-  {
-    id: 3,
-    name: "Apple",
-    img: "https://source.unsplash.com/random/1",
-    stock: "123",
-    status: "active",
-    price: "$120.00",
-  },
-  {
-    id: 4,
-    name: "Apple",
-    img: "https://source.unsplash.com/random/2",
-    stock: "123",
-    status: "active",
-    price: "$120.00",
-  },
-  {
-    id: 5,
-    name: "Apple",
-    img: "https://source.unsplash.com/random/3",
-    stock: "123",
-    status: "active",
-    price: "$120.00",
-  },
-  {
-    id: 6,
-    name: "Apple",
-    img: "https://source.unsplash.com/random/4",
-    stock: "123",
-    status: "active",
-    price: "$120.00",
-  },
-  {
-    id: 7,
-    name: "Apple",
-    img: "https://source.unsplash.com/random/5",
-    stock: "123",
-    status: "active",
-    price: "$120.00",
-  },
-  {
-    id: 8,
-    name: "Apple",
-    img: "https://source.unsplash.com/random/6",
-    stock: "123",
-    status: "active",
-    price: "$120.00",
-  },
-];
-
 function ProductList(props) {
 
   const { isLoggedIn, user } = props;
@@ -150,7 +83,7 @@ function ProductList(props) {
         return (
           <>
             <Link to={`/management/product/${params.row.id}`}>
-              <p className="product-list-edit">Edit</p>
+              <p className="product-list-edit">View</p>
             </Link>
             <DeleteOutline
               className="product-list-delete"
@@ -167,7 +100,7 @@ function ProductList(props) {
   };
 
 
-  const [data, setData] = useState(rows);
+  const [data, setData] = useState([]);
 
   return (
     <div className="product-list">

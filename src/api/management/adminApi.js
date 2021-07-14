@@ -71,6 +71,31 @@ const adminApi = {
     return axiosManagement.delete(url, { params })
   },
 
+  getLastestReports: (params) => {
+    const url = '/admin/reports'
+    return axiosManagement.get(url, {params})
+  },
+
+  getPost: (idPost) => {
+    const url = `/admin/posts/${idPost}`
+    return axiosManagement.get(url)
+  },
+
+  getTopTransaction: (params) => {
+    const url = `/admin/top_order`
+    return axiosManagement.get(url, {params})
+  },
+
+  getFeatureInfor: () => {
+    const url = 'admin/feature_infor'
+    return axiosManagement.get(url);
+  },
+
+  getCounter: () => {
+    const url = 'admin/counter'
+    return axiosManagement.get(url);
+  }
+
 }
 
 export default adminApi;
