@@ -25,7 +25,7 @@ function PaymentOrder({ payment, handleGetPosts }) {
       <div className="d-flex flex-row align-items-center">
         <div className="ml-4">
           {payment.status && <span className="d-block">{formatPrice(payment.order.totalPrice)}  VND</span>}
-          <span className="d-block">(Paypal) : {formatPrice(payment.totalPrice)} {payment.currency}</span>
+          <span className="d-block">(Paypal) : {payment.totalPrice} {payment.currency}</span>
         </div>
         <i className="fa fa-trash-o ml-3 text-black-50"></i>
       </div>
