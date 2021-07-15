@@ -92,7 +92,7 @@ const adminApi = {
   },
 
   getCounter: () => {
-    const url = 'admin/counter'
+    const url = 'admin/statistic'
     return axiosManagement.get(url);
   }
 

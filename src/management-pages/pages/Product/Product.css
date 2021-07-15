@@ -80,6 +80,33 @@
   background-color: rgba(233, 77, 77, 0.993);
 }
 
+.status-product {
+  font-size: large;
+}
+
+.selling-product {
+  color: rgb(33, 199, 33);
+  padding: 5px;
+  padding-left: 0px;
+  /* background: rgba(33, 199, 33, 0.103); */
+  border-radius: 6px;
+}
+
+.product-detail-key {
+  flex: 1;
+}
+
+.product-detail-value {
+  flex: 3;
+}
+
+.sold-product {
+  color: rgb(226, 44, 44);
+  padding: 5px;
+  /* background: rgba(226, 44, 44, 0.103); */
+  border-radius: 6px;
+}
+
 .product-infor-bottom {
   /* margin-top: 10px; */
   flex: 3;
@@ -89,8 +116,6 @@
 
 .content-tab {
   height: 150px;
-  font-size: 20px;
-  font-weight: 600;
   /* background-color: rgb(184, 159, 207); */
   display: flex;
   overflow-y: scroll;
@@ -99,32 +124,49 @@
 
 .content-tab-user {
   height: 150px;
-  font-size: 20px;
-  font-weight: 600;
   /* background-color: rgb(184, 159, 207); */
   display: flex;
   overflow-y: scroll;
   overflow-x: hidden;
-  flex-direction: column;
 }
 
-.product-infor-owner {
+.seller-left {
+  flex: 1;
+}
+
+.avatar-seller {
+  width: 150px;
+  height: 150px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75); 
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  
+}
+
+.seller-right {
+  flex: 2;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75); 
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.seller-detail-item {
   display: flex;
   align-items: center;
-  margin-bottom: 2px;
 }
 
+.seller-icons {
+  margin-right: 20px;
+}
 
 .product-infor-item {
   display: flex;
   justify-content: space-between;
 }
 
-.owner-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
 
 .product-infor-description-value {
   font-weight: 300;
@@ -152,15 +194,6 @@
   margin-bottom: 2px;
 }
 
-.product-infor-key-owner {
-  flex: 1;
-}
-
-.product-infor-value-owner {
-  flex: 3;
-  font-weight: 300;
-  margin-left: 80px;
-}
 
 .product-infor-description {
   display: flex;
