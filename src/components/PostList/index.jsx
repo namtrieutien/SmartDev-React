@@ -10,8 +10,8 @@ function Posts(props) {
     <>
     {posts.length > 0 && posts.map((item) => (
        <CardPost
-       key={item.id} 
-       post = {item} />
+         key={item.id}
+         post = {item} />
     ))}
   </>
   );
