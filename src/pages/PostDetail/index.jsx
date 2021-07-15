@@ -27,7 +27,6 @@ const mapStateToProps = (state) => {
   return {
     cartList: state.cartReducer.list,
     isLoggedIn,
-    user: user.user
   }
 }
 
@@ -202,7 +201,7 @@ function PostDetail(props) {
                       <div className="card mb-3 mt-5 ml-5" style={{ maxWidth: '540px' }}>
                         <div className="row no-gutters">
                           <div className="col-md-4">
-                            <img src={buyer.avatar} className="card-img rounded-circle img-responsive p-3" style={{ width: '100%', height: '100%' }} alt="" />
+                            <img src={buyer.avatar ? buyer.avatar : "https://avatars.dicebear.com/api/bottts/sad.svg" } className="card-img rounded-circle img-responsive p-3" style={{ width: '100%', height: '100%' }} alt="" />
                           </div>
                           <div className="col-md-8">
                             <div className="card-body">
@@ -221,7 +220,6 @@ function PostDetail(props) {
                     ) : (<div />)}
 
                     <div className="row ml-">
-                      {isLoggedIn && owner.id === user.id ? (<div />) : (
                         <div className="col-xs-6">
                           <div className="col-12 col-md-6 d-flex">
                             <button className="btn btn-outline-primary mr-2" onClick={handleCartItemClick} >
@@ -233,7 +231,7 @@ function PostDetail(props) {
                               Report
                             </button>
                           </div>
-                        </div>)}
+                        </div>
                     </div>
 
                   </div>

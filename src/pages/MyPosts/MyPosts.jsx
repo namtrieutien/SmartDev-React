@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import { loadPosts, deletePost, reset} from '../../redux/actions/user/managepost.action'
+import { loadPosts, deletePost, reset } from '../../redux/actions/user/managepost.action'
 import { connect } from 'react-redux'
 import { NavLink } from "react-router-dom";
 
@@ -23,9 +23,11 @@ function PostItem({ postItem, handelClick }) {
             <td>{size}</td>
             <td className="text-center">{createdAt}</td>
             <td className="text-right">{VNDformat(price)}</td>
-            <td className="text-right">
-                <button className="btn btn-sm btn-danger" onClick={() => handelClick(id)} data-toggle="modal" data-target="#deleteModal">
-                    <i className="fa fa-trash" /></button> </td>
+            {status ? (<div />) :
+                (<td className="text-right">
+                    <button className="btn btn-sm btn-danger" onClick={() => handelClick(id)} data-toggle="modal" data-target="#deleteModal">
+                        <i className="fa fa-trash" /></button> </td>)}
+
         </tr>
     );
 }
