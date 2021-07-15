@@ -37,7 +37,7 @@
 }
 
 .product-infor-img {
-  width: 400px;
+  width: auto;
   height: 400px;
   border-radius: 8px;
   object-fit: cover;
@@ -206,3 +206,19 @@
   margin-right: auto;
 }
 
+@media only screen and (max-width: 1125px) {
+  .product-top-right {
+    flex-direction: column;
+  }
+
+  .product-infor-bottom {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .product-infor-img {
+    width: auto;
+    height: auto;
+  }
+}

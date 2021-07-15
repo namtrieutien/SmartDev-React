@@ -40,11 +40,11 @@ const ListProducts = (props) => {
 
   const Button = ({ type }) => {
     if (type === false)
-      return <button className={"widget-lg-button selling"}>selling</button>;
+      return <button className={"widget-lg-button recall"}>Canceled</button>;
     else if (type === true)
-      return <button className={"widget-lg-button bought"}>bought</button>;
+      return <button className={"widget-lg-button selling"}>Success</button>;
     else
-      return <button className={"widget-lg-button recall"}>recall</button>;
+      return <button className={"widget-lg-button bought"}>Unknown</button>;
   };
 
   const listItems = listProduct.map((product) => (
@@ -52,7 +52,7 @@ const ListProducts = (props) => {
       <td className="">
         {product.method === "Paypal" && <img src='https://image.flaticon.com/icons/png/512/888/888870.png' alt="product img" className="widget-lg-img" />}
       </td>
-      <td className="">
+      <td className="td-des">
         <span className="widget-lg-description">{product.description || <Skeleton />}</span>
       </td>
       <td className="widget-lg-date">{handleTimeStamp(product.createdAt) || <Skeleton />}</td>
@@ -81,7 +81,7 @@ function NewTransactionTable(props) {
           <tbody>
             <tr className="widget-lg-tr">
               <th className="widget-lg-th">Method</th>
-              <th className="widget-lg-th">Description</th>
+              <th className="widget-lg-th-des">Description</th>
               <th className="widget-lg-th">Date</th>
               <th className="widget-lg-th">Price</th>
               <th className="widget-lg-th">Currency</th>

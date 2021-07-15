@@ -121,7 +121,10 @@ function User(props) {
   const [address, setAddress] = useState({})
   const [role, setRole] = useState([])
   const [loading, setLoading] = useState(false)
-
+  const [avatarState, setAvatarState] = useState({
+    data: null,
+    error: true
+});
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: {
       name : userDetail.name,
@@ -130,7 +133,8 @@ function User(props) {
       commune : address.commune,
       district : address.district,
       city : address.city,
-      role: role
+      role: role,
+      avatar: userDetail.avatar
   }
   });
   useEffect(() => {
@@ -164,6 +168,7 @@ function User(props) {
       let requestBody = data;
       requestBody["userId"] = userId;
       requestBody["addressId"] = address.id
+      console.log(data);
       console.log("request: ", requestBody);
       const response = await adminApi.updateUser(requestBody);
       console.log(response);
@@ -178,6 +183,22 @@ function User(props) {
   const onSubmit = (data) => {
     updateUserDetail(data);
   }
+
+  const handleAvatarUpLoad =  (e) => {
+    console.log(e.target.files);
+    if (e.target.files[0] == null) {
+        setAvatarState({
+            data: null,
+            error: true
+        });
+    } else {
+      setAvatarState({
+            data: URL.createObjectURL(e.target.files[0]),
+            error: false
+        });
+    }
+    console.log(avatarState);
+}
 
   return (
     <div className="user">
@@ -286,13 +307,19 @@ function User(props) {
               <div className="user-update-load">
                 <img
                   className="user-update-image"
-                  src="https://avatars.dicebear.com/api/avataaars/a.svg"
+                  src={avatarState.data}
                   alt=""
                 />
                 <label htmlFor="file">
                   <Publish className="user-update-icon" />
                 </label>
-                <input type="file" id="file" style={{ display: "none" }} />
+                <input 
+                  type="file" 
+                  id="file" 
+                  // {...register('avatar')} 
+                  style={{ display: "none" }}
+                  onChange={handleAvatarUpLoad}
+                  />
               </div>
               <button className="user-update-button" type="submit">Update</button>
             </div>

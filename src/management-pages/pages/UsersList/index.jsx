@@ -84,12 +84,22 @@ function UsersList(props) {
     },
   ];
 
-  
-
-  
-
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     setUsersList(usersList.filter((item) => item.id !== id));
+    try {
+      // console.log("handle delete", postId);
+      let requestBody = {
+        userId: id,
+      };
+      const response = await adminApi.deleteUser(requestBody);
+      // console.log(response);
+      if (response.status == 200) {
+        setUsersList(usersList.filter((item) => item.id !== id));
+      }
+      
+    } catch (error) {
+      console.log("Failed to delete post :", error);
+    }
   };
 
   return (

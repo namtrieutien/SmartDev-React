@@ -6,7 +6,6 @@
 
 .top-transaction {
   display: flex;
-  flex-direction: row;
 }
 
 .transaction-top-left {
@@ -26,3 +25,19 @@
   background: rgb(255, 255, 255);
   border-radius: 10px;
 }
+
+@media only screen and (max-width: 1125px) {
+  .top-transaction {
+    flex-direction: column;
+  }
+
+  .transaction-top-right {
+    margin-right: 0px;
+    margin-top: 20px;
+  }
+
+  .transaction-top-left {
+    margin-right: 0px;
+  }
+}
+

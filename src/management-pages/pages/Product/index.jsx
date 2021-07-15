@@ -8,6 +8,14 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { connect } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import {Link} from "react-router-dom"
 
 import { loginUserAction } from "../../../redux/actions/login/authAction";
 import adminApi from "../../../api/management/adminApi";
@@ -21,11 +29,17 @@ import {
 
 Product.propTypes = {};
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-});
+  loading: {
+    display: "flex",
+    "& > * + *": {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,15 +68,14 @@ function Product(props) {
   const { isLoggedIn, user } = props;
   const [loading, setLoading] = useState(false);
   const [post, setPost] = useState({});
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     const fetchPostDetail = async () => {
       try {
-        console.log("calling effect");
-        setLoading(false);
         const response = await adminApi.getPost(productId);
+        console.log(response);
         setPost(response);
-        setLoading(loading);
       } catch (error) {
         console.log("Failed to fetch user detail :", error);
       }
@@ -76,6 +89,31 @@ function Product(props) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleDeleteProduct = async (postId) => {
+    try {
+      // console.log("handle delete", postId);
+      let requestBody = {
+        postId: postId,
+      };
+      const response = await adminApi.deletePost(requestBody);
+      // console.log(response);
+      if (response && response.status && response.status === true) {
+        setLoading(true);
+      }
+      
+    } catch (error) {
+      console.log("Failed to delete post :", error);
+    }
   };
 
   return (
@@ -100,7 +138,20 @@ function Product(props) {
               >
                 {`${post.price} VND`}
               </span>
-              <button className="product-remove">Remove</button>
+              <div style={{display: "flex", alignItems: "center"}}>
+                
+                {post.status === false ? (
+                  <button
+                    style={{marginLeft: "20px"}}
+                    className="product-remove"
+                    onClick={handleClickOpen}
+                  >
+                    Remove
+                  </button>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
             <div className="product-infor-description">
               <span className="product-infor-key">Description: </span>
@@ -112,12 +163,13 @@ function Product(props) {
               <Tabs
                 value={value}
                 onChange={handleChange}
-                indicatorColor="primary"
-                textColor="primary"
+                // indicatorColor="primary"
+                // textColor="primary"
               >
                 <Tab label="Product Detail" />
                 <Tab label="Seller" />
-                <Tab label="Reports" />
+                {/* <Tab label="Buyer" />
+                <Tab label="Reports" /> */}
               </Tabs>
             </Paper>
             <TabPanel value={value} index={0}>
@@ -177,48 +229,68 @@ function Product(props) {
                     <div>{post.user && post.user.phone}</div>
                   </div>
                 </div>
-                {/* <div className="product-infor-owner">
-                  <div style={{flex: "1"}}>
-                    <img
-                      src={post.user && post.user.avatar}
-                      alt="owner"
-                      className="owner-image"
-                    />
-                  </div>
-                  <span className="product-infor-value-owner">{post.user && post.user.email}</span>
-                </div>
-                <div className="product-infor-owner"  >
-                  <div className="product-infor-key-owner">
-                    ID:
-                  </div>
-                  <div className="product-infor-value-owner">
-                    {post.user && post.user.id}
-                  </div>
-                </div>
-                <div className="product-infor-owner">
-                  <div className="product-infor-key-owner">
-                    Name:
-                  </div>
-                  <div className="product-infor-value-owner">
-                    {post.user && post.user.name}
-                  </div>
-                </div>
-                <div className="product-infor-owner">
-                  <div className="product-infor-key-owner">
-                    Phone:
-                  </div>
-                  <div className="product-infor-value-owner">
-                    {post.user && post.user.phone}
-                  </div>
-                </div> */}
               </div>
             </TabPanel>
-            <TabPanel value={value} index={2}>
-              <div className="content-tab"></div>
+            {/* <TabPanel value={value} index={2}>
+              <div className="content-tab-user">
+              <div className="seller-left">
+                  <img
+                    src={post.buyer && post.buyer.avatar}
+                    alt="owner"
+                    className="avatar-seller"
+                  />
+                </div>
+                <div className="seller-right">
+                  <div className="seller-detail-item">
+                    <PermIdentityOutlined className="seller-icons" />
+                    <div>{post.buyer && post.buyer.id}</div>
+                  </div>
+                  <div className="seller-detail-item">
+                    <MailOutline className="seller-icons" />
+                    <div>{post.buyer && post.buyer.email}</div>
+                  </div>
+                  <div className="seller-detail-item">
+                    <AssignmentIndOutlined className="seller-icons" />
+                    <div>{post.buyer && post.buyer.name}</div>
+                  </div>
+                  <div className="seller-detail-item">
+                    <PhoneAndroidOutlined className="seller-icons" />
+                    <div>{post.buyer && post.buyer.phone}</div>
+                  </div>
+                </div>
+              </div>
             </TabPanel>
+            <TabPanel value={value} index={3}>
+            <div className="content-tab">
+              <img src="https://cdn9.pngable.com/20/14/6/W3sKkD6H5m/people-working-icon-mechanic-with-cap-icon-people-icon.jpg" alt="" style={{margin: "auto", width: "150px"}}/>
+            </div>
+            </TabPanel> */}
           </div>
         </div>
       </div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{'Are you sure want to delete ?'}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description" style={{width: "300px"}}>
+            {loading === true ? "success" : "You will not recover this post, think carefully."}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button color="primary">
+            <Link to="/management/product" style={{textDecoration: "none", color: "inherit"}}>
+            Go to List Product
+            </Link>
+          </Button>
+          <Button onClick={() => handleDeleteProduct(post.id)} color="secondary">
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

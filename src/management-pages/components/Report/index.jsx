@@ -98,7 +98,8 @@ function Report(props) {
   }
 
   return (
-    <List className={classes.inlineReport}>
+    <>
+      <List className={classes.inlineReport}>
       <h4 className="report-title">Report violations: </h4>
       <ReportList
         reports={reports}
@@ -108,12 +109,15 @@ function Report(props) {
         getReport={getReport}
         onClickClose={onClickClose}
       />
-      <DialogReport
+      
+    </List>
+    <DialogReport
         open={open}
         report={report}
         onClickClose={onClickClose}
       />
-    </List>
+    </>
+    
   );
 }
 

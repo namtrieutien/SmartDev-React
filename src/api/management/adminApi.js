@@ -57,6 +57,7 @@ const adminApi = {
   },
 
   updateUser: (body) => {
+    console.log(body);
     const url = '/admin/users';
     return axiosManagement.put(url, body)
   },
@@ -66,9 +67,9 @@ const adminApi = {
     return axiosManagement.post(url, body)
   },
 
-  deleteUser: (params) => {
-    const url = '/admin/posts';
-    return axiosManagement.delete(url, { params })
+  deleteUser: (body) => {
+    const url = '/admin/users';
+    return axiosManagement.delete(url, { data: body })
   },
 
   getLastestReports: (params) => {
@@ -94,8 +95,12 @@ const adminApi = {
   getCounter: () => {
     const url = 'admin/statistic'
     return axiosManagement.get(url);
-  }
+  },
 
+  deletePost: (body) => {
+    const url = '/admin/posts';
+    return axiosManagement.delete(url, { data: body })
+  }
 }
 
 export default adminApi;
