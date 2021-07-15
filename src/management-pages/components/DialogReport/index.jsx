@@ -93,14 +93,14 @@ function DialogSubmit(props) {
             Type: {report.type}
           </div>
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers style={{ width: "500px", overflowX: "hidden", overflowY: "scroll" }}>
           <Typography gutterBottom style={{display: "flex", alignItems: "center", marginBottom: "20px"}}>
             <Avatar alt={report.user && report.user.name} src={report.user && report.user.avatar } />
             <h5 style={{marginLeft: "20px"}}>{report.user && report.user.name}</h5>
           </Typography>
           <Typography gutterBottom>
             <h6 style={{marginBottom: "10px"}}>Description: </h6>
-            {report.description}
+            {report.description} 
           </Typography>
         </DialogContent>
         <DialogActions>

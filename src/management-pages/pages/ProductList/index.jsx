@@ -21,7 +21,7 @@ ProductList.propTypes = {
 function ProductList(props) {
 
   const { isLoggedIn, user } = props;
-
+  const [loading, setLoading] = useState(false)
   const [postsList, setPostsList] = useState([])
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function ProductList(props) {
     const fetchProductList = async () => {
       try {
         const response = await adminApi.getAllPosts();
-        console.log("post-list-res: ", response)
+        // console.log("post-list-res: ", response)
         setPostsList(response);
       } catch (error) {
         console.log('Failed to fetch users per months', error);
@@ -95,8 +95,22 @@ function ProductList(props) {
     },
   ];
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  const handleDelete = async (id) =>  {
+    
+    try {
+      // console.log("handle delete", postId);
+      let requestBody = {
+        postId: id,
+      };
+      const response = await adminApi.deletePost(requestBody);
+      // console.log(response);
+      if (response && response.status && response.status === true) {
+        setPostsList(postsList.filter((item) => item.id !== id));
+      }
+      
+    } catch (error) {
+      console.log("Failed to delete post :", error);
+    }
   };
 
 

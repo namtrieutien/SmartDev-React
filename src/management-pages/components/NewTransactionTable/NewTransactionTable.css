@@ -6,3 +6,28 @@
   overflow: hidden;
   width: 120px;
 }
+
+.transactions-button {
+  padding: 5px 7px;
+  border: none;
+  border-radius: 10px;
+}
+
+.widget-lg-th-des {
+  text-align: left;
+}
+
+
+@media only screen and (max-width: 675px) {
+  .widget-lg-description {
+    display: none;
+  }
+
+  .td-des {
+    display: none;
+  }
+  .widget-lg-th-des {
+    display: none;
+    width: 0px;
+  }
+}

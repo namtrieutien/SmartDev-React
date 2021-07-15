@@ -6,6 +6,7 @@ import { ArrowDownward, ArrowUpward, SupervisorAccount, PostAdd } from "@materia
 import "./FeaturedInfor.css";
 import adminApi from "../../../api/management/adminApi";
 // FeaturedInfor.propTypes = {};
+import { VNDformat } from "../../../helpers/utils";
 
 function FeaturedInfor(props) {
 
@@ -45,9 +46,9 @@ function FeaturedInfor(props) {
       <div className="featured-item-big">
         <span className="featured-title">Transactions</span>
         <div className="featured-money-container">
-          <span className="featured-money">{data && data.countAllTransactionDb}VND</span>
+          <span className="featured-money">{data && VNDformat(data.countAllTransactionDb)}</span>
           <span className="featured-money-rate">
-            +{data && data.countAllTransactionCounter}VND<ArrowUpward className="featured-icon"/>
+            +{data && VNDformat(data.countAllTransactionCounter)}<ArrowUpward className="featured-icon"/>
           </span>
         </div>
         <span className="featured-sub">
