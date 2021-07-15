@@ -201,7 +201,7 @@ function PostDetail(props) {
                       <div className="card mb-3 mt-5 ml-5" style={{ maxWidth: '550px' }}>
                         <div className="row no-gutters">
                           <div className="col-md-4">
-                            <img src={buyer.avatar ? buyer.avatar : "https://i.pinimg.com/originals/35/1a/29/351a29c3f1adb579ae56f40e1155de56.jpg" } className="card-img rounded-circle img-responsive p-3" width={200} height={200} alt="" />
+                            <img src={buyer.avatar ? buyer.avatar : "https://avatars.dicebear.com/api/bottts/sad.svg" } className="card-img rounded-circle img-responsive p-3" width={200} height={200} alt="" />
                           </div>
                           <div className="col-md-8">
                             <div className="card-body">
