@@ -104,7 +104,7 @@ function ProductList(props) {
 
   return (
     <div className="product-list">
-      <ProductChart />
+      {/* <ProductChart /> */}
       <div className="product-list-table">
         <h3 className="product-lists-title">Products:</h3>
         <div style={{ height: "450px", width: "100%" }}>

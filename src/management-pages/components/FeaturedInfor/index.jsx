@@ -25,7 +25,6 @@ function FeaturedInfor(props) {
     fetchFeatureInfor();
   }, [])
 
-
   return (
     <div className="featured">
       <div className="featured-item">
@@ -43,7 +42,7 @@ function FeaturedInfor(props) {
           Total users
         </span>
       </div>
-      <div className="featured-item">
+      <div className="featured-item-big">
         <span className="featured-title">Transactions</span>
         <div className="featured-money-container">
           <span className="featured-money">{data && data.countAllTransactionDb}VND</span>

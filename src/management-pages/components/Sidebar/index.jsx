@@ -169,12 +169,12 @@ function Sidebar(props) {
           </Link>
         </li>
 
-        <li className="nav-item-custom">
+        {/* <li className="nav-item-custom">
           <a href="#" className="nav-link-custom">
             <BarChart className="sidebar-icon" />
             <span className="link-text">Reports</span>
           </a>
-        </li>
+        </li> */}
 
         <li className="nav-item-custom">
           <Link to="/management/transaction" href="#" className="nav-link-custom">

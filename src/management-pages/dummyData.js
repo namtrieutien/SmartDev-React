@@ -1,3 +1,163 @@
+export const dataTemp3 = [
+  {
+      "current_year": {
+          "sum_post": 1,
+          "sum_transaction": 11,
+          "sum_user": 22
+      },
+      "month": 1,
+      "last_year": {
+          "sum_post": 33,
+          "sum_transaction": 12,
+          "sum_user": 5
+      }
+  },
+  {
+      "current_year": {
+          "sum_post": 44,
+          "sum_transaction": 12,
+          "sum_user": 33
+      },
+      "month": 2,
+      "last_year": {
+          "sum_post": 22,
+          "sum_transaction": 22,
+          "sum_user": 22
+      }
+  },
+  {
+      "current_year": {
+          "sum_post": 11,
+          "sum_transaction": 12,
+          "sum_user": 13
+      },
+      "month": 3,
+      "last_year": {
+          "sum_post": 14,
+          "sum_transaction": 15,
+          "sum_user": 16
+      }
+  },
+  {
+      "current_year": {
+          "sum_post": 11,
+          "sum_transaction": 15,
+          "sum_user": 17
+      },
+      "month": 4,
+      "last_year": {
+          "sum_post": 21,
+          "sum_transaction": 22,
+          "sum_user": 32
+      }
+  },
+  {
+      "current_year": {
+          "sum_post": 23,
+          "sum_transaction": 21,
+          "sum_user": 22
+      },
+      "month": 5,
+      "last_year": {
+          "sum_post": 11,
+          "sum_transaction": 11,
+          "sum_user": 22
+      }
+  },
+  {
+      "current_year": {
+          "sum_post": 33,
+          "sum_transaction": 33,
+          "sum_user": 33
+      },
+      "month": 6,
+      "last_year": {
+          "sum_post": 1,
+          "sum_transaction": 1,
+          "sum_user": 4
+      }
+  },
+  {
+      "current_year": {
+          "sum_post": 3,
+          "sum_transaction": 13,
+          "sum_user": 9
+      },
+      "month": 7,
+      "last_year": {
+          "sum_post": 2,
+          "sum_transaction": 12,
+          "sum_user": 5
+      }
+  },
+  {
+      "current_year": {
+          "sum_post": 22,
+          "sum_transaction": 22,
+          "sum_user": 22
+      },
+      "month": 8,
+      "last_year": {
+          "sum_post": 3,
+          "sum_transaction": 13,
+          "sum_user": 9
+      }
+  },
+  {
+      "current_year": {
+          "sum_post": 11,
+          "sum_transaction": 23,
+          "sum_user": 32
+      },
+      "month": 9,
+      "last_year": {
+          "sum_post": 34,
+          "sum_transaction": 34,
+          "sum_user": 34
+      }
+  },
+  {
+      "current_year": {
+          "sum_post": 4,
+          "sum_transaction": 5,
+          "sum_user": 7
+      },
+      "month": 10,
+      "last_year": {
+          "sum_post": 10,
+          "sum_transaction": 12,
+          "sum_user": 1
+      }
+  },
+  {
+      "current_year": {
+          "sum_post": 4,
+          "sum_transaction": 4,
+          "sum_user": 4
+      },
+      "month": 11,
+      "last_year": {
+          "sum_post": 1,
+          "sum_transaction": 9,
+          "sum_user": 34
+      }
+  },
+  {
+      "current_year": {
+          "sum_post": 55,
+          "sum_transaction": 57,
+          "sum_user": 58
+      },
+      "month": 12,
+      "last_year": {
+          "sum_post": 55,
+          "sum_transaction": 34,
+          "sum_user": 65
+      }
+  }
+]
+
+
 export const dataTemp2 = [{
     id: 17,
     userCounter: 12,

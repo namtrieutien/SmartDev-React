@@ -12,6 +12,12 @@ import { Redirect, useParams } from "react-router-dom";
 import { loginUserAction } from "../../../redux/actions/login/authAction";
 import adminApi from "../../../api/management/adminApi";
 import "./Product.css";
+import {
+  AssignmentIndOutlined,
+  MailOutline,
+  PermIdentityOutlined,
+  PhoneAndroidOutlined,
+} from "@material-ui/icons";
 
 Product.propTypes = {};
 
@@ -116,25 +122,62 @@ function Product(props) {
             </Paper>
             <TabPanel value={value} index={0}>
               <div className="content-tab">
-                <div className="content-tab-key">
-                  <span className="product-infor-key">iD:</span>
-                  <span className="product-infor-key">category:</span>
-                  <span className="product-infor-key">status:</span>
-                  <span className="product-infor-key">size:</span>
-                </div>
-                <div className="content-tab-value">
-                  <span className="product-infor-value">{post.id}</span>
-                  <span className="product-infor-value">{post.category}</span>
-                  <span className="product-infor-value">
-                    {post.status === false ? "Selling" : "true"}
-                  </span>
-                  <span className="product-infor-value">{post.size}</span>
+                <div className="seller-right">
+                  <div className="seller-detail-item">
+                    <span className="product-detail-key">ID:</span>
+                    <div className="product-detail-value">{post.id}</div>
+                  </div>
+                  <div className="seller-detail-item">
+                    <span className="product-detail-key">Category:</span>
+                    <div className="product-detail-value">{post.category}</div>
+                  </div>
+                  <div className="seller-detail-item">
+                    <span className="product-detail-key">Size:</span>
+                    <div className="product-detail-value">{post.size}</div>
+                  </div>
+                  <div className="seller-detail-item">
+                    <span className="product-detail-key">Status</span>
+                    <div
+                      className={
+                        post.status === false
+                          ? `product-detail-value status-product selling-product`
+                          : `product-detail-value status-product sold-product`
+                      }
+                    >
+                      {post.status === false ? "Selling" : "Sold"}
+                    </div>
+                  </div>
                 </div>
               </div>
             </TabPanel>
             <TabPanel value={value} index={1}>
               <div className="content-tab-user">
-                <div className="product-infor-owner">
+                <div className="seller-left">
+                  <img
+                    src={post.user && post.user.avatar}
+                    alt="owner"
+                    className="avatar-seller"
+                  />
+                </div>
+                <div className="seller-right">
+                  <div className="seller-detail-item">
+                    <PermIdentityOutlined className="seller-icons" />
+                    <div>{post.user && post.user.id}</div>
+                  </div>
+                  <div className="seller-detail-item">
+                    <MailOutline className="seller-icons" />
+                    <div>{post.user && post.user.email}</div>
+                  </div>
+                  <div className="seller-detail-item">
+                    <AssignmentIndOutlined className="seller-icons" />
+                    <div>{post.user && post.user.name}</div>
+                  </div>
+                  <div className="seller-detail-item">
+                    <PhoneAndroidOutlined className="seller-icons" />
+                    <div>{post.user && post.user.phone}</div>
+                  </div>
+                </div>
+                {/* <div className="product-infor-owner">
                   <div style={{flex: "1"}}>
                     <img
                       src={post.user && post.user.avatar}
@@ -167,7 +210,7 @@ function Product(props) {
                   <div className="product-infor-value-owner">
                     {post.user && post.user.phone}
                   </div>
-                </div>
+                </div> */}
               </div>
             </TabPanel>
             <TabPanel value={value} index={2}>

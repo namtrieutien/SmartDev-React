@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { widgetLgList } from "../../dummyData";
 import adminApi from "../../../api/management/adminApi";
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
+import {Link, Redirect, useHistory} from "react-router-dom"
 // import PropTypes from "prop-types";
 
 import "./WidgetLg.css";
@@ -30,7 +31,7 @@ const LoadinngPostsFrame = () => {
 }
 
 const ListProducts = (props) => {
-  
+  const history = useHistory();
   const {listProduct} = props;
   const handleTimeStamp = (timestamp) => {
     // const timestamp = Date.now(); 
@@ -49,8 +50,13 @@ const ListProducts = (props) => {
       return <button className={"widget-lg-button recall"}>recall</button>;
   };
 
+  const handleClickProduct = (id) => {
+    let path = `/management/product/${id}`; 
+    history.push(path);
+  }
+
   const listItems = listProduct.map((product) => (
-    <tr className="widget-lg-tr" key={product.id }>
+    <tr className="widget-lg-tr" key={product.id } onClick={() => handleClickProduct(product.id)}>
       <td className="widget-lg-user">
         <img src={product.image} alt="product img" className="widget-lg-img" />
         <span className="widget-lg-name">{product.title || <Skeleton />}</span>

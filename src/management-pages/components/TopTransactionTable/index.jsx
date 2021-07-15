@@ -55,14 +55,14 @@ const ListProducts = (props) => {
   const listItems = listProduct.map((product) => (
     <tr className="widget-lg-tr" key={product.id }>
       <td className="">
-        <img src='https://image.flaticon.com/icons/png/512/888/888870.png' alt="product img" className="widget-lg-img" />
+        {product.method === "Paypal" && <img src='https://image.flaticon.com/icons/png/512/888/888870.png' alt="product img" className="widget-lg-img" />}
       </td>
       <td className="">
-        <span className="widget-lg-description">{product.title || <Skeleton />}</span>
+        <span className="widget-lg-description">{product.description || <Skeleton />}</span>
       </td>
       <td className="widget-lg-date">{handleTimeStamp(product.createdAt) || <Skeleton />}</td>
       <td className="widget-lg-amount">{product.totalPrice || <Skeleton />}</td>
-      <td className="widget-lg-amount">Dollar</td>
+      <td className="widget-lg-amount">{product.currency}</td>
       <td className="widget-lg-status">
         {
           product.status === undefined ?
@@ -76,24 +76,7 @@ const ListProducts = (props) => {
 
 function TopTransactionTale(props) {
   const [loading, setLoading] = useState(false)
-  const [listProduct, setListProduct] = useState([]);
-
   const {topPriceTransaction} = props;
-
-  useEffect(() => {
-    const fetchLastestPost = async () => {
-      try {
-        const response = await adminApi.getLastestPost();
-        console.log(response);
-        setListProduct(response);
-        setLoading(true)
-      } catch (error) {
-        console.log("Failed to fetch lastest posts", error);
-      }
-    };
-
-    fetchLastestPost();
-  }, []);
 
   return (
     <div className="widget-lg">
@@ -110,7 +93,7 @@ function TopTransactionTale(props) {
               <th className="widget-lg-th">Status</th>
             </tr>
             {
-              loading === true ? <ListProducts  listProduct={topPriceTransaction}/>
+              topPriceTransaction ? <ListProducts  listProduct={topPriceTransaction}/>
               : <LoadinngPostsFrame />
             }            
           </tbody>
