@@ -10,6 +10,7 @@ import { getCartItems } from '../../redux/actions/user/payment.action'
 import loading from './images/loading.gif'
 import { useLocation } from 'react-router-dom';
 import { formatPrice } from '../../helper/helper'
+import { Link } from "react-router-dom"
 
 function CartItem({ cartItem }) {
   console.log("cartItem", cartItem)
@@ -17,7 +18,7 @@ function CartItem({ cartItem }) {
   return (
     <div className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
       <img src={image} alt="" class="rounded" width="80" height="65" />
-      <div class="d-flex col-12 pl-1">
+      <div class="d-flex col-12 ml-2">
         <span class="col-6 pl-1 post-title">{title}</span>
         <span class="col-4 text-danger pl-1">{formatPrice(price)} VND</span>
       </div>
@@ -49,6 +50,10 @@ function Payment(props) {
     return state.paymentReducer.listItems;
   });
 
+  const checkFailed = useSelector(state => {
+    return state.paymentReducer.checkFailed;
+  })
+
   const onSubmit = (data) => {
     dispatch(pay(data))
   };
@@ -67,13 +72,11 @@ function Payment(props) {
         <div className="row">
           <div className="col-md-8">
             <div className="product-details mr-2">
-              <div className="d-flex flex-row align-items-center"><i className="fa fa-long-arrow-left"></i><span className="ml-2">Continue Shopping</span></div>
               {/* <hr> */}
-              <h6 className="mb-0">Shopping cart</h6>
-              <div className="d-flex justify-content-between"><span>You have {listItems.length} items in your cart</span>
-                <div className="d-flex flex-row align-items-center"><span className="text-black-50">Sort by:</span>
-                  <div className="price ml-2"><span className="mr-1">price</span><i className="fa fa-angle-down"></i></div>
-                </div>
+              <Link to={{pathname: '/',}} style={{color: 'blue'}}><i class="fas fa-arrow-left"></i>
+                  <span className="ml-2 text">Back to Homepage</span>
+                </Link>
+              <div className="d-flex justify-content-between ml-2"><span>You have {listItems.posts && <span>{listItems.posts.length}</span>} items in your cart</span>
               </div>
               {listItems.posts && listItems.posts.map(item =>
                 <CartItem
@@ -121,6 +124,9 @@ function Payment(props) {
                 <div className="d-flex justify-content-between information mt-3">
                   <span>Total(Incl. taxes)</span><span>{formatPrice(listItems.totalPrice)} VND</span>
                 </div>
+                {checkFailed && <div>
+                  <p className="badge badge-danger" style={{fontSize: '12px'}}>Cant connect to paypal! Please try later.</p>
+                </div>}
                 <button
                   className="btn btn-primary btn-block d-flex justify-content-between mt-3"
                   type="submit"

@@ -13,7 +13,7 @@ const CardPost = (props) => {
       <div className="product-item mb-5 bg-light">
         <div className="down-content">
           <Link to={{ pathname: `/post/${id}`, state: { post: props.post } }}>
-            <img className="mb-2" src={image} alt="" style={{width : '80%', height: '80%'}} />
+            <img className="mb-2" src={image} alt=""/>
             <h4 className="text-break-head">{title.trim()}</h4>
             <div className="text-break">
               <p>{description.trim()}</p>
