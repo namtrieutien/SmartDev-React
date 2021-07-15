@@ -8,7 +8,6 @@ import * as cartAction from '../../actions/cartAction'
 const pay = async (requestPayment) => {
   try {
     const response = await apiSunny.post(`/order/payment`, requestPayment);
-    console.log(response.data);
     return response.data;
   } catch (e) {
     console.log(e.response.data);
@@ -19,9 +18,8 @@ const pay = async (requestPayment) => {
 function* userPay(action) {
   try {
     action.requestPayment= {...action.requestPayment, intent:'SALE', method: 'Paypal'}
-    // console.log(action.requestPayment);
     const data = yield call(pay, action.requestPayment);
-    console.log(data);
+    console.log(data)
     yield put({type: type.USER_PAYMENT, payload: data});
   } catch (e) {
     console.log(e.messages);

@@ -7,7 +7,8 @@ const initialState = {
   paymentHistory: {},
   listItems: {},
   checkGetPayment: false,
-  cancel: false
+  cancel: false,
+  checkFailed: false,
 }
 
 export default function payment(state = initialState, action) {
@@ -15,22 +16,25 @@ export default function payment(state = initialState, action) {
     case type.USER_PAYMENT_REQUESTED:
       return {
         ...state,
-        check: true
+        check: true,
+        checkFailed: false,
       }
     case type.USER_PAYMENT:
-      console.log(action.payload);
+      
       if (action.payload.payment_link) {
         window.open(action.payload.payment_link, '_self')
         return {
           ...state,
           data: action.payload,
-          check: false
+          check: false,
+          checkFailed: false,
         }
       }
       else {
         return {
           ...state,
-          check: false
+          check: false,
+          checkFailed: true,
         }
       }
     case type.USER_EXECUTE_PAYMENT_REQUESTED:
