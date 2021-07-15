@@ -30,7 +30,7 @@ const SearchNotFound = (props) => {
           <h1>Oops!</h1>
         </div>
         <h2>Search No Result</h2>
-        <p>We're sorry. We cannot find any matches for your search term: <b>{props.params.title}</b></p>
+        <h6 className="mb-3">We're sorry. We cannot find any matches for your search term <b>{props.params.title}</b></h6>
         <button onClick={handleButton} className="btnRemoveKeyWord" type="submit">
           Remove keyword
         </button>

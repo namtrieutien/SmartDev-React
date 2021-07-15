@@ -157,10 +157,10 @@ function Profile(props) {
                     <div className="card-body card-statistic">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">BUY</i>Statistics</h6>
                       {isLoading || total == null || list == [] ? (
-                        <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
+                        <img src="https://i.pinimg.com/originals/6b/67/cb/6b67cb8a166c0571c1290f205c513321.gif" className="img-responsive" style={{ width: '100%', height: '90%' }}></img>
                       ) : (
                         <div>
-                          <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">{VNDformat(total.total_all_orders)}</i></h7>
+                          <h6 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">{VNDformat(total.total_all_orders)}</i></h6>
                           {list.map(item => (
                             <ProgressBar label={item.category} width={`${item.percentage}%`} aria_valuenow={item.percentage} ></ProgressBar>
                           ))}
@@ -174,10 +174,10 @@ function Profile(props) {
                     <div className="card-body card-statistic">
                       <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">SALE</i>Statistics</h6>
                       {isLoading || total_buy==null || list_buy==[] ? (
-                        <h7 className="d-flex align-items-center ml-5 mb-3"><i className="material-icons text-success ml-5 mr-2">Loading...</i></h7>
-                      ) : (
+                        <img src="https://i.pinimg.com/originals/6b/67/cb/6b67cb8a166c0571c1290f205c513321.gif" className="img-responsive" style={{ width: '100%', height: '90%' }}></img>
+                        ) : (
                         <div>
-                          <h7 className="d-flex align-items-center ml-5 mb-3 text-success"><i className="material-icons text-success ml-5 mr-2">{VNDformat(total_buy.total_price)}</i></h7>
+                          <h6 className="d-flex align-items-center ml-5 mb-3 text-success"><i className="material-icons text-success ml-5 mr-2">{VNDformat(total_buy.total_price)}</i></h6>
                           {list_buy.map(item => (
                             <ProgressBar label={item.category} width={`${item.percentage}%`} aria_valuenow={item.percentage} ></ProgressBar>
                           ))}
