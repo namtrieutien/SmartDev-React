@@ -22,12 +22,14 @@ function ListItem({ label, src, link }) {
   );
 }
 function ProgressBar({ label, width, aria_valuenow }) {
-  const styleObject = { "width": width }
+  const styleObject = { "maxWidth": width }
   return (
     <div>
       <small>{label}</small>
       <div className="progress mb-3" style={{ height: '15px' }}>
-        <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={styleObject} aria-valuenow={{ aria_valuenow }} aria-valuemin={0} aria-valuemax={100}/>
+        <div className="progress-bar progress-bar-striped bg-danger" role="progressbar" style={styleObject} aria-valuenow={{ aria_valuenow }} aria-valuemin={0} aria-valuemax={100}>
+        <span className="title text-warning">{Math.round( aria_valuenow * 100 + Number.EPSILON ) / 100}%</span>
+        </div>
       </div>
     </div>
   );
@@ -84,11 +86,11 @@ function Profile(props) {
               <div className="card">
                 <div className="card-body card-profile">
                   <div className="d-flex flex-column align-items-center text-center">
-                    <img src={data.user.avatar ? data.user.avatar : "https://avatars.dicebear.com/api/bottts/sad.svg"} alt="avatar" className="rounded-circle" width={150} />
+                    <img src={data.user.avatar ? data.user.avatar : "https://avatars.dicebear.com/api/bottts/sad.svg"} alt="avatar" className="rounded-circle" width={150} height={150}/>
                     <div className="mt-3">
                       <h4>{data.user.name}</h4>
                       <p className="text-secondary mb-1">Premium Member</p>
-                      <button className="btn btn-outline-primary mr-2"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/cart.png`).default} alt="Cart" />Cart</button>
+                      <button className="btn btn-outline-primary mr-2" data-toggle="modal" data-target="#exampleModal"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/cart.png`).default} alt="Cart" />Cart</button>
                       <button onClick={handleClickCreatePostButton} className="btn btn-outline-primary"><img className="feather feather-globe mr-2 icon-inline" width="30" height="30" src={require(`./img/create.png`).default} alt="Fav" />Create Post</button>
                     </div>
                   </div>
