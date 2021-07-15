@@ -14,6 +14,8 @@ import "./AdminHeader.css"
 
 function AdminHeader(props) {
 
+  const {admin} = props
+
   function handelLogout() {
     props.logout()
   };
@@ -22,7 +24,7 @@ function AdminHeader(props) {
     <div className="admin-topbar">
       <div className="admin-topbar-wrapper">
         <div className="top-right">
-          <div className="topbar-icon-container">
+          {/* <div className="topbar-icon-container">
             <NotificationsNone />
             <span className="top-icon-badge">
               2
@@ -33,11 +35,12 @@ function AdminHeader(props) {
             <span className="top-icon-badge">
               2
             </span>
+          </div> */}
+          <div className="topbar-icon-container" style={{fontSize: "20px", fontWeight: "600"}}>
+            {admin.name}
           </div>
-          <div className="topbar-icon-container">
-            <Settings />
-          </div>
-          <img className="top-avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjFh4BaZWOa9wIjURVtjwfFum5feHcWt0lN7UyMsOdmH7MKAGymN8_GBlhqJr1SHwV9cE&usqp=CAU" alt="" />
+          
+          <img className="top-avatar" src={admin.avatar ? admin.avatar : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjFh4BaZWOa9wIjURVtjwfFum5feHcWt0lN7UyMsOdmH7MKAGymN8_GBlhqJr1SHwV9cE&usqp=CAU"} alt="" />
           <div className="topbar-icon-container ml-2" onClick={handelLogout}>
             <ExitToApp className="exit-admin-icon" />
           </div>
@@ -46,6 +49,13 @@ function AdminHeader(props) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    admin: state.userReducer.user.user,
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => {
@@ -53,4 +63,4 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
-export default connect(null, mapDispatchToProps)(AdminHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminHeader);
