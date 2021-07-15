@@ -198,10 +198,10 @@ function PostDetail(props) {
                     </div>
                     {/* Buyer */}
                     {buyer ? (
-                      <div className="card mb-3 mt-5 ml-5" style={{ maxWidth: '540px' }}>
+                      <div className="card mb-3 mt-5 ml-5" style={{ maxWidth: '550px' }}>
                         <div className="row no-gutters">
                           <div className="col-md-4">
-                            <img src={buyer.avatar ? buyer.avatar : "https://avatars.dicebear.com/api/bottts/sad.svg" } className="card-img rounded-circle img-responsive p-3" style={{ width: '100%', height: '100%' }} alt="" />
+                            <img src={buyer.avatar ? buyer.avatar : "https://avatars.dicebear.com/api/bottts/sad.svg" } className="card-img rounded-circle img-responsive p-3" width={200} height={200} alt="" />
                           </div>
                           <div className="col-md-8">
                             <div className="card-body">
