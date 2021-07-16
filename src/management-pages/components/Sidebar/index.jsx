@@ -120,7 +120,7 @@ function Sidebar(props) {
     <nav className="navbar-custom">
       <ul className="navbar-nav-custom">
         <li className="logo">
-          <Link to="/management" className="nav-link-custom">
+          <Link to="/" className="nav-link-custom">
             <span className="link-text logo-text">Chợ tốt</span>
             <svg
               aria-hidden="true"
