@@ -26,7 +26,7 @@ function Header(props) {
 						<div className="col d-flex justify-content-end">
 							<div className="social-media">
 				    		<p className="mb-0 d-flex">
-									{admin.roles && admin.roles[0] === "ROLE_ADMIN" && <Link to="/management" className="d-flex align-items-center justify-content-center"><span className="fas fa-unlock"><i className="sr-only">Admin</i></span></Link>}
+									{/* {admin.roles && admin.roles[0] === "ROLE_ADMIN" && <Link to="/management" className="d-flex align-items-center justify-content-center"><span className="fas fa-unlock"><i className="sr-only">Admin</i></span></Link>} */}
 				    			<a href="#" className="d-flex align-items-center justify-content-center"><span className="fab fa-facebook"><i className="sr-only">Facebook</i></span></a>
 				    			<a href="#" className="d-flex align-items-center justify-content-center"><span className="fab fa-twitter"><i className="sr-only">Twitter</i></span></a>
 				    			<a href="#" className="d-flex align-items-center justify-content-center"><span className="fab fa-instagram"><i className="sr-only">Instagram</i></span></a>
@@ -56,16 +56,5 @@ function Header(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    admin: state.userReducer.user.user,
-  }
-}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;
